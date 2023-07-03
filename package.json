@@ -24,7 +24,6 @@
     "@types/ngprogress": "^1.0.29",
     "@types/node": "^16.9.6",
     "@types/nprogress": "^0.2.0",
-    "@types/three": "^0.149.0",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "@vitejs/plugin-vue": "^4.0.0",
@@ -47,23 +46,23 @@
     "prettier-eslint": "^13.0.0",
     "sass": "^1.41.1",
     "sass-loader": "^12.1.0",
-    "three": "^0.146.0",
     "typescript": "^4.3.2",
+    "unocss": "^0.53.4",
     "unplugin-auto-import": "^0.16.4",
-    "unplugin-icons": "^0.15.2",
+    "unplugin-icons": "^0.16.3",
+    "unplugin-vue-components": "^0.25.1",
     "vite": "^4.0.4",
-    "vite-plugin-compress": "^2.1.1",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-require": "^1.1.10",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vue-eslint-parser": "^7.11.0",
+    "vue-eslint-parser": "^9.3.1",
     "vue-tsc": "^0.2.2"
   },
   "description": "{**When you're done, you can delete the content in this README and update the file with details for others getting started with your repository**}",
   "main": ".eslintrc.js",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/script_zhao/vite-element-plus-zhao-template.git"
+    "url": "https://gitee.com/servious-illness/servious-illness-admin.git"
   },
   "author": "QMZhao",
   "license": "ISC"
