@@ -1,0 +1,260 @@
+@import "./variables.scss";
+/* Mixins */
+/*
+ * 公共样式
+ */
+
+// rem适配
+// 计算rem的基准字体
+$rem-base-font-size: 16px;
+// UI设计图的分辨率宽度
+$UI-resolution-width: 1920px;
+// 需要适配的屏幕宽度
+$device-widths: 1024px, 1280px, 1366px, 1440px, 1600px, 1920px;
+// 根据不同设备的屏幕宽度，定义html的基准font-size
+// 将设计图标注的px尺寸，转换为相应的rem
+@function pxTorem($px) {
+  @return $px / $rem-base-font-size * 1rem;
+}
+
+// 颜色
+// $color-white: #ffffff;
+// $color-black: #333333;
+// $color-666: #666666;
+// $color-999: #999999;
+
+// $color-primary: #21C9E5;
+// $color-background: #F2F2F2;
+// $color-content-background: #F8F8F8;
+// $color-border: #d9d9d9;
+
+// $color-status-unfinished: #FEB78C;
+// $color-status-finished: #9FDB9D;
+// $color-status-cancelled: #E5E5E5;
+// $color-status-tobeconfirmed: #A3E3F7;
+
+// $color-fail: #fc6766;
+
+// 通用样式
+// 全局
+@mixin common {
+  * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// a标签
+@mixin a-common {
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 255);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    color: $color-primary;
+  }
+  a:link,
+  a:hover,
+  a:active,
+  a:visited {
+    text-decoration: none;
+  }
+}
+
+// input
+@mixin input-common {
+  input {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-appearance: none;
+  }
+  input::-ms-clear,
+  input::-ms-reveal {
+    display: none;
+  }
+}
+
+// ul
+@mixin ul-common {
+  ul {
+    list-style: none;
+  }
+}
+
+// 通用方法
+// 背景
+/*
+ * 背景
+ * @param $img 图片目录文件名
+ * @param $posX 位置x
+ * @param $posY 位置y
+ * @param $path 相对目录
+ */
+@mixin bg($img, $posX, $posY, $path: "../") {
+  background: url(#{$path}assets/imgs/#{$img}) no-repeat $posX $posY;
+}
+
+/*
+ * 背景（背景色）
+ * @param $img 图片目录文件名
+ * @param $posX 位置x
+ * @param $posY 位置y
+ * @param $path 相对目录
+ */
+@mixin bg-color($color, $img, $posX, $posY, $path: "../") {
+  background: $color url(#{$path}assets/imgs/#{$img}) no-repeat $posX $posY;
+}
+
+// 文本
+/*
+ * 文本显示不完显示...
+ * @param
+ */
+@mixin text-ellipsis {
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/*
+ * 文本显示不完显示...
+ * @param
+ */
+@mixin texts-ellipsis($rows) {
+  display: -webkit-box;
+  box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-line-clamp: #{$rows};
+  overflow: hidden;
+}
+/*
+ * 滑动动效
+ * @param
+ *
+*/
+@mixin slideX{
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transform: translateX(100%);
+     -moz-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+       -o-transform: translateX(100%);
+          transform: translateX(100%);
+  transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -moz-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -webkit-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -o-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  &.slide-in{
+    -webkit-transform: translateX(0%);
+       -moz-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+         -o-transform: translateX(0%);
+            transform: translateX(0%);
+    z-index: 20;
+  }
+}
+@mixin slideX-reverse{
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transform: translateX(-100%);
+     -moz-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+       -o-transform: translateX(-100%);
+          transform: translateX(-100%);
+  transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -moz-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -webkit-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -o-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  &.slide-in{
+    -webkit-transform: translateX(0%);
+       -moz-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+         -o-transform: translateX(0%);
+            transform: translateX(0%);
+    z-index: 20;
+  }
+}
+@mixin slideY{
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transform: translateY(-100%);
+     -moz-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+       -o-transform: translateY(-100%);
+          transform: translateY(-100%);
+  transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -moz-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -webkit-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -o-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  &.slide-in{
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+       -moz-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+         -o-transform: translateY(0%);
+            transform: translateY(0%);
+    z-index: 20;
+  }
+}
+@mixin slideY-reverse{
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transform: translateY(100%);
+     -moz-transform: translateY(100%);
+      -ms-transform: translateY(100%);
+       -o-transform: translateY(100%);
+          transform: translateY(100%);
+  transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -moz-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -webkit-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  -o-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+  &.slide-in{
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+       -moz-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+         -o-transform: translateY(0%);
+            transform: translateY(0%);
+    z-index: 20;
+  }
+}
+
+/*
+ * 字体
+ * @param px
+ */
+@mixin font-style($size: $font-size-12, $colorSimple: $color-primary, $weight: normal) {
+  font-size: $size;
+  color: $colorSimple;
+  font-weight: $weight;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin cursor {
+  cursor: pointer;
+}
+
+
+

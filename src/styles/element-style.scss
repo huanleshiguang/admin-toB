@@ -1,0 +1,97 @@
+@import "./variables.scss";
+/** 按钮 **/
+// 文字类型
+.el-button--text,
+.el-button--text:focus,
+.el-button--text:hover  {
+  color: $btn-bg-primary;
+}
+
+// primary 类型
+.el-button--primary {
+  background: $btn-bg-primary;
+  border-color: transparent;
+}
+.el-button--primary:focus, .el-button--primary:hover {
+  background: $btn-bg-primary;
+}
+
+/** 搜索框 **/
+.el-input__inner {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 3px;
+  border: 1px solid #e6e6e6;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #666;
+  // display: inline-block;
+  font-size: inherit;
+  // height: 34px;
+  // line-height: 34px;
+  outline: none;
+  // padding: 0 15px;
+  -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+  transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+  width: 100%;
+}
+
+
+// 文本框
+.el-textarea__inner,
+.el-textarea__inner:hover,
+.el-textarea__inner:focus {
+  border-color: $color-background;
+}
+
+// 占位符样式
+// IE 11
+.el-input__inner::placeholder,
+.el-textarea__inner::placeholder{
+  font-size: 14px;
+  color: #999;
+}
+
+// 谷歌 Safari
+.el-input__inner::-webkit-input-placeholder,
+.el-textarea__inner::-webkit-input-placeholder{
+  font-size: 14px;
+  color: #999;
+}
+
+// firfox
+.el-input__inner::-moz-placeholder,
+.el-textarea__inner::-moz-placeholder{
+  font-size: 14px;
+  color: #999;
+}
+
+.el-input__inner, .el-textarea__inner {
+  color: $color-black;
+}
+
+/** 下拉框 **/
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: $color-background;
+}
+
+/** 时间选择器 **/
+.el-range-editor.is-active:hover {
+  border-color: $color-background;
+}
+
+/** 卡片 **/
+.el-card.is-always-shadow, .el-card.is-hover-shadow:focus, .el-card.is-hover-shadow:hover {
+  box-shadow: 3px 3px 12px rgba(234, 234, 234, 0.5);
+}
+
+/** loading加载 **/
+.el-loading-spinner {
+  .el-loading-text {
+    color: $btn-bg-primary;
+  }
+  .path {
+    stroke: $btn-bg-primary;
+  }
+}

@@ -1,0 +1,88 @@
+@import './svgicon.scss';
+
+/* Global scss */
+
+#app {
+  height: 100%;
+}
+
+.no-padding {
+  padding: 0px;
+}
+
+
+@include common;
+@include a-common;
+@include input-common;
+@include ul-common;
+$color-scrollbar-thumb-bg: rgba(193, 193, 193, 0.6);
+
+.h_100 {
+  height: 100%;
+}
+.w_100 {
+  width: 100%;
+}
+[v-cloak] {
+  display: none;
+}
+html,
+body {
+  color: $color-black;
+  font-size: 12px;
+  // font-family: "Microsoft YaHei", "微软雅黑", "Helvetica Neue", Helvetica,
+  //   "PingFang SC", "Hiragino Sans GB", Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+.clearfix {
+  @include clearfix;
+}
+// 滚动条
+div::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+div::-webkit-scrollbar-track {
+  background-color: $color-white;
+}
+.nav::-webkit-scrollbar-track {
+  background-color: $color-background;
+}
+div::-webkit-scrollbar-thumb {
+  background-color: $color-scrollbar-thumb-bg;
+  border-radius: 50px;
+}
+ul {
+  margin-bottom: 0;
+}
+ul::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+ul::-webkit-scrollbar-track {
+  background-color: $color-white;
+}
+ul::-webkit-scrollbar-thumb {
+  background-color: $color-scrollbar-thumb-bg;
+  border-radius: 50px;
+}
+
+textarea::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+textarea::-webkit-scrollbar-track {
+  background-color: $color-white;
+}
+textarea::-webkit-scrollbar-thumb {
+  background-color: $color-scrollbar-thumb-bg;
+  border-radius: 50px;
+}
+#nprogress .bar {
+  background: #0dc9e5 !important;
+}
