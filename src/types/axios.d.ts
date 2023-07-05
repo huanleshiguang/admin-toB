@@ -1,25 +1,29 @@
 export type ErrorMessageMode = "none" | "modal" | "message" | undefined;
+export type SuccessMessageMode = ErrorMessageMode;
 
 export interface RequestOptions {
-  // Splicing request parameters to url
+  // 将请求参数拼接到url
   joinParamsToUrl?: boolean;
-  // Format request parameter time
+  // 格式化请求参数时间
   formatDate?: boolean;
-  // Whether to process the request result
+  // 是否处理请求结果
   isTransformResponse?: boolean;
-  // Whether to return native response headers
-  // For example: use this attribute when you need to get the response headers
+  // 是否返回本地响应头,需要获取响应头时使用此属性
   isReturnNativeResponse?: boolean;
   // Whether to join url
   joinPrefix?: boolean;
-  // Interface address, use the default apiUrl if you leave it blank
+  // 接口地址，如果保留为空，则使用默认值
   apiUrl?: string;
-  // Error message prompt type
+  // 请求拼接路径
+  urlPrefix?: string;
+  // 错误消息提示类型
   errorMessageMode?: ErrorMessageMode;
-  // Whether to add a timestamp
+  // 成功消息提示类型
+  successMessageMode?: SuccessMessageMode;
+  // 是否添加时间戳
   joinTime?: boolean;
   ignoreCancelToken?: boolean;
-  // Whether to send token in header
+  //是否在标头中发送令牌
   withToken?: boolean;
 }
 
@@ -29,16 +33,29 @@ declare interface ResponseData<T = any> {
   message: string;
   data: T;
 }
+declare interface Result<T = any> {
+  code: number;
+  type: "success" | "error" | "warning";
+  message: string;
+  data: T;
+}
 
-// multipart/form-data: upload file
+// 文件上传参数:multipart/form-data: upload file
 export interface UploadFileParams {
-  // Other parameters
+  // 其他参数
   data?: Recordable;
-  // File parameter interface field name
+  // 文件参数接口字段名
   name?: string;
-  // file name
+  // 文件
   file: File | Blob;
-  // file name
+  // 文件名
   filename?: string;
   [key: string]: any;
+}
+//文件返回参数
+export interface UploadFileCallBack {
+  // 成功回调方法
+  success?: any;
+  // 是否返回响应头,需要获取响应头时使用此属性
+  isReturnResponse?: boolean;
 }
