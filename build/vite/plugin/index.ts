@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-08-16 11:27:54
- * @LastEditTime: 2023-02-09 17:46:20
+ * @LastEditTime: 2023-07-05 18:04:38
  * @Reference:
  */
 import type { Plugin } from "vite";
@@ -12,7 +12,7 @@ import type { Plugin } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import { ElementPlusResolver, AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 import IconsResolver from "unplugin-icons/resolver";
 import Icons from "unplugin-icons/vite";
 import vitePluginRequire from "vite-plugin-require";
@@ -40,7 +40,8 @@ export function createVitePlugins(mode: string, isBuild: boolean) {
       // Auto import functions from Element Plus, e.g. ElMessage, ElMessageBox... (with style)
       // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
       resolvers: [
-        ElementPlusResolver(),
+        // ElementPlusResolver(),
+        AntDesignVueResolver(),
 
         // Auto import icon components
         // 自动导入图标组件
@@ -68,7 +69,8 @@ export function createVitePlugins(mode: string, isBuild: boolean) {
         }),
         // Auto register Element Plus components
         // 自动导入 Element Plus 组件
-        ElementPlusResolver()
+        // ElementPlusResolver()
+        AntDesignVueResolver()
       ],
 
       dts: "components.d.ts"

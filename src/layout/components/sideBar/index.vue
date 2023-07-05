@@ -23,7 +23,7 @@ const getCollapaseStatus = computed(() => store.isCollapse);
       ]"
     >
       <div class="logo">
-        <el-image class="w_100 h_100 logo-image" :src="require('../../../static/image/logo.webp')" alt="" />
+        <a-image class="w_100 h_100 logo-image" :src="require('../../../static/image/logo.webp')" alt="" />
       </div>
       <div
         :class="[
@@ -36,9 +36,9 @@ const getCollapaseStatus = computed(() => store.isCollapse);
     </div>
     <!-- 侧边栏 -->
     <div class="side-bar-list">
-      <el-scrollbar>
+      <a-scrollbar>
         <SideBarItem v-model:collapseValue="getCollapaseStatus"></SideBarItem>
-      </el-scrollbar>
+      </a-scrollbar>
     </div>
   </div>
 </template>

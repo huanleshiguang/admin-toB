@@ -29,6 +29,7 @@
     "@vue/compiler-sfc": "^3.2.6",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
+    "ant-design-vue": "^3.2.20",
     "autoprefixer": "^10.3.4",
     "axios": "^1.4.0",
     "cross-env": "^7.0.3",

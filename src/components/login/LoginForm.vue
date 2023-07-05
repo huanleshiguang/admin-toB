@@ -35,17 +35,17 @@ function onLogin() {
 
 <template>
   <div class="user-form form-position form-card">
-    <el-form :model="loginForm" label-width="80px">
-      <el-form-item label="用户名" prop="userName">
-        <el-input v-model="loginForm.userName" placeholder="请输入用户名"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input v-model="loginForm.password" placeholder="请输入密码"></el-input>
-      </el-form-item>
-      <el-form-item label="">
-        <el-button type="primary" class="w_100" @click="onLogin">登录</el-button>
-      </el-form-item>
-    </el-form>
+    <a-form :model="loginForm" label-width="80px">
+      <a-form-item label="用户名" prop="userName">
+        <a-input v-model="loginForm.userName" placeholder="请输入用户名"></a-input>
+      </a-form-item>
+      <a-form-item label="密码" prop="password">
+        <a-input v-model="loginForm.password" placeholder="请输入密码"></a-input>
+      </a-form-item>
+      <a-form-item label="">
+        <a-button type="primary" class="w_100" @click="onLogin">登录</a-button>
+      </a-form-item>
+    </a-form>
   </div>
 </template>
 

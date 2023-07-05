@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 导航栏
  * @Date: 2022-10-31 13:54:35
- * @LastEditTime: 2023-02-14 14:05:19
+ * @LastEditTime: 2023-07-05 18:16:44
  * @Reference: 
 -->
 <script lang="ts" setup>
@@ -42,7 +42,7 @@ function onLogout(): void {
       <!-- 侧边栏开关按钮 -->
       <div :class="['menu-btn h_100 flex items-center']" @click="onCollapaseSideBar">
         <div :class="['menu-btn-icon w_100 flex items-center menu-btn-position']">
-          <svg-icon :iconClass="isCollapse ? 'expasion' : 'shou'"></svg-icon>
+          <svg-icon :icon-class="isCollapse ? 'expasion' : 'shou'"></svg-icon>
         </div>
       </div>
       <!-- 路由信息 -->
@@ -50,16 +50,16 @@ function onLogout(): void {
     </div>
     <!-- 用户信息 -->
     <div>
-      <el-dropdown>
-        <el-button text class="el-dropdown-link">
+      <a-dropdown>
+        <a-button text class="a-dropdown-link">
           {{ userInfo.username }}
-        </el-button>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item @click="onLogout">退出</el-dropdown-item>
-          </el-dropdown-menu>
+        </a-button>
+        <template #overlay>
+          <a-menu>
+            <a-menu-item @click="onLogout">退出</a-menu-item>
+          </a-menu>
         </template>
-      </el-dropdown>
+      </a-dropdown>
     </div>
   </div>
 </template>

@@ -25,7 +25,7 @@ const currentRouteName = computed(() => {
 </script>
 
 <template>
-  <el-menu
+  <a-menu
     router
     unique-opened
     :default-active="currentRouteName"
@@ -37,22 +37,22 @@ const currentRouteName = computed(() => {
     popper-effect="dark"
   >
     <template v-for="item in navMenuList" :key="item.id">
-      <el-sub-menu v-if="item.children" :index="item.path">
+      <a-sub-menu v-if="item.children" :index="item.path">
         <template #title>
-          <el-icon>
+          <a-icon>
             <i-ep-location color="#fff"></i-ep-location>
-          </el-icon>
+          </a-icon>
           <span>{{ item.label }}</span>
         </template>
-        <el-menu-item-group v-for="menuItem in item.children" :key="menuItem.id">
-          <el-menu-item :index="menuItem.path" class="menu-item_custom">{{ menuItem.label }}</el-menu-item>
-        </el-menu-item-group>
-      </el-sub-menu>
-      <el-menu-item :index="item.path" v-else class="menu-item_custom">
+        <a-menu-item-group v-for="menuItem in item.children" :key="menuItem.id">
+          <a-menu-item :index="menuItem.path" class="menu-item_custom">{{ menuItem.label }}</a-menu-item>
+        </a-menu-item-group>
+      </a-sub-menu>
+      <a-menu-item v-else :index="item.path" class="menu-item_custom">
         <template #title>{{ item.label }}</template>
-      </el-menu-item>
+      </a-menu-item>
     </template>
-  </el-menu>
+  </a-menu>
 </template>
 
 <style scoped lang="scss">
