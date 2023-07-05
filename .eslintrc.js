@@ -22,9 +22,10 @@ module.exports = {
     "plugin:vue/vue3-essential",
     "plugin:@typescript-eslint/recommended",
     "eslint:recommended",
+    "plugin:vue/vue3-recommended",
     "@vue/typescript/recommended",
-    "@vue/prettier",
-    "@vue/prettier/@typescript-eslint"
+    "@vue/prettier/@typescript-eslint",
+    "@vue/prettier"
   ],
   rules: {
     "@typescript-eslint/no-explicit-any": "off", // any
