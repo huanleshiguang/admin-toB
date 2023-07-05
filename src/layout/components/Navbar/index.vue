@@ -29,7 +29,7 @@ function onCollapaseSideBar(): void {
 }
 
 // 登出
-function onLogout(): void {
+const onLogout = (): void => {
   privateRouter.push({
     path: "/login"
   });

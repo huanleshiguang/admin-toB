@@ -8,6 +8,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.18",
     "vue": "^3.2.45",
     "vue-router": "4.0.2"
@@ -20,6 +21,7 @@
     "@purge-icons/generated": "^0.7.0",
     "@types/echarts": "^4.9.16",
     "@types/fs-extra": "^9.0.13",
+    "@types/lodash-es": "^4.17.7",
     "@types/ngprogress": "^1.0.29",
     "@types/node": "^16.9.6",
     "@types/nprogress": "^0.2.0",

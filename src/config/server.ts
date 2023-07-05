@@ -9,18 +9,18 @@ import { ServerOptions } from "vite";
 
 const httpsRE = /^https:\/\//;
 
-export function useServer(target: string): ServerOptions {
+export function useServer(target: string, prefix: string): ServerOptions {
   const isHttps = httpsRE.test(target);
   return {
     host: true,
     port: 2857,
     open: true,
     proxy: {
-      "/admin": {
+      [prefix]: {
         target,
         changeOrigin: true,
         ws: true,
-        rewrite: (path: any) => path.replace(/^\/admin/, "/"),
+        rewrite: (path: any) => path.replace(/^\/api/, "/"),
         ...(isHttps ? { secure: false } : {})
       }
     }
