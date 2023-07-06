@@ -12,14 +12,14 @@ import { isString } from "/@/utils/is";
 import { deepMerge } from "/@/utils";
 const apiUrl = import.meta.env.VITE_GLOB_API_URL;
 
-const { createMessage } = useMessage();
+const { createMessage, createErrorModal } = useMessage();
 
 /**
  * @description: 数据处理，方便区分多种处理方式
  */
 const transform: AxiosTransform = {
   beforeRequestHook: (config, options) => {
-    const {apiUrl, joinPrefix, urlPrefix} = options;
+    const { apiUrl, joinPrefix, urlPrefix } = options;
 
     if (joinPrefix) {
       config.url = `${urlPrefix}${config.url}`;
@@ -60,7 +60,7 @@ const transform: AxiosTransform = {
   responseInterceptorsCatch: (error: any) => {
     // const errorLogStore = useErrorLogStoreWithOut();
     // errorLogStore.addAjaxErrorInfo(error);
-    const {response, code, message, config} = error || {};
+    const { response, code, message, config } = error || {};
     const errorMessageMode = config?.requestOptions?.errorMessageMode || "none";
     const msg: string = response?.data?.error?.message ?? "";
     const err: string = error?.toString?.() ?? "";
@@ -68,15 +68,15 @@ const transform: AxiosTransform = {
 
     try {
       if (code === "ECONNABORTED" && message.indexOf("timeout") !== -1) {
-        errMessage = ("sys.api.apiTimeoutMessage");
+        errMessage = "接口请求超时,请刷新页面重试!";
       }
       if (err?.includes("Network Error")) {
-        errMessage = ("sys.api.networkExceptionMsg");
+        errMessage = "网络异常，请检查您的网络连接是否正常!";
       }
 
       if (errMessage) {
         if (errorMessageMode === "modal") {
-          // createErrorModal({title: ("sys.api.errorTip"), content: errMessage});
+          createErrorModal({ title: "错误提示", content: errMessage });
         } else if (errorMessageMode === "message") {
           createMessage.error(errMessage);
         }
@@ -94,7 +94,7 @@ const transform: AxiosTransform = {
    * @description: 处理请求数据。如果数据不是预期格式，可直接抛出错误
    */
   transformRequestHook: (res: AxiosResponse<Result>, options: RequestOptions) => {
-    const {isTransformResponse, isReturnNativeResponse} = options;
+    const { isTransformResponse, isReturnNativeResponse } = options;
     // 是否返回原生响应头 比如：需要获取响应头时使用该属性
     if (isReturnNativeResponse) {
       return res;
@@ -106,13 +106,13 @@ const transform: AxiosTransform = {
     }
     // 错误的时候返回
 
-    const {data} = res;
+    const { data } = res;
     if (!data) {
       // return '[HTTP] Request has no return value';
-      throw new Error("sys.api.apiRequestFailed");
+      throw new Error("请求出错，请稍候重试");
     }
     //  这里 code，result，message为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
-    const {code, message} = data;
+    const { code, message } = data;
 
     // 这里逻辑可以根据项目进行修改
     const hasSuccess = data && Reflect.has(data, "code") && code === ResultEnum.SUCCESS;
@@ -125,7 +125,7 @@ const transform: AxiosTransform = {
     let timeoutMsg = "";
     switch (code) {
       case ResultEnum.TIMEOUT:
-        // timeoutMsg = t("sys.api.timeoutMessage");
+        timeoutMsg = "登录超时,请重新登录";
         // const userStore = useUserStoreWithOut();
         // userStore.setToken(undefined);
         // userStore.logout(true);
@@ -139,12 +139,12 @@ const transform: AxiosTransform = {
     // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
     // errorMessageMode='none' 一般是调用时明确表示不希望自动弹出错误提示
     if (options.errorMessageMode === "modal") {
-      // createErrorModal({ title: t("sys.api.errorTip"), content: timeoutMsg });
+      createErrorModal({ title: "错误提示", content: timeoutMsg });
     } else if (options.errorMessageMode === "message") {
       createMessage.error(timeoutMsg);
     }
 
-    throw new Error(timeoutMsg || ("sys.api.apiRequestFailed"));
+    throw new Error(timeoutMsg || "请求出错，请稍候重试");
   }
 };
 
