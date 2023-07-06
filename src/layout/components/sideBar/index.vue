@@ -2,12 +2,12 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2022-08-17 17:30:49
- * @LastEditTime: 2023-02-11 17:08:20
+ * @LastEditTime: 2023-07-06 15:00:47
  * @Reference: 
 -->
 <script lang="ts" setup>
-import SideBarItem from "./sideBarItem.vue";
-import { useMenuCollapse } from "/@/store/common/useCommon";
+import SideBarItem from './sideBarItem.vue';
+import { useMenuCollapse } from '/@/store/common/useCommon';
 
 const store = useMenuCollapse();
 
@@ -23,7 +23,7 @@ const getCollapaseStatus = computed(() => store.isCollapse);
       ]"
     >
       <div class="logo">
-        <a-image class="w_100 h_100 logo-image" :src="require('../../../static/image/logo.webp')" alt="" />
+        <!-- <a-image class="w_100 h_100 logo-image" :src="require('../../../static/image/logo.webp')" alt="" /> -->
       </div>
       <div
         :class="[
