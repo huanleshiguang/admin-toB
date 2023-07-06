@@ -12,10 +12,11 @@ import type { Plugin } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
-import { ElementPlusResolver, AntDesignVueResolver } from "unplugin-vue-components/resolvers";
+import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 import IconsResolver from "unplugin-icons/resolver";
 import Icons from "unplugin-icons/vite";
 import vitePluginRequire from "vite-plugin-require";
+import vueJsx from "@vitejs/plugin-vue-jsx";
 
 import UnoCSS from "unocss/vite";
 
@@ -28,6 +29,7 @@ import { configSvgIconsPlugin } from "./svgSprite";
 export function createVitePlugins(mode: string, isBuild: boolean) {
   const vitePlugins: (Plugin | Plugin[])[] = [
     vue(),
+    vueJsx(),
     UnoCSS(),
     vitePluginRequire(),
     AutoImport({
