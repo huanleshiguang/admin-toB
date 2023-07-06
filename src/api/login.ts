@@ -6,12 +6,7 @@
  * @Description:
  * @FilePath: /vue-vite-template/src/api/login.ts
  */
-import request from "/@/utils/request";
 import { defHttp } from "/@/utils/axios";
-
-export async function login<T>(data: T) {
-  return request.post(`api/xxx`, data);
-}
 
 export const testApi = async () => {
   return defHttp.get({ url: "/Organization/OrgManage/GetOrgAreaInfos" });
