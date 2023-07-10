@@ -7,16 +7,16 @@
 -->
 <template>
   <div class="breakcrumb-box">
-    <a-breadcrumb class="app-breadcrumb" separator="/">
+    <el-breadcrumb class="app-breadcrumb" separator="/">
       <transition-group name="breadcrumb">
-        <a-breadcrumb-item v-for="(item, index) in routes" :key="item.path">
+        <el-breadcrumb-item v-for="(item, index) in routes" :key="item.path">
           <span v-if="item.redirect === 'noRedirect' || index == routes.length - 1" class="no-redirect">
             {{ item.meta.title }}
           </span>
           <a @click.prevent="onJumpTo(item)" href="javascript: void(0)" v-else>{{ item.meta.title }}</a>
-        </a-breadcrumb-item>
+        </el-breadcrumb-item>
       </transition-group>
-    </a-breadcrumb>
+    </el-breadcrumb>
   </div>
 </template>
 
@@ -65,7 +65,7 @@ function onJumpTo(item: RouteRecordNormalized) {
 <style scoped lang="scss">
 .app-breadcrumb {
   position: relative;
-  .a-breadcrumb {
+  .el-breadcrumb {
     display: inline-block;
     font-size: 14px;
     line-height: 50px;

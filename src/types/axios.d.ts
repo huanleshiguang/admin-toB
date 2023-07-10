@@ -1,5 +1,13 @@
-export type ErrorMessageMode = "none" | "modal" | "message" | undefined;
-export type SuccessMessageMode = ErrorMessageMode;
+/*
+ * @Author: QMZhao zhao971462054@163.com
+ * @Date: 2023-07-05 18:18:46
+ * @LastEditors: QMZhao zhao971462054@163.com
+ * @LastEditTime: 2023-07-07 18:08:28
+ * @FilePath: \servious-illness-admin\src\types\axios.d.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
+// export type ErrorMessageMode = "none" | "modal" | "message" | undefined;
+// export type SuccessMessageMode = ErrorMessageMode;
 
 export interface RequestOptions {
   // 将请求参数拼接到url
@@ -17,7 +25,7 @@ export interface RequestOptions {
   // 请求拼接路径
   urlPrefix?: string;
   // 错误消息提示类型
-  errorMessageMode?: ErrorMessageMode;
+  // errorMessageMode?: ErrorMessageMode;
   // 成功消息提示类型
   successMessageMode?: SuccessMessageMode;
   // 是否添加时间戳
@@ -35,7 +43,7 @@ declare interface ResponseData<T = any> {
 }
 declare interface Result<T = any> {
   code: number;
-  type: "success" | "error" | "warning";
+  type: 'success' | 'error' | 'warning';
   message: string;
   data: T;
 }

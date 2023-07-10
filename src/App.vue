@@ -2,7 +2,7 @@
  * @Autor: QMZhao
  * @Date: 2021-09-06 22:26:37
  * @LastEditors: QMZhao zhao971462054@163.com
- * @LastEditTime: 2023-07-05 18:34:23
+ * @LastEditTime: 2023-07-07 18:21:56
  * @Description: 
  * @FilePath: /vue-vite-template/src/App.vue
 -->
@@ -10,14 +10,14 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 
-import zhCN from "ant-design-vue/es/locale/zh_CN";
-const locale = zhCN;
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
+const locale = zhCn;
 </script>
 
 <template>
-  <a-config-provider :locale="locale">
+  <el-config-provider :locale="locale">
     <router-view></router-view>
-  </a-config-provider>
+  </el-config-provider>
 </template>
 
 <style lang="scss">

@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2022-08-17 17:30:49
- * @LastEditTime: 2023-07-06 15:00:47
+ * @LastEditTime: 2023-07-07 18:25:21
  * @Reference: 
 -->
 <script lang="ts" setup>
@@ -23,7 +23,7 @@ const getCollapaseStatus = computed(() => store.isCollapse);
       ]"
     >
       <div class="logo">
-        <!-- <a-image class="w_100 h_100 logo-image" :src="require('../../../static/image/logo.webp')" alt="" /> -->
+        <!-- <el-image class="w_100 h_100 logo-image" :src="require('../../../static/image/logo.webp')" alt="" /> -->
       </div>
       <div
         :class="[
@@ -36,9 +36,9 @@ const getCollapaseStatus = computed(() => store.isCollapse);
     </div>
     <!-- 侧边栏 -->
     <div class="side-bar-list">
-      <a-scrollbar>
+      <el-scrollbar>
         <SideBarItem v-model:collapseValue="getCollapaseStatus"></SideBarItem>
-      </a-scrollbar>
+      </el-scrollbar>
     </div>
   </div>
 </template>

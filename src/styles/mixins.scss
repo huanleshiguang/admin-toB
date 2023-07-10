@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import './variables.scss';
 /* Mixins */
 /*
  * 公共样式
@@ -51,7 +51,7 @@ $device-widths: 1024px, 1280px, 1366px, 1440px, 1600px, 1920px;
 }
 
 // a标签
-@mixin a-common {
+@mixin el-common {
   a {
     cursor: pointer;
     text-decoration: none;
@@ -98,7 +98,7 @@ $device-widths: 1024px, 1280px, 1366px, 1440px, 1600px, 1920px;
  * @param $posY 位置y
  * @param $path 相对目录
  */
-@mixin bg($img, $posX, $posY, $path: "../") {
+@mixin bg($img, $posX, $posY, $path: '../') {
   background: url(#{$path}assets/imgs/#{$img}) no-repeat $posX $posY;
 }
 
@@ -109,7 +109,7 @@ $device-widths: 1024px, 1280px, 1366px, 1440px, 1600px, 1920px;
  * @param $posY 位置y
  * @param $path 相对目录
  */
-@mixin bg-color($color, $img, $posX, $posY, $path: "../") {
+@mixin bg-color($color, $img, $posX, $posY, $path: '../') {
   background: $color url(#{$path}assets/imgs/#{$img}) no-repeat $posX $posY;
 }
 
@@ -120,7 +120,7 @@ $device-widths: 1024px, 1280px, 1366px, 1440px, 1600px, 1920px;
  */
 @mixin text-ellipsis {
   -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -141,95 +141,95 @@ $device-widths: 1024px, 1280px, 1366px, 1440px, 1600px, 1920px;
  * @param
  *
 */
-@mixin slideX{
+@mixin slideX {
   position: absolute;
   right: 0;
   top: 0;
   -webkit-transform: translateX(100%);
-     -moz-transform: translateX(100%);
-      -ms-transform: translateX(100%);
-       -o-transform: translateX(100%);
-          transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  transform: translateX(100%);
   transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -moz-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -webkit-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -o-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
-  &.slide-in{
+  &.slide-in {
     -webkit-transform: translateX(0%);
-       -moz-transform: translateX(0%);
-        -ms-transform: translateX(0%);
-         -o-transform: translateX(0%);
-            transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+    transform: translateX(0%);
     z-index: 20;
   }
 }
-@mixin slideX-reverse{
+@mixin slideX-reverse {
   position: absolute;
   right: 0;
   top: 0;
   -webkit-transform: translateX(-100%);
-     -moz-transform: translateX(-100%);
-      -ms-transform: translateX(-100%);
-       -o-transform: translateX(-100%);
-          transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%);
   transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -moz-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -webkit-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -o-transition: all 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
-  &.slide-in{
+  &.slide-in {
     -webkit-transform: translateX(0%);
-       -moz-transform: translateX(0%);
-        -ms-transform: translateX(0%);
-         -o-transform: translateX(0%);
-            transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+    transform: translateX(0%);
     z-index: 20;
   }
 }
-@mixin slideY{
+@mixin slideY {
   opacity: 0;
   position: absolute;
   right: 0;
   top: 0;
   -webkit-transform: translateY(-100%);
-     -moz-transform: translateY(-100%);
-      -ms-transform: translateY(-100%);
-       -o-transform: translateY(-100%);
-          transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
   transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -moz-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -webkit-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -o-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
-  &.slide-in{
+  &.slide-in {
     opacity: 1;
     -webkit-transform: translateY(0%);
-       -moz-transform: translateY(0%);
-        -ms-transform: translateY(0%);
-         -o-transform: translateY(0%);
-            transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
     z-index: 20;
   }
 }
-@mixin slideY-reverse{
+@mixin slideY-reverse {
   opacity: 0;
   position: absolute;
   right: 0;
   top: 0;
   -webkit-transform: translateY(100%);
-     -moz-transform: translateY(100%);
-      -ms-transform: translateY(100%);
-       -o-transform: translateY(100%);
-          transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
   transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -moz-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -webkit-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
   -o-transition: all 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
-  &.slide-in{
+  &.slide-in {
     opacity: 1;
     -webkit-transform: translateY(0%);
-       -moz-transform: translateY(0%);
-        -ms-transform: translateY(0%);
-         -o-transform: translateY(0%);
-            transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
     z-index: 20;
   }
 }
@@ -246,7 +246,7 @@ $device-widths: 1024px, 1280px, 1366px, 1440px, 1600px, 1920px;
 
 @mixin clearfix {
   &:after {
-    content: "";
+    content: '';
     display: table;
     clear: both;
   }
@@ -255,6 +255,3 @@ $device-widths: 1024px, 1280px, 1366px, 1440px, 1600px, 1920px;
 @mixin cursor {
   cursor: pointer;
 }
-
-
-

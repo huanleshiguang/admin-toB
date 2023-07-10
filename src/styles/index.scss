@@ -10,9 +10,8 @@
   padding: 0px;
 }
 
-
 @include common;
-@include a-common;
+@include el-common;
 @include input-common;
 @include ul-common;
 $color-scrollbar-thumb-bg: rgba(193, 193, 193, 0.6);
@@ -34,7 +33,8 @@ body {
   //   "PingFang SC", "Hiragino Sans GB", Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, Arial, sans-serif;
   height: 100%;
   overflow: hidden;
   width: 100%;

@@ -6,16 +6,16 @@
  * @Description: 简单的工具方法
  * @FilePath: /vue-vite-template/src/utils/index.ts
  */
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
-import relativeTime from "dayjs/plugin/relativeTime";
-import duration from "dayjs/plugin/duration";
-import isBetween from "dayjs/plugin/isBetween";
-import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
-import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
-import isToday from "dayjs/plugin/isToday";
-import {intersectionWith, isEqual, mergeWith, unionWith} from "lodash-es";
-import { isObject } from "/@/utils/is";
+import relativeTime from 'dayjs/plugin/relativeTime';
+import duration from 'dayjs/plugin/duration';
+import isBetween from 'dayjs/plugin/isBetween';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isToday from 'dayjs/plugin/isToday';
+import { intersectionWith, isEqual, mergeWith, unionWith } from 'lodash-es';
+import { isObject } from '/@/utils/is';
 
 dayjs.extend(isBetween);
 dayjs.extend(isSameOrAfter);
@@ -24,10 +24,10 @@ dayjs.extend(isToday);
 dayjs.extend(duration);
 
 // dayjs类型判断
-type UnitTypeShort = "d" | "M" | "y" | "h" | "m" | "s" | "ms";
-type UnitType = "millisecond" | "second" | "minute" | "hour" | "day" | "month" | "year" | "date" | UnitTypeShort;
+type UnitTypeShort = 'd' | 'M' | 'y' | 'h' | 'm' | 's' | 'ms';
+type UnitType = 'millisecond' | 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year' | 'date' | UnitTypeShort;
 
-type OpUnitType = UnitType | "week" | "w";
+type OpUnitType = UnitType | 'week' | 'w';
 
 /**
  * 时间戳转换
@@ -46,11 +46,11 @@ export function formateMill(date?: string | number) {
  * @param hasHours 是否需要格式化成 年-月-日 时:分:秒 不传返回年-月-日
  */
 export function formateDate(date?: any, hasHours = false) {
-  return dayjs(date || new Date()).format(`YYYY-MM-DD${hasHours ? " HH:mm:ss" : ""}`);
+  return dayjs(date || new Date()).format(`YYYY-MM-DD${hasHours ? ' HH:mm:ss' : ''}`);
 }
 
 export function formateYearDate(date?: any, hasHours = false) {
-  return dayjs(date || new Date()).format(`YYYY年MM月DD日${hasHours ? " HH:mm:ss" : ""}`);
+  return dayjs(date || new Date()).format(`YYYY年MM月DD日${hasHours ? ' HH:mm:ss' : ''}`);
 }
 
 /**
@@ -61,7 +61,7 @@ export function formateYearDate(date?: any, hasHours = false) {
  * @param {String} dateType
  * @returns
  */
-export function isNowDateSameOrAfter(dateTime: string, contrastDateTime: string, dateType = "day") {
+export function isNowDateSameOrAfter(dateTime: string, contrastDateTime: string, dateType = 'day') {
   return dayjs(dateTime).isSameOrAfter(contrastDateTime, dateType);
 }
 
@@ -73,7 +73,7 @@ export function isNowDateSameOrAfter(dateTime: string, contrastDateTime: string,
  * @param {String} dateType
  * @returns
  */
-export function isNowDateSameOrBefore(dateTime: string, contrastDateTime: string, dateType = "day") {
+export function isNowDateSameOrBefore(dateTime: string, contrastDateTime: string, dateType = 'day') {
   return dayjs(formateDate(dateTime)).isSameOrBefore(contrastDateTime, dateType);
 }
 
@@ -165,7 +165,7 @@ export function isRangeDateTime(startDate: string, endDate: string, date: string
  * @returns 月份里的日期
  */
 export function getMonthDate(date?: string): number {
-  return dayjs(date || new Date()).get("date");
+  return dayjs(date || new Date()).get('date');
 }
 
 /**
@@ -175,7 +175,7 @@ export function getMonthDate(date?: string): number {
  * @returns 星期几 (星期天0，星期六6)
  */
 export function getWeekenDate(date?: string): number {
-  return dayjs(date || new Date()).get("day");
+  return dayjs(date || new Date()).get('day');
 }
 
 /**
@@ -198,7 +198,7 @@ export function formatDay(day: number) {
  * @return YYYY-DD
  */
 export function cutOutYearMonthHasLink(monthDate: string) {
-  return monthDate.split("-").slice(0, 2).join("-");
+  return monthDate.split('-').slice(0, 2).join('-');
 }
 
 /**
@@ -208,7 +208,7 @@ export function cutOutYearMonthHasLink(monthDate: string) {
  * @return YYYYDD
  */
 export function cutOutYearMonthNotLink(monthDate: string) {
-  return monthDate.split("-").slice(0, 2).join("");
+  return monthDate.split('-').slice(0, 2).join('');
 }
 
 /**
@@ -218,7 +218,7 @@ export function cutOutYearMonthNotLink(monthDate: string) {
  * @return 01 ~ 31
  */
 export function cutOutYearDay(monthDate: string) {
-  return monthDate.split("-").slice(-1).join("");
+  return monthDate.split('-').slice(-1).join('');
 }
 
 /**
@@ -260,7 +260,7 @@ export function useRelativeTime(comparisonTime?: string, targetTime?: string) {
 
 // 邮箱
 export const isEmail = (s: string) => {
-  return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(s);
+  return /^([el-zA-Z0-9_-])+@([el-zA-Z0-9_-])+((.[el-zA-Z0-9_-]{2,3}){1,2})$/.test(s);
 };
 // 身份证
 export const isIdcard = (s: string) => {
@@ -284,72 +284,72 @@ export const isURL = (s: string) => {
 };
 
 // 是否字符串
-export const isString = (o: any, def?: "") => {
-  return Object.prototype.toString.call(o).slice(8, -1) === "String" ? o : def;
+export const isString = (o: any, def?: '') => {
+  return Object.prototype.toString.call(o).slice(8, -1) === 'String' ? o : def;
 };
 
 // 是否数字
 export const isNumber = (o: any, def?: 0) => {
-  return Object.prototype.toString.call(o).slice(8, -1) === "Number" ? o : def;
+  return Object.prototype.toString.call(o).slice(8, -1) === 'Number' ? o : def;
 };
 
 // 是否boolean
 export const isBoolean = (o: any) => {
-  return Object.prototype.toString.call(o).slice(8, -1) === "Boolean";
+  return Object.prototype.toString.call(o).slice(8, -1) === 'Boolean';
 };
 
 // 是否函数
 export const isFunction = (o: any) => {
-  return Object.prototype.toString.call(o).slice(8, -1) === "Function";
+  return Object.prototype.toString.call(o).slice(8, -1) === 'Function';
 };
 
 // 是否为null
 export const isNull = (o: any) => {
-  return Object.prototype.toString.call(o).slice(8, -1) === "Null";
+  return Object.prototype.toString.call(o).slice(8, -1) === 'Null';
 };
 
 // 是否undefined
 export const isUndefined = (o: any) => {
-  return Object.prototype.toString.call(o).slice(8, -1) === "Undefined";
+  return Object.prototype.toString.call(o).slice(8, -1) === 'Undefined';
 };
 
 // 是否对象
 export const isObj = (o: any) => {
-  return Object.prototype.toString.call(o).slice(8, -1) === "Object";
+  return Object.prototype.toString.call(o).slice(8, -1) === 'Object';
 };
 
 // 是否数组
 export function isArray(o: any, def?: []): Array<any> {
-  return Object.prototype.toString.call(o).slice(8, -1) === "Array" ? o : def;
+  return Object.prototype.toString.call(o).slice(8, -1) === 'Array' ? o : def;
 }
 
 // 是否时间
 export const isDate = (o: any) => {
-  return Object.prototype.toString.call(o).slice(8, -1) === "Date";
+  return Object.prototype.toString.call(o).slice(8, -1) === 'Date';
 };
 
 // 根据url地址下载
 export const download = (url: string) => {
-  const isChrome = navigator.userAgent.toLowerCase().indexOf("chrome") > -1;
-  const isSafari = navigator.userAgent.toLowerCase().indexOf("safari") > -1;
+  const isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+  const isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
   if (isChrome || isSafari) {
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     link.href = url;
     if (link.download !== undefined) {
-      const fileName = url.substring(url.lastIndexOf("/") + 1, url.length);
+      const fileName = url.substring(url.lastIndexOf('/') + 1, url.length);
       link.download = fileName;
     }
     if (document.createEvent) {
-      const e = document.createEvent("MouseEvents");
-      e.initEvent("click", true, true);
+      const e = document.createEvent('MouseEvents');
+      e.initEvent('click', true, true);
       link.dispatchEvent(e);
       return true;
     }
   }
-  if (url.indexOf("?") === -1) {
-    url += "?download";
+  if (url.indexOf('?') === -1) {
+    url += '?download';
   }
-  window.open(url, "_self");
+  window.open(url, '_self');
   return true;
 };
 
@@ -370,8 +370,6 @@ export function formateTableDataValueDate(tableItem: Iobj) {
     }
   }
 }
-
-
 
 /**
  * Add the object as a parameter to the URL
@@ -407,9 +405,9 @@ export function setObjToUrlParams(baseUrl: string, obj: any): string {
  * @returns The merged object. 合并后的对象。
  */
 export function deepMerge<T extends object | null | undefined, U extends object | null | undefined>(
-    source: T,
-    target: U,
-    mergeArrays: 'union' | 'intersection' | 'concat' | 'replace' = 'replace',
+  source: T,
+  target: U,
+  mergeArrays: 'union' | 'intersection' | 'concat' | 'replace' = 'replace'
 ): T & U {
   if (!target) {
     return source as T & U;

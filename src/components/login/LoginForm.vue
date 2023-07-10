@@ -2,14 +2,14 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2021-09-28 13:25:44
- * @LastEditTime: 2023-02-09 15:01:32
+ * @LastEditTime: 2023-07-07 18:21:28
  * @Reference: 
 -->
 <script setup lang="ts">
-import { IUserLoginForm } from "/@/model/views/login";
-import { useMessage } from "/@/hooks/common/useMessage";
+import { IUserLoginForm } from '/@/model/views/login';
+import { useMessage } from '/@/hooks/common/useMessage';
 
-import { useUserLoginToken } from "/@/store/login/useLogin";
+import { useUserLoginToken } from '/@/store/login/useLogin';
 
 const privateRouter = useRouter();
 
@@ -18,16 +18,16 @@ const { createMessage } = useMessage();
 const { setUserToken } = useUserLoginToken();
 
 const loginForm = ref<IUserLoginForm>({
-  userName: "ADMIN",
-  password: "123456"
+  userName: 'ADMIN',
+  password: '123456'
 });
 
 // 登录
 function onLogin() {
-  createMessage.success("登录成功");
+  createMessage.success('登录成功');
   setUserToken(loginForm.value.userName);
   privateRouter.push({
-    path: "/dashboard"
+    path: '/dashboard'
   });
   // console.log(2);
 }
@@ -35,17 +35,17 @@ function onLogin() {
 
 <template>
   <div class="user-form form-position form-card">
-    <a-form :model="loginForm" label-width="80px">
-      <a-form-item label="用户名" prop="userName">
-        <a-input v-model="loginForm.userName" placeholder="请输入用户名"></a-input>
-      </a-form-item>
-      <a-form-item label="密码" prop="password">
-        <a-input v-model="loginForm.password" placeholder="请输入密码"></a-input>
-      </a-form-item>
-      <a-form-item label="">
-        <a-button type="primary" class="w_100" @click="onLogin">登录</a-button>
-      </a-form-item>
-    </a-form>
+    <el-form :model="loginForm" label-width="80px">
+      <el-form-item label="用户名" prop="userName">
+        <el-input v-model="loginForm.userName" placeholder="请输入用户名"></el-input>
+      </el-form-item>
+      <el-form-item label="密码" prop="password">
+        <el-input v-model="loginForm.password" placeholder="请输入密码"></el-input>
+      </el-form-item>
+      <el-form-item label="">
+        <el-button type="primary" class="w_100" @click="onLogin">登录</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 

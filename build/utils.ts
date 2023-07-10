@@ -53,7 +53,7 @@ export function wrapperEnv(envConf: Recordable): ViteEnv {
  */
 function getConfFiles() {
   const script = process.env.npm_lifecycle_script;
-  const reg = new RegExp("--mode ([a-z]+)");
+  const reg = new RegExp("--mode ([el-z]+)");
   const result = reg.exec(script as string) as any;
   if (result) {
     const mode = result[1] as string;

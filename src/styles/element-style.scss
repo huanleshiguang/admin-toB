@@ -1,24 +1,24 @@
-@import "./variables.scss";
+@import './variables.scss';
 /** 按钮 **/
 // 文字类型
-.a-button--text,
-.a-button--text:focus,
-.a-button--text:hover {
+.el-button--text,
+.el-button--text:focus,
+.el-button--text:hover {
   color: $btn-bg-primary;
 }
 
 // primary 类型
-.a-button--primary {
+.el-button--primary {
   background: $btn-bg-primary;
   border-color: transparent;
 }
-.a-button--primary:focus,
-.a-button--primary:hover {
+.el-button--primary:focus,
+.el-button--primary:hover {
   background: $btn-bg-primary;
 }
 
 /** 搜索框 **/
-.a-input__inner {
+.el-input__inner {
   -webkit-appearance: none;
   background-color: #fff;
   background-image: none;
@@ -39,59 +39,59 @@
 }
 
 // 文本框
-.a-textarea__inner,
-.a-textarea__inner:hover,
-.a-textarea__inner:focus {
+.el-textarea__inner,
+.el-textarea__inner:hover,
+.el-textarea__inner:focus {
   border-color: $color-background;
 }
 
 // 占位符样式
 // IE 11
-.a-input__inner::placeholder,
-.a-textarea__inner::placeholder {
+.el-input__inner::placeholder,
+.el-textarea__inner::placeholder {
   font-size: 14px;
   color: #999;
 }
 
 // 谷歌 Safari
-.a-input__inner::-webkit-input-placeholder,
-.a-textarea__inner::-webkit-input-placeholder {
+.el-input__inner::-webkit-input-placeholder,
+.el-textarea__inner::-webkit-input-placeholder {
   font-size: 14px;
   color: #999;
 }
 
 // firfox
-.a-input__inner::-moz-placeholder,
-.a-textarea__inner::-moz-placeholder {
+.el-input__inner::-moz-placeholder,
+.el-textarea__inner::-moz-placeholder {
   font-size: 14px;
   color: #999;
 }
 
-.a-input__inner,
-.a-textarea__inner {
+.el-input__inner,
+.el-textarea__inner {
   color: $color-black;
 }
 
 /** 下拉框 **/
-.a-select .a-input.is-focus .a-input__inner {
+.el-select .el-input.is-focus .el-input__inner {
   border-color: $color-background;
 }
 
 /** 时间选择器 **/
-.a-range-editor.is-active:hover {
+.el-range-editor.is-active:hover {
   border-color: $color-background;
 }
 
 /** 卡片 **/
-.a-card.is-always-shadow,
-.a-card.is-hover-shadow:focus,
-.a-card.is-hover-shadow:hover {
+.el-card.is-always-shadow,
+.el-card.is-hover-shadow:focus,
+.el-card.is-hover-shadow:hover {
   box-shadow: 3px 3px 12px rgba(234, 234, 234, 0.5);
 }
 
 /** loading加载 **/
-.a-loading-spinner {
-  .a-loading-text {
+.el-loading-spinner {
+  .el-loading-text {
     color: $btn-bg-primary;
   }
   .path {
