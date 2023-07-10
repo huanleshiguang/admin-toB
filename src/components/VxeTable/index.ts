@@ -27,7 +27,7 @@ import {
   // Grid,
   // Tooltip,
   // Toolbar,
-  // Pager,
+  Pager,
   // Form,
   // FormItem,
   // FormGather,
@@ -76,7 +76,7 @@ export function useTable(app: App) {
     // .use(Grid)
     // .use(Tooltip)
     // .use(Toolbar)
-    // .use(Pager)
+    .use(Pager)
     // .use(Form)
     // .use(FormItem)
     // .use(FormGather)
