@@ -2,7 +2,7 @@
  * @Autor: zhao
  * @Date: 2023-02-17 22:45:44
  * @LastEditors: QMZhao zhao971462054@163.com
- * @LastEditTime: 2023-07-10 11:17:32
+ * @LastEditTime: 2023-07-10 16:01:55
  * @Description: 
  * @FilePath: /vue-vite-elementplus-zhao/src/views/system/menu.vue
 -->
@@ -38,8 +38,13 @@ const { createMessage } = useMessage();
 // };
 
 async function testClick() {
-  // const result = await testApi();
-  testApi();
+  try {
+    const result = await testApi();
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+  // testApi();
   // createMessage.success('ss');
 }
 </script>
