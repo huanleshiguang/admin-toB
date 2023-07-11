@@ -10,7 +10,22 @@
   <div class="three-container w_100 h_100">
     <div ref="container" class="w_100 h_100">
       <!-- <el-button type="primary" @click="testClick">test</el-button> -->
-      <vxeTableLayout :loader="initMethod" :columns-list="columnsList"></vxeTableLayout>
+      <vxe-table-layout
+        ref="vxeTableLayout"
+        class="h_100"
+        border
+        has-index
+        :loader="initMethod"
+        :row-config="{ isCurrent: true, isHover: true }"
+        height="100%"
+        :columns-list="columnsList"
+        @current-change="currentChangeEvent"
+      >
+        <template #operator-left>
+          <el-button type="primary" @click="handleSearch">搜索</el-button>
+          <el-button @click="handleSearch">刷新</el-button>
+        </template>
+      </vxe-table-layout>
     </div>
     <!-- <vxe-table :data="tableData">
       <vxe-column type="seq" title="Seq" width="60"></vxe-column>
@@ -24,8 +39,8 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { pa } from 'element-plus/es/locale';
-import vxeTableLayout from '/@/components/VxeTable/index.vue';
+import VxeTableLayout from '/@/components/VxeTable/index.vue';
+import { VxeTableEvents } from 'vxe-table';
 // import { testApi } from '/@/api/login';
 // import { useMessage } from '/@/hooks/common/useMessage';
 // const { createMessage } = useMessage();
@@ -38,15 +53,33 @@ const columnsList = [
   {
     title: '名字',
     field: 'name'
+  },
+  {
+    title: '性别',
+    field: 'sex'
   }
 ];
+const vxeTableLayout = ref();
+const handleSearch = () => {
+  vxeTableLayout.value.refresh(true);
+};
+const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
+  console.log(`行选中事件`, row);
+};
 async function initMethod(params: any) {
-  console.log(params);
+  console.log('params', params);
+  const { pageSize } = params;
   return {
-    total: 1,
-    records: [{ name: '333' }]
+    total: 100,
+    records: [...new Array(pageSize)].map((_, index) => {
+      console.log(index);
+      return { id: index, name: '333', sex: '男' };
+    })
   };
 }
+onMounted(() => {
+  console.log(vxeTableLayout.value);
+});
 </script>
 <style scoped lang="scss">
 .three-container {

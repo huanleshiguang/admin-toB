@@ -38,7 +38,7 @@ import {
   // RadioButton,
   // Switch,
   // Input,
-  // Select,
+  Select,
   // Optgroup,
   // Option,
   // Textarea,
@@ -87,7 +87,7 @@ export function useTable(app: App) {
     // .use(RadioButton)
     // .use(Switch)
     // .use(Input)
-    // .use(Select)
+    .use(Select)
     // .use(Optgroup)
     // .use(Option)
     // .use(Textarea)
