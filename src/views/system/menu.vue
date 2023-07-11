@@ -25,8 +25,21 @@
           <el-button type="primary" @click="handleSearch">搜索</el-button>
           <el-button @click="handleSearch">刷新</el-button>
         </template>
+        <template #operator-right>
+          <el-button @click="add">新增</el-button>
+        </template>
       </vxe-table-layout>
     </div>
+    <dialog-layout ref="dialogLayout" title="新增" append-to-body show-close :init-method="initMethod" />
+    <!--    <el-dialog v-model="dialogVisible" title="Tips" width="30%">-->
+    <!--      <span>This is a message</span>-->
+    <!--      <template #footer>-->
+    <!--        <span class="dialog-footer">-->
+    <!--          <el-button @click="dialogVisible = false">Cancel</el-button>-->
+    <!--          <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>-->
+    <!--        </span>-->
+    <!--      </template>-->
+    <!--    </el-dialog>-->
     <!-- <vxe-table :data="tableData">
       <vxe-column type="seq" title="Seq" width="60"></vxe-column>
       <vxe-column field="name" title="Name"></vxe-column>
@@ -40,6 +53,7 @@
 </template>
 <script lang="ts" setup>
 import VxeTableLayout from '/@/components/VxeTable/index.vue';
+import DialogLayout from '/@/components/DialogLayout/index.vue';
 import { VxeTableEvents } from 'vxe-table';
 // import { testApi } from '/@/api/login';
 // import { useMessage } from '/@/hooks/common/useMessage';
@@ -60,8 +74,15 @@ const columnsList = [
   }
 ];
 const vxeTableLayout = ref();
+const dialogLayout = ref();
+const dialogVisible = ref(false);
 const handleSearch = () => {
   vxeTableLayout.value.refresh(true);
+};
+const add = () => {
+  console.log(dialogLayout);
+  dialogVisible.value = true;
+  dialogLayout.value.open();
 };
 const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
   console.log(`行选中事件`, row);
@@ -84,6 +105,6 @@ onMounted(() => {
 <style scoped lang="scss">
 .three-container {
   position: relative;
-  background-color: #bfe3dd;
+  // background-color: #bfe3dd;
 }
 </style>

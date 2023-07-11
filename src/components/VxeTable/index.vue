@@ -159,17 +159,17 @@ onMounted(async () => {
   <div class="table-layout">
     <slot name="title" v-bind="$attrs"></slot>
     <header v-if="showHeader" class="table-layout__header">
-      <div class="d-flex align-center flex-wrap">
+      <div class="d-flex align-center flex-wrap ml_10">
         <slot name="operator-left" v-bind="$attrs"></slot>
       </div>
 
       <flex-spacer></flex-spacer>
 
-      <div class="d-flex align-center flex-wrap">
+      <div class="d-flex align-center flex-wrap mr_10">
         <slot name="operator-right" v-bind="$attrs"></slot>
       </div>
     </header>
-    
+
     <div class="table-layout__content">
       <slot name="table" v-bind="$attrs">
         <vxe-table ref="table" class="table-layout__main" :loading="loading" stripe :data="list" v-bind="$attrs">
