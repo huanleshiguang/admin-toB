@@ -2,14 +2,14 @@
  * @Author: QMZhao
  * @Description: 登录权限验证
  * @Date: 2021-07-26 10:46:56
- * @LastEditTime: 2021-09-22 09:49:19
+ * @LastEditTime: 2023-07-11 15:01:19
  * @Reference:
  */
-import router from "./router";
+import { router } from './router';
 
-import NProgress from "nprogress"; // progress bar
-import "nprogress/nprogress.css"; // progress bar style
-import { getToken } from "/@/utils/session"; // get token from cookie
+import NProgress from 'nprogress'; // progress bar
+import 'nprogress/nprogress.css'; // progress bar style
+import { getToken } from '/@/utils/session'; // get token from cookie
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
