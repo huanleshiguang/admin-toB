@@ -21,7 +21,7 @@ const props = defineProps({
     type: Boolean,
     default: true
   },
-
+  // 
   showHeader: {
     type: Boolean,
     default: true
@@ -119,7 +119,8 @@ const refresh = async (resetPage?: boolean) => {
       total.value = result && result.length;
     } else {
       const { records, total: rTotal } = unref(result);
-
+      console.log(unref(result),'unref(result)');
+      
       if (records && !records.length && rTotal && params.pageIndex > 1) {
         params.pageIndex--;
         loading.value = false;
