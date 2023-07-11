@@ -170,6 +170,7 @@ onMounted(async () => {
         <slot name="operator-right" v-bind="$attrs"></slot>
       </div>
     </header>
+    
     <div class="table-layout__content">
       <slot name="table" v-bind="$attrs">
         <vxe-table ref="table" class="table-layout__main" :loading="loading" stripe :data="list" v-bind="$attrs">
@@ -184,6 +185,7 @@ onMounted(async () => {
             :key="columnItem.field"
             align="center"
             v-bind="columnItem"
+            :width="columnItem.width"
           ></vxe-column>
           <slot name="columns" v-bind="$attrs"></slot>
           <template #empty>
