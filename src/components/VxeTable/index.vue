@@ -11,11 +11,6 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  // 是否展示搜索按钮
-  showSearch: {
-    type: Boolean,
-    default: true
-  },
   // 是否展示刷新按钮
   showRefresh: {
     type: Boolean,
@@ -89,12 +84,13 @@ const props = defineProps({
 //   }
 // );
 
-const emit = defineEmits(['loaded', 'load-error', 'load-finish', 'load-start', 'current-change']);
-const isSearch = ref<boolean>(false);
+// emit事件
+const emit = defineEmits(['loaded', 'load-error', 'load-finish', 'load-start']);
+
 const loading = ref<boolean>(false);
-const table = ref(null);
-const total = ref(0);
-const params = reactive({
+const table = ref<any>(null);
+const total = ref<number>(0);
+const params = reactive<{ pageIndex: number; pageSize: number }>({
   pageIndex: 1,
   pageSize: props.pageSize
 });
@@ -148,9 +144,12 @@ const refresh = async (resetPage?: boolean) => {
 const onPageChange = () => {
   refresh();
 };
+defineExpose({
+  refresh
+});
+// 初始化数据
 onMounted(async () => {
   if (props.immediate) {
-    // 等待 filter 等处理完初始状态后，再开始加载数据
     await nextTick();
     await refresh();
   }
@@ -159,7 +158,6 @@ onMounted(async () => {
 <template>
   <div class="table-layout">
     <slot name="title" v-bind="$attrs"></slot>
-    <slot v-if="isSearch" name="table-search"></slot>
     <header v-if="showHeader" class="table-layout__header">
       <div class="d-flex align-center flex-wrap">
         <slot name="operator-left" v-bind="$attrs"></slot>
@@ -169,8 +167,6 @@ onMounted(async () => {
 
       <div class="d-flex align-center flex-wrap">
         <slot name="operator-right" v-bind="$attrs"></slot>
-        <!-- <el-button v-if="showSearch" icon="el-icon-search" @click="handleSearch"></el-button> -->
-        <!-- <el-button v-if="showRefresh" icon="el-icon-refresh" @click="refresh" /> -->
       </div>
     </header>
     <div class="table-layout__content">
@@ -182,7 +178,12 @@ onMounted(async () => {
               {{ $rowIndex + 1 + params.pageSize * (params.pageIndex - 1) }}
             </template>
           </vxe-column>
-          <vxe-column v-for="columnItem in columnsList" :key="columnItem.field" v-bind="columnItem"></vxe-column>
+          <vxe-column
+            v-for="columnItem in columnsList"
+            :key="columnItem.field"
+            align="center"
+            v-bind="columnItem"
+          ></vxe-column>
           <slot name="columns" v-bind="$attrs"></slot>
           <template #empty>
             <slot name="empty"></slot>
@@ -195,6 +196,7 @@ onMounted(async () => {
         <vxe-pager
           v-model:current-page="params.pageIndex"
           v-model:page-size="params.pageSize"
+          size="small"
           background
           :total="total"
           :page-sizes="pageSizeArr"
@@ -220,20 +222,6 @@ onMounted(async () => {
   &__content {
     flex-grow: 1;
     background-color: #fff;
-    // ::v-deep {
-    //   //.el-table__body-wrapper {
-    //   //    //height: auto !important;
-    //   //    //overflow-y: auto;
-    //   //    z-index: 2;
-    //   //}
-    //   .el-table__body-wrapper {
-    //     overflow-y: auto;
-    //   }
-    //   .el-table th,
-    //   .el-table td {
-    //     line-height: 1;
-    //   }
-    // }
   }
 
   &__main {
@@ -243,7 +231,7 @@ onMounted(async () => {
   }
 
   &__footer {
-    align-items: right;
+    align-items: end;
     line-height: 1.5;
     color: #666;
     border-top: 1px #ddd solid;
