@@ -1,12 +1,9 @@
 <template>
-  <el-dialog
+  <el-drawer
     v-model="visible"
     class="dialog-layout"
+    :size="size"
     v-bind="$attrs"
-    :width="width"
-    :show-close="closable"
-    :before-close="beforeClose"
-    :append-to-body="appendToBody"
     @open="$emit('open')"
     @close="$emit('close')"
     @closed="onClosed"
@@ -26,21 +23,10 @@
       <!-- 默认插槽 -->
       <slot v-if="initReady" v-bind="{ data: initData, close, submit }"></slot>
     </template>
-
-    <template #footer>
-      <!-- 底部插槽 -->
-      <slot v-if="initReady" name="footer" v-bind="{ data: initData, close, submit }">
-        <el-button plain :disabled="sureLoading" @click="onCancel">取消</el-button>
-        <el-button type="primary" :disabled="sureLoading || sureDisable" :loading="sureLoading" @click="onSure">
-          确认
-        </el-button>
-      </slot>
-      <el-button v-if="initError" plain @click="visible = false">关闭</el-button>
-    </template>
-  </el-dialog>
+  </el-drawer>
 </template>
 
-<script setup lang="ts" name="DialogLayout">
+<script setup lang="ts" name="DrawerLayout">
 import { PropType } from 'vue';
 import { CommonError, CommonLoading } from '/@/components/common';
 
@@ -49,7 +35,7 @@ const isFunction = (any) => typeof any === 'function';
 type ErrorType = Error | string;
 const props = defineProps({
   // 宽度
-  width: {
+  size: {
     type: String,
     default: '656px'
   },
@@ -86,11 +72,6 @@ const props = defineProps({
   },
   // 自动关闭
   autoClose: {
-    type: Boolean,
-    default: false
-  },
-  // Dialog 自身是否插入至 body 元素上。嵌套的 Dialog 必须指定该属性并赋值为 true
-  appendToBody: {
     type: Boolean,
     default: false
   }

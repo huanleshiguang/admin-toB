@@ -17,7 +17,7 @@ const getCollapaseStatus = computed(() => store.isCollapse);
 <template>
   <div :class="['h_100 flex flex-col sidebar-content']">
     <!-- 侧边栏 -->
-    <div class="side-bar-list sidebar-header_expand">
+    <div :class="[`side-bar-list ${!getCollapaseStatus ? 'sidebar-header_expand' : 'sidebar-header_collapse'}`]">
       <el-scrollbar>
         <SideBarItem v-model:collapseValue="getCollapaseStatus"></SideBarItem>
       </el-scrollbar>

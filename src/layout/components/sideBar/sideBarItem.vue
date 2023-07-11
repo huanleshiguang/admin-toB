@@ -49,7 +49,12 @@ const currentRouteName = computed(() => {
         </el-menu-item-group>
       </el-sub-menu>
       <el-menu-item v-else :index="item.path" class="menu-item_custom">
-        <template #title>{{ item.label }}</template>
+        <el-icon>
+          <i-ep-location color="#fff"></i-ep-location>
+        </el-icon>
+        <template #title>
+          {{ item.label }}
+        </template>
       </el-menu-item>
     </template>
   </el-menu>

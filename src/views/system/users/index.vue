@@ -12,9 +12,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import CommonTabs from '/@/components/common/common-tabs.vue';
+import CommonTabs from '/src/components/common/CommonTabs.vue';
 import { ArcManage, RoleManage, HosptAreaManage } from './components/index';
-
 
 const tabList = [
   {
