@@ -15,7 +15,6 @@ import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import isToday from 'dayjs/plugin/isToday';
 import { intersectionWith, isEqual, mergeWith, unionWith } from 'lodash-es';
-import { isObject } from '/@/utils/is';
 
 dayjs.extend(isBetween);
 dayjs.extend(isSameOrAfter);
@@ -319,9 +318,9 @@ export const isObj = (o: any) => {
 };
 
 // 是否数组
-export function isArray(o: any, def?: []): Array<any> {
-  return Object.prototype.toString.call(o).slice(8, -1) === 'Array' ? o : def;
-}
+export const isArray = (o: any): boolean => {
+  return Object.prototype.toString.call(o).slice(8, -1) === 'Array';
+};
 
 // 是否时间
 export const isDate = (o: any) => {
@@ -430,7 +429,7 @@ export function deepMerge<T extends object | null | undefined, U extends object 
           throw new Error(`Unknown merge array strategy: ${mergeArrays as string}`);
       }
     }
-    if (isObject(targetValue) && isObject(sourceValue)) {
+    if (isObj(targetValue) && isObj(sourceValue)) {
       return deepMerge(sourceValue, targetValue, mergeArrays);
     }
     return undefined;
