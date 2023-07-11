@@ -1,0 +1,58 @@
+import { RouteRecordRaw } from "vue-router";
+import Layout from "/@/layout/index.vue";
+export const routes: Array<RouteRecordRaw> = [
+    {
+      path: "/login",
+      name: "Login",
+      component: () => import("/@/views/login.vue")
+    },
+    {
+      path: "/",
+      name: "首页",
+      component: Layout,
+      redirect: "/dashboard",
+      children: [
+        {
+          path: "dashboard",
+          component: () => import("/@/views/dashboard/index.vue"),
+          name: "Dashboard",
+          meta: { title: "首页", icon: "dashboard", affix: true, requireAuth: true }
+        }
+      ]
+    },
+    {
+      path: "/system",
+      name: "系统",
+      component: Layout,
+      redirect: "noRedirect",
+      meta: { title: "系统", icon: "dashboard" },
+      children: [
+        {
+          path: "menu",
+          component: () => import("/@/views/system/menu.vue"),
+          name: "Menu",
+          meta: { title: "菜单", icon: "dashboard", affix: true, requireAuth: true }
+        },
+        {
+          path: "role",
+          component: () => import("/@/views/system/role.vue"),
+          name: "Role",
+          meta: { title: "角色", icon: "dashboard", affix: true, requireAuth: true }
+        }
+      ]
+    },
+    {
+      path: "/error",
+      name: "错误",
+      component: Layout,
+      redirect: "/error",
+      children: [
+        {
+          path: "404",
+          component: () => import("/@/views/error/404.vue"),
+          name: "404",
+          meta: { title: "404", icon: "dashboard", affix: true, requireAuth: true }
+        }
+      ]
+    }
+  ]; 
