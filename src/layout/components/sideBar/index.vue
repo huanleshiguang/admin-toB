@@ -16,24 +16,6 @@ const getCollapaseStatus = computed(() => store.isCollapse);
 
 <template>
   <div :class="['h_100 flex flex-col sidebar-content']">
-    <div
-      :class="[
-        'company-cell flex items-center justify-between',
-        getCollapaseStatus ? 'sidebar-header_collapse' : 'sidebar-header_expand'
-      ]"
-    >
-      <div class="logo">
-        <!-- <el-image class="w_100 h_100 logo-image" :src="require('../../../static/image/logo.webp')" alt="" /> -->
-      </div>
-      <div
-        :class="[
-          'company-name-box font-500 color-white company-name-position',
-          getCollapaseStatus ? 'translate-hide' : 'translate-show'
-        ]"
-      >
-        <span :class="['company-name', getCollapaseStatus ? 'hide-name' : 'show-name']">charming_zhao</span>
-      </div>
-    </div>
     <!-- 侧边栏 -->
     <div class="side-bar-list">
       <el-scrollbar>

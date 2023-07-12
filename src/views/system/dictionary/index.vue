@@ -3,7 +3,7 @@
 </template>
 <script setup lang="ts">
 import CommonTabs from '/@/components/common/common-tabs.vue';
-import BasicDict from './components/BasicDict.vue';
+import BasicDict from './BasicDict/index.vue';
 const tabList = [
   {
     id: '1',
