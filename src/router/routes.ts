@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-11 11:18:06
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-12 19:46:58
+ * @LastEditTime: 2023-07-12 19:54:50
  * @FilePath: \servious-illness-admin\src\router\routes.ts
  * @Description: 路由配置
  */
@@ -35,7 +35,7 @@ export const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'users',
-        component: () => import('/@/views/system/users/architecture/index.vue'),
+        component: () => import('/@/views/system/users/index.vue'),
         name: 'Users',
         meta: { title: '人员管理', icon: 'dashboard', affix: true, requireAuth: true }
       },
