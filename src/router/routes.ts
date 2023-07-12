@@ -27,22 +27,16 @@ export const routes: Array<RouteRecordRaw> = [
     meta: { title: '系统', icon: 'dashboard' },
     children: [
       {
-        path: 'menu',
-        component: () => import('/@/views/system/menu.vue'),
-        name: 'Menu',
-        meta: { title: '菜单', icon: 'dashboard', affix: true, requireAuth: true }
-      },
-      {
-        path: 'role',
-        component: () => import('/@/views/system/role.vue'),
-        name: 'Role',
-        meta: { title: '角色', icon: 'dashboard', affix: true, requireAuth: true }
-      },
-      {
         path: 'param',
         component: () => import('/@/views/system/param.vue'),
         name: 'Param',
         meta: { title: '运行参数', icon: 'dashboard', affix: true, requireAuth: true }
+      },
+      {
+        path: 'users',
+        component: () => import('/@/views/system/users/architecture/index.vue'),
+        name: 'Users',
+        meta: { title: '人员管理', icon: 'dashboard', affix: true, requireAuth: true }
       },
       {
         path: 'bunk',
