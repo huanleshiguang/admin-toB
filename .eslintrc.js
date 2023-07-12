@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-09-02 18:04:56
- * @LastEditTime: 2021-09-09 23:38:14
+ * @LastEditTime: 2023-07-12 10:12:44
  * @Reference:
  */
 module.exports = {
@@ -36,7 +36,8 @@ module.exports = {
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     // 取消驼峰警告
-    camelcase: "off",
+    "camelcase": "off",
+    "vue/multi-word-component-names": "off",
     "@typescript-eslint/camelcase": 0,
     "@typescript-eslint/no-unused-vars": [
       "error",
