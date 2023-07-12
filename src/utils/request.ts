@@ -2,12 +2,12 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-09-10 10:08:11
- * @LastEditTime: 2023-07-10 16:00:14
+ * @LastEditTime: 2023-07-12 15:51:46
  * @Reference:
  */
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import type { ResponseData } from '/@/types/axios';
-import { useResponseErrorData } from '/@/composition/app-common/useAxios';
+import { useResponseErrorData } from '/@/hooks/common/useAxios';
 import { useErrorResponse } from '/@/hooks/common/useErrorResponse';
 import { IErrorResponseData } from '/@/model/common/axiosOption';
 import { getToken } from '/@/utils/session';

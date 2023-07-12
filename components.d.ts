@@ -21,7 +21,11 @@ declare module 'vue' {
     ElCol: typeof import('element-plus/es')['ElCol']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElContainer: typeof import('element-plus/es')['ElContainer']
+<<<<<<< HEAD
     ElDialog: typeof import('element-plus/es')['ElDialog']
+=======
+    ElDrawer: typeof import('element-plus/es')['ElDrawer']
+>>>>>>> 3e7eb7db1be244efe7e9f6b36e0aa760e88890d1
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
@@ -36,8 +40,6 @@ declare module 'vue' {
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
-    ElTabPane: typeof import('element-plus/es')['ElTabPane']
-    ElTabs: typeof import('element-plus/es')['ElTabs']
     FlexSpacer: typeof import('./src/components/common/flex-spacer.vue')['default']
     IEpLocation: typeof import('~icons/ep/location')['default']
     LoginForm: typeof import('./src/components/login/LoginForm.vue')['default']

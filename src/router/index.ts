@@ -1,13 +1,13 @@
 /*
  * @Author: QMZhao
  * @Date: 2020-12-30 09:49:48
- * @LastEditTime: 2023-07-11 11:23:11
- * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-07-12 12:56:05
+ * @LastEditors: Please set LastEditors
  * @Description: 路由配置
- * @FilePath: /vue-vite-template/src/router/index.ts
+ * @FilePath: \servious-illness-admin\src\router\index.ts
  */
 import type { App } from 'vue';
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
 import { routes } from './routes';
 
 export const router = createRouter({
