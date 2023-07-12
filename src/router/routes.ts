@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-11 11:18:06
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-12 19:34:34
+ * @LastEditTime: 2023-07-12 19:37:08
  * @FilePath: \servious-illness-admin\src\router\routes.ts
  * @Description: 路由配置
  */
