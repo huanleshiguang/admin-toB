@@ -2,14 +2,14 @@
  * @Author: QMZhao
  * @Description: 导航栏
  * @Date: 2022-10-31 13:54:35
- * @LastEditTime: 2023-07-11 09:25:17
+ * @LastEditTime: 2023-07-12 19:42:35
  * @Reference: 
 -->
 <script lang="ts" setup>
-import Breakcrumb from "./breakcrumb.vue";
-import { useMenuCollapse } from "/@/store/common/useCommon";
+import Breakcrumb from './breakcrumb.vue';
+import { useMenuCollapse } from '/@/store/common/useCommon';
 
-import { IUserInfo } from "/@/model/views/login";
+import { IUserInfo } from '/@/model/views/login';
 
 const privateRouter = useRouter();
 
@@ -19,7 +19,7 @@ const { setCollapse } = useMenuCollapse();
 const isCollapse = ref(false);
 
 const userInfo = ref<IUserInfo>({
-  username: "admin"
+  username: 'admin'
 });
 
 // 折叠侧边栏方法
@@ -31,7 +31,7 @@ function onCollapaseSideBar(): void {
 // 登出
 function onLogout(): void {
   privateRouter.push({
-    path: "/login"
+    path: '/login'
   });
 }
 </script>
@@ -42,7 +42,7 @@ function onLogout(): void {
       <!-- 侧边栏开关按钮 -->
       <div :class="['menu-btn h_100 flex items-center']" @click="onCollapaseSideBar">
         <div :class="['menu-btn-icon w_100 flex items-center menu-btn-position']">
-          <svg-icon :iconClass="isCollapse ? 'expasion' : 'shou'"></svg-icon>
+          <svg-icon :icon-class="isCollapse ? 'expasion' : 'shou'"></svg-icon>
         </div>
       </div>
       <!-- 路由信息 -->

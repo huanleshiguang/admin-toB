@@ -14,7 +14,7 @@
         </div>
       </el-aside>
       <el-container>
-        <el-header height="50px" class="w_100 layout-header"><Navbar /></el-header>
+        <el-header height="30px" class="w_100 layout-header"><Navbar /></el-header>
         <el-main>
           <div class="main-container w_100 h_100">
             <app-main />
@@ -26,10 +26,10 @@
 </template>
 
 <script lang="ts">
-import { AppMain, Navbar, SideBar } from "./components";
+import { AppMain, Navbar, SideBar } from './components';
 
 export default defineComponent({
-  name: "Layout",
+  name: 'Layout',
   components: {
     AppMain,
     SideBar,

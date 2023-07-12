@@ -1,9 +1,9 @@
 <!--
  * @Author: QMZhao
  * @Date: 2020-12-12 14:16:47
- * @LastEditTime: 2023-02-17 13:34:56
+ * @LastEditTime: 2023-07-12 19:43:52
  * @Description: 
- * @FilePath: /vue-pc/src/layout/components/AppMain.vue
+ * @FilePath: \servious-illness-admin\src\layout\components\AppMain.vue
 -->
 <template>
   <section class="app-main">
@@ -32,7 +32,7 @@ const key = computed(() => privateRoute.path);
 
 .fade-transform-leave-active,
 .fade-transform-enter-active {
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 .fade-transform-enter {
