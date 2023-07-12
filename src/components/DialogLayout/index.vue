@@ -12,9 +12,9 @@
     @close="$emit('close')"
     @closed="onClosed"
   >
-    <template #title>
+    <template #header>
       <!-- 标题插槽 -->
-      <slot v-if="initReady" name="title" v-bind="{ data: initData, close, submit }">
+      <slot v-if="initReady" name="header" v-bind="{ data: initData, close, submit }">
         <span class="dialog-layout__title">{{ title }}</span>
       </slot>
       <span v-else-if="initError" class="color-danger">加载错误</span>
