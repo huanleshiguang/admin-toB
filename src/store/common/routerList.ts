@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2023-02-11 15:51:21
- * @LastEditTime: 2023-07-11 14:33:25
+ * @LastEditTime: 2023-07-12 09:12:25
  * @Reference:
  */
 import { ImenuList } from "/@/model/common";
@@ -50,6 +50,13 @@ export const useNavMenuList = defineStore("navMenuList", () => {
           icon: "role",
           permission: "system_role",
           path: "/system/bunk"
+        },
+        {
+          id: 1007,
+          label: "人员管理",
+          icon: "role",
+          permission: "system_role",
+          path: "/system/personnel"
         }
       ]
     }
