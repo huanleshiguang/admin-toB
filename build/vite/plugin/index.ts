@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-08-16 11:27:54
- * @LastEditTime: 2023-07-10 10:30:14
+ * @LastEditTime: 2023-07-12 09:37:26
  * @Reference:
  */
 import type { Plugin } from 'vite';
@@ -20,6 +20,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 
 import { createStyleImportPlugin, VxeTableResolve } from 'vite-plugin-style-import';
 
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+
 import UnoCSS from 'unocss/vite';
 
 // const pathSrc = path.resolve(__dirname, "src");
@@ -34,6 +36,7 @@ export function createVitePlugins(mode: string, isBuild: boolean) {
     vueJsx(),
     UnoCSS(),
     vitePluginRequire(),
+    vueSetupExtend(),
     AutoImport({
       // Auto import functions from Vue, e.g. ref, reactive, toRef...
       // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
