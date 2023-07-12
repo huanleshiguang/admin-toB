@@ -21,7 +21,7 @@ const props = withDefaults(
   }>(),
   {
     type: 'border-card',
-    tabList: () => [] as TabList[]
+    tabList: () => []
   }
 );
 </script>

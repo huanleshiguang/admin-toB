@@ -6,7 +6,7 @@
  * @Reference: 
 -->
 <script lang="ts" setup>
-import { useNavMenuList } from "/@/store/common/routerList";
+import { useNavMenuList } from '/@/store/common/routerList';
 
 withDefaults(
   defineProps<{
@@ -48,7 +48,7 @@ const currentRouteName = computed(() => {
           <el-menu-item :index="menuItem.path" class="menu-item_custom">{{ menuItem.label }}</el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
-      <el-menu-item :index="item.path" v-else class="menu-item_custom">
+      <el-menu-item v-else :index="item.path" class="menu-item_custom">
         <template #title>{{ item.label }}</template>
       </el-menu-item>
     </template>

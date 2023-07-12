@@ -24,26 +24,40 @@ export const useNavMenuList = defineStore('navMenuList', () => {
       permission: 'system',
       children: [
         {
-          id: 1001,
+          id: 2001,
+          icon: 'store',
+          label: '菜单管理',
+          permission: 'system_store',
+          path: '/system/menu'
+        },
+        {
+          id: 1004,
+          label: '角色管理',
+          icon: 'role',
+          permission: 'system_role',
+          path: '/system/role'
+        },
+        {
+          id: 1005,
           label: '运行参数',
           icon: 'param',
           permission: 'system_role',
           path: '/system/param'
         },
         {
-          id: 1002,
-          label: '人员管理',
-          icon: 'param',
-          permission: 'system_users',
-          path: '/system/users'
-        },
-        {
-          id: 1003,
+          id: 1006,
           label: '床位管理',
           icon: 'role',
           permission: 'system_role',
           path: '/system/bunk'
-        }
+        },
+        {
+          id: 1007,
+          label: '字典维护',
+          icon: 'menu_mangement',
+          permission: 'system_menu',
+          path: '/system/dictionary'
+        },
       ]
     }
   ]);

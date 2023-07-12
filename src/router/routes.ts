@@ -17,16 +17,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: '/dashboard',
     name: '首页',
-    // redirect: '/dashboard',
     component: () => import('/@/views/dashboard/index.vue')
-    // children: [
-    //   {
-    //     path: "dashboard",
-    //     component: () => import("/@/views/dashboard/index.vue"),
-    //     name: "Dashboard",
-    //     meta: { title: "首页", icon: "dashboard", affix: true, requireAuth: true }
-    //   }
-    // ]
   },
   {
     path: '/system',
@@ -58,6 +49,12 @@ export const routes: Array<RouteRecordRaw> = [
         component: () => import('/@/views/system/bunk.vue'),
         name: 'Bunk',
         meta: { title: '床位管理', icon: 'dashboard', affix: true, requireAuth: true }
+      },
+      {
+        path: 'dictionary',
+        component: () => import('/@/views/system/dictionary/index.vue'),
+        name: 'Dictionary',
+        meta: { title: '字典维护', icon: 'dashboard', affix: true, requireAuth: true }
       }
     ]
   },
