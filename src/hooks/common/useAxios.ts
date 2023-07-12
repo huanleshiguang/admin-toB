@@ -1,4 +1,4 @@
-import { IErrorResponseData } from "/@/model/common/axiosOption";
+import { IErrorResponseData } from '/@/model/common/axiosOption';
 
 export function useResponseErrorData(): IErrorResponseData<null> {
   return {
