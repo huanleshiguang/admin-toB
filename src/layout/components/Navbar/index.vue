@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 导航栏
  * @Date: 2022-10-31 13:54:35
- * @LastEditTime: 2023-07-12 19:42:35
+ * @LastEditTime: 2023-07-12 19:48:52
  * @Reference: 
 -->
 <script lang="ts" setup>
@@ -31,7 +31,7 @@ function onCollapaseSideBar(): void {
 // 登出
 function onLogout(): void {
   privateRouter.push({
-    path: '/login'
+    path: '/'
   });
 }
 </script>

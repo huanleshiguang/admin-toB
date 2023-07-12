@@ -10,7 +10,7 @@ export function useDashboradEvent() {
   const privateRouter = useRouter();
   function onJumpTo(url: string): void {
     privateRouter.push({
-      path: '/system/menu'
+      path: '/system/param'
     });
   }
   return {
