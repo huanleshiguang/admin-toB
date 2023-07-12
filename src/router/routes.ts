@@ -2,13 +2,18 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-11 11:18:06
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-12 10:30:36
+ * @LastEditTime: 2023-07-12 19:34:34
  * @FilePath: \servious-illness-admin\src\router\routes.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Description: 路由配置
  */
 import { RouteRecordRaw } from 'vue-router';
 import Layout from '/@/layout/index.vue';
 export const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'Login',
+    component: () => import('/@/views/login.vue')
+  },
   {
     path: '/login',
     name: 'Login',
@@ -28,7 +33,7 @@ export const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'param',
-        component: () => import('/@/views/system/param.vue'),
+        component: () => import('/@/views/system/param/index.vue'),
         name: 'Param',
         meta: { title: '运行参数', icon: 'dashboard', affix: true, requireAuth: true }
       },
@@ -40,7 +45,7 @@ export const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'bunk',
-        component: () => import('/@/views/system/bunk.vue'),
+        component: () => import('/@/views/system/bunk/index.vue'),
         name: 'Bunk',
         meta: { title: '床位管理', icon: 'dashboard', affix: true, requireAuth: true }
       },
@@ -49,6 +54,44 @@ export const routes: Array<RouteRecordRaw> = [
         component: () => import('/@/views/system/dictionary/index.vue'),
         name: 'Dictionary',
         meta: { title: '字典维护', icon: 'dashboard', affix: true, requireAuth: true }
+      }
+    ]
+  },
+  {
+    path: '/error',
+    name: '错误',
+    component: Layout,
+    redirect: '/error',
+    children: [
+      {
+        path: 'menu',
+        component: () => import('/@/views/system/menu.vue'),
+        name: 'Menu',
+        meta: { title: '菜单', icon: 'dashboard', affix: true, requireAuth: true }
+      },
+      {
+        path: 'role',
+        component: () => import('/@/views/system/role.vue'),
+        name: 'Role',
+        meta: { title: '角色', icon: 'dashboard', affix: true, requireAuth: true }
+      },
+      {
+        path: 'param',
+        component: () => import('/@/views/system/param/index.vue'),
+        name: 'Param',
+        meta: { title: '运行参数', icon: 'dashboard', affix: true, requireAuth: true }
+      },
+      {
+        path: 'bunk',
+        component: () => import('/@/views/system/bunk/index.vue'),
+        name: 'Bunk',
+        meta: { title: '床位管理', icon: 'dashboard', affix: true, requireAuth: true }
+      },
+      {
+        path: 'personnel',
+        component: () => import('/@/views/system/personnel/index.vue'),
+        name: 'Personnel',
+        meta: { title: '人员管理', icon: 'dashboard', affix: true, requireAuth: true }
       }
     ]
   },
