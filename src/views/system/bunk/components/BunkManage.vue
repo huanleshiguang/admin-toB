@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 14:32:21
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-12 15:28:36
+ * @LastEditTime: 2023-07-13 15:21:52
  * @FilePath: \servious-illness-admin\src\views\system\bunk\components\BunkManagement.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -12,11 +12,11 @@
         :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="columnsList"
         @current-change="currentChangeEvent">
         <template #operator-left>
-          <span class="ml-3 w-20 text-gray-600 inline-flex items-center">所选院区：</span>
+          <span class="ml-3 text-gray-600 inline-flex items-center font-stl">所选院区：</span>
           <el-select v-model="value" class="w-50 m-2" placeholder="Pick a date" :suffix-icon="ArrowDown" />
-          <span class="ml-3 w-20 text-gray-600 inline-flex items-center">所选科室：</span>
+          <span class="ml-3 text-gray-600 inline-flex items-center font-stl">所选科室：</span>
           <el-select v-model="value" class="w-50 m-2" placeholder="Pick a date" :suffix-icon="ArrowDown" />
-          <span class="ml-3 w-10 text-gray-600 inline-flex items-center">类型</span>
+          <span class="ml-3 text-gray-600 inline-flex items-center font-stl">类型</span>
           <el-select v-model="value" class="w-50 m-2" placeholder="Pick a date" :suffix-icon="ArrowDown" />
           <el-button type="primary" @click="handleSearch">搜索</el-button>
           <el-button @click="handleSearch">同步</el-button>
@@ -26,7 +26,7 @@
 </template>
   
 <script setup lang='ts'>
-import VxeTableLayout from '/@/components/VxeTable/index.vue';
+import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import { ArrowDown } from '@element-plus/icons-vue';
 import { onMounted, ref } from 'vue';
@@ -70,9 +70,14 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .bunk-manage {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+.font-stl {
+  font-size: $font-size-14;
+  font-weight: $font-weight-500;
 }
 </style>

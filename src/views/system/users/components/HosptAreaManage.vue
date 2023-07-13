@@ -1,3 +1,11 @@
+<!--
+ * @Author: ZhouHao joehall@foxmail.com
+ * @Date: 2023-07-12 19:57:02
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-07-13 14:58:10
+ * @FilePath: \servious-illness-admin\src\views\system\users\components\HosptAreaManage.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
      <div class="three-container w_100 h_100">
       <vxe-table-layout ref="vxeTableLayout" class="h_100" border has-index :loader="initMethod"
@@ -18,7 +26,7 @@
 </template>
   
 <script setup lang='ts'>
-import VxeTableLayout from '/@/components/VxeTable/index.vue';
+import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import DialogLayout from '/@/components/DialogLayout/index.vue';
 import {
