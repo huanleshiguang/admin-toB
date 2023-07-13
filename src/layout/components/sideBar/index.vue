@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2022-08-17 17:30:49
- * @LastEditTime: 2023-07-07 18:25:21
+ * @LastEditTime: 2023-07-12 19:44:21
  * @Reference: 
 -->
 <script lang="ts" setup>
@@ -29,7 +29,7 @@ const getCollapaseStatus = computed(() => store.isCollapse);
 .sidebar-content {
   box-sizing: border-box;
   .sidebar-header_expand {
-    width: 200px;
+    width: 140px;
     // padding: 0 20px;
   }
   .sidebar-header_collapse {

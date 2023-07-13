@@ -13,7 +13,7 @@
           <span v-if="item.redirect === 'noRedirect' || index == routes.length - 1" class="no-redirect">
             {{ item.meta.title }}
           </span>
-          <a @click.prevent="onJumpTo(item)" href="javascript: void(0)" v-else>{{ item.meta.title }}</a>
+          <a v-else href="javascript: void(0)" @click.prevent="onJumpTo(item)">{{ item.meta.title }}</a>
         </el-breadcrumb-item>
       </transition-group>
     </el-breadcrumb>
@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { RouteRecordNormalized } from "vue-router";
+import { RouteRecordNormalized } from 'vue-router';
 
 type PartialRouteRecordNormalized = Partial<RouteRecordNormalized>;
 
@@ -40,7 +40,7 @@ function initBreakCrumb() {
   matched.value = privateRoute.matched.filter((item) => item.meta && item.meta.title);
   const firstRoute = matched.value[0];
   if (!isDashbordPageWrapper(firstRoute)) {
-    matched.value = [...[{ path: "/dashboard", meta: { title: "首页" } }], ...matched.value];
+    matched.value = [...[{ path: '/dashboard', meta: { title: '首页' } }], ...matched.value];
   }
   routes.value = matched.value;
 }
@@ -49,7 +49,7 @@ function initBreakCrumb() {
 function isDashbordPageWrapper(route: PartialRouteRecordNormalized): boolean {
   const name = (route && route.name) as string;
   if (!name) return false;
-  return name.trim() === "Dashboard";
+  return name.trim() === 'Dashboard';
 }
 
 // 二级路由跳转
@@ -65,6 +65,7 @@ function onJumpTo(item: RouteRecordNormalized) {
 <style scoped lang="scss">
 .app-breadcrumb {
   position: relative;
+  min-width: 300px;
   .el-breadcrumb {
     display: inline-block;
     font-size: 14px;
@@ -84,7 +85,7 @@ function onJumpTo(item: RouteRecordNormalized) {
 .breadcrumb-move,
 .breadcrumb-enter-active,
 .breadcrumb-leave-active {
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .breadcrumb-enter-from,

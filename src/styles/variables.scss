@@ -27,7 +27,7 @@ $border-radius: 6px !default;
 $border-radius-sm: 3px !default;
 $border-radius-lg: 8px !default;
 
-// 字体
+// 字体大小
 $font-size-12: 12px !default;
 $font-size-14: 14px !default;
 $font-size-16: 16px !default;
@@ -38,6 +38,9 @@ $font-weight-500: 500 !default;
 $font-weight-600: 600 !default;
 $font-weight-700: 700 !default;
 
+// 外部字体包
+$font-source: Source Han Sans CN !default;
+$font-arial: Arial !default;
 
 // 上内边距
 $padding-top-5: 5px !default;

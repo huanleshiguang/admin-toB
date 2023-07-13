@@ -1,7 +1,7 @@
 import { useRequereImage } from '/@/hooks/common/useRequireImage';
 export function useDashboardCommon() {
   const { setDashbordBgImage, setDashbordLogo } = useRequereImage();
-  const backgroundImage = `url("${setDashbordBgImage()}") 100% 100%`;
+  const backgroundImage = `url("${setDashbordBgImage('src')}") 100% 100%`;
   const menuList = ref<Iobj[]>([
     {
       id: 1,
