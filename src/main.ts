@@ -1,15 +1,16 @@
 /*
  * @Autor: QMZhao
  * @Date: 2021-09-08 23:54:23
- * @LastEditors: QMZhao zhao971462054@163.com
- * @LastEditTime: 2023-07-11 15:01:42
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-07-13 18:29:27
  * @Description:
- * @FilePath: /vue-vite-template/src/main.ts
+ * @FilePath: \servious-illness-admin\src\main.ts
  */
 
 import App from './App.vue';
 
 import 'virtual:svg-icons-register';
+import './assets/icon/icon-style.css';
 
 // 菜单路由 permission control
 import './permission';
