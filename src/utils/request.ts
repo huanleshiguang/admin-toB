@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-09-10 10:08:11
- * @LastEditTime: 2023-07-12 15:51:46
+ * @LastEditTime: 2023-07-13 17:26:53
  * @Reference:
  */
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
@@ -90,7 +90,7 @@ function useResponse(response: AxiosResponse): ResponseData {
 }
 
 const request = {
-  get: async ({ ...opt }: any): Promise<AxiosRequestConfig> => {
+  get: async ({ ...opt }: any): Promise<any> => {
     const { url, data, headers } = opt;
     return await service({
       method: 'GET',
@@ -99,7 +99,7 @@ const request = {
       headers: headers ?? { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).then(useResponse);
   },
-  post: async ({ ...opt }: any): Promise<AxiosRequestConfig> => {
+  post: async ({ ...opt }: any): Promise<any> => {
     const { url, data, headers } = opt;
     return await service({
       method: 'POST',
