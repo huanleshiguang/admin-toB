@@ -7,7 +7,7 @@
       has-index
       :loader="initMethod"
       :row-config="{ isCurrent: true, isHover: true }"
-      height="auto"
+      max-height="100%"
       :columns-list="columnsList"
       @cell-dblclick="currentDbClick"
     >
@@ -41,7 +41,7 @@
 </template>
 <script setup lang="ts">
 import { VxeTableEvents } from 'vxe-table';
-import VxeTableLayout from '/@/components/VxeTable/index.vue';
+import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import update from './update.vue';
 import TableTitle from '../common/title.vue';
 import { columnsList } from './enum';
@@ -62,25 +62,29 @@ const currentDbClick: VxeTableEvents.CellDblclick = ({ row }) => {
 };
 
 async function initMethod(params: any) {
-  console.log('params', params);
+  // console.log('params', params);
   const { pageSize } = params;
   return {
     total: 100,
     records: [...new Array(pageSize)].map((_, index) => {
-      console.log(index);
       return { id: index, name: '333', sex: '男' };
     })
   };
 }
 
 onMounted(() => {
-  console.log(vxeTableLayout.value);
+  // console.log(vxeTableLayout.value);
 });
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .basic-dict {
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
+
+  :deep(.modal-drawer) {
+    position: absolute;
+  }
 }
 </style>

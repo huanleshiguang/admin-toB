@@ -1,10 +1,10 @@
-<script setup lang="ts">
+<script setup lang="ts" name="VxeTableLayout">
 import type { VxeColumnProps, VxePagerPropTypes } from 'vxe-table';
 import { PropType } from 'vue';
-defineComponent({
-  name: 'VxeTableLayout',
-  inheritAttrs: false
-});
+// defineComponent({
+//   name: 'VxeTableLayout',
+//   inheritAttrs: false
+// });
 const props = defineProps({
   // 完整的：没有分页的
   intact: {
@@ -90,6 +90,15 @@ const emit = defineEmits(['loaded', 'load-error', 'load-finish', 'load-start']);
 const loading = ref<boolean>(false);
 const table = ref<any>(null);
 const total = ref<number>(0);
+const screenHeight = ref(window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);
+console.log(screenHeight, '232323');
+
+watch(screenHeight, (val) => {
+  console.log('6666', val);
+  console.log('5555', table.value);
+  table.value.recalculate(true);
+  table.value.refreshScroll();
+});
 const params = reactive<{ pageIndex: number; pageSize: number }>({
   pageIndex: 1,
   pageSize: props.pageSize
@@ -153,6 +162,11 @@ onMounted(async () => {
     await nextTick();
     await refresh();
   }
+  window.onresize = () => {
+    return (() => {
+      screenHeight.value = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    })();
+  };
 });
 </script>
 <template>
@@ -172,25 +186,27 @@ onMounted(async () => {
 
     <div class="table-layout__content">
       <slot name="table" v-bind="$attrs">
-        <vxe-table ref="table" class="table-layout__main" :loading="loading" stripe :data="list" v-bind="$attrs">
-          <vxe-column v-if="hasSelection" type="checkbox" width="40" align="center" fixed="left"></vxe-column>
-          <vxe-column v-if="hasIndex" title="序号" width="80" fixed="left" align="center">
-            <template #default="{ $rowIndex }">
-              {{ $rowIndex + 1 + params.pageSize * (params.pageIndex - 1) }}
+        <div class="table-layout__main">
+          <vxe-table ref="table" :loading="loading" stripe :data="list" v-bind="$attrs">
+            <vxe-column v-if="hasSelection" type="checkbox" width="40" align="center" fixed="left"></vxe-column>
+            <vxe-column v-if="hasIndex" title="序号" width="80" fixed="left" align="center">
+              <template #default="{ $rowIndex }">
+                {{ $rowIndex + 1 + params.pageSize * (params.pageIndex - 1) }}
+              </template>
+            </vxe-column>
+            <vxe-column
+              v-for="columnItem in columnsList"
+              :key="columnItem.field"
+              align="center"
+              v-bind="columnItem"
+              :width="columnItem.width"
+            ></vxe-column>
+            <slot name="columns" v-bind="$attrs"></slot>
+            <template #empty>
+              <slot name="empty"></slot>
             </template>
-          </vxe-column>
-          <vxe-column
-            v-for="columnItem in columnsList"
-            :key="columnItem.field"
-            align="center"
-            v-bind="columnItem"
-            :width="columnItem.width"
-          ></vxe-column>
-          <slot name="columns" v-bind="$attrs"></slot>
-          <template #empty>
-            <slot name="empty"></slot>
-          </template>
-        </vxe-table>
+          </vxe-table>
+        </div>
       </slot>
     </div>
     <footer class="table-layout__footer">
@@ -214,6 +230,7 @@ onMounted(async () => {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   &__header {
     height: 45px;
@@ -222,18 +239,21 @@ onMounted(async () => {
   }
 
   &__content {
-    flex-grow: 1;
+    flex: 1;
     background-color: #fff;
+    display: flex;
+    overflow: hidden;
   }
 
   &__main {
-    width: auto;
-    position: relative;
-    height: 100%;
+    flex: 1;
+    // width: auto;
+    // position: relative;
+    // height: 100%;
+    overflow: hidden;
   }
 
   &__footer {
-    align-items: end;
     line-height: 1.5;
     color: #666;
     border-top: 1px #ddd solid;
