@@ -2,8 +2,7 @@
   <el-dialog
     v-model="visible"
     class="dialog-layout"
-    :close-on-click-modal="false"
-    :close-on-press-escape="false"
+    v-bind="$attrs"
     :width="width"
     :show-close="closable"
     :before-close="beforeClose"

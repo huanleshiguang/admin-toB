@@ -9,9 +9,7 @@
   <div class="w_100 h_100 page-container">
     <el-container class="h_100">
       <el-aside width="auto">
-        <div class="app-sidebar h_100">
-          <SideBar />
-        </div>
+        <SideBar />
       </el-aside>
       <el-container>
         <el-header height="30px" class="w_100 layout-header"><Navbar /></el-header>

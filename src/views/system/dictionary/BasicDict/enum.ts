@@ -23,3 +23,26 @@ export const columnsList: VxeColumnProps[] = [
     width: '400'
   }
 ];
+
+export const childColumnsList: VxeColumnProps[] = [
+  {
+    title: '字典',
+    field: 'dictCode'
+  },
+  {
+    title: '值域值(中文)',
+    field: 'dictName'
+  },
+  {
+    title: '值域项(英文)',
+    field: 'dictEnName'
+  },
+  {
+    title: '取值',
+    field: 'dictEnAbbr'
+  },
+  {
+    title: '描述',
+    field: 'dictEnAbbr'
+  }
+];

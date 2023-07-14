@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2022-08-17 17:30:49
- * @LastEditTime: 2023-07-12 19:44:21
+ * @LastEditTime: 2023-07-13 17:13:28
  * @Reference: 
 -->
 <script lang="ts" setup>
@@ -16,8 +16,14 @@ const getCollapaseStatus = computed(() => store.isCollapse);
 
 <template>
   <div :class="['h_100 flex flex-col sidebar-content']">
+    <div
+      :class="[
+        'company-cell flex items-center justify-between',
+        getCollapaseStatus ? 'sidebar-header_collapse' : 'sidebar-header_expand'
+      ]"
+    ></div>
     <!-- 侧边栏 -->
-    <div class="side-bar-list sidebar-header_expand">
+    <div class="side-bar-list">
       <el-scrollbar>
         <SideBarItem v-model:collapseValue="getCollapaseStatus"></SideBarItem>
       </el-scrollbar>
@@ -30,16 +36,12 @@ const getCollapaseStatus = computed(() => store.isCollapse);
   box-sizing: border-box;
   .sidebar-header_expand {
     width: 140px;
-    // padding: 0 20px;
   }
   .sidebar-header_collapse {
     width: 65px;
   }
   .company-cell {
-    height: 80px;
-    background-color: #687079;
     transition: all 0.2s ease-in;
-    padding: 0 4px;
     .logo {
       width: 50px;
       height: 50px;
@@ -58,11 +60,11 @@ const getCollapaseStatus = computed(() => store.isCollapse);
     text-align: center;
     font-size: $font-size-14;
     @include text-ellipsis;
-    transition: all 0.1s 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+    transition: all 0.1s 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
 
     .company-name {
       display: inline-block;
-      transition: all 0.1s 0.4s cubic-bezier(0.18, -0.1, 0.04, 1.15);
+      transition: all 0.1s 0.3s cubic-bezier(0.18, -0.1, 0.04, 1.15);
     }
     .hide-name {
       opacity: 0;
@@ -85,11 +87,11 @@ const getCollapaseStatus = computed(() => store.isCollapse);
     overflow-y: auto;
     box-sizing: border-box;
     // background-color: #545c64;
-    background-color: #545c64;
+    background-color: #e8e8e8;
   }
   .menu-btn {
     height: calc(100% - 730px);
-    background-color: #545c64;
+    // background-color: #e8e8e8;
     .menu-btn-icon {
       width: 40px;
       height: 40px;

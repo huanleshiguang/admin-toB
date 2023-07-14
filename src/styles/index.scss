@@ -1,4 +1,5 @@
 @import './svgicon.scss';
+@import './font.scss';
 
 /* Global scss */
 
@@ -44,6 +45,7 @@ body {
   height: 100%;
   overflow: hidden;
   width: 100%;
+  
 }
 .clearfix {
   @include clearfix;

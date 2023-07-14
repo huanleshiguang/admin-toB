@@ -1,0 +1,385 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 1544999 */
+  src: url('iconfont.woff2?t=1632303154163') format('woff2'),
+       url('iconfont.woff?t=1632303154163') format('woff'),
+       url('iconfont.ttf?t=1632303154163') format('truetype');
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'iconfont' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-a-Workstatistics:before {
+  content: "\e65b";
+}
+
+.icon-ym:before {
+  content: "\e65a";
+}
+
+.icon-download:before {
+  content: "\e659";
+}
+
+.icon-Export:before {
+  content: "\e658";
+}
+
+.icon-doctor-schedule:before {
+  content: "\e61e";
+}
+
+.icon-class-management:before {
+  content: "\e61f";
+}
+
+.icon-notice:before {
+  content: "\e655";
+}
+
+.icon-system-management:before {
+  content: "\e656";
+}
+
+.icon-nurse-roster:before {
+  content: "\e657";
+}
+
+.icon-winrefresh:before {
+  content: "\e650";
+}
+
+.icon-winminimize:before {
+  content: "\e651";
+}
+
+.icon-winmaximize:before {
+  content: "\e652";
+}
+
+.icon-winclose:before {
+  content: "\e653";
+}
+
+.icon-winreduction:before {
+  content: "\e654";
+}
+
+.icon-dressing-change:before {
+  content: "\e617";
+}
+
+.icon-pluck:before {
+  content: "\e618";
+}
+
+.icon-puncture:before {
+  content: "\e619";
+}
+
+.icon-dispensing:before {
+  content: "\e609";
+}
+
+.icon-stop:before {
+  content: "\e60a";
+}
+
+.icon-end:before {
+  content: "\e60b";
+}
+
+.icon-start:before {
+  content: "\e60c";
+}
+
+.icon-Infusion-bottle:before {
+  content: "\e608";
+}
+
+.icon-water-drop:before {
+  content: "\e607";
+}
+
+.icon-time:before {
+  content: "\e606";
+}
+
+.icon-infusion-seat:before {
+  content: "\e605";
+}
+
+.icon-form1:before {
+  content: "\e603";
+}
+
+.icon-msg:before {
+  content: "\e604";
+}
+
+.icon-gh-fuben:before {
+  content: "\e64f";
+}
+
+.icon-default-template:before {
+  content: "\e64e";
+}
+
+.icon-get-file:before {
+  content: "\e64d";
+}
+
+.icon-form:before {
+  content: "\e602";
+}
+
+.icon-Imagedownload:before {
+  content: "\e601";
+}
+
+.icon-icon-test:before {
+  content: "\e64b";
+}
+
+.icon-icon-test1:before {
+  content: "\e64c";
+}
+
+.icon-camera:before {
+  content: "\e63e";
+}
+
+.icon-searchfor:before {
+  content: "\e63f";
+}
+
+.icon-sm:before {
+  content: "\e640";
+}
+
+.icon-submit:before {
+  content: "\e641";
+}
+
+.icon-print:before {
+  content: "\e642";
+}
+
+.icon-yq:before {
+  content: "\e643";
+}
+
+.icon-zf:before {
+  content: "\e644";
+}
+
+.icon-wm:before {
+  content: "\e645";
+}
+
+.icon-save:before {
+  content: "\e646";
+}
+
+.icon-edit:before {
+  content: "\e647";
+}
+
+.icon-fast:before {
+  content: "\e648";
+}
+
+.icon-gh:before {
+  content: "\e649";
+}
+
+.icon-Add:before {
+  content: "\e64a";
+}
+
+.icon-t:before {
+  content: "\e62f";
+}
+
+.icon-t1:before {
+  content: "\e63a";
+}
+
+.icon-t2:before {
+  content: "\e63c";
+}
+
+.icon-t3:before {
+  content: "\e63d";
+}
+
+.icon-patient:before {
+  content: "\e630";
+}
+
+.icon-schedule:before {
+  content: "\e631";
+}
+
+.icon-template:before {
+  content: "\e632";
+}
+
+.icon-data:before {
+  content: "\e633";
+}
+
+.icon-statistics:before {
+  content: "\e634";
+}
+
+.icon-business:before {
+  content: "\e635";
+}
+
+.icon-device:before {
+  content: "\e636";
+}
+
+.icon-groupinjury:before {
+  content: "\e637";
+}
+
+.icon-Patientlist:before {
+  content: "\e638";
+}
+
+.icon-workbench:before {
+  content: "\e639";
+}
+
+.icon-deviceconnection:before {
+  content: "\e63b";
+}
+
+.icon-kc:before {
+  content: "\e62b";
+}
+
+.icon-reduction:before {
+  content: "\e62e";
+}
+
+.icon-close:before {
+  content: "\e62d";
+}
+
+.icon-star:before {
+  content: "\e62a";
+}
+
+.icon-star1:before {
+  content: "\e62c";
+}
+
+.icon-turnover:before {
+  content: "\e629";
+}
+
+.icon-pregnantwoman:before {
+  content: "\e620";
+}
+
+.icon-qualitycontrol:before {
+  content: "\e621";
+}
+
+.icon-schedulingsection:before {
+  content: "\e622";
+}
+
+.icon-newborn:before {
+  content: "\e623";
+}
+
+.icon-infusion:before {
+  content: "\e624";
+}
+
+.icon-chestpain:before {
+  content: "\e625";
+}
+
+.icon-setup:before {
+  content: "\e626";
+}
+
+.icon-trauma:before {
+  content: "\e627";
+}
+
+.icon-stroke:before {
+  content: "\e628";
+}
+
+.icon-handover:before {
+  content: "\e61d";
+}
+
+.icon-watch:before {
+  content: "\e61a";
+}
+
+.icon-rescue:before {
+  content: "\e61b";
+}
+
+.icon-triage:before {
+  content: "\e61c";
+}
+
+.icon-bed:before {
+  content: "\e616";
+}
+
+.icon-verify:before {
+  content: "\e60d";
+}
+
+.icon-add:before {
+  content: "\e60e";
+}
+
+.icon-delete:before {
+  content: "\e60f";
+}
+
+.icon-unfold:before {
+  content: "\e610";
+}
+
+.icon-disable:before {
+  content: "\e611";
+}
+
+.icon-one-clickreview:before {
+  content: "\e612";
+}
+
+.icon-refresh:before {
+  content: "\e613";
+}
+
+.icon-refresh1:before {
+  content: "\e614";
+}
+
+.icon-revoke:before {
+  content: "\e615";
+}
+

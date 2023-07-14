@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-12 17:55:56
+ * @LastEditTime: 2023-07-13 15:24:37
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -12,7 +12,7 @@
       <el-aside>
         <div class="inaside-container mt_20">
           <div class="mb-2 header-container">
-            <span class="ml-3 w-20 text-gray-600 inline-flex items-center">组织架构</span>
+            <span class="text-gray-600 inline-flex items-center font-stl">组织架构:</span>
             <el-select v-model="value" class="w-50 m-2" placeholder="请选择" :suffix-icon="ArrowDown" />
             <el-checkbox v-model="value" label="重症科室" size="large" />
           </div>
@@ -101,7 +101,7 @@
           :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="columnsList"
           @current-change="currentChangeEvent">
           <template #operator-left>
-            <span class="ml-3 w-20 text-gray-600 inline-flex items-center">用户检索：</span>
+            <span class="text-gray-600 font-stl">用户检索：</span>
             <div>
               <el-input v-model="value" placeholder="请输入姓名/工号后点击回车" size="default" :prefix-icon="Search" />
             </div>
@@ -119,7 +119,7 @@
 </template>
 
 <script lang="ts" setup>
-import VxeTableLayout from '/@/components/VxeTable/index.vue';
+import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import DialogLayout from '/@/components/DialogLayout/index.vue';
 import {
@@ -234,9 +234,14 @@ const add = () => {
 .common-layout {
   height: inherit;
   display: flex;
+  overflow: hidden;
 }
 .inaside-container {
   height: 700px;
   margin-top: 20px;
+}
+.font-stl {
+  font-size: $font-size-14;
+  font-weight: $font-weight-500;
 }
 </style>

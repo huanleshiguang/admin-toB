@@ -7,7 +7,7 @@
       has-index
       :loader="initMethod"
       :row-config="{ isCurrent: true, isHover: true }"
-      height="auto"
+      max-height="100%"
       :columns-list="columnsList"
       @cell-dblclick="currentDbClick"
     >
@@ -20,34 +20,53 @@
       <template #columns>
         <vxe-column title="操作" align="center" fixed="right">
           <template #default="{ $columnIndex, row }">
-            <el-button link type="primary" @click="editRow(row)">编辑</el-button>
-            <el-button link type="danger">删除</el-button>
+            <el-button size="small" link type="primary" @click="editRow(row)">编辑</el-button>
+            <el-button size="small" link type="danger">删除</el-button>
           </template>
         </vxe-column>
       </template>
     </VxeTableLayout>
-    <update ref="updateRef" />
-
-    <el-drawer
-      v-model="drawerVisible"
-      :append-to-body="false"
-      style="position: absolute"
-      title="I am the title"
-      direction="rtl"
-    >
-      <span>Hi, there!</span>
-    </el-drawer>
+    <Update ref="updateRef" />
+    <DrawerLayout ref="drawerLayout" modal-class="modal-drawer">
+      <template #header>
+        <div>
+          <el-button type="primary">添加值域</el-button>
+        </div>
+      </template>
+      <VxeTableLayout
+        :show-header="false"
+        border
+        max-height="400px"
+        :columns-list="childColumnsList"
+        :row-config="{ isHover: true }"
+        :menu-config="menuConfig"
+        :loader="initMethod"
+        @menu-click="contextMenuClickEvent"
+      ></VxeTableLayout>
+    </DrawerLayout>
   </div>
 </template>
 <script setup lang="ts">
 import { VxeTableEvents } from 'vxe-table';
-import VxeTableLayout from '/@/components/VxeTable/index.vue';
-import update from './update.vue';
+import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
+import DrawerLayout from '/@/components/DrawerLayout/index.vue';
+import Update from './update.vue';
 import TableTitle from '../common/title.vue';
-import { columnsList } from './enum';
+import { columnsList, childColumnsList } from './enum';
+const menuConfig = ref({
+  className: 'right-menu',
+  body: {
+    options: [
+      [
+        { code: 'edit', name: '编辑' },
+        { code: 'delete', name: '删除' }
+      ]
+    ]
+  }
+});
 const vxeTableLayout = ref();
 const updateRef = ref();
-const drawerVisible = ref(false);
+const drawerLayout = ref();
 const add = () => {
   updateRef.value.open();
 };
@@ -56,31 +75,57 @@ const editRow = (row) => {
 
   updateRef.value.open(row);
 };
+
+const contextMenuClickEvent: VxeTableEvents.MenuClick = ({ menu, row, column }) => {
+  switch (menu.code) {
+    case 'edit':
+      // 示例
+      if (row && column) {
+        console.log('编辑');
+      }
+      break;
+    case 'delete':
+      // 示例
+      if (row && column) {
+        console.log('删除');
+      }
+      break;
+  }
+};
+
 const currentDbClick: VxeTableEvents.CellDblclick = ({ row }) => {
-  drawerVisible.value = true;
+  drawerLayout.value.open();
   console.log(row);
 };
 
 async function initMethod(params: any) {
-  console.log('params', params);
+  // console.log('params', params);
   const { pageSize } = params;
   return {
     total: 100,
     records: [...new Array(pageSize)].map((_, index) => {
-      console.log(index);
-      return { id: index, name: '333', sex: '男' };
+      return { id: index, dictCode: '333', dictName: '男' };
     })
   };
 }
 
 onMounted(() => {
-  console.log(vxeTableLayout.value);
+  // console.log(vxeTableLayout.value);
 });
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .basic-dict {
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
+
+  :deep(.modal-drawer) {
+    position: absolute;
+    z-index: 888 !important;
+  }
+}
+.right-menu {
+  z-index: 2999 !important;
 }
 </style>
