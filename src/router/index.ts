@@ -11,8 +11,8 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 import { routes } from './routes';
 
 export const router = createRouter({
-  history: createWebHashHistory(),
-  // history: createWebHistory(),
+  //history: createWebHashHistory(),
+   history: createWebHistory(),
   // history: createWebHistory(import.meta.env.BASE_URL),
   routes,
   // 是否应该禁止尾部斜杠。默认为false
