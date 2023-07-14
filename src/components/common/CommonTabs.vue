@@ -3,6 +3,7 @@
     <el-tab-pane v-for="item in tabList" :key="item.id" :label="item.label">
       <component :is="item.component" class="common-tabs_component" />
     </el-tab-pane>
+    <slot />
   </el-tabs>
 </template>
 <script setup lang="ts" name="CommonTabs">
