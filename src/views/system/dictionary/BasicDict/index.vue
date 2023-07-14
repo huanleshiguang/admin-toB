@@ -30,12 +30,13 @@
     <DrawerLayout ref="drawerLayout" modal-class="modal-drawer">
       <template #header>
         <div>
-          <el-button type="primary">添加值域</el-button>
+          <el-button type="primary" @click="addValue">添加值域</el-button>
         </div>
       </template>
       <VxeTableLayout
         :show-header="false"
         border
+        size="small"
         max-height="400px"
         :columns-list="childColumnsList"
         :row-config="{ isHover: true }"
@@ -44,6 +45,7 @@
         @menu-click="contextMenuClickEvent"
       ></VxeTableLayout>
     </DrawerLayout>
+    <UpdateValue ref="updateValueRef" />
   </div>
 </template>
 <script setup lang="ts">
@@ -53,6 +55,10 @@ import DrawerLayout from '/@/components/DrawerLayout/index.vue';
 import Update from './update.vue';
 import TableTitle from '../common/title.vue';
 import { columnsList, childColumnsList } from './enum';
+import UpdateValue from '/@/views/system/dictionary/BasicDict/updateValue.vue';
+import { useMessage } from '/src/hooks/common/useMessage';
+const { createConfirm, createMessage } = useMessage();
+
 const menuConfig = ref({
   className: 'right-menu',
   body: {
@@ -66,9 +72,13 @@ const menuConfig = ref({
 });
 const vxeTableLayout = ref();
 const updateRef = ref();
+const updateValueRef = ref();
 const drawerLayout = ref();
 const add = () => {
   updateRef.value.open();
+};
+const addValue = () => {
+  updateValueRef.value.open();
 };
 const editRow = (row) => {
   console.log(row);
@@ -76,18 +86,22 @@ const editRow = (row) => {
   updateRef.value.open(row);
 };
 
-const contextMenuClickEvent: VxeTableEvents.MenuClick = ({ menu, row, column }) => {
+const contextMenuClickEvent: VxeTableEvents.MenuClick = async ({ menu, row, column }) => {
   switch (menu.code) {
     case 'edit':
       // 示例
       if (row && column) {
+        updateRef.value.open(row);
         console.log('编辑');
       }
       break;
     case 'delete':
       // 示例
       if (row && column) {
-        console.log('删除');
+        const result = await createConfirm('删除后不可恢复，是否确认删除？', 'warning');
+        if (result) {
+          createMessage.success('okk');
+        }
       }
       break;
   }
