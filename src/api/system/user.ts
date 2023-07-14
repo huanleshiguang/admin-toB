@@ -1,3 +1,3 @@
-import request from '/@/utils/request'
-//获取院区信息
-export const apiGethosptAreaInfo = () => request({url:'/Organization/OrgManage/GetOrgAreaInfos'})
+import request from "/@/utils/request";
+
+export const apiGetHosptAreaInfo = () => request.get({ url: '/Organization/OrgManage/GetOrgAreaInfos' })

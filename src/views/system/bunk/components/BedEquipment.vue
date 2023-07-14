@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 14:40:09
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-13 14:27:39
+ * @LastEditTime: 2023-07-13 15:30:19
  * @FilePath: \servious-illness-admin\src\views\system\bunk\components\BedEquipment.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -166,26 +166,6 @@ const decTabHeader = [
     label: '有效范围'
   },
 ]
-const devListTable = ref();
-const monitorItemTable = ref();
-const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
-  console.log(`行选中事件`, row);
-};
-const handleAdd = () => {
-}
-const handleDelete = () => {
-}
-async function initMethod(params: any) {
-  console.log(params, 'params');
-  const { pageSize } = params;
-  return {
-    total: 100,
-    records: [...new Array(pageSize)].map((_, index) => {
-      console.log(index);
-      return { id: index, srial: 'adad', name: '张三', value: '1', desc: '12414' };
-    })
-  };
-}
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -198,9 +178,8 @@ const handleClose = (key: string, keyPath: string[]) => {
 .container {
   height: calc(100% - 36px);
 }
-
 .main-container {
-  height: 600px;
+  height: 550px;
 }
 
 .box-card {

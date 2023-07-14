@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 导航栏
  * @Date: 2022-10-31 13:54:35
- * @LastEditTime: 2023-07-12 19:48:52
+ * @LastEditTime: 2023-07-13 15:46:04
  * @Reference: 
 -->
 <script lang="ts" setup>
@@ -42,7 +42,7 @@ function onLogout(): void {
       <!-- 侧边栏开关按钮 -->
       <div :class="['menu-btn h_100 flex items-center']" @click="onCollapaseSideBar">
         <div :class="['menu-btn-icon w_100 flex items-center menu-btn-position']">
-          <svg-icon :icon-class="isCollapse ? 'expasion' : 'shou'"></svg-icon>
+          <SvgIcon :icon-class="isCollapse ? 'expasion' : 'shou'" color="333"></SvgIcon>
         </div>
       </div>
       <!-- 路由信息 -->

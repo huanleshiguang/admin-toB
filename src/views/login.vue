@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2021-09-16 15:59:17
- * @LastEditTime: 2023-07-13 11:53:02
+ * @LastEditTime: 2023-07-13 13:38:53
  * @Reference: 
 -->
 <script setup lang="ts">
@@ -35,6 +35,8 @@ import { LoginForm } from '/@/components/login';
 .login-container {
   position: relative;
   background: $color-white;
+  min-width: 1035px;
+  overflow-x: auto;
   .company-logo {
     width: 67px;
     height: 67px;
@@ -57,7 +59,6 @@ import { LoginForm } from '/@/components/login';
   // 479+48+508
   width: 1035px;
   height: 570px;
-  // margin: 0 auto;
   .login-image {
     width: 479px;
     height: 100%;
