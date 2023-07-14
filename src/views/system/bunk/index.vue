@@ -12,7 +12,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import CommonTabs from '/@/components/common/common-tabs.vue';
+import CommonTabs from '/src/components/common/CommonTabs.vue';
 import BunkManage from './components/BunkManage.vue';
 import BedEquipment from './components/BedEquipment.vue';
 const tabList = [

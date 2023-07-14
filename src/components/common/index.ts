@@ -6,6 +6,7 @@
  * @Description:
  * @FilePath: \servious-illness-admin\src\components\common\index.ts
  */
-export { default as CommonError } from './common-error.vue';
-export { default as CommonLoading } from './common-loading.vue';
-export { default as FlexSpacer } from './flex-spacer.vue';
+export { default as CommonError } from './CommonError.vue';
+export { default as CommonLoading } from './CommonLoading.vue';
+export { default as CommonTabs } from './CommonTabs.vue';
+export { default as FlexSpacer } from './FlexSpacer.vue';

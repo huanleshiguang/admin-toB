@@ -7,7 +7,8 @@
  * @Description: 路由配置
  */
 import { RouteRecordRaw } from 'vue-router';
-import Layout from '/@/layout/index.vue';
+import LayoutManage from '/@/layout/manage/index.vue';
+import{doctorNurse} from '/@/router/doctor.nurse';
 export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -23,7 +24,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: '/system',
     name: '系统',
-    component: Layout,
+    component: LayoutManage,
     redirect: 'noRedirect',
     meta: { title: '系统', icon: 'dashboard' },
     children: [
@@ -53,10 +54,11 @@ export const routes: Array<RouteRecordRaw> = [
       }
     ]
   },
+  ...doctorNurse,
   {
     path: '/error',
     name: '错误',
-    component: Layout,
+    component: LayoutManage,
     redirect: '/error',
     children: [
       {

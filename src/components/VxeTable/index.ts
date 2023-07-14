@@ -13,12 +13,12 @@ import {
   VXETable,
 
   // 表格功能
-  // Filter,
-  // Edit,
-  // Menu,
-  // Export,
-  // Keyboard,
-  // Validator,
+  Filter,
+  Edit,
+  Menu,
+  Export,
+  Keyboard,
+  Validator,
 
   // 可选组件
   Icon,
@@ -62,12 +62,7 @@ VXETable.setup({
 
 export function useTable(app: App<Element>) {
   // 表格功能
-  // app.use(Filter)
-  // .use(Edit)
-  // .use(Menu)
-  // .use(Export)
-  // .use(Keyboard)
-  // .use(Validator)
+  app.use(Filter).use(Edit).use(Menu).use(Export).use(Keyboard).use(Validator);
 
   // 可选组件
   app

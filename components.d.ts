@@ -8,10 +8,11 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BarChart: typeof import('./src/components/dashboard/BarChart.vue')['default']
-    CommonError: typeof import('./src/components/common/common-error.vue')['default']
-    CommonLoading: typeof import('./src/components/common/common-loading.vue')['default']
-    CommonTabs: typeof import('./src/components/common/common-tabs.vue')['default']
+    CommonError: typeof import('./src/components/common/CommonError.vue')['default']
+    CommonLoading: typeof import('./src/components/common/CommonLoading.vue')['default']
+    CommonTabs: typeof import('./src/components/common/CommonTabs.vue')['default']
     DialogLayout: typeof import('./src/components/DialogLayout/index.vue')['default']
+    DrawerLayout: typeof import('./src/components/DrawerLayout/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
@@ -42,11 +43,18 @@ declare module 'vue' {
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+<<<<<<< HEAD
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     FlexSpacer: typeof import('./src/components/common/flex-spacer.vue')['default']
+=======
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
+    FlexSpacer: typeof import('./src/components/common/FlexSpacer.vue')['default']
+    IEpLocation: typeof import('~icons/ep/location')['default']
+>>>>>>> 8dd0bca2a3c5aea4b949431fb61d3af32cb8e5bf
     LoginForm: typeof import('./src/components/login/LoginForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
