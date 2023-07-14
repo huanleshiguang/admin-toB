@@ -1,0 +1,53 @@
+<!--
+ * @Author: QMZhao
+ * @Description: 
+ * @Date: 2022-08-17 17:29:53
+ * @LastEditTime: 2023-02-18 22:42:48
+ * @Reference: 
+-->
+<template>
+	<div class="w_100 h_100 page-container">
+		<headerBar></headerBar>
+		<el-container class="containerBox">
+			<el-aside width="auto">
+				<div class="app-sidebar h_100">
+					<SideBar>12</SideBar>
+				</div>
+			</el-aside>
+			<el-container>
+				<el-main>
+					<myInfo></myInfo>
+					<div class="mt10"></div>
+					<div class="main-container w_100">
+						<el-scrollbar>
+							<app-main />
+						</el-scrollbar>
+					</div>
+				</el-main>
+			</el-container>
+		</el-container>
+	</div>
+</template>
+
+<script lang="ts" setup>
+	import { headerBar, AppMain, SideBar,myInfo } from './components';
+</script>
+<style lang="scss" scoped>
+	.containerBox {
+		margin-top: 10px;
+		height: calc(100% - 50px);
+	}
+
+	.page-container {
+		min-width: 1280px;
+		overflow-x: auto;
+		background: #eee;
+	}
+
+	.main-container {
+		background: #fff;
+		height: calc(100% - 76px);
+		// background-color: $color-background;
+	}
+	.el-main{ padding-top:0; padding-bottom: 0;}
+</style>
