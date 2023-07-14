@@ -2,16 +2,16 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 14:40:09
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-13 15:30:19
+ * @LastEditTime: 2023-07-14 15:57:02
  * @FilePath: \servious-illness-admin\src\views\system\bunk\components\BedEquipment.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Description: 
 -->
 <template>
   <div class="common-layout">
     <el-container class="container">
       <el-aside>
         <div>
-          <div>床位列表</div>
+          <!-- <div>床位列表</div> -->
           <div calss="inaside-menu">
             <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
               <el-sub-menu index="1">
@@ -57,7 +57,7 @@
         <div class="main-container">
           <div class="header-container">
             <div class="header-left">
-              <h2>设备列表</h2>
+              <!-- <h2>设备列表</h2> -->
             </div>
             <div class="header-right">
               <el-button type="primary" :icon="Plus">新增设备</el-button>

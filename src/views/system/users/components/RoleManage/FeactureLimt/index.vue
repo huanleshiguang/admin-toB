@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-14 14:45:11
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-14 15:21:18
+ * @LastEditTime: 2023-07-14 15:52:33
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\RoleConfig\index.vue
  * @Description: 
 -->
@@ -33,8 +33,6 @@
 <script setup lang='ts'>
 import itemHeader from '../components/ItemHeader.vue'
 import itemContent from '../components/ItemContent.vue'
-import { ref } from 'vue';
-
 
 </script>
 

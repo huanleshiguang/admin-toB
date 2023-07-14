@@ -43,18 +43,11 @@ declare module 'vue' {
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
-<<<<<<< HEAD
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
-    FlexSpacer: typeof import('./src/components/common/flex-spacer.vue')['default']
-=======
-    ElTabPane: typeof import('element-plus/es')['ElTabPane']
-    ElTabs: typeof import('element-plus/es')['ElTabs']
     FlexSpacer: typeof import('./src/components/common/FlexSpacer.vue')['default']
-    IEpLocation: typeof import('~icons/ep/location')['default']
->>>>>>> 8dd0bca2a3c5aea4b949431fb61d3af32cb8e5bf
     LoginForm: typeof import('./src/components/login/LoginForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
