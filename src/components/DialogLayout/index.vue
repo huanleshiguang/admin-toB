@@ -151,7 +151,8 @@ const submit = async () => {
     await nextTick();
     // @arg 确认方法调用后的结果
     // 成功回调
-
+    console.log(result,'result'); // undefined
+    
     emit('success', result);
     if (autoClose) close();
   };
@@ -178,7 +179,7 @@ const submit = async () => {
 const onSure = () => {
   // 弹窗确认事件的回调
   emit('sure');
-  submit();
+  // submit();
 };
 
 const onCancel = () => {
