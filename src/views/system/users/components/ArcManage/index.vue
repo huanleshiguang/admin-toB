@@ -2,97 +2,41 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-13 15:24:37
+ * @LastEditTime: 2023-07-17 18:05:36
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Description: 
 -->
 <template>
   <div class="common-layout">
     <el-container>
-      <el-aside>
-        <div class="inaside-container mt_20">
-          <div class="mb-2 header-container">
-            <span class="text-gray-600 inline-flex items-center font-stl">组织架构:</span>
-            <el-select v-model="value" class="w-50 m-2" placeholder="请选择" :suffix-icon="ArrowDown" />
-            <el-checkbox v-model="value" label="重症科室" size="large" />
-          </div>
-          <div class="side-menu-container">
+      <el-aside width="350px">
+        <div class="aside-container">
+          <div class="header-container">
+            <div class="select-container">
+              <span class="text-gray-600 font-stl">组织架构:</span>
+              <el-select v-model="value" class="w-40 m-2" placeholder="请选择" :suffix-icon="ArrowDown" />
+              <el-checkbox v-model="value" label="重症科室" size="large" />
+            </div>
             <div class="mb-2">
               <el-input v-model="value" placeholder="请输入科室名称搜索" size="default" :suffix-icon="Search" />
             </div>
-            <el-scrollbar height="inherit">
-              <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
-                <el-sub-menu index="1">
-                  <template #title>
-                    <el-icon>
-                      <Folder />
-                    </el-icon>
-                    <span>Navigator One</span>
-                  </template>
-                  <el-menu-item-group title="Group One">
-                    <el-menu-item index="1-1">
-                      <el-icon>
-                        <Document />
-                      </el-icon>
-                      <span>item one</span>
-                    </el-menu-item>
-                    <el-menu-item index="1-2">item two</el-menu-item>
-                  </el-menu-item-group>
-                  <el-menu-item-group title="Group Two">
-                    <el-menu-item index="1-3">item three</el-menu-item>
-                  </el-menu-item-group>
-                  <el-sub-menu index="1-4">
-                    <template #title>item four</template>
-                    <el-menu-item index="1-4-1">item one</el-menu-item>
-                  </el-sub-menu>
-                </el-sub-menu>
-                <el-menu-item index="2">
-                  <el-icon>
-                    <Folder />
-                  </el-icon>
-                  <span>Navigator Two</span>
-                </el-menu-item>
-                <el-menu-item index="3" disabled>
-                  <el-icon>
-                    <Folder />
-                  </el-icon>
-                  <span>Navigator Three</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                  <el-icon>
-                    <Folder />
-                  </el-icon>
-                  <span>Navigator Four</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                  <el-icon>
-                    <Folder />
-                  </el-icon>
-                  <span>Navigator Four</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                  <el-icon>
-                    <Folder />
-                  </el-icon>
-                  <span>Navigator Four</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                  <el-icon>
-                    <Folder />
-                  </el-icon>
-                  <span>Navigator Four</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                  <el-icon>
-                    <Folder />
-                  </el-icon>
-                  <span>Navigator Four</span>
-                </el-menu-item>
-              </el-menu>
+          </div>
+          <div class="content-container">
+            <!-- <div style="flex-grow: 1" :style="{ height: slbHeight }"> -->
+            <el-scrollbar>
+              <el-tree :data="data" :props="defaultProps" lazy @node-click="handleNodeClick">
+                <template v-slot="{ node, data }">
+                  <el-icon v-if="data.children"><Folder /></el-icon>
+                  <el-icon v-else><Document /></el-icon>
+                  <span style="margin-left: 10px">{{ node.label }}</span>
+                </template>
+                </el-tree>
             </el-scrollbar>
+
           </div>
           <div class="footer-container">
             <el-button type="primary">点击同步全院组织架构</el-button>
+            <!-- </div> -->
           </div>
         </div>
       </el-aside>
@@ -122,14 +66,13 @@
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import DialogLayout from '/@/components/DialogLayout/index.vue';
-import {
-  Document,
-  ArrowDown,
-  Search,
-  Folder,
-  Plus
-} from '@element-plus/icons-vue'
+import { ref } from 'vue'
+import { Document, ArrowDown, Search, Folder, Plus } from '@element-plus/icons-vue'
 
+interface Tree {
+  label: string
+  children?: Tree[]
+}
 const value = ref('');
 const vxeTableLayout = ref();
 const dialogLayout = ref();
@@ -176,12 +119,153 @@ const columnsList = [
     field: 'threelevel',
   }
 ];
-
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+const data: Tree[] = [
+  {
+    label: 'Level one 1',
+    children: [
+      {
+        label: 'Level two 1-1',
+        children: [
+          {
+            label: 'Level three 1-1-1',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Level one 2',
+    children: [
+      {
+        label: 'Level two 2-1',
+        children: [
+          {
+            label: 'Level three 2-1-1',
+          },
+        ],
+      },
+      {
+        label: 'Level two 2-2',
+        children: [
+          {
+            label: 'Level three 2-2-1',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Level one 2',
+    children: [
+      {
+        label: 'Level two 2-1',
+        children: [
+          {
+            label: 'Level three 2-1-1',
+          },
+        ],
+      },
+      {
+        label: 'Level two 2-2',
+        children: [
+          {
+            label: 'Level three 2-2-1',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Level one 2',
+    children: [
+      {
+        label: 'Level two 2-1',
+        children: [
+          {
+            label: 'Level three 2-1-1',
+          },
+        ],
+      },
+      {
+        label: 'Level two 2-2',
+        children: [
+          {
+            label: 'Level three 2-2-1',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Level one 2',
+    children: [
+      {
+        label: 'Level two 2-1',
+        children: [
+          {
+            label: 'Level three 2-1-1',
+          },
+        ],
+      },
+      {
+        label: 'Level two 2-2',
+        children: [
+          {
+            label: 'Level three 2-2-1',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Level one 2',
+    children: [
+      {
+        label: 'Level two 2-1',
+        children: [
+          {
+            label: 'Level three 2-1-1',
+          },
+        ],
+      },
+      {
+        label: 'Level two 2-2',
+        children: [
+          {
+            label: 'Level three 2-2-1',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Level one 3',
+    children: [
+      {
+        label: 'Level two 3-1',
+        children: [
+          {
+            label: 'Level three 3-1-1',
+          },
+        ],
+      },
+      {
+        label: 'Level two 3-2',
+        children: [
+          {
+            label: 'Level three 3-2-1',
+          },
+        ],
+      },
+    ],
+  },
+]
+const defaultProps = {
+  children: 'children',
+  label: 'label',
 }
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+const handleNodeClick = (data: Tree) => {
+  console.log(data)
 }
 const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
   console.log(`行选中事件`, row);
@@ -202,7 +286,6 @@ async function initMethod(params: any) {
 const add = () => {
   console.log(dialogLayout, 'dialogLayout');
   console.log(dialogLayout.value, 'dialogLayout.value');
-
   dialogVisible.value = true;
   dialogLayout.value.open();
 };
@@ -210,12 +293,19 @@ const add = () => {
 
 <style scoped lang="scss">
 .header-container {
-  display: flex;
-  align-items: center;
+  max-width: 350px;
+  background-color: #fff;
+
+  .select-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-.side-menu-container {
-  height: 600px;
+.content-container {
+  // margin-top: 74px + 6px;
+  flex-grow: 1;
   overflow: hidden;
 
   .el-scrollbar__wrap {
@@ -225,21 +315,26 @@ const add = () => {
 }
 
 .footer-container {
-  margin-top:10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  // margin-top: 8px;
 }
 
 .common-layout {
-  height: inherit;
+  // height: inherit;
   display: flex;
   overflow: hidden;
 }
-.inaside-container {
-  height: 700px;
-  margin-top: 20px;
+
+.aside-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  overflow: hidden;
 }
+
 .font-stl {
   font-size: $font-size-14;
   font-weight: $font-weight-500;
