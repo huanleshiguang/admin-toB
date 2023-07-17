@@ -17,7 +17,9 @@
 			<el-container>
 				<el-main>
 					<myInfo></myInfo>
-					<div class="mt10"></div>
+					<div class="mt10">
+						
+					</div>
 					<div class="main-container w_100">
 						<el-scrollbar>
 							<app-main />
@@ -46,7 +48,7 @@
 
 	.main-container {
 		background: #fff;
-		height: calc(100% - 76px);
+		height: calc(100% - 86px);
 		// background-color: $color-background;
 	}
 	.el-main{ padding-top:0; padding-bottom: 0;}
