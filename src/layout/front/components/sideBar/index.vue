@@ -53,7 +53,7 @@
 			height: 100%;
 			overflow-y: auto;
 			box-sizing: border-box;
-			background-color: #00A0DF;
+			background-color: #2C579B;
 			width: 326px;
 			transition: all .2s ease-in;
 			// border-radius: 4px;
@@ -67,7 +67,7 @@
 		position: absolute;
 		right:-20px;
 		top:50%;
-		background: #00A0DF;
+		background: #2C579B;
 		border-radius: 0 6px 6px 0;
 		z-index: 100000;
 		text-align: center;

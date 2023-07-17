@@ -41,13 +41,15 @@
 							<div class="it1 ft14 cblue bold">ICU-011</div>
 							<div class="ft12 c999">入科 2022-10-22</div>
 						</div>
-						<div class="pt5">
-							<span class="ft16 mr10">张无忌</span>
-							<span class="ft14 mr10 c999">男</span>
-							<span class="ft14 mr10 c999">24</span>
-						</div>
-						<div class="ft14 bold pt5">
-							P018313
+						<div class="pt5 flex flex-ac">
+							<div class="it1">
+								<span class="ft16 mr10">张无忌</span>
+								<span class="ft14 mr10 c999">男</span>
+								<span class="ft14 mr10 c999">24</span>
+							</div>
+							<div class="ft14 bold pt5">
+								P018313
+							</div>
 						</div>
 						<div class="flex flex-ac pt5">
 							<el-icon size="16px"><IceCreamSquare /></el-icon>
@@ -60,13 +62,15 @@
 							<div class="it1 ft14 cblue bold">ICU-011</div>
 							<div class="ft12 c999">入科 2022-10-22</div>
 						</div>
-						<div class="pt5">
-							<span class="ft16 mr10">张无忌</span>
-							<span class="ft14 mr10 c999">男</span>
-							<span class="ft14 mr10 c999">24</span>
-						</div>
-						<div class="ft14 bold pt5">
-							P018313
+						<div class="pt5 flex flex-ac">
+							<div class="it1">
+								<span class="ft16 mr10">张无忌</span>
+								<span class="ft14 mr10 c999">男</span>
+								<span class="ft14 mr10 c999">24</span>
+							</div>
+							<div class="ft14 bold pt5">
+								P018313
+							</div>
 						</div>
 						<div class="flex flex-ac pt5">
 							<el-icon size="16px"><IceCreamSquare /></el-icon>
@@ -148,7 +152,7 @@
 
 	.leftBox1 .title {
 		height: 36px;
-		background: #00A0DF;
+		background: #2C579B;
 		padding: 0 8px;
 	}
 
