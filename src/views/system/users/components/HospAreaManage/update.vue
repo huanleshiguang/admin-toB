@@ -2,12 +2,12 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-13 18:57:53
+ * @LastEditTime: 2023-07-14 14:32:21
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 
 -->
 <template>
-  <DialogLayout ref="dialogLayout" show-close :title="title" :sure-method="submit">
+  <DialogLayout ref="dialogLayout" show-close :title="title" :sure-method="submit" @sure="sureMethod">
     <el-form ref="formRef" :model="form" :rules="rules" label-width="auto" label-position="right">
 
       <el-form-item label="编码" prop="hospAreaCode" required>
@@ -23,23 +23,28 @@
 <script setup lang="ts">
 import DialogLayout from '/@/components/DialogLayout/index.vue';
 import type { FormRules } from 'element-plus';
+import { apiUpdateHosptAreaInfo } from '/@/api/system/user';
 const title = ref('新增院区');
 const dialogLayout = ref<any>();
 const open = (data) => {
   title.value = `${data ? '编辑' : '新增'}院区`;
+  Object.assign(form, data);
+  console.log(form,'form');
   dialogLayout.value.open();
 };
 const close = () => {
   dialogLayout.value.close();
 };
-
+const emits = defineEmits(['reFetchtableList'])
 interface BasicForm {
-  hospAreaCode: number;
+  id:string,
+  hospAreaCode: string;
   hospAreaName: string;
 }
 const form = reactive<BasicForm>({
-  hospAreaCode: 0,
-  hospAreaName: '',
+  id:'',
+  hospAreaCode: '',
+  hospAreaName: ''
 
 });
 const rules = reactive<FormRules<BasicForm>>({
@@ -49,7 +54,7 @@ const rules = reactive<FormRules<BasicForm>>({
       message: '请输入编码',
       trigger: 'change'
     },
-    { type: 'number', message: '编码必须是数字类型' }
+    { type: 'string', message: '编码必须是数字类型' }
   ],
   hospAreaName: [
     {
@@ -70,6 +75,17 @@ defineExpose({
   open,
   close
 });
+const sureMethod = ()=> {
+  apiUpdateHosptAreaInfo(form).then((res)=>{
+    if(res) {
+      dialogLayout.value.close()
+      //重新获取tableList
+      emits('reFetchtableList')
+    }
+    console.log(res,'res'); 
+  })
+  console.log(form,'sure form');
+}
 </script>
 
 <style lang="scss" scoped>

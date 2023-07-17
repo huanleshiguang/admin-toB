@@ -7,7 +7,7 @@
 -->
 <script setup lang="ts">
 import { IUserLoginForm } from '/@/model/views/login';
-import { useMessage } from '/@/hooks/common/useMessage';
+import { useMessage } from '/src/hooks/common/useMessage';
 
 import { useUserLoginToken } from '/@/store/login/useLogin';
 

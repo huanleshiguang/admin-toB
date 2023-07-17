@@ -2,7 +2,7 @@
  * @Autor: ZhouHao joehall@foxmail.com
  * @Date: 2023-02-17 22:45:44
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-13 19:09:16
+ * @LastEditTime: 2023-07-14 15:44:14
  * @Description: 
  * @FilePath: /vue-vite-elementplus-zhao/src/views/system/menu.vue
 -->
@@ -12,7 +12,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import CommonTabs from '/@/components/common/common-tabs.vue';
+import CommonTabs from '/@/components/common/CommonTabs.vue';
 import { ArcManage, RoleManage, HospAreaManage } from './components/index';
 
 
