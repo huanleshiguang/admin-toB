@@ -1,6 +1,6 @@
 // import type { ModalFunc, ModalFuncProps } from 'ant-design-vue/lib/modal/Modal';
 
-import { ElMessage, ElMessageBox, MessageBoxInputData } from 'element-plus';
+import { MessageBoxInputData } from 'element-plus';
 // import 'element-plus/es/components/message/style/css';
 import { ElMessageBoxOptions } from 'element-plus/es/components/message-box/src/message-box.type';
 interface ConfirmOptions {
