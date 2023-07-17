@@ -16,6 +16,7 @@ import './assets/icon/icon-style.css';
 import './permission';
 
 import '/@/styles/index.scss';
+import '/@/styles/element-style.scss';
 
 // https://unocss.dev/
 import 'uno.css';

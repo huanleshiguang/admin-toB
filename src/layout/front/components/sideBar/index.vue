@@ -1,9 +1,11 @@
-<script lang="ts" setup>
-
-</script>
-
 <template>
-	<div :class="['h_100 flex flex-col sidebar-content']">
+	<div class="h_100 sidebar-content" :class="data.isshow ? '' : 'active'">
+		<div class="toggleBtn" @click="toggle">
+			<el-icon color="#fff">
+				<DArrowLeft v-if="data.isshow" />
+				<DArrowRight v-else />
+			</el-icon>
+		</div>
 		<!-- 侧边栏 -->
 		<div class="side-bar-list sidebar-header_expand">
 			<el-scrollbar>
@@ -12,13 +14,22 @@
 		</div>
 	</div>
 </template>
-
+<script setup>
+	import { DArrowLeft,DArrowRight } from "@element-plus/icons-vue";
+	const data = reactive({
+		isshow:true
+	})
+	
+	const toggle = () => {
+		data.isshow = !data.isshow;
+	}
+</script>
 <style scoped lang="scss">
 	.sidebar-content {
 		box-sizing: border-box;
-
+		position: relative;
 		.sidebar-header_expand {
-			width: 326px;
+			
 			// padding: 0 20px;
 		}
 
@@ -42,9 +53,29 @@
 			height: 100%;
 			overflow-y: auto;
 			box-sizing: border-box;
-			background-color: #00A0DF;
+			background-color: #2C579B;
+			width: 326px;
+			transition: all .2s ease-in;
 			// border-radius: 4px;
 		}
 
+	}
+	
+	.toggleBtn{
+		width: 20px;
+		height: 80px;
+		position: absolute;
+		right:-20px;
+		top:50%;
+		background: #2C579B;
+		border-radius: 0 6px 6px 0;
+		z-index: 100000;
+		text-align: center;
+		line-height: 80px;
+		font-size: 16px;
+		cursor:pointer;
+	}
+	.sidebar-content.active .side-bar-list{
+		width: 0;
 	}
 </style>

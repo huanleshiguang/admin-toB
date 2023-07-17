@@ -9,15 +9,17 @@
 	<div class="w_100 h_100 page-container">
 		<headerBar></headerBar>
 		<el-container class="containerBox">
-			<el-aside width="auto">
-				<div class="app-sidebar h_100">
-					<SideBar>12</SideBar>
-				</div>
-			</el-aside>
+			<div class="app-sidebar h_100">
+				<SideBar>
+					<leftContent></leftContent>
+				</SideBar>
+			</div>
 			<el-container>
 				<el-main>
 					<myInfo></myInfo>
-					<div class="mt10"></div>
+					<div class="mt10">
+						<navList />
+					</div>
 					<div class="main-container w_100">
 						<el-scrollbar>
 							<app-main />
@@ -30,7 +32,8 @@
 </template>
 
 <script lang="ts" setup>
-	import { headerBar, AppMain, SideBar,myInfo } from './components';
+	import { headerBar, AppMain, SideBar,myInfo,leftContent } from './components';
+	import navList from '/@/components/navList/index.vue';
 </script>
 <style lang="scss" scoped>
 	.containerBox {
@@ -46,7 +49,7 @@
 
 	.main-container {
 		background: #fff;
-		height: calc(100% - 76px);
+		height: calc(100% - 128px);
 		// background-color: $color-background;
 	}
 	.el-main{ padding-top:0; padding-bottom: 0;}
