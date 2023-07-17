@@ -11,7 +11,7 @@
 		<el-container class="containerBox">
 			<div class="app-sidebar h_100">
 				<SideBar>
-					这里是内容
+					<leftContent></leftContent>
 				</SideBar>
 			</div>
 			<el-container>
@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { headerBar, AppMain, SideBar,myInfo } from './components';
+	import { headerBar, AppMain, SideBar,myInfo,leftContent } from './components';
 	import navList from '/@/components/navList/index.vue';
 </script>
 <style lang="scss" scoped>
