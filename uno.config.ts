@@ -2,8 +2,8 @@
  * @Autor: QMZhao
  * @Date: 2023-07-14 11:06:32
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-18 10:38:01
- * @Description:
+ * @LastEditTime: 2023-07-18 10:46:12
+ * @Description: unocss自定义配置项
  * @FilePath: \servious-illness-admin\uno.config.ts
  */
 import { defineConfig, presetAttributify, presetUno } from 'unocss';
