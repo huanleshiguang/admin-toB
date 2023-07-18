@@ -1,19 +1,24 @@
-import { useRequereImage } from '/@/hooks/common/useRequireImage';
+/*
+ * @Autor: QMZhao
+ * @Date: 2023-07-18 10:47:40
+ * @LastEditors:
+ * @LastEditTime: 2023-07-18 11:41:21
+ * @Description:
+ * @FilePath: \servious-illness-admin\src\views\dashboard\composition\useCommon.ts
+ */
 export function useDashboardCommon() {
-  const { setDashbordBgImage, setDashbordLogo } = useRequereImage();
-  const backgroundImage = `url("${setDashbordBgImage('src')}") 100% 100%`;
   const menuList = ref<Iobj[]>([
     {
       id: 1,
       icon: 'doctor',
       name: '医护工作站',
-      url: '/system/menu'
+      url: '/system/param'
     },
     {
       id: 2,
       icon: 'manage',
       name: '医生工作站',
-      url: '/system/menu'
+      url: '/doctorNurse/berth/index'
     },
     {
       id: 3,
@@ -57,9 +62,7 @@ export function useDashboardCommon() {
       reactive({
         menuList,
         notificationList,
-        supportList,
-        backgroundImage,
-        setDashbordLogo
+        supportList
       })
     )
   };

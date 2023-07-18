@@ -2,18 +2,18 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2021-09-28 13:25:44
- * @LastEditTime: 2023-07-13 11:58:11
+ * @LastEditTime: 2023-07-18 10:51:11
  * @Reference: 
 -->
 <script setup lang="ts">
 import { IUserLoginForm } from '/@/model/views/login';
-import { useMessage } from '/src/hooks/common/useMessage';
+import { useMessage } from '/@/hooks/common/useMessage';
 
 import { useUserLoginToken } from '/@/store/login/useLogin';
 
 const privateRouter = useRouter();
 
-const { createMessage } = useMessage();
+const { createMessage, createConfirm } = useMessage();
 
 const { setUserToken } = useUserLoginToken();
 
@@ -29,12 +29,14 @@ const isRecordUser = ref(false);
 
 // 登录
 function onLogin() {
-  createMessage.success('登录成功');
+  // createMessage.success('登录成功');
   setUserToken(loginForm.value.userName);
   privateRouter.push({
     path: '/dashboard'
   });
-  // console.log(2);
+  // createConfirm('是否确认', 'warning').then(() => {
+  createMessage.success('登录成功');
+  // });
 }
 </script>
 
@@ -52,7 +54,7 @@ function onLogin() {
         <el-input
           v-model="loginForm.userName"
           placeholder="请输入用户名"
-          :input-style="{ height: '51px', fontSize: '17px' }"
+          :input-style="{ height: '49px', fontSize: '17px' }"
         ></el-input>
       </el-form-item>
       <el-form-item prop="password">
@@ -66,7 +68,7 @@ function onLogin() {
         <el-input
           v-model="loginForm.password"
           placeholder="请输入密码"
-          :input-style="{ height: '51px', fontSize: '17px' }"
+          :input-style="{ height: '49px', fontSize: '17px' }"
         ></el-input>
       </el-form-item>
       <el-form-item label="">
@@ -115,6 +117,13 @@ function onLogin() {
   :deep(.el-checkbox.el-checkbox--large .el-checkbox__inner) {
     width: 22px;
     height: 22px;
+  }
+  // 多选项✔样式
+  :deep(.el-checkbox__inner::after) {
+    width: 7px;
+    height: 15px;
+    top: 0px;
+    left: 6px;
   }
   .record-user {
     font-size: 17px;

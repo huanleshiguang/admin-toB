@@ -12,7 +12,8 @@ import { useErrorResponse } from '/@/hooks/common/useErrorResponse';
 import { IErrorResponseData } from '/@/model/common/axiosOption';
 import { getToken } from '/@/utils/session';
 
-import { useMessage, useClearParams } from '/@/hooks/common';
+import { useClearParams } from '/@/hooks/common';
+import { useMessage } from '/@/hooks/common/useMessage';
 
 const { createMessage } = useMessage();
 
