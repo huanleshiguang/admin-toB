@@ -2,14 +2,14 @@
  * @Autor: QMZhao
  * @Date: 2023-07-03 09:49:52
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-13 15:38:13
+ * @LastEditTime: 2023-07-18 11:58:34
  * @Description: 主界面
  * @FilePath: \servious-illness-admin\src\views\dashboard\index.vue
 -->
 <template>
   <div class="w_100 h_100 dashboard-container flex">
     <div class="company-logo">
-      <el-image :src="setDashbordLogo()"></el-image>
+      <el-image :src="require('/@/assets/image/dashboard/logo-desktop.png')"></el-image>
     </div>
     <div class="menu-content dashboard-container__box">
       <span class="dashboard-container__title">ICU临床信息系统&nbsp;(BQICU.V3)</span>
@@ -47,12 +47,12 @@
 <script lang="ts" setup>
 import { useDashboardCommon } from './composition/useCommon';
 import { useDashboradEvent } from './composition/useEvent';
-const { backgroundImage, menuList, notificationList, supportList, setDashbordLogo } = useDashboardCommon();
+const { menuList, notificationList, supportList } = useDashboardCommon();
 const { onJumpTo } = useDashboradEvent();
 </script>
 <style lang="scss" scoped>
 .dashboard-container {
-  background: v-bind(backgroundImage);
+  background: url('/@/assets/image/dashboard/desktop-bg.png') 100% 100%;
   padding: 67px 0 0 40px;
   &__title {
     font-family: Noto Sans SC;

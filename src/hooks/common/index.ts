@@ -5,15 +5,6 @@
  * @LastEditTime: 2023-07-10 12:55:55
  * @Reference:
  */
-import { ElMessage } from 'element-plus';
-/**
- * simple-message
- */
-export function useMessage() {
-  return {
-    createMessage: ElMessage
-  };
-}
 
 /**
  * 删除请求参数为空的数据
