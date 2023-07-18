@@ -11,7 +11,7 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 import { routes } from './routes';
 import { store } from '/@/store';
 import { useNavMenuList } from '/@/store/common/routerList';
-const { leftBar,setShowSideBar } = useNavMenuList(store);
+const { setShowSideBar } = useNavMenuList(store);
 
 export const router = createRouter({
 	//history: createWebHashHistory(),
@@ -29,11 +29,7 @@ export function setupRouter(app : App<Element>) {
 }
 
 router.beforeEach((to, from) => {
-	if (to.meta.showSideBar === false) {
-		setShowSideBar(false)	
-	}else{
-		setShowSideBar(true)
-	}
+	setShowSideBar(to.meta.showSideBar === false ? to.meta.showSideBar : true);
 	// 返回 false 以取消导航
 	//return false
 })
