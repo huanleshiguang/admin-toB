@@ -24,13 +24,13 @@ export function useDashboardCommon() {
       id: 3,
       icon: 'statistics',
       name: '统计查询',
-      url: '/system/menu'
+      url: '/system/param'
     },
     {
       id: 4,
       icon: 'setup',
       name: '系统配置',
-      url: '/system/menu'
+      url: '/system/param'
     }
   ]);
   const notificationList = ref<Iobj[]>([
