@@ -12,7 +12,7 @@ export const doctorNurse: Array<RouteRecordRaw> = [
         path: '/doctorNurse/berth/index',
         component: () => import('/@/views/doctorNurse/berth/index.vue'),
         name: 'doctorNurseBerthIndex',
-        meta: { title: '医生工作站-床位管理', icon: 'dashboard', affix: true,requireAuth: true }
+        meta: { title: '医生工作站-床位管理', icon: 'dashboard', affix: true,requireAuth: true,showSideBar:false }
       }
     ]
   },
