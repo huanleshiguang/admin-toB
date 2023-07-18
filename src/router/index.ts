@@ -1,7 +1,7 @@
 /*
  * @Author: QMZhao
  * @Date: 2020-12-30 09:49:48
- * @LastEditTime: 2023-07-12 12:56:05
+ * @LastEditTime: 2023-07-18 12:11:34
  * @LastEditors: Please set LastEditors
  * @Description: 路由配置
  * @FilePath: \servious-illness-admin\src\router\index.ts
@@ -11,8 +11,8 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 import { routes } from './routes';
 
 export const router = createRouter({
-  //history: createWebHashHistory(),
-   history: createWebHistory(),
+  history: createWebHashHistory(),
+  //  history: createWebHistory(),
   // history: createWebHistory(import.meta.env.BASE_URL),
   routes,
   // 是否应该禁止尾部斜杠。默认为false
