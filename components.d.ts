@@ -11,6 +11,7 @@ declare module 'vue' {
     CommonError: typeof import('./src/components/common/CommonError.vue')['default']
     CommonLoading: typeof import('./src/components/common/CommonLoading.vue')['default']
     CommonTabs: typeof import('./src/components/common/CommonTabs.vue')['default']
+    CommonTree: typeof import('./src/components/common/CommonTree.vue')['default']
     DialogLayout: typeof import('./src/components/DialogLayout/index.vue')['default']
     DrawerLayout: typeof import('./src/components/DrawerLayout/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
