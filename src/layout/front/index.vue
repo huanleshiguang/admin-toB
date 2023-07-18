@@ -9,21 +9,19 @@
 	<div class="w_100 h_100 page-container">
 		<headerBar></headerBar>
 		<el-container class="containerBox">
-			<div class="app-sidebar h_100">
+			<div class="app-sidebar h_100" v-if="leftBar.showSideBar">
 				<SideBar>
 					<leftContent></leftContent>
 				</SideBar>
 			</div>
 			<el-container>
 				<el-main>
-					<myInfo></myInfo>
-					<div class="mt10">
+				<!-- 	<myInfo></myInfo> -->
+					<!-- <div class="mt10">
 						<navList />
-					</div>
+					</div> -->
 					<div class="main-container w_100">
-						<el-scrollbar>
-							<app-main />
-						</el-scrollbar>
+						<app-main />
 					</div>
 				</el-main>
 			</el-container>
@@ -32,8 +30,10 @@
 </template>
 
 <script lang="ts" setup>
-	import { headerBar, AppMain, SideBar,myInfo,leftContent } from './components';
-	import navList from '/@/components/navList/index.vue';
+	import { headerBar, AppMain, SideBar,leftContent } from './components';
+	import { useNavMenuList } from '/@/store/common/routerList';
+	const { leftBar } = useNavMenuList();
+	//import navList from '/@/components/navList/index.vue';
 </script>
 <style lang="scss" scoped>
 	.containerBox {
@@ -48,8 +48,9 @@
 	}
 
 	.main-container {
-		background: #fff;
-		height: calc(100% - 128px);
+		//background: #fff;
+		height:100%;
+		//height: calc(100% - 128px);
 		// background-color: $color-background;
 	}
 	.el-main{ padding-top:0; padding-bottom: 0;}

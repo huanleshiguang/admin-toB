@@ -41,5 +41,14 @@ export const useNavMenuList = defineStore('navMenuList', () => {
   function setNavMenuList(menuList: Array<ImenuList>) {
     navMenuList.value = menuList;
   }
-  return { navMenuList, setNavMenuList };
+  
+  const leftBar = reactive({
+	  showSideBar:false
+  }) 
+   
+   function setShowSideBar(data:boolean){
+	   leftBar.showSideBar = data;
+   }
+   
+  return { navMenuList, setNavMenuList,leftBar,setShowSideBar };
 });
