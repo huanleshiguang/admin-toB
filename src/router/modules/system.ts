@@ -1,5 +1,13 @@
+/*
+ * @Autor: QMZhao
+ * @Date: 2023-07-18 12:03:08
+ * @LastEditors:
+ * @LastEditTime: 2023-07-18 14:03:56
+ * @Description:系统设置
+ * @FilePath: \servious-illness-admin\src\router\modules\system.ts
+ */
 import { RouteRecordRaw } from 'vue-router';
-import LayoutManage from '/@/layout/index.vue';
+import LayoutManage from '/@/layout/manage/index.vue';
 
 const systemRouter: RouteRecordRaw = {
   path: '/system',
