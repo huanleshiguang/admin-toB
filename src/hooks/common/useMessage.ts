@@ -1,7 +1,6 @@
 // import type { ModalFunc, ModalFuncProps } from 'ant-design-vue/lib/modal/Modal';
 
 import { MessageBoxInputData } from 'element-plus';
-// import 'element-plus/es/components/message/style/css';
 import { ElMessageBoxOptions } from 'element-plus/es/components/message-box/src/message-box.type';
 interface ConfirmOptions {
   message: ElMessageBoxOptions['message'];
@@ -11,6 +10,14 @@ interface ConfirmOptions {
   cancelButtonText: ElMessageBoxOptions['cancelButtonText'];
 }
 
+/**
+ * 消息弹窗盒子
+ *
+ * @param message 消息正文内容
+ * @param type 消息类型，用于图标显示
+ * @param options 消息按钮文本等参数配置
+ * @returns confirm instance
+ */
 const confirm = async (
   message: ConfirmOptions['message'],
   type: ConfirmOptions['type'],
