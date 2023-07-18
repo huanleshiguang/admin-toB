@@ -7,13 +7,13 @@ export function useDashboardCommon() {
       id: 1,
       icon: 'doctor',
       name: '医护工作站',
-      url: '/system/menu'
+      url: '/system/param'
     },
     {
       id: 2,
       icon: 'manage',
       name: '医生工作站',
-      url: '/system/menu'
+      url: '/doctorNurse/berth/index'
     },
     {
       id: 3,
