@@ -9,7 +9,7 @@
 	<div class="w_100 h_100 page-container">
 		<headerBar></headerBar>
 		<el-container class="containerBox">
-			<div class="app-sidebar h_100" v-if="leftBar.showSideBar">
+			<div class="app-sidebar h_100" v-show="leftBar.showSideBar">
 				<SideBar>
 					<leftContent></leftContent>
 				</SideBar>
