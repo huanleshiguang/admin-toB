@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 19:57:02
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-14 14:28:11
+ * @LastEditTime: 2023-07-17 18:28:54
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HosptAreaManage.vue
  * @Description: 
 -->
@@ -43,6 +43,8 @@ import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import update from './update.vue'
 import { apiGetHosptAreaInfo, apiDeleteHosptAreaInfo } from '/@/api/system/user'
+// import { useMessage } from '/@/hooks/common/useMessage';
+// const { createConfirm, createMessage } = useMessage(); 
 import {
   Plus,
   InfoFilled
@@ -110,4 +112,6 @@ const reFresh = () => {
 }
 </script>
   
-<style scoped lang='scss'></style>
+<style scoped lang='scss'>
+
+</style>
