@@ -56,7 +56,6 @@ import Update from './update.vue';
 import TableTitle from '../common/title.vue';
 import { columnsList, childColumnsList } from './enum';
 import UpdateValue from '/@/views/system/dictionary/BasicDict/updateValue.vue';
-import { useMessage } from '/@/hooks/common/useMessage';
 const { createConfirm, createMessage } = useMessage();
 // 右键菜单
 const menuConfig = ref({

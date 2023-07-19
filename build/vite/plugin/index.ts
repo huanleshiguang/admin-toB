@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-08-16 11:27:54
- * @LastEditTime: 2023-07-12 09:37:26
+ * @LastEditTime: 2023-07-19 16:48:15
  * @Reference:
  */
 import type { Plugin } from 'vite';
@@ -20,7 +20,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 
 import { createStyleImportPlugin, VxeTableResolve } from 'vite-plugin-style-import';
 
-import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 
 import UnoCSS from 'unocss/vite';
 
@@ -40,9 +40,11 @@ export function createVitePlugins(mode: string, isBuild: boolean) {
     AutoImport({
       // Auto import functions from Vue, e.g. ref, reactive, toRef...
       // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
-      imports: ['vue', 'vue-router', 'pinia'],
+      imports: ['vue', 'vue-router', 'pinia', '@vueuse/core'],
 
-      // dirs: ["src/utils/request.ts"],
+      // Auto import for module exports under directories
+      // by default it only scan one level of modules under the directory
+      dirs: ['src/api/**', 'src/hooks/web'],
 
       // Auto import functions from Element Plus, e.g. ElMessage, ElMessageBox... (with style)
       // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
