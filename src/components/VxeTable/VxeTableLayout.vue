@@ -59,7 +59,7 @@ const props = defineProps({
   },
 
   // 表格分页参数
-  pageSize: {
+  pageCount: {
     type: Number,
     default: 20
   },
@@ -99,9 +99,9 @@ watch(screenHeight, (val) => {
   table.value.recalculate(true);
   table.value.refreshScroll();
 });
-const params = reactive<{ pageIndex: number; pageSize: number }>({
+const params = reactive<{ pageIndex: number; pageCount: number }>({
   pageIndex: 1,
-  pageSize: props.pageSize
+  pageCount: props.pageCount
 });
 const list = ref([]);
 const refresh = async (resetPage?: boolean) => {
@@ -110,7 +110,7 @@ const refresh = async (resetPage?: boolean) => {
   if (resetPage) {
     params.pageIndex = 1;
     //仅重置页码
-    //this.params.pageSize = 20;
+    //this.params.pageCount = 20;
   }
 
   try {
@@ -191,7 +191,7 @@ onMounted(async () => {
             <vxe-column v-if="hasSelection" type="checkbox" width="40" align="center" fixed="left"></vxe-column>
             <vxe-column v-if="hasIndex" title="序号" width="80" fixed="left" align="center">
               <template #default="{ $rowIndex }">
-                {{ $rowIndex + 1 + params.pageSize * (params.pageIndex - 1) }}
+                {{ $rowIndex + 1 + params.pageCount * (params.pageIndex - 1) }}
               </template>
             </vxe-column>
             <vxe-column
@@ -213,7 +213,7 @@ onMounted(async () => {
       <slot v-if="!intact" name="footer-right">
         <vxe-pager
           v-model:current-page="params.pageIndex"
-          v-model:page-size="params.pageSize"
+          v-model:page-size="params.pageCount"
           size="small"
           background
           :total="total"

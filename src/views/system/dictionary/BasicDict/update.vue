@@ -34,39 +34,45 @@
 
 <script setup lang="ts">
 import DialogLayout from '/@/components/DialogLayout/index.vue';
+import type { DictInfo } from '/@/api/system/types/dict';
+import { updateBaseDict } from '/@/api/system/dict';
 import type { FormRules } from 'element-plus';
+import { useMessage } from '/@/hooks/common/useMessage';
+import { cloneDeep } from 'lodash-es';
+const { createMessage } = useMessage();
 const title = ref<string>('新增数据字典');
 const dialogLayout = ref<any>();
+let form = reactive<DictInfo>({
+  dictCode: '',
+  dictName: '',
+  dictEnName: '',
+  dictEnAbbr: '',
+  remark: ''
+});
 const open = (data) => {
   title.value = `${data ? '编辑' : '新增'}基础字典`;
+  form = cloneDeep(data);
   dialogLayout.value.open();
 };
 const close = () => {
   dialogLayout.value.close();
 };
 
-interface BasicForm {
-  dictCode: number;
-  dictName: string;
-  dictEnName: string;
-  dictEnAbbr: string;
-  remark: string;
-}
-const form = reactive<BasicForm>({
-  dictCode: 0,
-  dictName: '',
-  dictEnName: '',
-  dictEnAbbr: '',
-  remark: ''
-});
-const rules = reactive<FormRules<BasicForm>>({
+// interface BasicForm {
+//   dictCode: string;
+//   dictName: string;
+//   dictEnName: string;
+//   dictEnAbbr: string;
+//   remark: string;
+// }
+
+const rules = reactive<FormRules<DictInfo>>({
   dictCode: [
     {
       required: true,
       message: '请输入编码',
       trigger: 'change'
-    },
-    { type: 'number', message: '编码必须是数字类型' }
+    }
   ],
   dictName: [
     {
@@ -98,10 +104,20 @@ const rules = reactive<FormRules<BasicForm>>({
   ]
 });
 const formRef = ref<any>();
+const emit = defineEmits(['refresh']);
 const submit = async () => {
   const result = await formRef.value.validate();
   if (result) {
-    // dosomething
+    try {
+      const result = await updateBaseDict(form);
+      console.log(result);
+
+      createMessage.success('新增成功');
+      emit('refresh');
+      close();
+    } catch (e) {
+      createMessage.error(e || '新增失败');
+    }
   }
 };
 defineExpose({

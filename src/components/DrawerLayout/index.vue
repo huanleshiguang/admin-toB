@@ -37,7 +37,7 @@ const props = defineProps({
   // 宽度
   size: {
     type: String,
-    default: '656px'
+    default: '560px'
   },
   // 弹窗标题
   title: {
@@ -184,5 +184,8 @@ const onClosed = () => {
     font-size: var(--el-dialog-title-font-size);
     color: var(--el-text-color-primary);
   }
+}
+:deep(.el-drawer__header) {
+  margin-bottom: 0 !important;
 }
 </style>
