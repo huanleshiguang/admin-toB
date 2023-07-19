@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import DialogLayout from '/@/components/DialogLayout/index.vue';
-import type { DictInfo } from '/@/api/system/types/dict';
+import { DictInfo } from '/@/api/system/types/dict';
 import { updateBaseDict } from '/@/api/system/dict';
 import type { FormRules } from 'element-plus';
 import { useMessage } from '/@/hooks/common/useMessage';
@@ -51,7 +51,10 @@ let form = reactive<DictInfo>({
 });
 const open = (data) => {
   title.value = `${data ? '编辑' : '新增'}基础字典`;
-  form = cloneDeep(data);
+  if (data) {
+    form = cloneDeep(data);
+  }
+
   dialogLayout.value.open();
 };
 const close = () => {
