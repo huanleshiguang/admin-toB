@@ -23,6 +23,7 @@
       <template #columns>
         <vxe-column title="操作" align="center" fixed="right">
           <template #default="{ $columnIndex, row }">
+            <el-button size="small" link type="primary" @click="currentDbClick({ row })">查看值域</el-button>
             <el-button size="small" link type="primary" @click="editRow(row)">编辑</el-button>
             <el-button size="small" link :type="row.dataStatus === 0 ? 'danger' : 'primary'" @click="enableRow(row)">
               {{ row.dataStatus === 0 ? '停用' : '启用' }}
