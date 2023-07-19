@@ -31,18 +31,18 @@ export const childColumnsList: VxeColumnProps[] = [
   },
   {
     title: '值域值(中文)',
-    field: 'dictName'
+    field: 'rangeName'
   },
   {
     title: '值域项(英文)',
-    field: 'dictEnName'
+    field: 'rangeEnName'
   },
   {
     title: '取值',
-    field: 'dictEnAbbr'
+    field: 'rangeValue'
   },
   {
     title: '描述',
-    field: 'dictEnAbbr'
+    field: 'remark'
   }
 ];

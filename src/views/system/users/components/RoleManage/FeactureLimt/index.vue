@@ -2,9 +2,9 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-14 14:45:11
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-18 14:01:34
+ * @LastEditTime: 2023-07-19 16:04:00
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\RoleConfig\index.vue
- * @Description: 
+ * @Description: 功能权限板块
 -->
 <template>
   <div>
@@ -13,13 +13,27 @@
         <span>功能权限</span>
       </template>
       <template #header-right>
-       <!-- <el-button>123</el-button> -->
+        <!-- <el-button>123</el-button> -->
       </template>
-    </itemHeader> 
+    </itemHeader>
     <el-divider></el-divider>
     <itemContent>
       <template #default>
-        <CommonTree :data="data" :show-checkbox="true" />
+        <!-- <CommonTree :data="data" :show-checkbox="true" /> -->
+  
+            <el-checkbox label="换床" name="type" />
+            <el-checkbox label="入科" name="type" />
+            <el-checkbox label="出科" name="type" />
+            <el-checkbox label="出科" name="type" />
+            <el-checkbox label="入科" name="type" />
+            <el-checkbox label="换床" name="type" />
+            <el-checkbox label="换床" name="type" />
+            <el-checkbox label="换床" name="type" />
+            <el-checkbox label="入科" name="type" />
+            <el-checkbox label="出科" name="type" />
+            <el-checkbox label="入科" name="type" />
+            <el-checkbox label="换床" name="type" />
+
       </template>
     </itemContent>
   </div>
@@ -28,100 +42,20 @@
 <script setup lang='ts'>
 import itemHeader from '../components/ItemHeader.vue'
 import itemContent from '../components/ItemContent.vue'
-import CommonTree from '/@/components/common/CommonTree.vue'
+import { reactive } from 'vue'
 
-interface Tree {
-  menuName: string
-  children?: Tree[]
-};
-const data: Tree[] = [
-  {
-    menuName: '入科',
-  },
-  {
-    menuName: '出科',
-  },
-  {
-    menuName: '换床',
-  },
-  {
-    menuName: '撤销',
-  },
-  {
-    menuName: '查看',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  },
-  {
-    menuName: 'Level one 2',
-  }
-];
+// do not use same name with ref
+const form = reactive({
+  name: '',
+  region: '',
+  date1: '',
+  date2: '',
+  delivery: false,
+  type: [],
+  resource: '',
+  desc: '',
+})
 </script>
 
 <style lang="scss" scoped>
-
 </style>

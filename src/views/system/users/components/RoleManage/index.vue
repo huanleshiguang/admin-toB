@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 10:09:08
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-18 10:36:18
+ * @LastEditTime: 2023-07-19 12:20:35
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -37,5 +37,8 @@ import FeactureList from './FeactureList/index.vue'
   display: flex;
   justify-content: space-between;
   height: 100%;
+  div {
+    width: 300px;
+  }
 }
 </style>

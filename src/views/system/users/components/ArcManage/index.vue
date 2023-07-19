@@ -2,9 +2,9 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-18 14:14:28
+ * @LastEditTime: 2023-07-19 15:56:10
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
- * @Description: 
+ * @Description: 架构管理
 -->
 <template>
   <div class="common-layout">
@@ -13,16 +13,31 @@
         <div class="aside-container">
           <div class="header-container">
             <div class="select-container">
-              <span class="text-gray-600 font-stl">组织架构：</span>
-              <el-select v-model="value" class="w-40 m-2" placeholder="请选择" :suffix-icon="ArrowDown" />
-              <el-checkbox v-model="value" label="重症科室" size="large" />
+              <div class="select-item">
+                <span class="text-gray-600 font-stl">组织架构：</span>
+                <el-select v-model="value" class="w-40" placeholder="请选择" :suffix-icon="ArrowDown">
+                  <el-option v-for="item in hospAreaList.data" :key="item.id" :label="item.hospAreaName"
+                    :value="item.hospAreaName" @click="selectedHospArea(item.id)" /></el-select>
+              </div>
+              <el-checkbox v-model="isCheckedSevereCaseDep" label="重症科室" />
             </div>
-            <div class="mb-2">
+            <!-- <div class="mb-2">
               <el-input v-model="value" placeholder="请输入科室名称搜索" size="default" :suffix-icon="Search" />
-            </div>
+            </div> -->
           </div>
           <!-- tree container -->
-            <common-tree :data="data" @handleNodeClick="handleNodeClick"/>
+          <common-tree :data="data" :show-search="true" @handleNodeClick="handleNodeClick">
+            <!-- icon 选择  -->
+            <template #icon-haschild&expanded>
+              <FolderOpened />
+            </template>
+            <template #icon-haschild&unexpanded>
+              <Folder />
+            </template>
+            <template #icon-nohaschild>
+              <Document />
+            </template>
+          </common-tree>
           <div class="footer-container">
             <el-button type="primary">点击同步全院组织架构</el-button>
           </div>
@@ -41,31 +56,27 @@
           </template>
 
           <template #operator-right>
-            <el-button type="primary" :icon="Plus" @click="add">新增</el-button>
+            <!-- <el-button type="primary" :icon="Plus" @click="add">新增</el-button> -->
           </template>
         </vxe-table-layout>
       </el-main>
     </el-container>
-    <dialog-layout ref="dialogLayout" title="新增" append-to-body show-close :init-method="initMethod" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
-import DialogLayout from '/@/components/DialogLayout/index.vue';
-import CommonTree from '/@/components/common/CommonTree.vue'
-import { ref } from 'vue';
-import { ArrowDown, Search, Plus } from '@element-plus/icons-vue';
-
+import CommonTree from '/@/components/common/CommonTree.vue';
+import { ref, watch } from 'vue';
+import { ArrowDown, Search, Document, Folder, FolderOpened } from '@element-plus/icons-vue';
+import { apiGetHosptAreaInfo, apiGetHosptAreaDepInfo } from '/@/api/system/user';
 interface Tree {
   menuName: string
   children?: Tree[]
 };
 const value = ref('');
 const vxeTableLayout = ref();
-const dialogLayout = ref();
-const dialogVisible = ref(false);
 const columnsList = [
   {
     title: '科室',
@@ -108,6 +119,8 @@ const columnsList = [
     field: 'threelevel',
   }
 ];
+//是否选择重症科室
+const isCheckedSevereCaseDep = ref<Boolean>(false)
 const data: Tree[] = [
   {
     menuName: 'Level one 1',
@@ -249,6 +262,16 @@ const data: Tree[] = [
     ],
   },
 ];
+const hospAreaList = reactive({
+  data: <any>[]
+});
+watch(isCheckedSevereCaseDep, (newValue) => {
+  console.log(`isCheckedSevereCaseDep is ${newValue}`)
+});
+onMounted(async () => {
+  const result = await apiGetHosptAreaInfo();
+  hospAreaList.data = result;
+});
 const handleNodeClick = () => {
   console.log('子组件调用父组件handleNodeClick');
 };
@@ -268,11 +291,13 @@ async function initMethod(params: any) {
     })
   };
 };
-const add = () => {
-  console.log(dialogLayout, 'dialogLayout');
-  console.log(dialogLayout.value, 'dialogLayout.value');
-  dialogVisible.value = true;
-  dialogLayout.value.open();
+const selectedHospArea = async (areaId:string) => {
+  try {
+    const result = await apiGetHosptAreaDepInfo(areaId);
+    hospAreaList.data = result;
+  } catch (error) {
+    throw(error);
+  }
 };
 </script>
 
@@ -284,26 +309,36 @@ const add = () => {
   padding: 20px;
   overflow: hidden;
 }
+
 .header-container {
   max-width: 350px;
   background-color: #fff;
+
   .select-container {
+    height: 45px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
   }
 }
+
 .footer-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .common-layout {
   display: flex;
   overflow: hidden;
 }
+
 .font-stl {
   font-size: $font-size-14;
   font-weight: $font-weight-500;
 }
-</style>
+
+.select-item {
+  display: flex;
+  align-items: center;
+}</style>

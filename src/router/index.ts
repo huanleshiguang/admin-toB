@@ -1,7 +1,7 @@
 /*
  * @Author: QMZhao
  * @Date: 2020-12-30 09:49:48
- * @LastEditTime: 2023-07-19 17:29:22
+ * @LastEditTime: 2023-07-19 18:25:31
  * @LastEditors: Please set LastEditors
  * @Description: 路由配置
  * @FilePath: \servious-illness-admin\src\router\index.ts

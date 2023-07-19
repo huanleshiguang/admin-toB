@@ -4,15 +4,18 @@
       ref="vxeTableLayout"
       size="small"
       border
-      has-index
       :loader="initMethod"
       :row-config="{ isCurrent: true, isHover: true }"
-      max-height="100%"
+      height="100%"
       :columns-list="columnsList"
       @cell-dblclick="currentDbClick"
     >
       <template #operator-left>
-        <TableTitle title="基础字典" />
+        <el-input v-model="dictName" placeholder="请输入字典名称" clearable>
+          <template #append>
+            <el-button :icon="Search" @click="refresh" />
+          </template>
+        </el-input>
       </template>
       <template #operator-right>
         <el-button @click="add">新增</el-button>
@@ -21,12 +24,14 @@
         <vxe-column title="操作" align="center" fixed="right">
           <template #default="{ $columnIndex, row }">
             <el-button size="small" link type="primary" @click="editRow(row)">编辑</el-button>
-            <el-button size="small" link type="danger">删除</el-button>
+            <el-button size="small" link :type="row.dataStatus === 0 ? 'danger' : 'primary'" @click="enableRow(row)">
+              {{ row.dataStatus === 0 ? '停用' : '启用' }}
+            </el-button>
           </template>
         </vxe-column>
       </template>
     </VxeTableLayout>
-    <Update ref="updateRef" />
+    <Update ref="updateRef" @refresh="refresh" />
     <DrawerLayout ref="drawerLayout" modal-class="modal-drawer">
       <template #header>
         <div>
@@ -34,29 +39,31 @@
         </div>
       </template>
       <VxeTableLayout
+        ref="childTableRef"
         :show-header="false"
         border
         size="small"
-        max-height="400px"
+        height="350px"
         :columns-list="childColumnsList"
         :row-config="{ isHover: true }"
         :menu-config="menuConfig"
-        :loader="initMethod"
+        :loader="initValueMethod"
         @menu-click="contextMenuClickEvent"
       ></VxeTableLayout>
     </DrawerLayout>
-    <UpdateValue ref="updateValueRef" />
+    <UpdateValue ref="updateValueRef" @refresh="refreshChild" />
   </div>
 </template>
 <script setup lang="ts">
+import { getBaseDictList, enabledBaseDict, getBaseDictValueList } from '/@/api/system/dict';
 import { VxeTableEvents } from 'vxe-table';
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import DrawerLayout from '/@/components/DrawerLayout/index.vue';
 import Update from './update.vue';
-import TableTitle from '../common/title.vue';
 import { columnsList, childColumnsList } from './enum';
 import UpdateValue from '/@/views/system/dictionary/BasicDict/updateValue.vue';
 const { createConfirm, createMessage } = useMessage();
+import { Search } from '@element-plus/icons-vue';
 // 右键菜单
 const menuConfig = ref({
   className: 'right-menu',
@@ -69,22 +76,46 @@ const menuConfig = ref({
     ]
   }
 });
+const dictName = ref<string>('');
 const vxeTableLayout = ref();
+const childTableRef = ref();
 const updateRef = ref();
 const updateValueRef = ref();
 const drawerLayout = ref();
+let currentRow = ref();
 const add = () => {
   updateRef.value.open();
 };
 const addValue = () => {
-  updateValueRef.value.open();
+  updateValueRef.value.open({ dictId: currentRow.value.id });
 };
 const editRow = (row) => {
   console.log(row);
 
   updateRef.value.open(row);
 };
-
+const enableRow = async (row) => {
+  const { dataStatus, dictName, id } = row;
+  const isEnable = dataStatus === 0;
+  const result = await createConfirm(
+    `确定${isEnable ? '停用' : '启用'}${dictName}字典吗`,
+    isEnable ? 'warning' : 'info'
+  );
+  if (result) {
+    try {
+      await enabledBaseDict({ dictId: id, isEnabled: !isEnable });
+      createMessage.success(`${isEnable ? '停用' : '启用'}成功`);
+    } catch (e) {
+      createMessage.error(`${isEnable ? '停用' : '启用'}失败`);
+    }
+  }
+};
+const refresh = () => {
+  vxeTableLayout.value.refresh();
+};
+const refreshChild = () => {
+  childTableRef.value.refresh();
+};
 const contextMenuClickEvent: VxeTableEvents.MenuClick = async ({ menu, row, column }) => {
   switch (menu.code) {
     case 'edit':
@@ -106,19 +137,23 @@ const contextMenuClickEvent: VxeTableEvents.MenuClick = async ({ menu, row, colu
   }
 };
 
-const currentDbClick: VxeTableEvents.CellDblclick = ({ row }) => {
+const currentDbClick: VxeTableEvents.CellDblclick = async ({ row }) => {
+  currentRow.value = row;
   drawerLayout.value.open();
-  console.log(row);
 };
 
 async function initMethod(params: any) {
-  // console.log('params', params);
-  const { pageSize } = params;
+  const { total, pageData } = await getBaseDictList({ ...params, dictName: dictName.value });
   return {
-    total: 100,
-    records: [...new Array(pageSize)].map((_, index) => {
-      return { id: index, dictCode: '333', dictName: '男' };
-    })
+    total: total,
+    records: pageData
+  };
+}
+async function initValueMethod(params: any) {
+  const { total, pageData } = await getBaseDictValueList({ ...params, dictCode: currentRow.value.dictCode });
+  return {
+    total: total,
+    records: pageData
   };
 }
 

@@ -34,7 +34,7 @@ const props = withDefaults(
     flex-grow: 1;
   }
 
-  ::v-deep .el-tabs__content {
+  :deep(.el-tabs__content) {
     height: calc(100% - 39px);
     display: flex;
     flex-direction: column;
