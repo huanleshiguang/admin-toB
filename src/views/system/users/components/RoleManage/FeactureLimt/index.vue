@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-14 14:45:11
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-19 16:04:00
+ * @LastEditTime: 2023-07-19 18:38:53
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\RoleConfig\index.vue
  * @Description: 功能权限板块
 -->
@@ -20,7 +20,6 @@
     <itemContent>
       <template #default>
         <!-- <CommonTree :data="data" :show-checkbox="true" /> -->
-  
             <el-checkbox label="换床" name="type" />
             <el-checkbox label="入科" name="type" />
             <el-checkbox label="出科" name="type" />
@@ -40,9 +39,6 @@
 </template>
 
 <script setup lang='ts'>
-import itemHeader from '../components/ItemHeader.vue'
-import itemContent from '../components/ItemContent.vue'
-import { reactive } from 'vue'
 
 // do not use same name with ref
 const form = reactive({
