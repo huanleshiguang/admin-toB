@@ -96,6 +96,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 .point{ cursor: pointer;}
 .bold{ font-weight: bold;}
+.ftc{ text-align: center;}
 /*flex mode*/
 
 .flex {
@@ -375,6 +376,10 @@ textarea::-webkit-scrollbar-thumb {
 .pr10{ padding-right: 10px !important;}
 .pt10{ padding-top: 10px !important;}
 .pb10{ padding-bottom: 10px !important;}
+.pt20{ padding-top: 20px !important;}
+.pl20{ padding-left: 20px !important;}
+.pr20{ padding-right: 20px !important;}
+.pad20{ padding: 20px;}
 
 .ml5{ margin-left: 5px !important;}
 .mr5{ margin-right: 5px !important;}
@@ -383,4 +388,6 @@ textarea::-webkit-scrollbar-thumb {
 .bgfff{ background-color: #fff;}
 .cred{ color: #D80000;}
 .cblue{ color: #00A0DF;}
+.cf60{ color:#ED6D00;}
 .c999{ color: #999;}
+.c666{ color: #666;}
