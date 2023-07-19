@@ -1,25 +1,21 @@
-<!--
- * @Author: QMZhao
- * @Description: 
- * @Date: 2021-09-28 13:25:44
- * @LastEditTime: 2023-07-18 10:51:11
- * @Reference: 
--->
 <script setup lang="ts">
-import { IUserLoginForm } from '/@/model/views/login';
-import { useMessage } from '/@/hooks/common/useMessage';
+import { UserLoginForm } from '/@/model/views/login';
 
-import { useUserLoginToken } from '/@/store/login/useLogin';
+import { useLoginStorage } from './useLoginStorage';
+import { useLoginEvent } from './useLoginEvent';
 
-const privateRouter = useRouter();
+import { debounce } from 'lodash-es';
 
-const { createMessage, createConfirm } = useMessage();
+// const privateRouter = useRouter();
 
-const { setUserToken } = useUserLoginToken();
+const { createMessage } = useMessage();
 
-const loginForm = ref<IUserLoginForm>({
-  userName: 'ADMIN',
-  password: '123456'
+const { initStorage } = useLoginStorage();
+const { jumpTo } = useLoginEvent();
+
+const loginForm = ref<UserLoginForm>({
+  loginName: 'admin',
+  password: '123'
 });
 
 const isLoginLoading = ref(false);
@@ -27,23 +23,30 @@ const isLoginLoading = ref(false);
 // 是否记住用户
 const isRecordUser = ref(false);
 
-// 登录
-function onLogin() {
-  // createMessage.success('登录成功');
-  setUserToken(loginForm.value.userName);
-  privateRouter.push({
-    path: '/dashboard'
-  });
-  // createConfirm('是否确认', 'warning').then(() => {
-  createMessage.success('登录成功');
-  // });
+// 登录请求
+async function loadLogin() {
+  isLoginLoading.value = true;
+  try {
+    const response = await fetchLogin(loginForm.value);
+    console.log(response);
+    isLoginLoading.value = false;
+    initStorage(response);
+    createMessage.success('登录成功');
+    jumpTo();
+  } catch (error) {
+    isLoginLoading.value = false;
+    // throw new Error(`重症项目报错上传: ${today}`);
+  }
 }
+
+// 登录
+const onLogin = debounce(() => loadLogin(), 200);
 </script>
 
 <template>
   <div class="user-form">
     <el-form :model="loginForm" label-width="80px" label-position="top">
-      <el-form-item prop="userName">
+      <el-form-item prop="loginName">
         <template #label>
           <p class="flex flex-items-baseline form-item-label">
             <span class="title">用户名</span>
@@ -52,7 +55,7 @@ function onLogin() {
           </p>
         </template>
         <el-input
-          v-model="loginForm.userName"
+          v-model="loginForm.loginName"
           placeholder="请输入用户名"
           :input-style="{ height: '49px', fontSize: '17px' }"
         ></el-input>
@@ -144,3 +147,4 @@ function onLogin() {
   }
 }
 </style>
+../../api/login/login../../hooks/common/useElMessage
