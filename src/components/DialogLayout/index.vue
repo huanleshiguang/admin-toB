@@ -178,7 +178,7 @@ const submit = async () => {
 const onSure = () => {
   // 弹窗确认事件的回调
   emit('sure');
-  // submit();
+  submit();
 };
 
 const onCancel = () => {
