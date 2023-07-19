@@ -63,7 +63,6 @@ import DrawerLayout from '/@/components/DrawerLayout/index.vue';
 import Update from './update.vue';
 import { columnsList, childColumnsList } from './enum';
 import UpdateValue from '/@/views/system/dictionary/BasicDict/updateValue.vue';
-import { useMessage } from '/@/hooks/common/useMessage';
 const { createConfirm, createMessage } = useMessage();
 import { Search } from '@element-plus/icons-vue';
 // 右键菜单

@@ -5,15 +5,17 @@
  * @LastEditTime: 2023-02-17 15:54:33
  * @Reference:
  */
-declare module "*.vue" {
-  import { DefineComponent } from "vue";
+declare module '*.vue' {
+  import { DefineComponent } from 'vue';
   const Component: DefineComponent<{}, {}, any>;
   export default Component;
 }
 
-declare module "dayjs";
+declare module 'dayjs';
 
-declare module "virtual:*" {
+declare module '@exceptionless/vue';
+
+declare module 'virtual:*' {
   const result: any;
   export default result;
 }
