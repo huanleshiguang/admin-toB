@@ -150,8 +150,8 @@ const submit = async () => {
     await nextTick();
     // @arg 确认方法调用后的结果
     // 成功回调
-    console.log(result,'result'); // undefined
-    
+    console.log(result, 'result'); // undefined
+
     emit('success', result);
     if (autoClose) close();
   };

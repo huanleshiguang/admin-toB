@@ -153,8 +153,8 @@
 								<div class="it1">
 									<el-button-group size="small">
 									    <el-button type="primary">扫码</el-button>
-									    <el-button type="primary">转床</el-button>
-									    <el-button type="primary">患者出科</el-button>
+									    <el-button type="primary" @click="changeBerth">转床</el-button>
+									    <el-button type="primary" @click="outschool">患者出科</el-button>
 									</el-button-group>
 								</div>
 								<div class="berthFavBox point">
@@ -718,6 +718,67 @@
 				</div>
 			</el-scrollbar>
 		</div>
+		
+		<el-dialog v-model="data.showDailog1" title="换床" width="30%">
+		    <div>
+		      <el-form :inline="true">
+		          <el-form-item label="当前床位:">
+		      		<div>icu-003</div>
+		          </el-form-item>
+		          <el-form-item label="">
+		          	 <el-select placeholder="选择床位" clearable>
+		          	    <el-option label="icu-001" value="icu-001" />
+		          	    <el-option label="icu-002" value="icu-002" />
+		          	</el-select>
+		          </el-form-item>
+		      </el-form>
+		    </div>
+		    <template #footer>
+		      <span class="dialog-footer">
+		        <el-button @click="data.showDailog1 = false">取消</el-button>
+		        <el-button type="primary" @click="data.showDailog1 = false">
+		          确定
+		        </el-button>
+		      </span>
+		    </template>
+		</el-dialog>
+		
+		
+		<el-dialog v-model="data.showDailog2" title="患者出科" width="30%">
+		    <div>
+		      <el-form label-width="100px">
+		          <el-form-item label="出科时间:">
+		      		<el-date-picker
+		      		        type="datetime"
+		      		        placeholder="选择时间"
+		      		       
+		      		      />
+		          </el-form-item>
+		          <el-form-item label="去向">
+		          	<el-radio-group>
+		          	    <el-radio label="病房" />
+		          	    <el-radio label="出院" />
+						<el-radio label="死亡" />
+		          	</el-radio-group>
+		          </el-form-item>
+				  <el-form-item label="科室">
+				  	 <el-select placeholder="选择科室" clearable>
+				  	    <el-option label="外科" value="icu-001" />
+				  	    <el-option label="内科" value="icu-002" />
+				  	</el-select>
+				  </el-form-item>
+		      </el-form>
+		    </div>
+		    <template #footer>
+		      <span class="dialog-footer">
+		        <el-button @click="data.showDailog2 = false">取消</el-button>
+		        <el-button type="primary" @click="data.showDailog2 = false">
+		          确定
+		        </el-button>
+		      </span>
+		    </template>
+		</el-dialog>
+		
 	</div>
 </template>
 
@@ -727,6 +788,8 @@
 	} from "@element-plus/icons-vue";
 	const data = reactive({
 		current:0,
+		showDailog1:false,
+		showDailog2:false,
 		navList:[
 			{
 				name:'床位卡片'
@@ -767,6 +830,14 @@
 	
 	const changeNav = (index:number) => {
 		data.current = index;
+	}
+	
+	const changeBerth = () => {
+		data.showDailog1 = true;
+	}
+	
+	const outschool = () => {
+		data.showDailog2 = true;
 	}
 </script>
 

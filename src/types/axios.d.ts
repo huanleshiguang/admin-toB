@@ -47,6 +47,23 @@ declare interface Result<T = any> {
   message: string;
   data: T;
 }
+// get请求BaseParam
+declare interface BaseParams {
+  // 当前页
+  pageIndex: number;
+  // 分页条数
+  pageCount: number;
+  // 搜索条件
+  [key: string]: any;
+}
+
+// 分页请求返回DTO
+declare interface PageResult<T = any[]> {
+  pageCount: number;
+  pageData: T;
+  pageIndex: number;
+  total: number;
+}
 
 // 文件上传参数:multipart/form-data: upload file
 export interface UploadFileParams {
