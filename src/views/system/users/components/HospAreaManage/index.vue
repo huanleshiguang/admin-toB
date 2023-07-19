@@ -2,9 +2,9 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 19:57:02
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-17 18:28:54
+ * @LastEditTime: 2023-07-19 16:08:43
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HosptAreaManage.vue
- * @Description: 
+ * @Description: 院区管理
 -->
 <template>
   <div class="three-container w_100 h_100">
