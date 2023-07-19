@@ -1,7 +1,7 @@
 <template>
   <div class="tree-wrapper">
     <div v-if="showSearch">
-      <el-input v-model="filterText" placeholder="请输入科室名称搜索" size="default" :suffix-icon="Search" />
+      <el-input v-model="filterText" placeholder="请输入科室名称搜索" size="default" />
     </div>
     <el-scrollbar>
       <el-tree ref="treeRef" :data="data" :props="defaultProps" :showCheckbox="showCheckbox" :filter-node-method="filterNode" @node-click="handleNodeClick()">
@@ -26,7 +26,7 @@
 </template>
   
 <script setup lang='ts'>
-import { Search } from '@element-plus/icons-vue';
+// import { Search } from '@element-plus/icons-vue';
 import { ElTree } from 'element-plus'; 
 import 'element-plus/es/components/tree/style/css'
 
