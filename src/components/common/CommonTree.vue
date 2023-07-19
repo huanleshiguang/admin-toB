@@ -1,7 +1,7 @@
 <template>
   <div class="tree-wrapper">
     <el-scrollbar>
-      <el-tree :data="props.data" :props="defaultProps" showCheckbox @node-click="handleNodeClick()">
+      <el-tree :data="data" :props="defaultProps" showCheckbox @node-click="handleNodeClick()">
         <template v-if="!showCheckbox" v-slot="{ node, data }">
           <el-icon v-if="data.children">
             <Folder />
@@ -18,7 +18,7 @@
   
 <script setup lang='ts'>
 import { Document, Folder } from '@element-plus/icons-vue';
-const props = defineProps({
+defineProps({
   data: {
     type: Array,
     default: [],
@@ -37,9 +37,6 @@ const emits = defineEmits(['handleNodeClick'])
 const handleNodeClick = () => {
   emits('handleNodeClick');
 }
-defineExpose({
-  handleNodeClick
-})
 </script>
   
 <style scoped lang="scss">
