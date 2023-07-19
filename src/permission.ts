@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 登录权限验证
  * @Date: 2021-07-26 10:46:56
- * @LastEditTime: 2023-07-19 17:30:46
+ * @LastEditTime: 2023-07-19 18:26:46
  * @Reference:
  */
 import { router } from './router';
@@ -13,7 +13,7 @@ import { getToken } from '/@/utils/session'; // get token from cookie
 
 import { store } from '/@/store';
 import { useNavMenuList } from '/@/store/common/routerList';
-const { leftBar, setShowSideBar } = useNavMenuList(store);
+const { setShowSideBar } = useNavMenuList(store);
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
@@ -25,11 +25,8 @@ router.beforeEach(async (to, _from, next) => {
   const hasToken = getToken();
 
   // 工作台导航条
-  if (to.meta.showSideBar === false) {
-    setShowSideBar(false);
-  } else {
-    setShowSideBar(true);
-  }
+
+  setShowSideBar(to.meta.showSideBar === false ? to.meta.showSideBar : true);
 
   if (to.meta.requireAuth) {
     if (hasToken) {
