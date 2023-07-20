@@ -67,10 +67,7 @@
 <script lang="ts" setup>
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
-import CommonTree from '/@/components/common/CommonTree.vue';
-import { ref, watch } from 'vue';
 import { ArrowDown, Search, Document, Folder, FolderOpened } from '@element-plus/icons-vue';
-import { apiGetHosptAreaInfo, apiGetHosptAreaDepInfo } from '/@/api/system/user';
 interface Tree {
   menuName: string
   children?: Tree[]
