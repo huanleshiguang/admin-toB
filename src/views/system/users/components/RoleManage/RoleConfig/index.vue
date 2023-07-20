@@ -2,44 +2,63 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-14 14:45:11
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-14 15:15:38
+ * @LastEditTime: 2023-07-20 19:07:46
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\RoleConfig\index.vue
  * @Description: 
 -->
 <template>
-    <div>
-      <itemHeader>
-        <template #header-left>
-          <span>角色配置</span>
-        </template>
-
-        <template #header-right>
-          <el-button type="primary">添加</el-button>
-          <el-button type="primary">修改</el-button>
-          <el-button type="primary">删除</el-button>
-        </template>
-      </itemHeader> 
-      <el-divider></el-divider>
-      <itemContent>
-        <template #default>
-          <el-menu>
-            <el-menu-item>1</el-menu-item>
-            <el-menu-item>2</el-menu-item>
-            <el-menu-item>3</el-menu-item>
-          </el-menu>
-        </template>
-      </itemContent>
-    </div>
+  <div>
+    <itemHeader>
+      <template #header-left>
+        <span>角色配置</span>
+      </template>
+    </itemHeader>
+    <el-divider></el-divider>
+    <itemContent>
+      <template #default>
+        <common-tree :data="data" :transmit-props="transmitProps"></common-tree>
+      </template>
+    </itemContent>
+  </div>
 </template>
   
 <script setup lang='ts'>
 import itemHeader from '../components/ItemHeader.vue'
 import itemContent from '../components/ItemContent.vue'
-import { ref } from 'vue';
 
-
+const data = [
+  {
+    "children": [
+      {
+        "children": [],
+        "id": "6f0d7d2d70a949bbb61d44b416c46d82",
+        "parentId": "6f0d7d2d70a949bbb61d44b416c46d80",
+        "deptCode": "10001002",
+        "deptName": "信息科2",
+        "isMainDept": false
+      },
+      {
+        "children": [],
+        "id": "6f0d7d2d70a949bbb61d44b416c46d81",
+        "parentId": "6f0d7d2d70a949bbb61d44b416c46d80",
+        "deptCode": "10001001",
+        "deptName": "信息科1",
+        "isMainDept": true
+      }
+    ],
+    "id": "6f0d7d2d70a949bbb61d44b416c46d80",
+    "parentId": "0",
+    "deptCode": "10001",
+    "deptName": "信息科",
+    "isMainDept": true
+  }
+]
+const transmitProps = {
+  label: 'deptName',
+  deptCode: 'deptCode',
+  isMainDept: 'isMainDept',
+  children: 'children'
+}
 </script>
   
-<style lang="scss" scoped>
-  
-</style>
+<style lang="scss" scoped></style>

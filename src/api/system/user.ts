@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 15:36:33
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-19 16:13:57
+ * @LastEditTime: 2023-07-20 09:28:13
  * @FilePath: \servious-illness-admin\src\api\system\user.ts
  * @Description: 人员管理界面 相关接口
  */
@@ -28,7 +28,7 @@ export const apiUpdateHosptAreaInfo = (data:Users.updateHospAreaInfo) => request
 export const apiDeleteHosptAreaInfo = (areaId: string) => request.post({ url: `${API.DELETE_HOSPT_AREA_INFO}?areaId=${areaId}` })
 
 // 获取院区科室信息
-export const apiGetHosptAreaDepInfo = (areaId: string) => request.post({ url: `${API.GET_HOSPT_AREA__DEP_INFO_URL}?areaId=${areaId}` })
+export const apiGetHosptAreaDepList = (areaId: string) => request.get({ url: `${API.GET_HOSPT_AREA__DEP_INFO_URL}?areaId=${areaId}` })
 
 // 获取功能菜单
 export const apiGetFeatureList = () => request.get({ url: API.GET_FEATURE_LIST })

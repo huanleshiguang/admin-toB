@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-14 14:45:11
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-18 13:46:25
+ * @LastEditTime: 2023-07-20 11:25:54
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\RoleConfig\index.vue
  * @Description: 
 -->
@@ -18,9 +18,10 @@
       </template>
     </itemHeader>
     <el-divider></el-divider>
-    <itemContent>
+    <itemContent >
       <template #default>
-        <CommonTree :data="apiData.data" :show-checkbox="true" />
+        <common-tree :data="reacFeactureList" :show-checkbox="true" :transmit-props="transmitProps">
+        </common-tree>
       </template>
     </itemContent>
   </div>
@@ -38,17 +39,21 @@ import { apiGetFeatureList } from '/@/api/system/user';
 // const data: Tree[] = reactive({
 //   data:[]
 // });
-const apiData = reactive({
-  data:[]
-});
-
+const feactureList = <any>[]
+const reacFeactureList = reactive(feactureList)
+const transmitProps = {
+  label: 'menuName',
+  children: 'children'
+}
 onMounted(()=>{
   getFeatureList()
 })
 const getFeatureList = async ()=>{
   try {
     const result = await apiGetFeatureList();
-    apiData.data = result
+    reacFeactureList.length= 0
+    // apiData.data = result
+    reacFeactureList.push(...result);
   } catch (error) {
     throw (error);
   }
