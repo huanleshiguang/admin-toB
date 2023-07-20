@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-20 19:24:11
+ * @LastEditTime: 2023-07-20 19:30:56
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
  * @Description: 架构管理界面
 -->
@@ -64,7 +64,6 @@ import { VxeTableEvents } from 'vxe-table';
 import { ArrowDown, Search, Document, Folder, FolderOpened } from '@element-plus/icons-vue';
 import type { getHospAreaDepList } from '/@/api/system/types/user'
 
-const value = ref('');
 const vxeTableLayout = ref();
 const columnsList = [
   {
