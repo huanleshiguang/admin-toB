@@ -11,6 +11,7 @@ declare global {
   const apiDeleteHosptAreaInfo: typeof import('./src/api/system/user')['apiDeleteHosptAreaInfo']
   const apiGetFeatureList: typeof import('./src/api/system/user')['apiGetFeatureList']
   const apiGetHosptAreaDepInfo: typeof import('./src/api/system/user')['apiGetHosptAreaDepInfo']
+  const apiGetHosptAreaDepList: typeof import('./src/api/system/user')['apiGetHosptAreaDepList']
   const apiGetHosptAreaInfo: typeof import('./src/api/system/user')['apiGetHosptAreaInfo']
   const apiUpdateHosptAreaInfo: typeof import('./src/api/system/user')['apiUpdateHosptAreaInfo']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
