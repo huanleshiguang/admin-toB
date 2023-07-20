@@ -21,11 +21,11 @@
         <el-button @click="add">新增</el-button>
       </template>
       <template #columns>
-        <vxe-column title="操作" align="center" fixed="right">
+        <vxe-column title="操作" align="center" width="180" fixed="right">
           <template #default="{ $columnIndex, row }">
             <el-button size="small" link type="primary" @click="currentDbClick({ row })">查看值域</el-button>
             <el-button size="small" link type="primary" @click="editRow(row)">编辑</el-button>
-            <el-button size="small" link :type="row.dataStatus === 0 ? 'danger' : 'primary'" @click="enableRow(row)">
+            <el-button size="small" link :type="row.dataStatus === 0 ? 'danger' : 'success'" @click="enableRow(row)">
               {{ row.dataStatus === 0 ? '停用' : '启用' }}
             </el-button>
           </template>
@@ -88,28 +88,26 @@ const add = () => {
   updateRef.value.open();
 };
 const addValue = () => {
-  updateValueRef.value.open({ dictId: currentRow.value.id });
+  updateValueRef.value.open({ dictId: currentRow.value.id, dictName: currentRow.value.dictName });
 };
 const editRow = (row) => {
   console.log(row);
 
   updateRef.value.open(row);
 };
-const enableRow = async (row) => {
+const enableRow = (row) => {
   const { dataStatus, dictName, id } = row;
   const isEnable = dataStatus === 0;
-  const result = await createConfirm(
-    `确定${isEnable ? '停用' : '启用'}${dictName}字典吗`,
-    isEnable ? 'warning' : 'info'
-  );
-  if (result) {
-    try {
-      await enabledBaseDict({ dictId: id, isEnabled: !isEnable });
-      createMessage.success(`${isEnable ? '停用' : '启用'}成功`);
-    } catch (e) {
-      createMessage.error(`${isEnable ? '停用' : '启用'}失败`);
+  createConfirm(`确定${isEnable ? '停用' : '启用'}${dictName}字典吗`, isEnable ? 'warning' : 'success').then(
+    async () => {
+      try {
+        await enabledBaseDict({ dictId: id, isEnabled: !isEnable });
+        createMessage.success(`${isEnable ? '停用' : '启用'}成功`);
+      } catch (e) {
+        createMessage.error(`${isEnable ? '停用' : '启用'}失败`);
+      }
     }
-  }
+  );
 };
 const refresh = () => {
   vxeTableLayout.value.refresh();

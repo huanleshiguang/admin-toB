@@ -27,7 +27,7 @@ export const columnsList: VxeColumnProps[] = [
 export const childColumnsList: VxeColumnProps[] = [
   {
     title: '字典',
-    field: 'dictCode'
+    field: 'dictName'
   },
   {
     title: '值域值(中文)',
