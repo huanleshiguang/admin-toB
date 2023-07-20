@@ -238,7 +238,8 @@ $device-widths: 1024px, 1280px, 1366px, 1440px, 1600px, 1920px;
  * 字体
  * @param px
  */
-@mixin font-style($size: $font-size-12, $colorSimple: $color-primary, $weight: normal) {
+@mixin font-style($family: Noto Sans SC, $size: $font-size-12, $colorSimple: $color-primary, $weight: normal) {
+  font-family: $family;
   font-size: $size;
   color: $colorSimple;
   font-weight: $weight;
