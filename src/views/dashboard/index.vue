@@ -2,42 +2,45 @@
  * @Autor: QMZhao
  * @Date: 2023-07-03 09:49:52
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-18 11:58:34
+ * @LastEditTime: 2023-07-20 11:55:36
  * @Description: 主界面
  * @FilePath: \servious-illness-admin\src\views\dashboard\index.vue
 -->
 <template>
-  <div class="w_100 h_100 dashboard-container flex">
+  <div class="w_100 h_100 dashboard-container flex flex-col">
+    <NavHeader />
     <div class="company-logo">
       <el-image :src="require('/@/assets/image/dashboard/logo-desktop.png')"></el-image>
     </div>
-    <div class="menu-content dashboard-container__box">
-      <span class="dashboard-container__title">ICU临床信息系统&nbsp;(BQICU.V3)</span>
-      <div class="flex flex-wrap grid-justify-between">
-        <div
-          v-for="item in menuList"
-          :key="item.id"
-          class="menu-list-item flex flex-items-center"
-          @click="onJumpTo(item.url)"
-        >
-          <p class="mli-icon grid-justify-center flex flex-items-center">
-            <SvgIcon :icon-class="item.icon" class-name="mli-icon__item"></SvgIcon>
-          </p>
-          <span class="mli-title">{{ item.name }}</span>
+    <div class="dashboard-content flex">
+      <div class="menu-content dashboard-container__box">
+        <span class="dashboard-container__title">ICU临床信息系统&nbsp;(BQICU.V3)</span>
+        <div class="flex flex-wrap grid-justify-between">
+          <div
+            v-for="item in menuList"
+            :key="item.id"
+            class="menu-list-item flex flex-items-center"
+            @click="onJumpTo(item.url)"
+          >
+            <p class="mli-icon grid-justify-center flex flex-items-center">
+              <SvgIcon :icon-class="item.icon" class-name="mli-icon__item"></SvgIcon>
+            </p>
+            <span class="mli-title">{{ item.name }}</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="system-content flex flex-col grid-justify-between">
-      <div class="system-content__notification dashboard-container__box">
-        <span class="dashboard-container__title">重要功能更新通知：</span>
-        <div>
-          <span v-for="item in notificationList" :key="item.id" class="system-content__item">{{ item.title }}</span>
+      <div class="system-content flex flex-col grid-justify-between">
+        <div class="system-content__notification dashboard-container__box">
+          <span class="dashboard-container__title">重要功能更新通知：</span>
+          <div>
+            <span v-for="item in notificationList" :key="item.id" class="system-content__item">{{ item.title }}</span>
+          </div>
         </div>
-      </div>
-      <div class="system-content__support dashboard-container__box">
-        <span class="dashboard-container__title">系统支持</span>
-        <div>
-          <span v-for="item in supportList" :key="item.id" class="system-content__item">{{ item.title }}</span>
+        <div class="system-content__support dashboard-container__box">
+          <span class="dashboard-container__title">系统支持</span>
+          <div>
+            <span v-for="item in supportList" :key="item.id" class="system-content__item">{{ item.title }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -45,6 +48,7 @@
 </template>
 
 <script lang="ts" setup>
+import { NavHeader } from './components';
 import { useDashboardCommon } from './composition/useCommon';
 import { useDashboradEvent } from './composition/useEvent';
 const { menuList, notificationList, supportList } = useDashboardCommon();
@@ -53,7 +57,9 @@ const { onJumpTo } = useDashboradEvent();
 <style lang="scss" scoped>
 .dashboard-container {
   background: url('/@/assets/image/dashboard/desktop-bg.png') 100% 100%;
-  padding: 67px 0 0 40px;
+  .dashboard-content {
+    padding: 67px 0 0 40px;
+  }
   &__title {
     font-family: Noto Sans SC;
     font-weight: bold;

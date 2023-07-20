@@ -6,8 +6,8 @@ import { LoginResponse, UserLoginForm } from '/@/model/views/login';
 export function useLoginStorage() {
   // 登录表单
   const loginForm = ref<UserLoginForm>({
-    loginName: 'admin',
-    password: '123'
+    loginName: '',
+    password: ''
   });
   /**
    * 存储用户信息数据
@@ -15,21 +15,35 @@ export function useLoginStorage() {
    * @param resData 用户登录成功信息
    */
   function setUserInfo(resData: LoginResponse) {
-    useSessionStorage('userInfo', resData);
+    const targetResData: LoginResponse = {
+      accountTokenInfo: {},
+      userInfo: {},
+      userPrivies: [],
+      userRoles: []
+    };
+    useSessionStorage('userInfo', resData ?? targetResData);
   }
 
   /**
    * 初始化 storage 和 pinia 数据
    */
   function initStorageData(): void {
-    useSessionStorage('userInfo', null).value = null;
+    useGetSessionStorage('userInfo').value = null;
   }
 
   /**
    * 根据记住用户勾选项填充登录信息
    */
   function setRecordUserName() {
-    loginForm.value = useStorage('recordUser', loginForm.value).value;
+    const userForm = useGetSessionStorage('recordUser').value;
+    if (userForm) {
+      loginForm.value = userForm;
+    } else {
+      loginForm.value = {
+        loginName: 'admin',
+        password: '123'
+      };
+    }
   }
 
   /**
@@ -39,7 +53,7 @@ export function useLoginStorage() {
    * @param loginForm 用户账户密码
    */
   function setUserName(isRecrod: boolean): void {
-    isRecrod && useStorage('recordUser', loginForm.value);
+    isRecrod && useSessionStorage('recordUser', loginForm.value);
   }
 
   onBeforeMount(() => {
