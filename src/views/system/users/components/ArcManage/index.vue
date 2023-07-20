@@ -2,9 +2,9 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-19 15:56:10
+ * @LastEditTime: 2023-07-20 19:24:11
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
- * @Description: 架构管理
+ * @Description: 架构管理界面
 -->
 <template>
   <div class="common-layout">
@@ -15,18 +15,16 @@
             <div class="select-container">
               <div class="select-item">
                 <span class="text-gray-600 font-stl">组织架构：</span>
-                <el-select v-model="value" class="w-40" placeholder="请选择" :suffix-icon="ArrowDown">
+                <el-select v-model="hospAreaName" class="w-40" placeholder="请选择" :suffix-icon="ArrowDown">
                   <el-option v-for="item in hospAreaList.data" :key="item.id" :label="item.hospAreaName"
                     :value="item.hospAreaName" @click="selectedHospArea(item.id)" /></el-select>
               </div>
-              <el-checkbox v-model="isCheckedSevereCaseDep" label="重症科室" />
+              <el-checkbox @change="onChanageOffice" :disabled="mainDeptCheckDisable" v-model="isCheckedMainDept" label="重症科室" />
             </div>
-            <!-- <div class="mb-2">
-              <el-input v-model="value" placeholder="请输入科室名称搜索" size="default" :suffix-icon="Search" />
-            </div> -->
           </div>
           <!-- tree container -->
-          <common-tree :data="data" :show-search="true" @handleNodeClick="handleNodeClick">
+          <common-tree v-model:data="reactHospAreaDepList" :show-search="true" :transmit-props="transmitProps"
+            @handleNodeClick="handleNodeClick">
             <!-- icon 选择  -->
             <template #icon-haschild&expanded>
               <FolderOpened />
@@ -50,13 +48,9 @@
           <template #operator-left>
             <span class="text-gray-600 font-stl">用户检索：</span>
             <div>
-              <el-input v-model="value" placeholder="请输入姓名/工号后点击回车" size="default" :prefix-icon="Search" />
+              <el-input v-model="searchKey" placeholder="请输入姓名/工号后点击回车" size="default" :prefix-icon="Search" />
             </div>
             <el-button type="primary" class="ml_10" @click="handleSearch">搜索</el-button>
-          </template>
-
-          <template #operator-right>
-            <!-- <el-button type="primary" :icon="Plus" @click="add">新增</el-button> -->
           </template>
         </vxe-table-layout>
       </el-main>
@@ -68,10 +62,8 @@
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import { ArrowDown, Search, Document, Folder, FolderOpened } from '@element-plus/icons-vue';
-interface Tree {
-  menuName: string
-  children?: Tree[]
-};
+import type { getHospAreaDepList } from '/@/api/system/types/user'
+
 const value = ref('');
 const vxeTableLayout = ref();
 const columnsList = [
@@ -116,155 +108,25 @@ const columnsList = [
     field: 'threelevel',
   }
 ];
-//是否选择重症科室
-const isCheckedSevereCaseDep = ref<Boolean>(false)
-const data: Tree[] = [
-  {
-    menuName: 'Level one 1',
-    children: [
-      {
-        menuName: 'Level two 1-1',
-        children: [
-          {
-            menuName: 'Level three 1-1-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    menuName: 'Level one 2',
-    children: [
-      {
-        menuName: 'Level two 2-1',
-        children: [
-          {
-            menuName: 'Level three 2-1-1',
-          },
-        ],
-      },
-      {
-        menuName: 'Level two 2-2',
-        children: [
-          {
-            menuName: 'Level three 2-2-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    menuName: 'Level one 2',
-    children: [
-      {
-        menuName: 'Level two 2-1',
-        children: [
-          {
-            menuName: 'Level three 2-1-1',
-          },
-        ],
-      },
-      {
-        menuName: 'Level two 2-2',
-        children: [
-          {
-            menuName: 'Level three 2-2-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    menuName: 'Level one 2',
-    children: [
-      {
-        menuName: 'Level two 2-1',
-        children: [
-          {
-            menuName: 'Level three 2-1-1',
-          },
-        ],
-      },
-      {
-        menuName: 'Level two 2-2',
-        children: [
-          {
-            menuName: 'Level three 2-2-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    menuName: 'Level one 2',
-    children: [
-      {
-        menuName: 'Level two 2-1',
-        children: [
-          {
-            menuName: 'Level three 2-1-1',
-          },
-        ],
-      },
-      {
-        menuName: 'Level two 2-2',
-        children: [
-          {
-            menuName: 'Level three 2-2-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    menuName: 'Level one 2',
-    children: [
-      {
-        menuName: 'Level two 2-1',
-        children: [
-          {
-            menuName: 'Level three 2-1-1',
-          },
-        ],
-      },
-      {
-        menuName: 'Level two 2-2',
-        children: [
-          {
-            menuName: 'Level three 2-2-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    menuName: 'Level one 3',
-    children: [
-      {
-        menuName: 'Level two 3-1',
-        children: [
-          {
-            menuName: 'Level three 3-1-1',
-          },
-        ],
-      },
-      {
-        menuName: 'Level two 3-2',
-        children: [
-          {
-            menuName: 'Level three 3-2-1',
-          },
-        ],
-      },
-    ],
-  },
-];
+const mainDeptCheckDisable = ref<boolean>(true)
+// 定义需要传给公共组件<common-tree />的字段（用于tree展示）
+const transmitProps = {
+  label: 'deptName',
+  deptCode: 'deptCode',
+  isMainDept: 'isMainDept',
+  children: 'children'
+}
+const hospAreaName = ref<string>('')
+//用户检索关键字
+const searchKey = ref<string>('')
+// 是否选择重症科室
+const isCheckedMainDept = ref<Boolean>(false);
 const hospAreaList = reactive({
   data: <any>[]
 });
-watch(isCheckedSevereCaseDep, (newValue) => {
-  console.log(`isCheckedSevereCaseDep is ${newValue}`)
-});
+const reactHospAreaDepList = ref<getHospAreaDepList[]>([])
+const tempHospAreaDepList = ref<getHospAreaDepList[]>([])
+
 onMounted(async () => {
   const result = await apiGetHosptAreaInfo();
   hospAreaList.data = result;
@@ -276,6 +138,8 @@ const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
   console.log(`行选中事件`, row);
 };
 const handleSearch = () => {
+  // 获取关键字
+  console.log(searchKey,'searchKey');
   vxeTableLayout.value.refresh(true);
 };
 async function initMethod(params: any) {
@@ -288,14 +152,46 @@ async function initMethod(params: any) {
     })
   };
 };
-const selectedHospArea = async (areaId:string) => {
+const selectedHospArea = async (areaId: string) => {
   try {
-    const result = await apiGetHosptAreaDepInfo(areaId);
-    hospAreaList.data = result;
+    const result: getHospAreaDepList[] = await apiGetHosptAreaDepList(areaId);
+    reactHospAreaDepList.value.length = 0;
+    reactHospAreaDepList.value.push(...result);
+    tempHospAreaDepList.value.push(...result);
+    console.log(reactHospAreaDepList.value, 'reactHospAreaDepList');
+    mainDeptCheckDisable.value = false
   } catch (error) {
-    throw(error);
+    throw (error);
   }
 };
+const filterIsMainDep = (depItem, newValue: Boolean) => {
+  if (depItem.children?.length) {
+    depItem.children = depItem.children.filter((depItem) => {
+      return filterIsMainDep(depItem, newValue);
+    })
+    return depItem.children.length ? true : false;
+  } else {
+    return depItem.isMainDept === newValue;
+  }
+};
+function filterDepList(newValue: boolean): void {
+  reactHospAreaDepList.value = JSON.parse(JSON.stringify(tempHospAreaDepList.value));
+  const filteredDepList = reactHospAreaDepList.value.filter((depItem) => {
+    return filterIsMainDep(depItem, newValue);
+  });
+  reactHospAreaDepList.value.length = 0;
+  reactHospAreaDepList.value.push(...filteredDepList);
+}
+function onChanageOffice(event: boolean): void {
+  // 勾选重症
+  if(event) {
+    filterDepList(event);
+  }
+  // 未勾选重症
+  else {
+    reactHospAreaDepList.value = JSON.parse(JSON.stringify(tempHospAreaDepList.value));
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -338,4 +234,5 @@ const selectedHospArea = async (areaId:string) => {
 .select-item {
   display: flex;
   align-items: center;
-}</style>
+}
+</style>
