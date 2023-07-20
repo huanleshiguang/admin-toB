@@ -1,8 +1,5 @@
 <template>
-  <div class="flex items-center">
-    <span class="title">{{ title }}</span>
-    <slot />
-  </div>
+  <p class="title">{{ title }}</p>
 </template>
 
 <script setup lang="ts" name="TableTitle">

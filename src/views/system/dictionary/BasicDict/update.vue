@@ -4,29 +4,29 @@
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="编码" prop="dictCode" required>
-            <el-input v-model.number="form.dictCode" placeholder="请输入编码" />
+            <el-input v-model.number="form['dictCode']" placeholder="请输入编码" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="名称" prop="dictName" required>
-            <el-input v-model="form.dictName" placeholder="请输入名称" />
+            <el-input v-model="form['dictName']" placeholder="请输入名称" />
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="英文名称" prop="dictEnName" required>
-            <el-input v-model="form.dictEnName" placeholder="请输入英文名称" />
+            <el-input v-model="form['dictEnName']" placeholder="请输入英文名称" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="缩略名" prop="dictEnAbbr" required>
-            <el-input v-model="form.dictEnAbbr" placeholder="请输入缩略名" />
+            <el-input v-model="form['dictEnAbbr']" placeholder="请输入缩略名" />
           </el-form-item>
         </el-col>
       </el-row>
       <el-form-item label="描述" prop="remark" required>
-        <el-input v-model="form.remark" type="textarea" placeholder="请输入描述" />
+        <el-input v-model="form['remark']" type="textarea" placeholder="请输入描述" />
       </el-form-item>
     </el-form>
   </DialogLayout>
@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 // import DialogLayout from '/@/components/DialogLayout/index.vue';
-import type { DictInfo } from '/@/api/system/types/dict';
+import { DictInfo } from '/@/api/system/types/dict';
 // import { updateBaseDict } from '/@/api/system/dict';
 import type { FormRules } from 'element-plus';
 // import { useMessage } from '/@/hooks/common/useMessage';
@@ -42,33 +42,6 @@ import { cloneDeep } from 'lodash-es';
 const { createMessage } = useMessage();
 const title = ref<string>('新增数据字典');
 const dialogLayout = ref<any>();
-let form = reactive<DictInfo>({
-  dictCode: '',
-  dictName: '',
-  dictEnName: '',
-  dictEnAbbr: '',
-  remark: ''
-});
-const open = (data) => {
-  title.value = `${data ? '编辑' : '新增'}基础字典`;
-  if (data) {
-    form = cloneDeep(data);
-  }
-
-  dialogLayout.value.open();
-};
-const close = () => {
-  dialogLayout.value.close();
-};
-
-// interface BasicForm {
-//   dictCode: string;
-//   dictName: string;
-//   dictEnName: string;
-//   dictEnAbbr: string;
-//   remark: string;
-// }
-
 const rules = reactive<FormRules<DictInfo>>({
   dictCode: [
     {
@@ -107,19 +80,57 @@ const rules = reactive<FormRules<DictInfo>>({
   ]
 });
 const formRef = ref<any>();
+let form = reactive<DictInfo>({
+  dictCode: '',
+  dictName: '',
+  dictEnName: '',
+  dictEnAbbr: '',
+  remark: ''
+});
+const open = (data: DictInfo) => {
+  title.value = `${data?.id ? '编辑' : '新增'}基础字典`;
+  if (data) {
+    form = Object.assign(form, cloneDeep(data));
+    // form = data;
+  } else {
+    form = reactive<DictInfo>({
+      dictCode: '',
+      dictName: '',
+      dictEnName: '',
+      dictEnAbbr: '',
+      remark: ''
+    });
+  }
+
+  dialogLayout.value.open();
+};
+const close = () => {
+  formRef.value.resetFields();
+  dialogLayout.value.close();
+};
+
+// interface BasicForm {
+//   dictCode: string;
+//   dictName: string;
+//   dictEnName: string;
+//   dictEnAbbr: string;
+//   remark: string;
+// }
+
 const emit = defineEmits(['refresh']);
 const submit = async () => {
   const result = await formRef.value.validate();
   if (result) {
+    const { id } = form;
     try {
       const result = await updateBaseDict(form);
       console.log(result);
 
-      createMessage.success('新增成功');
+      createMessage.success(`${id ? '编辑' : '新增'}成功`);
       emit('refresh');
       close();
     } catch (e) {
-      createMessage.error(e || '新增失败');
+      createMessage.error(e || `${id ? '编辑' : '新增'}失败`);
     }
   }
 };
