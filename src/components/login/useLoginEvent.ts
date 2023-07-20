@@ -1,3 +1,6 @@
+/**
+ * 登录表单事件
+ */
 export function useLoginEvent() {
   const privateRouter = useRouter();
 
@@ -9,8 +12,6 @@ export function useLoginEvent() {
       path: '/dashboard'
     });
   }
-
-  // function
 
   return {
     privateRouter,

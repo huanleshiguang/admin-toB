@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-09-22 08:47:36
- * @LastEditTime: 2023-07-19 17:58:17
+ * @LastEditTime: 2023-07-20 15:34:36
  * @Reference:
  */
 
@@ -21,8 +21,8 @@ export interface UserInfo {
  * 登录响应信息
  */
 export interface LoginResponse {
-  userInfo: Iobj[];
-  accountTokenInfo: Iobj[];
+  userInfo: Iobj;
+  accountTokenInfo: Iobj;
   userRoles: Iobj[];
   userPrivies: Iobj[];
 }

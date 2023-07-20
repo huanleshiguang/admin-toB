@@ -1,23 +1,23 @@
+<!--
+ * @Autor: QMZhao
+ * @Date: 2023-07-18 10:47:12
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-07-20 09:31:07
+ * @Description: 登录表单
+ * @FilePath: \servious-illness-admin\src\components\login\LoginForm.vue
+-->
 <script setup lang="ts">
-import { UserLoginForm } from '/@/model/views/login';
-
 import { useLoginStorage } from './useLoginStorage';
 import { useLoginEvent } from './useLoginEvent';
 
 import { debounce } from 'lodash-es';
 
-// const privateRouter = useRouter();
-
 const { createMessage } = useMessage();
 
-const { initStorage } = useLoginStorage();
+const { loginForm, setUserInfo, setUserName } = useLoginStorage();
 const { jumpTo } = useLoginEvent();
 
-const loginForm = ref<UserLoginForm>({
-  loginName: 'admin',
-  password: '123'
-});
-
+// 登录按钮loading
 const isLoginLoading = ref(false);
 
 // 是否记住用户
@@ -28,9 +28,9 @@ async function loadLogin() {
   isLoginLoading.value = true;
   try {
     const response = await fetchLogin(loginForm.value);
-    console.log(response);
     isLoginLoading.value = false;
-    initStorage(response);
+    setUserInfo(response);
+    setUserName(isRecordUser.value);
     createMessage.success('登录成功');
     jumpTo();
   } catch (error) {
@@ -70,6 +70,7 @@ const onLogin = debounce(() => loadLogin(), 200);
         </template>
         <el-input
           v-model="loginForm.password"
+          type="password"
           placeholder="请输入密码"
           :input-style="{ height: '49px', fontSize: '17px' }"
         ></el-input>
@@ -147,4 +148,3 @@ const onLogin = debounce(() => loadLogin(), 200);
   }
 }
 </style>
-../../api/login/login../../hooks/common/useElMessage

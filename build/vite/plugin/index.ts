@@ -54,7 +54,9 @@ export function createVitePlugins(mode: string, isBuild: boolean) {
 
         // Auto import icon components
         // 自动导入图标组件
-        IconsResolver()
+        IconsResolver({
+          enabledCollections: ['ep'],
+        })
       ],
 
       // Generate corresponding .eslintrc-auto-import.json file.

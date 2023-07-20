@@ -30,11 +30,11 @@
 </template>
 
 <script setup lang="ts">
-import DialogLayout from '/@/components/DialogLayout/index.vue';
+// import DialogLayout from '/@/components/DialogLayout/index.vue';
 import type { FormRules } from 'element-plus';
-import type { DictValueInfo } from '/@/api/system/types/dict';
-import { updateBaseDictValue } from '/@/api/system/dict';
-import { useMessage } from '/@/hooks/common/useMessage';
+import { DictValueInfo } from '/@/api/system/types/dict';
+// import { updateBaseDictValue } from '/@/api/system/dict';
+// import { useMessage } from '/@/hooks/common/useMessage';
 const { createMessage } = useMessage();
 
 const form = reactive<DictValueInfo>({
@@ -47,7 +47,8 @@ const form = reactive<DictValueInfo>({
 const title = ref<string>('新增值域项');
 const dialogLayout = ref<any>();
 const open = (data) => {
-  title.value = `${data?.id ? '编辑' : '新增'}值域项`;
+  const { dictName } = data;
+  title.value = `${data?.id ? '编辑' : '新增'}-${dictName}-值域项`;
   form.dictId = data.dictId;
   dialogLayout.value.open();
 };

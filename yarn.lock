@@ -610,7 +610,7 @@
 
 "@exceptionless/browser@3.0.1":
   version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@exceptionless/browser/-/browser-3.0.1.tgz#2b16c382b292e17c20a8db119eddcdec31c2d5b7"
+  resolved "https://registry.npmmirror.com/@exceptionless/browser/-/browser-3.0.1.tgz#2b16c382b292e17c20a8db119eddcdec31c2d5b7"
   integrity sha512-Wg4iG4NnguY5+2f4DnTgJ9yI325vU2dqxUX5ms7nO6/QpxAwZjGM1Zgi/HJGXpxVmmYjp6DXTJPqkTO45MDhNg==
   dependencies:
     "@exceptionless/core" "3.0.1"
@@ -618,12 +618,12 @@
 
 "@exceptionless/core@3.0.1":
   version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@exceptionless/core/-/core-3.0.1.tgz#718ad5a36fcb32058ba4a25841d83a5a5a988b1e"
+  resolved "https://registry.npmmirror.com/@exceptionless/core/-/core-3.0.1.tgz#718ad5a36fcb32058ba4a25841d83a5a5a988b1e"
   integrity sha512-AGT+uqCd7QWo7iCoVNwMVAasoFNYztr0Meyrxrfnu4RbY+oanIOfuqAwucidNtA7Hbl9IsSQfeLxXsuRWAj1YA==
 
 "@exceptionless/vue@^3.0.1":
   version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@exceptionless/vue/-/vue-3.0.1.tgz#34a87ecfc954a474b82ab7c38a09055c5c965bec"
+  resolved "https://registry.npmmirror.com/@exceptionless/vue/-/vue-3.0.1.tgz#34a87ecfc954a474b82ab7c38a09055c5c965bec"
   integrity sha512-cjICSzALpUZvMP1sabf+emCmKTzof7ilwq4Ukit53jtHXcGg4Hj2s9zImJEChHsnBi4gjuurI10Mu0987DimRA==
   dependencies:
     "@exceptionless/browser" "3.0.1"
@@ -914,7 +914,7 @@
 
 "@types/web-bluetooth@^0.0.17":
   version "0.0.17"
-  resolved "https://registry.yarnpkg.com/@types/web-bluetooth/-/web-bluetooth-0.0.17.tgz#5c9f3c617f64a9735d7b72a7cc671e166d900c40"
+  resolved "https://registry.npmmirror.com/@types/web-bluetooth/-/web-bluetooth-0.0.17.tgz#5c9f3c617f64a9735d7b72a7cc671e166d900c40"
   integrity sha512-4p9vcSmxAayx72yn70joFoL44c9MO/0+iVEBIQXe3v2h2SiAsEIo/G5v6ObFWvNKRFjbrVadNf9LqEEZeQPzdA==
 
 "@types/zrender@*":
@@ -1560,7 +1560,7 @@
 
 "@vueuse/core@^10.2.1":
   version "10.2.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-10.2.1.tgz#a62b54cdaf1496138a9f8a7df7f9d644892b421f"
+  resolved "https://registry.npmmirror.com/@vueuse/core/-/core-10.2.1.tgz#a62b54cdaf1496138a9f8a7df7f9d644892b421f"
   integrity sha512-c441bfMbkAwTNwVRHQ0zdYZNETK//P84rC01aP2Uy/aRFCiie9NE/k9KdIXbno0eDYP5NPUuWv0aA/I4Unr/7w==
   dependencies:
     "@types/web-bluetooth" "^0.0.17"
@@ -1580,7 +1580,7 @@
 
 "@vueuse/metadata@10.2.1":
   version "10.2.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-10.2.1.tgz#0865066def62ed97629c417ec79678d508d22934"
+  resolved "https://registry.npmmirror.com/@vueuse/metadata/-/metadata-10.2.1.tgz#0865066def62ed97629c417ec79678d508d22934"
   integrity sha512-3Gt68mY/i6bQvFqx7cuGBzrCCQu17OBaGWS5JdwISpMsHnMKKjC2FeB5OAfMcCQ0oINfADP3i9A4PPRo0peHdQ==
 
 "@vueuse/metadata@9.13.0":
@@ -1590,7 +1590,7 @@
 
 "@vueuse/shared@10.2.1":
   version "10.2.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-10.2.1.tgz#0fd0a5dd014b7713b7fe03347b30fad69bb15b30"
+  resolved "https://registry.npmmirror.com/@vueuse/shared/-/shared-10.2.1.tgz#0fd0a5dd014b7713b7fe03347b30fad69bb15b30"
   integrity sha512-QWHq2bSuGptkcxx4f4M/fBYC3Y8d3M2UYyLsyzoPgEoVzJURQ0oJeWXu79OiLlBb8gTKkqe4mO85T/sf39mmiw==
   dependencies:
     vue-demi ">=0.14.5"
@@ -2677,7 +2677,7 @@ entities@^2.0.0:
 
 error-stack-parser@^2.0.6:
   version "2.1.4"
-  resolved "https://registry.yarnpkg.com/error-stack-parser/-/error-stack-parser-2.1.4.tgz#229cb01cdbfa84440bfa91876285b94680188286"
+  resolved "https://registry.npmmirror.com/error-stack-parser/-/error-stack-parser-2.1.4.tgz#229cb01cdbfa84440bfa91876285b94680188286"
   integrity sha512-Sk5V6wVazPhq5MhpO+AUxJn5x7XSXGl1R93Vn7i+zS15KDVxQijejNCrz8340/2bgLBjR9GtEG8ZVKONDjcqGQ==
   dependencies:
     stackframe "^1.3.4"
@@ -2984,7 +2984,7 @@ events@^3.2.0:
 
 exceptionless@^1.6.4:
   version "1.6.4"
-  resolved "https://registry.yarnpkg.com/exceptionless/-/exceptionless-1.6.4.tgz#30064518ce977490d1b6df58d21a9b0265a40aa2"
+  resolved "https://registry.npmmirror.com/exceptionless/-/exceptionless-1.6.4.tgz#30064518ce977490d1b6df58d21a9b0265a40aa2"
   integrity sha512-XKdvXEca5Dy1tRbAtJQgj8T1Y//6sk32SAAohZlBjfCGLSCM0YcpYAlUMD4MDXYTodRYznZIxM43YI2kcvR5PQ==
   dependencies:
     stack-trace "0.0.10"
@@ -4828,7 +4828,7 @@ source-map-url@^0.4.0:
 
 source-map@0.5.6:
   version "0.5.6"
-  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
+  resolved "https://registry.npmmirror.com/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
   integrity sha512-MjZkVp0NHr5+TPihLcadqnlVoGIoWo4IBHptutGh9wI3ttUYvCG26HkSuDi+K6lsZ25syXJXcctwgyVCt//xqA==
 
 source-map@^0.5.6:
@@ -4865,24 +4865,24 @@ stable@^0.1.8:
 
 stack-generator@^2.0.5:
   version "2.0.10"
-  resolved "https://registry.yarnpkg.com/stack-generator/-/stack-generator-2.0.10.tgz#8ae171e985ed62287d4f1ed55a1633b3fb53bb4d"
+  resolved "https://registry.npmmirror.com/stack-generator/-/stack-generator-2.0.10.tgz#8ae171e985ed62287d4f1ed55a1633b3fb53bb4d"
   integrity sha512-mwnua/hkqM6pF4k8SnmZ2zfETsRUpWXREfA/goT8SLCV4iOFa4bzOX2nDipWAZFPTjLvQB82f5yaodMVhK0yJQ==
   dependencies:
     stackframe "^1.3.4"
 
 stack-trace@0.0.10:
   version "0.0.10"
-  resolved "https://registry.yarnpkg.com/stack-trace/-/stack-trace-0.0.10.tgz#547c70b347e8d32b4e108ea1a2a159e5fdde19c0"
+  resolved "https://registry.npmmirror.com/stack-trace/-/stack-trace-0.0.10.tgz#547c70b347e8d32b4e108ea1a2a159e5fdde19c0"
   integrity sha512-KGzahc7puUKkzyMt+IqAep+TVNbKP+k2Lmwhub39m1AsTSkaDutx56aDCo+HLDzf/D26BIHTJWNiTG1KAJiQCg==
 
 stackframe@^1.3.4:
   version "1.3.4"
-  resolved "https://registry.yarnpkg.com/stackframe/-/stackframe-1.3.4.tgz#b881a004c8c149a5e8efef37d51b16e412943310"
+  resolved "https://registry.npmmirror.com/stackframe/-/stackframe-1.3.4.tgz#b881a004c8c149a5e8efef37d51b16e412943310"
   integrity sha512-oeVtt7eWQS+Na6F//S4kJ2K2VbRlS9D43mAlMyVpVWovy9o+jfgH8O9agzANzaiLjclA0oYzUXEM4PurhSUChw==
 
 stacktrace-gps@^3.0.4:
   version "3.1.2"
-  resolved "https://registry.yarnpkg.com/stacktrace-gps/-/stacktrace-gps-3.1.2.tgz#0c40b24a9b119b20da4525c398795338966a2fb0"
+  resolved "https://registry.npmmirror.com/stacktrace-gps/-/stacktrace-gps-3.1.2.tgz#0c40b24a9b119b20da4525c398795338966a2fb0"
   integrity sha512-GcUgbO4Jsqqg6RxfyTHFiPxdPqF+3LFmQhm7MgCuYQOYuWyqxo5pwRPz5d/u6/WYJdEnWfK4r+jGbyD8TSggXQ==
   dependencies:
     source-map "0.5.6"
@@ -4890,7 +4890,7 @@ stacktrace-gps@^3.0.4:
 
 stacktrace-js@^2.0.2:
   version "2.0.2"
-  resolved "https://registry.yarnpkg.com/stacktrace-js/-/stacktrace-js-2.0.2.tgz#4ca93ea9f494752d55709a081d400fdaebee897b"
+  resolved "https://registry.npmmirror.com/stacktrace-js/-/stacktrace-js-2.0.2.tgz#4ca93ea9f494752d55709a081d400fdaebee897b"
   integrity sha512-Je5vBeY4S1r/RnLydLl0TBTi3F2qdfWmYsGvtfZgEI+SCprPppaIhQf5nGcal4gI4cGpCV/duLcAzT1np6sQqg==
   dependencies:
     error-stack-parser "^2.0.6"
@@ -5434,7 +5434,7 @@ vue-demi@*:
 
 vue-demi@>=0.14.5:
   version "0.14.5"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.14.5.tgz#676d0463d1a1266d5ab5cba932e043d8f5f2fbd9"
+  resolved "https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.5.tgz#676d0463d1a1266d5ab5cba932e043d8f5f2fbd9"
   integrity sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA==
 
 vue-eslint-parser@^7.0.0:
