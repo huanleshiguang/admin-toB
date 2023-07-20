@@ -33,11 +33,11 @@
 </template>
 
 <script setup lang="ts">
-import DialogLayout from '/@/components/DialogLayout/index.vue';
-import { DictInfo } from '/@/api/system/types/dict';
-import { updateBaseDict } from '/@/api/system/dict';
+// import DialogLayout from '/@/components/DialogLayout/index.vue';
+import type { DictInfo } from '/@/api/system/types/dict';
+// import { updateBaseDict } from '/@/api/system/dict';
 import type { FormRules } from 'element-plus';
-import { useMessage } from '/@/hooks/common/useMessage';
+// import { useMessage } from '/@/hooks/common/useMessage';
 import { cloneDeep } from 'lodash-es';
 const { createMessage } = useMessage();
 const title = ref<string>('新增数据字典');

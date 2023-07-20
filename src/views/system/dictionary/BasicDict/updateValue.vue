@@ -30,11 +30,11 @@
 </template>
 
 <script setup lang="ts">
-import DialogLayout from '/@/components/DialogLayout/index.vue';
+// import DialogLayout from '/@/components/DialogLayout/index.vue';
 import type { FormRules } from 'element-plus';
-import type { DictValueInfo } from '/@/api/system/types/dict';
-import { updateBaseDictValue } from '/@/api/system/dict';
-import { useMessage } from '/@/hooks/common/useMessage';
+// import type { DictValueInfo } from '/@/api/system/types/dict';
+// import { updateBaseDictValue } from '/@/api/system/dict';
+// import { useMessage } from '/@/hooks/common/useMessage';
 const { createMessage } = useMessage();
 
 const form = reactive<DictValueInfo>({

@@ -56,10 +56,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import { getBaseDictList, enabledBaseDict, getBaseDictValueList } from '/@/api/system/dict';
+// import { getBaseDictList, enabledBaseDict, getBaseDictValueList } from '/@/api/system/dict';
 import { VxeTableEvents } from 'vxe-table';
-import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
-import DrawerLayout from '/@/components/DrawerLayout/index.vue';
+// import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
+// import DrawerLayout from '/@/components/DrawerLayout/index.vue';
 import Update from './update.vue';
 import { columnsList, childColumnsList } from './enum';
 import UpdateValue from '/@/views/system/dictionary/BasicDict/updateValue.vue';
