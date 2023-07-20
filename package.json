@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "nprogress": "^0.2.0",
-    "pinia": "^2.0.18",
-    "vue": "^3.2.45",
-    "vue-router": "4.0.2"
+    "pinia": "^2.1.4",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.15.4",
