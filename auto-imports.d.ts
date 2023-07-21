@@ -47,6 +47,7 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const fetchFeatureList: typeof import('./src/api/system/user')['fetchFeatureList']
   const fetchHosptAreaDepList: typeof import('./src/api/system/user')['fetchHosptAreaDepList']
+  const fetchHosptAreaDepUserList: typeof import('./src/api/system/user')['fetchHosptAreaDepUserList']
   const fetchHosptAreaInfo: typeof import('./src/api/system/user')['fetchHosptAreaInfo']
   const fetchLogin: typeof import('./src/api/login/login')['fetchLogin']
   const getActivePinia: typeof import('pinia')['getActivePinia']

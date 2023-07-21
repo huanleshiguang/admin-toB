@@ -51,6 +51,7 @@ declare module 'vue' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
+    ElTree: typeof import('element-plus/es')['ElTree']
     FlexSpacer: typeof import('./src/components/common/FlexSpacer.vue')['default']
     IEpArrowDown: typeof import('~icons/ep/arrow-down')['default']
     LoginForm: typeof import('./src/components/login/LoginForm.vue')['default']
