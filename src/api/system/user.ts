@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 15:36:33
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 10:59:02
+ * @LastEditTime: 2023-07-21 11:25:22
  * @FilePath: \servious-illness-admin\src\api\system\user.ts
  * @Description: 人员管理界面 相关接口
  */
@@ -19,16 +19,16 @@ enum API {
 }
 
 // 获取院区信息
-export const apiFetchHosptAreaInfo = () => request.get({ url: API.GET_HOSPT_AREA_INFO_URL })
+export const fetchHosptAreaInfo = () => request.get({ url: API.GET_HOSPT_AREA_INFO_URL })
 
 // 更新院区信息
-export const apiUpdateHosptAreaInfo = (data:Users.updateHospAreaInfo) => request.post({ url: API.UPDATE_HOSPT_AREA_INFO, data })
+export const updateHosptAreaInfo = (data:Users.updateHospAreaInfo) => request.post({ url: API.UPDATE_HOSPT_AREA_INFO, data })
 
 // 删除院区信息
-export const apiDeleteHosptAreaInfo = (areaId: string) => request.post({ url: `${API.DELETE_HOSPT_AREA_INFO}?areaId=${areaId}` })
+export const deleteHosptAreaInfo = (areaId: string) => request.post({ url: `${API.DELETE_HOSPT_AREA_INFO}?areaId=${areaId}` })
 
 // 获取院区科室信息
-export const apiFetchHosptAreaDepList = (areaId: string) => request.get({ url: `${API.GET_HOSPT_AREA__DEP_INFO_URL}?areaId=${areaId}` })
+export const fetchHosptAreaDepList = (areaId: string) => request.get({ url: `${API.GET_HOSPT_AREA__DEP_INFO_URL}?areaId=${areaId}` })
 
 // 获取功能菜单
-export const apiFetchFeatureList = () => request.get({ url: API.GET_FEATURE_LIST })
+export const fetchFeatureList = () => request.get({ url: API.GET_FEATURE_LIST })

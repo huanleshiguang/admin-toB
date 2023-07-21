@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-18 14:49:18
+ * @LastEditTime: 2023-07-21 11:26:37
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 
 -->
@@ -71,7 +71,7 @@ defineExpose({
   close
 });
 const sureMethod = () => {
-  apiUpdateHosptAreaInfo(form).then((res) => {
+  updateHosptAreaInfo(form).then((res) => {
     if (res) {
       dialogLayout.value.close()
       //重新获取tableList

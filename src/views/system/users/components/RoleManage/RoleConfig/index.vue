@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-14 14:45:11
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 11:15:08
+ * @LastEditTime: 2023-07-21 11:27:40
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\RoleConfig\index.vue
  * @Description: 
 -->
@@ -39,11 +39,11 @@ const reactHospAreaDepList = ref<fetchHospAreaDepList[]>([])
 const hospAreaName = ref('')
 onMounted(() => {
   // 初始获取院区信息
-  fetchHosptAreaDepList()
+  getHosptAreaDepList()
 })
-const fetchHosptAreaDepList = async () => {
+const getHosptAreaDepList = async () => {
   try {
-    const result: any = await apiFetchHosptAreaInfo()
+    const result: any = await fetchHosptAreaInfo()
     hospAreaList.length = 0
     hospAreaList.push(...result)
   } catch (error) {
@@ -52,7 +52,7 @@ const fetchHosptAreaDepList = async () => {
 }
 const selectedHospArea = async (areaId: string) => {
   try {
-    const result: fetchHospAreaDepList[] = await apiFetchHosptAreaDepList(areaId);
+    const result: fetchHospAreaDepList[] = await fetchHosptAreaDepList(areaId);
     reactHospAreaDepList.value.length = 0;
     reactHospAreaDepList.value.push(...result);
   } catch (error) {

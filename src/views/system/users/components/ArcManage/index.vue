@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 11:13:48
+ * @LastEditTime: 2023-07-21 11:25:59
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
  * @Description: 架构管理界面
 -->
@@ -133,7 +133,7 @@ onMounted(() => {
 });
 const fetchinitHsopAreaList = async () => {
   try {
-    const result = await apiFetchHosptAreaInfo();
+    const result = await fetchHosptAreaInfo();
     hospAreaList.data = result;
   } catch (error) {
     throw (error)
@@ -161,7 +161,7 @@ async function initMethod(params: any) {
 };
 const selectedHospArea = async (areaId: string) => {
   try {
-    const result: fetchHospAreaDepList[] = await apiFetchHosptAreaDepList(areaId);
+    const result: fetchHospAreaDepList[] = await fetchHosptAreaDepList(areaId);
     reactHospAreaDepList.value.length = 0;
     reactHospAreaDepList.value.push(...result);
     tempHospAreaDepList.value.push(...result);

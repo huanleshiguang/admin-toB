@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 19:57:02
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 11:08:26
+ * @LastEditTime: 2023-07-21 11:26:21
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HosptAreaManage.vue
  * @Description: 院区管理
 -->
@@ -65,7 +65,7 @@ const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
 async function initMethod(params: any) {
   console.log(params, 'params1');
   try {
-    const data = await apiFetchHosptAreaInfo()
+    const data = await fetchHosptAreaInfo()
     console.log(data, "data"); // true
 
     records = data.map(item => {
@@ -97,7 +97,7 @@ const editRow = (columnIndex, row) => {
 };
 const deleteRow = (row) => {
   console.log(row,'row');
-  apiDeleteHosptAreaInfo(row.id).then((res) => {
+  deleteHosptAreaInfo(row.id).then((res) => {
     if (res) {
       reFresh();
     }
