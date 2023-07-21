@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-18 09:32:45
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 10:26:44
+ * @LastEditTime: 2023-07-21 20:03:22
  * @FilePath: \servious-illness-admin\src\components\common\CommonTree.vue
  * @Description: 公共tree组件
 -->
@@ -12,9 +12,8 @@
       <el-input v-model="filterText" lazy placeholder="请输入科室名称搜索" size="default" />
     </div>
     <el-scrollbar>
-
       <el-tree ref="treeRef" :data="getTreeData" :props="defaultProps" :showCheckbox="showCheckbox"
-        :filter-node-method="filterNode" @node-click="handleNodeClick">
+        :filter-node-method="filterNode" node-key="id" @node-click="handleNodeClick">
         <template v-if="!showCheckbox" v-slot="{ node, data }">
           <el-icon v-if="data.children.length && node.expanded">
             <!-- 有子节点并且已展开 -->
@@ -39,36 +38,36 @@
 import { ElTree } from 'element-plus';
 import 'element-plus/es/components/tree/style/css'
 
-// interface ComponentPublicInstance {
-//   $forceUpdate(): void
-// }
 const props = defineProps({
   data: {
     type: Array,
     default: [],
     required: true
   },
+  // 是否展示checkbox
   showCheckbox: {
     type: Boolean,
     default: false
   },
+  // 是否展示搜索框
   showSearch: {
     type: Boolean,
     default: false
   },
+  // 要展示的字段名
   transmitProps: {
     type: Object,
     required: true
-  }
+  },
 })
 const defaultProps = {
   children: `${props.transmitProps.children}`,
-  label: `${props.transmitProps.label}`,
+  label: `${props.transmitProps.label}`
 };
 const filterText = ref('');
 const treeRef = ref<InstanceType<typeof ElTree>>();
 
-const getTreeData = computed(() => props.data)
+const getTreeData = computed(() => props.data);
 
 watch(filterText, (val) => {
   treeRef.value!.filter(val);
@@ -79,7 +78,8 @@ const filterNode = (value: string, data: any) => {
 }
 const emits = defineEmits(['handleNodeClick']);
 const handleNodeClick = () => {
-  emits('handleNodeClick');
+  const id = treeRef.value?.getCurrentKey();
+  emits('handleNodeClick',id);
 }
 
 </script>

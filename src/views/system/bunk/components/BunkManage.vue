@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 14:32:21
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 11:07:21
+ * @LastEditTime: 2023-07-21 13:35:56
  * @FilePath: \servious-illness-admin\src\views\system\bunk\components\BunkManagement.vue
  * @Description: 院区管理
 -->
@@ -73,7 +73,7 @@ onMounted(() => {
 });
 const fetchHospAreaList = async () => {
   try {
-    const result = await apiFetchHosptAreaInfo()
+    const result = await fetchHosptAreaInfo()
     reactiveHospAreaList.length = 0;
     reactiveHospAreaList.push(...result)
   } catch (error) {

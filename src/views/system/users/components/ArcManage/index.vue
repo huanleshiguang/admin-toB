@@ -2,9 +2,9 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 11:25:59
+ * @LastEditTime: 2023-07-21 21:03:39
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
- * @Description: 架构管理界面
+ * @Description: 架构管理模块
 -->
 <template>
   <div class="common-layout">
@@ -19,7 +19,7 @@
                   <el-option v-for="item in hospAreaList.data" :key="item.id" :label="item.hospAreaName"
                     :value="item.hospAreaName" @click="selectedHospArea(item.id)" /></el-select>
               </div>
-              <el-checkbox @change="onChanageOffice" :disabled="mainDeptCheckDisable" v-model="isCheckedMainDept"
+              <el-checkbox @change="onChanageDept" :disabled="mainDeptCheckDisable" v-model="isCheckedMainDept"
                 label="重症科室" />
             </div>
           </div>
@@ -63,9 +63,8 @@
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import { ArrowDown, Search, Document, Folder, FolderOpened } from '@element-plus/icons-vue';
-import type { fetchHospAreaDepList } from '/@/api/system/types/user'
-
-const vxeTableLayout = ref();
+import type { fetchHospAreaDepList, fetchHosptAreaDepUserList } from '/@/api/system/types/user'
+import { useFilterCurrentField } from './useEvent'
 const columnsList = [
   {
     title: '科室',
@@ -108,6 +107,7 @@ const columnsList = [
     field: 'threelevel',
   }
 ];
+const vxeTableLayout = ref();
 const mainDeptCheckDisable = ref<boolean>(true)
 // 定义需要传给公共组件<common-tree />的字段（用于tree展示）
 const transmitProps = {
@@ -117,16 +117,21 @@ const transmitProps = {
   children: 'children'
 }
 const hospAreaName = ref<string>('')
-//用户检索关键字
+// 用户检索关键字
 const searchKey = ref<string>('')
-// 是否选择重症科室
+// 是否选择重症科室项
 const isCheckedMainDept = ref<Boolean>(false);
 const hospAreaList = reactive({
   data: <any>[]
 });
 const reactHospAreaDepList = ref<fetchHospAreaDepList[]>([])
 const tempHospAreaDepList = ref<fetchHospAreaDepList[]>([])
-
+const params = ref<fetchHosptAreaDepUserList>({
+  DeptId: '',
+  Keyword: '',
+  PageIndex: 1,
+  PageCount: 20,
+})
 onMounted(() => {
   // 获取初始院区列表
   fetchinitHsopAreaList();
@@ -136,11 +141,21 @@ const fetchinitHsopAreaList = async () => {
     const result = await fetchHosptAreaInfo();
     hospAreaList.data = result;
   } catch (error) {
-    throw (error)
+    throw (error);
   }
 }
-const handleNodeClick = () => {
-  console.log('子组件调用父组件handleNodeClick');
+const handleNodeClick = (deptId:string) => {
+  console.log(deptId, 'nodeId');
+  // 根据相应节点id，获取科室下人员信息
+  try {
+    params.value.DeptId = deptId
+    console.log(params.value,'params.value');
+    const result = fetchHosptAreaDepUserList(params.value);
+    console.log(result,'resultttttttttttttt');
+  } catch (error) {
+    throw (error)
+  }
+
 };
 const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
   console.log(`行选中事件`, row);
@@ -166,30 +181,22 @@ const selectedHospArea = async (areaId: string) => {
     reactHospAreaDepList.value.push(...result);
     tempHospAreaDepList.value.push(...result);
     console.log(reactHospAreaDepList.value, 'reactHospAreaDepList');
-    mainDeptCheckDisable.value = false
+    mainDeptCheckDisable.value = false;
   } catch (error) {
     throw (error);
   }
 };
-const filterIsMainDep = (depItem, newValue: Boolean) => {
-  if (depItem.children?.length) {
-    depItem.children = depItem.children.filter((depItem) => {
-      return filterIsMainDep(depItem, newValue);
-    })
-    return depItem.children.length ? true : false;
-  } else {
-    return depItem.isMainDept === newValue;
-  }
-};
+
 function filterDepList(newValue: boolean): void {
+  // 过滤前拿到初始数据
   reactHospAreaDepList.value = JSON.parse(JSON.stringify(tempHospAreaDepList.value));
   const filteredDepList = reactHospAreaDepList.value.filter((depItem) => {
-    return filterIsMainDep(depItem, newValue);
+    return useFilterCurrentField(depItem,'isMainDept', newValue);
   });
-  reactHospAreaDepList.value.length = 0;
-  reactHospAreaDepList.value.push(...filteredDepList);
+  // 赋值过滤后的数据
+  reactHospAreaDepList.value = filteredDepList;
 }
-function onChanageOffice(event: boolean): void {
+function onChanageDept(event: boolean): void {
   // 勾选重症
   if (event) {
     filterDepList(event);
@@ -243,3 +250,4 @@ function onChanageOffice(event: boolean): void {
   align-items: center;
 }
 </style>
+./useEvent

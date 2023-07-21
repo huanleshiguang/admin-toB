@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 10:09:40
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 10:42:44
+ * @LastEditTime: 2023-07-21 13:42:37
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\components\item-header.vue
  * @Description: 
 -->
@@ -23,11 +23,18 @@
     justify-content: space-between;
     height: 32px;
     // width: 300px;
-  }
-  .header-left  {
+    .header-left  {
     height: 32px;
     line-height: 32px;
     font-size: $font-size-16;
     font-weight: $font-weight-500;
   }
+  .header-right  {
+    height: 32px;
+    line-height: 32px;
+    font-size: $font-size-14;
+    font-weight: $font-weight-500;
+  }
+  }
+
 </style>
