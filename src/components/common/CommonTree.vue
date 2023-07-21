@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-18 09:32:45
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-20 17:35:35
+ * @LastEditTime: 2023-07-21 10:03:54
  * @FilePath: \servious-illness-admin\src\components\common\CommonTree.vue
  * @Description: 公共tree组件
 -->
@@ -14,7 +14,7 @@
     <el-scrollbar>
 
       <el-tree ref="treeRef" :data="getTreeData" :props="defaultProps" :showCheckbox="showCheckbox"
-        :filter-node-method="filterNode" @node-click="handleNodeClick()">
+        :filter-node-method="filterNode" @node-click="handleNodeClick">
         <template v-if="!showCheckbox" v-slot="{ node, data }">
           <el-icon v-if="data.children.length && node.expanded">
             <!-- 有子节点并且已展开 -->
@@ -67,16 +67,11 @@ const defaultProps = {
 };
 const filterText = ref('');
 const treeRef = ref<InstanceType<typeof ElTree>>();
-const treeList = reactive(props.data)
 
 const getTreeData = computed(() => props.data)
 
 watch(filterText, (val) => {
   treeRef.value!.filter(val);
-})
-watch(treeList, () => {
-  //  forceUpdate()
-  // $forceUpdate()
 })
 const filterNode = (value: string, data: any) => {
   if (!value) return true;
@@ -87,9 +82,6 @@ const handleNodeClick = () => {
   emits('handleNodeClick');
 }
 
-// setInterval(() => {
-//   getTreeData.value = [{ "children": [], "id": "6f0d7d2d70a949bbb61d44b416c46d80", "parentId": "0", "deptCode": "10001", "deptName": "信息科", "isMainDept": true }]
-// }, 5000)
 </script>
   
 <style scoped lang="scss">

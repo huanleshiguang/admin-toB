@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-14 14:45:11
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-20 11:25:54
+ * @LastEditTime: 2023-07-21 09:47:13
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\RoleConfig\index.vue
  * @Description: 
 -->
@@ -30,15 +30,7 @@
 <script setup lang='ts'>
 import itemHeader from '../components/ItemHeader.vue';
 import itemContent from '../components/ItemContent.vue';
-import CommonTree from '/@/components/common/CommonTree.vue';
-import { apiGetFeatureList } from '/@/api/system/user';
-// interface Tree {
-//   menuName: string
-//   children?: Tree[]
-// };
-// const data: Tree[] = reactive({
-//   data:[]
-// });
+
 const feactureList = <any>[]
 const reacFeactureList = reactive(feactureList)
 const transmitProps = {

@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-20 19:35:12
+ * @LastEditTime: 2023-07-21 10:01:21
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
  * @Description: 架构管理界面
 -->
@@ -19,7 +19,8 @@
                   <el-option v-for="item in hospAreaList.data" :key="item.id" :label="item.hospAreaName"
                     :value="item.hospAreaName" @click="selectedHospArea(item.id)" /></el-select>
               </div>
-              <el-checkbox @change="onChanageOffice" :disabled="mainDeptCheckDisable" v-model="isCheckedMainDept" label="重症科室" />
+              <el-checkbox @change="onChanageOffice" :disabled="mainDeptCheckDisable" v-model="isCheckedMainDept"
+                label="重症科室" />
             </div>
           </div>
           <!-- tree container -->
@@ -126,10 +127,18 @@ const hospAreaList = reactive({
 const reactHospAreaDepList = ref<getHospAreaDepList[]>([])
 const tempHospAreaDepList = ref<getHospAreaDepList[]>([])
 
-onMounted(async () => {
-  const result = await apiGetHosptAreaInfo();
-  hospAreaList.data = result;
+onMounted(() => {
+  // 获取初始院区列表
+  fetchinitHsopAreaList();
 });
+const fetchinitHsopAreaList = async () => {
+  try {
+    const result = await apiGetHosptAreaInfo();
+    hospAreaList.data = result;
+  } catch (error) {
+    throw(error)
+  }
+}
 const handleNodeClick = () => {
   console.log('子组件调用父组件handleNodeClick');
 };
@@ -138,7 +147,7 @@ const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
 };
 const handleSearch = () => {
   // 获取关键字
-  console.log(searchKey,'searchKey');
+  console.log(searchKey, 'searchKey');
   vxeTableLayout.value.refresh(true);
 };
 async function initMethod(params: any) {
@@ -183,7 +192,7 @@ function filterDepList(newValue: boolean): void {
 }
 function onChanageOffice(event: boolean): void {
   // 勾选重症
-  if(event) {
+  if (event) {
     filterDepList(event);
   }
   // 未勾选重症
