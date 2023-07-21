@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 14:32:21
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-19 09:46:29
+ * @LastEditTime: 2023-07-21 11:07:21
  * @FilePath: \servious-illness-admin\src\views\system\bunk\components\BunkManagement.vue
  * @Description: 院区管理
 -->
@@ -31,8 +31,6 @@
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import { ArrowDown } from '@element-plus/icons-vue';
-import { onMounted, ref } from 'vue';
-import { apiGetHosptAreaInfo } from '/@/api/system/user';
 const value = ref('');
 const columnsList = [
   {
@@ -71,11 +69,11 @@ async function initMethod(params: any) {
 }
 onMounted(() => {
   // console.log(vxeTableLayout.value);
-  getHospAreaList()
+  fetchHospAreaList()
 });
-const getHospAreaList = async () => {
+const fetchHospAreaList = async () => {
   try {
-    const result = await apiGetHosptAreaInfo()
+    const result = await apiFetchHosptAreaInfo()
     reactiveHospAreaList.length = 0;
     reactiveHospAreaList.push(...result)
   } catch (error) {

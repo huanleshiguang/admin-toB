@@ -23,7 +23,6 @@
 <script setup lang="ts">
 import DialogLayout from '/@/components/DialogLayout/index.vue';
 import type { FormRules } from 'element-plus';
-import { apiUpdateHosptAreaInfo } from '/@/api/system/user';
 import type { updateHospAreaInfo } from '/@/api/system/types/user'
 const title = ref('新增院区');
 const dialogLayout = ref<any>();

@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 10:01:21
+ * @LastEditTime: 2023-07-21 11:13:48
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
  * @Description: 架构管理界面
 -->
@@ -63,7 +63,7 @@
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import { ArrowDown, Search, Document, Folder, FolderOpened } from '@element-plus/icons-vue';
-import type { getHospAreaDepList } from '/@/api/system/types/user'
+import type { fetchHospAreaDepList } from '/@/api/system/types/user'
 
 const vxeTableLayout = ref();
 const columnsList = [
@@ -124,8 +124,8 @@ const isCheckedMainDept = ref<Boolean>(false);
 const hospAreaList = reactive({
   data: <any>[]
 });
-const reactHospAreaDepList = ref<getHospAreaDepList[]>([])
-const tempHospAreaDepList = ref<getHospAreaDepList[]>([])
+const reactHospAreaDepList = ref<fetchHospAreaDepList[]>([])
+const tempHospAreaDepList = ref<fetchHospAreaDepList[]>([])
 
 onMounted(() => {
   // 获取初始院区列表
@@ -133,10 +133,10 @@ onMounted(() => {
 });
 const fetchinitHsopAreaList = async () => {
   try {
-    const result = await apiGetHosptAreaInfo();
+    const result = await apiFetchHosptAreaInfo();
     hospAreaList.data = result;
   } catch (error) {
-    throw(error)
+    throw (error)
   }
 }
 const handleNodeClick = () => {
@@ -151,7 +151,6 @@ const handleSearch = () => {
   vxeTableLayout.value.refresh(true);
 };
 async function initMethod(params: any) {
-  console.log(params, 'params');
   const { pageCount } = params;
   return {
     total: 100,
@@ -162,7 +161,7 @@ async function initMethod(params: any) {
 };
 const selectedHospArea = async (areaId: string) => {
   try {
-    const result: getHospAreaDepList[] = await apiGetHosptAreaDepList(areaId);
+    const result: fetchHospAreaDepList[] = await apiFetchHosptAreaDepList(areaId);
     reactHospAreaDepList.value.length = 0;
     reactHospAreaDepList.value.push(...result);
     tempHospAreaDepList.value.push(...result);
