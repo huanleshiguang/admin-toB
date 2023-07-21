@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 21:03:39
+ * @LastEditTime: 2023-07-21 21:07:13
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
  * @Description: 架构管理模块
 -->
@@ -250,4 +250,3 @@ function onChanageDept(event: boolean): void {
   align-items: center;
 }
 </style>
-./useEvent
