@@ -1,6 +1,6 @@
 <template>
 	<div>
-		整体护理fdfd
+		整体护理组件
 	</div>
 </template>
 <script>

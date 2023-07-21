@@ -19,7 +19,7 @@
 <script setup lang="ts">
 	import myInfo from './components/info/index.vue'
 	import navList from '/@/components/navList/index.vue';
-	import {care_0,care_1} from './components/index';
+	import { care_0,care_1 } from './components/index';
 	const careComponents = {care_0,care_1};
 	const data = reactive({
 		componentName:careComponents['care_0']
