@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-20 19:30:56
+ * @LastEditTime: 2023-07-20 19:35:12
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
  * @Description: 架构管理界面
 -->
@@ -143,10 +143,10 @@ const handleSearch = () => {
 };
 async function initMethod(params: any) {
   console.log(params, 'params');
-  const { pageSize } = params;
+  const { pageCount } = params;
   return {
     total: 100,
-    records: [...new Array(pageSize)].map((_, index) => {
+    records: [...new Array(pageCount)].map((_, index) => {
       return { id: index, department: '检验科', job_number: '001', name: '张三', login_name: '12414', type: '1', sex: '女', quali: '临床医师', seniority: '3', superiors: '里斯', threelevel: '王五' };
     })
   };

@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 10:09:08
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-20 19:15:56
+ * @LastEditTime: 2023-07-20 19:40:43
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\index.vue
  * @Description: 角色管理板块
 -->
@@ -37,8 +37,8 @@ import FeactureList from './FeactureList/index.vue'
   justify-content: space-around;
   height: 100%;
   div {
-    width: 600px;
-    // padding-right: 200px;
+    width: 500px;
+    padding: 20px 100px 0 0;
   }
 }
 </style>

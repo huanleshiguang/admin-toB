@@ -2,12 +2,12 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-14 14:45:11
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-20 19:07:46
+ * @LastEditTime: 2023-07-20 19:38:58
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\RoleConfig\index.vue
  * @Description: 
 -->
 <template>
-  <div>
+  <div class="role-config-comp">
     <itemHeader>
       <template #header-left>
         <span>角色配置</span>
@@ -61,4 +61,10 @@ const transmitProps = {
 }
 </script>
   
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.role-config-comp {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+</style>

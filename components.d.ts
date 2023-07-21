@@ -52,6 +52,7 @@ declare module 'vue' {
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     FlexSpacer: typeof import('./src/components/common/FlexSpacer.vue')['default']
+    IEpArrowDown: typeof import('~icons/ep/arrow-down')['default']
     LoginForm: typeof import('./src/components/login/LoginForm.vue')['default']
     NavList: typeof import('./src/components/navList/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
