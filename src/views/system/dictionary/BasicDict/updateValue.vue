@@ -4,7 +4,7 @@
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="值域值(中文)" prop="rangeName" required>
-            <el-input v-model.number="form.rangeName" placeholder="请输入值域值(中文)" />
+            <el-input v-model="form.rangeName" placeholder="请输入值域值(中文)" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
@@ -33,11 +33,12 @@
 // import DialogLayout from '/@/components/DialogLayout/index.vue';
 import type { FormRules } from 'element-plus';
 import { DictValueInfo } from '/@/api/system/types/dict';
+import { cloneDeep } from 'lodash-es';
 // import { updateBaseDictValue } from '/@/api/system/dict';
 // import { useMessage } from '/@/hooks/common/useMessage';
 const { createMessage } = useMessage();
 
-const form = reactive<DictValueInfo>({
+let form = reactive<DictValueInfo>({
   dictId: '',
   rangeName: '',
   rangeEnName: '',
@@ -49,7 +50,18 @@ const dialogLayout = ref<any>();
 const open = (data) => {
   const { dictName } = data;
   title.value = `${data?.id ? '编辑' : '新增'}-${dictName}-值域项`;
-  form.dictId = data.dictId;
+  if (data?.id) {
+    form = Object.assign(form, cloneDeep(data));
+  } else {
+    form = reactive<DictValueInfo>({
+      dictId: data.dictId,
+      rangeName: '',
+      rangeEnName: '',
+      rangeValue: '',
+      remark: ''
+    });
+  }
+
   dialogLayout.value.open();
 };
 const close = () => {
@@ -78,15 +90,16 @@ const emit = defineEmits(['refresh']);
 const submit = async () => {
   const result = await formRef.value.validate();
   if (result) {
+    const { id } = form;
     try {
       const result = await updateBaseDictValue(form);
       console.log(result);
 
-      createMessage.success('新增成功');
+      createMessage.success(`${id ? '编辑' : '新增'}成功`);
       emit('refresh');
       close();
     } catch (e) {
-      createMessage.error(e || '新增失败');
+      createMessage.error(e || `${id ? '编辑' : '新增'}失败`);
     }
   }
 };

@@ -2,9 +2,9 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-14 14:45:11
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 09:47:13
+ * @LastEditTime: 2023-07-21 13:49:35
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\RoleConfig\index.vue
- * @Description: 
+ * @Description: 角色管理->功能清单组件
 -->
 <template>
   <div class="feature-list-comp">
@@ -42,7 +42,7 @@ onMounted(()=>{
 })
 const getFeatureList = async ()=>{
   try {
-    const result = await apiGetFeatureList();
+    const result = await fetchFeatureList();
     reacFeactureList.length= 0
     // apiData.data = result
     reacFeactureList.push(...result);
