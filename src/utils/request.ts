@@ -2,30 +2,27 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-09-10 10:08:11
- * @LastEditTime: 2023-07-19 17:05:51
+ * @LastEditTime: 2023-07-22 17:36:22
  * @Reference:
  */
 import axios, { AxiosResponse, AxiosError } from 'axios';
 // import type { ResponseData } from '/@/types/axios';
 // import { Exceptionless } from '@exceptionless/vue';
 import { ErrorResponseData } from '/@/model/common/axiosOption';
-import { getToken } from '/@/utils/session';
 
 import { useResponseErrorData } from '/@/hooks/request/useAxios';
 import { useErrorResponse } from '/@/hooks/request/useErrorResponse';
-// import { useBackToLogin } from '/@/hooks/request/useBackToLogin';
+import { useConfigParams } from '/@/hooks/request/useRequestConfigParams';
 import { useClearParams } from '/@/hooks/common';
-
 
 type PartialResponse = DeepPartial<AxiosResponse<ErrorResponseData<null>>>;
 
 const { createMessage } = useMessage();
-// const {privateRouter} = useBackToLogin()
 
 const service = axios.create({
   baseURL: `${import.meta.env.VITE_BASE_API}`,
-  // 30s 请求延时
-  timeout: 30000,
+  // 10s 请求延时
+  timeout: 10000,
   timeoutErrorMessage: `请求超时`,
   // 表示跨域请求时是否需要使用凭证
   withCredentials: false
@@ -41,7 +38,13 @@ const errorResponse: PartialResponse = {
  */
 service.interceptors.request.use(
   (config: any) => {
-    config.headers!.Authorization = getToken() ?? '';
+    const { token, userId, tenantId, hospitalArea, clientSide } = useConfigParams();
+    config.headers!.Authorization = token;
+    // 请求公共参数，每次请求都携带
+    config.headers!['User-Id'] = userId;
+    config.headers!['Tenant-Id'] = tenantId;
+    config.headers!['Hospital-Area'] = hospitalArea;
+    config.headers!['Client-Side'] = clientSide;
     config.data = useClearParams(config.data);
     return config;
   },
@@ -62,7 +65,7 @@ service.interceptors.response.use(
     createMessage({
       type: 'error',
       duration: 1500,
-      message: useErrorResponse(errorRes.status ?? 0)
+      message: useErrorResponse(errorRes?.status ?? 0)
     });
     return Promise.reject(error.response);
   }
@@ -74,7 +77,7 @@ service.interceptors.response.use(
  * @param response 响应数据
  * @returns
  */
-function useResponse(response: AxiosResponse) {
+function useResponse<T = any>(response: AxiosResponse): Promise<T> {
   const { status: reponseStatsus, data: responsedData } = response ?? errorResponse;
   const { code, data, message, success } = responsedData;
   return new Promise((resolve, reject) => {
@@ -95,7 +98,7 @@ function useResponse(response: AxiosResponse) {
 }
 
 const request = {
-  get: async ({ ...opt }: any): Promise<any> => {
+  get: async <T>({ ...opt }: any): Promise<T> => {
     const { url, data, headers } = opt;
     return await service({
       method: 'GET',
@@ -104,7 +107,7 @@ const request = {
       headers: headers ?? { 'Content-Type': 'application/json' }
     }).then(useResponse);
   },
-  post: async ({ ...opt }: any): Promise<any> => {
+  post: async <T>({ ...opt }: any): Promise<T> => {
     const { url, data, headers } = opt;
     // const client = exceptionlessClient;
 

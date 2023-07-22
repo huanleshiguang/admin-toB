@@ -10,3 +10,16 @@ export interface ErrorResponseData<T extends any> {
   message: string;
   data: T | null;
 }
+
+/**
+ * 请求公共参数
+ */
+export interface RequestConfigParams {
+  token: string;
+  userId: string;
+  tenantId: string;
+  // 设备运行医院
+  hospitalArea: string;
+  // 系统运行设备
+  clientSide: string;
+}

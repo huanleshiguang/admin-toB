@@ -1,3 +1,11 @@
+/*
+ * @Autor: QMZhao
+ * @Date: 2023-07-19 17:54:48
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-07-22 16:35:12
+ * @Description: 
+ * @FilePath: \servious-illness-admin\src\components\login\useLoginStorage.ts
+ */
 import { LoginResponse, UserLoginForm } from '/@/model/views/login';
 
 /**
@@ -21,7 +29,8 @@ export function useLoginStorage() {
       userPrivies: [],
       userRoles: []
     };
-    useSessionStorage('userInfo', resData ?? targetResData);
+    const targetData = resData ?? targetResData;
+    useStorage('userInfo', targetData, sessionStorage);
   }
 
   /**
@@ -35,8 +44,8 @@ export function useLoginStorage() {
    * 根据记住用户勾选项填充登录信息
    */
   function setRecordUserName() {
-    const userForm = useGetSessionStorage('recordUser').value;
-    if (userForm) {
+    const userForm = useGetSessionStorage('recordUser').value as UserLoginForm;
+    if (userForm && Object.keys(userForm).length) {
       loginForm.value = userForm;
     } else {
       loginForm.value = {

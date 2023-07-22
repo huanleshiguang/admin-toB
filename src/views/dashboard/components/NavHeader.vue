@@ -2,7 +2,7 @@
  * @Autor: QMZhao
  * @Date: 2023-07-18 14:18:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-20 18:34:40
+ * @LastEditTime: 2023-07-22 14:45:42
  * @Description: 主界面导航栏
  * @FilePath: \servious-illness-admin\src\views\dashboard\components\NavHeader.vue
 -->
@@ -39,6 +39,8 @@
 </template>
 
 <script lang="ts" setup>
+import { LoginResponse } from '/@/model/views/login';
+
 const privateRouter = useRouter();
 const dropDownList = ref<Dashboard.DropDownItem[]>([
   {
@@ -64,9 +66,9 @@ const dashboardNavData = ref({
 
 // 初始化数据
 function initUserInfo(): void {
-  const userInfoStorage = useGetSessionStorage('userInfo').value;
+  const userInfoStorage = useGetSessionStorage('userInfo').value as LoginResponse;
   if (!userInfoStorage) return;
-  const { userInfo, userRoles } = useGetSessionStorage('userInfo').value;
+  const { userInfo, userRoles } = userInfoStorage;
   const { userName } = userInfo;
   dashboardNavData.value.userName = userName || '';
   dashboardNavData.value.roleName = userRoles.length ? userRoles[0].roleName : '';
