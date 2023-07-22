@@ -2,13 +2,11 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2023-02-11 15:51:21
- * @LastEditTime: 2023-07-13 18:50:29
+ * @LastEditTime: 2023-07-21 19:14:26
  * @Reference:
  */
-import { ImenuList } from '/@/model/common';
-
 export const useNavMenuList = defineStore('navMenuList', () => {
-  const navMenuList = ref<Array<ImenuList>>([
+  const navMenuList = ref<Array<ICUCommon.MenuList>>([
     {
       id: 1001,
       label: '运行参数',
@@ -38,7 +36,7 @@ export const useNavMenuList = defineStore('navMenuList', () => {
       path: '/system/dictionary'
     }
   ]);
-  function setNavMenuList(menuList: Array<ImenuList>) {
+  function setNavMenuList(menuList: Array<ICUCommon.MenuList>) {
     navMenuList.value = menuList;
   }
   
