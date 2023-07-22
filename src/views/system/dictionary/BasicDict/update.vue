@@ -4,7 +4,7 @@
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="编码" prop="dictCode" required>
-            <el-input v-model.number="form['dictCode']" placeholder="请输入编码" />
+            <el-input v-model="form['dictCode']" placeholder="请输入编码" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
