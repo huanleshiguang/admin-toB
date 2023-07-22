@@ -1,6 +1,6 @@
 <template>
   <el-tabs class="common-tabs" :type="props.type">
-    <el-tab-pane v-for="item in tabList" :key="item.id" :label="item.label">
+    <el-tab-pane v-for="item in tabList" :key="item.id" :label="item.label" :lazy="lazy" >
       <component :is="item.component" class="common-tabs_component" />
     </el-tab-pane>
     <slot />
@@ -19,10 +19,13 @@ const props = withDefaults(
   defineProps<{
     type?: string;
     tabList: TabList[];
+    // 标签是否延迟渲染
+    lazy: boolean;
   }>(),
   {
     type: 'border-card',
-    tabList: () => []
+    tabList: () => [],
+    lazy: true
   }
 );
 </script>
