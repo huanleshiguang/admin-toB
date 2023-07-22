@@ -2,12 +2,14 @@
 	<div class="h_100">
 		<myInfo></myInfo>
 		<div class="mt10">
-			<navList />
+			<navList @change="change"/>
 		</div>
 		<div class="contentBox">
 			<el-scrollbar>
 				<div>
-					这里是动态组件内容部分
+					<keep-alive>
+						<component :is="data.componentName"></component>
+					</keep-alive>
 				</div>
 			</el-scrollbar>
 		</div>
@@ -17,6 +19,14 @@
 <script setup lang="ts">
 	import myInfo from './components/info/index.vue'
 	import navList from '/@/components/navList/index.vue';
+	import { care_0,care_1 } from './components/index';
+	const careComponents = {care_0,care_1};
+	const data = reactive({
+		componentName:careComponents['care_0']
+	})
+	const change = (index:number) => {
+		data.componentName = careComponents['care_' + index];
+	}
 </script>
 
 <style scoped>

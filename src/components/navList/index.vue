@@ -48,10 +48,13 @@
 		navList:[] as any
 	})
 	
+	const emit = defineEmits(['change']);
+	
 	data.navList = props.navList;
 
 	const changeNav = (index:number) => {
-		data.current = index
+		data.current = index;
+		emit('change',index)
 	}
 </script>
 

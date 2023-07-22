@@ -1,20 +1,29 @@
+<!--
+ * @Author: ZhouHao joehall@foxmail.com
+ * @Date: 2023-07-18 09:32:45
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-07-21 20:03:22
+ * @FilePath: \servious-illness-admin\src\components\common\CommonTree.vue
+ * @Description: 公共tree组件
+-->
 <template>
   <div class="tree-wrapper">
     <div v-if="showSearch">
-      <el-input v-model="filterText" placeholder="请输入科室名称搜索" size="default" />
+      <el-input v-model="filterText" lazy placeholder="请输入科室名称搜索" size="default" />
     </div>
     <el-scrollbar>
-      <el-tree ref="treeRef" :data="data" :props="defaultProps" :showCheckbox="showCheckbox" :filter-node-method="filterNode" @node-click="handleNodeClick()">
+      <el-tree ref="treeRef" :data="getTreeData" :props="defaultProps" :showCheckbox="showCheckbox"
+        :filter-node-method="filterNode" node-key="id" @node-click="handleNodeClick">
         <template v-if="!showCheckbox" v-slot="{ node, data }">
-          <el-icon v-if="data.children && node.expanded">
+          <el-icon v-if="data.children.length && node.expanded">
             <!-- 有子节点并且已展开 -->
             <slot name="icon-haschild&expanded" />
           </el-icon>
-          <el-icon v-if="data.children && !node.expanded">
+          <el-icon v-if="data.children.length && !node.expanded">
             <!-- 有子节点并且未展开 -->
             <slot name="icon-haschild&unexpanded" />
           </el-icon>
-          <el-icon v-if="!data?.children">
+          <el-icon v-if="!data?.children.length">
             <!-- 无子节点 -->
             <slot name="icon-nohaschild" />
           </el-icon>
@@ -26,44 +35,53 @@
 </template>
   
 <script setup lang='ts'>
-// import { Search } from '@element-plus/icons-vue';
-import { ElTree } from 'element-plus'; 
+import { ElTree } from 'element-plus';
 import 'element-plus/es/components/tree/style/css'
 
-defineProps({
+const props = defineProps({
   data: {
     type: Array,
     default: [],
     required: true
   },
+  // 是否展示checkbox
   showCheckbox: {
     type: Boolean,
     default: false
   },
-  showSearch:{
+  // 是否展示搜索框
+  showSearch: {
     type: Boolean,
     default: false
-  }
+  },
+  // 要展示的字段名
+  transmitProps: {
+    type: Object,
+    required: true
+  },
 })
 const defaultProps = {
-  children: 'children',
-  label: 'menuName',
+  children: `${props.transmitProps.children}`,
+  label: `${props.transmitProps.label}`
 };
-const filterText = ref('')
-const treeRef = ref<InstanceType<typeof ElTree>>()
+const filterText = ref('');
+const treeRef = ref<InstanceType<typeof ElTree>>();
+
+const getTreeData = computed(() => props.data);
 
 watch(filterText, (val) => {
-  console.log(treeRef,'treeRef.value!');
   treeRef.value!.filter(val);
 })
 const filterNode = (value: string, data: any) => {
-  if (!value) return true
-  return data.menuName.includes(value)
+  if (!value) return true;
+  return data[props.transmitProps.label].includes(value);
 }
-const emits = defineEmits(['handleNodeClick'])
+const emits = defineEmits(['handleNodeClick']);
 const handleNodeClick = () => {
-  emits('handleNodeClick');
+  const id = treeRef.value?.getCurrentKey();
+  emits('handleNodeClick',id);
 }
+
 </script>
   
 <style scoped lang="scss">

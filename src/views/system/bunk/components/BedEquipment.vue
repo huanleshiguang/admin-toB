@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 14:40:09
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-14 15:57:02
+ * @LastEditTime: 2023-07-20 10:30:34
  * @FilePath: \servious-illness-admin\src\views\system\bunk\components\BedEquipment.vue
  * @Description: 
 -->
@@ -65,7 +65,7 @@
             </div>
           </div>
           <el-card class="box-card">
-            <el-table :data="tableData" style="width: 100%">
+            <el-table  style="width: 100%">
               <el-table-column :label="item.label" align="center" v-for="item in devTabHeader " :key="item.label"
                 :prop="item.prop">
                 <template v-slot="scope">
@@ -85,7 +85,7 @@
             </div>
           </div>
           <el-card class="box-card">
-            <el-table :data="tableData" style="width: 100%">
+            <el-table  style="width: 100%">
               <el-table-column :label="item.label" align="center" v-for="item in decTabHeader " :key="item.label"
                 :prop="item.prop">
                 <template v-slot="scope">

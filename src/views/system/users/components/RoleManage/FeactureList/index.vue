@@ -2,9 +2,9 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-14 14:45:11
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-18 13:46:25
+ * @LastEditTime: 2023-07-21 13:49:35
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\RoleConfig\index.vue
- * @Description: 
+ * @Description: 角色管理->功能清单组件
 -->
 <template>
   <div class="feature-list-comp">
@@ -18,9 +18,10 @@
       </template>
     </itemHeader>
     <el-divider></el-divider>
-    <itemContent>
+    <itemContent >
       <template #default>
-        <CommonTree :data="apiData.data" :show-checkbox="true" />
+        <common-tree :data="reacFeactureList" :show-checkbox="true" :transmit-props="transmitProps">
+        </common-tree>
       </template>
     </itemContent>
   </div>
@@ -29,26 +30,22 @@
 <script setup lang='ts'>
 import itemHeader from '../components/ItemHeader.vue';
 import itemContent from '../components/ItemContent.vue';
-import CommonTree from '/@/components/common/CommonTree.vue';
-import { apiGetFeatureList } from '/@/api/system/user';
-// interface Tree {
-//   menuName: string
-//   children?: Tree[]
-// };
-// const data: Tree[] = reactive({
-//   data:[]
-// });
-const apiData = reactive({
-  data:[]
-});
 
+const feactureList = <any>[]
+const reacFeactureList = reactive(feactureList)
+const transmitProps = {
+  label: 'menuName',
+  children: 'children'
+}
 onMounted(()=>{
   getFeatureList()
 })
 const getFeatureList = async ()=>{
   try {
-    const result = await apiGetFeatureList();
-    apiData.data = result
+    const result = await fetchFeatureList();
+    reacFeactureList.length= 0
+    // apiData.data = result
+    reacFeactureList.push(...result);
   } catch (error) {
     throw (error);
   }

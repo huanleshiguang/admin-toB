@@ -1,12 +1,5 @@
-<!--
- * @Author: QMZhao
- * @Description: 
- * @Date: 2021-09-16 15:59:17
- * @LastEditTime: 2023-07-13 13:38:53
- * @Reference: 
--->
 <script setup lang="ts">
-import { LoginForm } from '/@/components/login';
+
 </script>
 
 <template>
