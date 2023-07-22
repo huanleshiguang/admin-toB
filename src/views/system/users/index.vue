@@ -1,20 +1,18 @@
 <!--
  * @Autor: ZhouHao joehall@foxmail.com
  * @Date: 2023-02-17 22:45:44
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-14 15:44:14
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-07-21 18:57:40
  * @Description: 
- * @FilePath: /vue-vite-elementplus-zhao/src/views/system/menu.vue
+ * @FilePath: \servious-illness-admin\src\views\system\users\index.vue
 -->
 <template>
   <div class="three-container w_100 h_100">
-    <common-tabs :tab-list="tabList" />
+    <CommonTabs :tab-list="tabList" />
   </div>
 </template>
 <script setup lang="ts">
-import CommonTabs from '/@/components/common/CommonTabs.vue';
-import { ArcManage, RoleManage, HospAreaManage } from './components/index';
-
+import { ArcManage, RoleManage, HospAreaManage, menuManage } from './components/index';
 
 const tabList = [
   {
@@ -31,6 +29,11 @@ const tabList = [
     id: '3',
     label: '院区管理',
     component: HospAreaManage
+  },
+  {
+    id: '4',
+    label: '菜单管理',
+    component: menuManage
   }
 ];
 </script>

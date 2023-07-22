@@ -1,36 +1,39 @@
 <!--
- * @Author: ZhouHao joehall@foxmail.com
- * @Date: 2023-07-13 10:09:08
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-20 19:40:43
+ * @Autor: QMZhao
+ * @Date: 2023-07-21 10:00:30
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-07-22 18:15:43
+ * @Description: 
  * @FilePath: \servious-illness-admin\src\views\system\users\components\RoleManage\index.vue
- * @Description: 角色管理板块
 -->
-
 <template>
   <div class="role-manage">
-    <div calss="role-config">
-      <RoleConfig />
+    <div v-for="item in systemRoles" :key="item.label">
+      {{ item.label }}
     </div>
-    <!-- <div calss="work-stat">
-     <WorkStat />
-    </div> -->
-    <div calss="feac-list">
-      <FeactureList />
-    </div>
-    <!-- <div calss="feac-limit">
-      <FeactureLimt />
-    </div> -->
   </div>
 </template>
-  
-<script setup lang='ts'>
-import RoleConfig from './RoleConfig/index.vue'
-// import FeactureLimt from './FeactureLimt/index.vue'
-import FeactureList from './FeactureList/index.vue'
 
+<script setup lang="ts">
+import RoleConfig from './RoleConfig/index.vue';
+// import FeactureLimt from './FeactureLimt/index.vue'
+import FeactureList from './FeactureList/index.vue';
+const systemRoles = ref<ICUCommon.TabsComponens[]>([
+  {
+    label: "角色配置",
+    component: RoleConfig
+  },
+  {
+    label: "配置",
+    component: FeactureList
+  },
+  {
+    label: "色配置",
+    component: RoleConfig
+  },
+])
 </script>
-  
+
 <style scoped lang="scss">
 .role-manage {
   display: flex;
