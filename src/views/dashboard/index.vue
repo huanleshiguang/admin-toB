@@ -49,8 +49,8 @@
 
 <script lang="ts" setup>
 import { NavHeader } from './components';
-import { useDashboardCommon } from './composition/useCommon';
-import { useDashboradEvent } from './composition/useEvent';
+import { useDashboardCommon } from './composables/useCommon';
+import { useDashboradEvent } from './composables/useEvent';
 const { menuList, notificationList, supportList } = useDashboardCommon();
 const { onJumpTo } = useDashboradEvent();
 </script>
