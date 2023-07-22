@@ -91,11 +91,8 @@ const loading = ref<boolean>(false);
 const table = ref<any>(null);
 const total = ref<number>(0);
 const screenHeight = ref(window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);
-console.log(screenHeight, '232323');
 
 watch(screenHeight, (val) => {
-  console.log('6666', val);
-  console.log('5555', table.value);
   table.value.recalculate(true);
   table.value.refreshScroll();
 });
