@@ -40,6 +40,7 @@ declare global {
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const defineStore: typeof import('pinia')['defineStore']
+  const deleteBaseDictValue: typeof import('./src/api/system/dict')['deleteBaseDictValue']
   const deleteHosptAreaInfo: typeof import('./src/api/system/user')['deleteHosptAreaInfo']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']

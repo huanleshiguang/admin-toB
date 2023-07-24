@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 19:57:02
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 11:26:21
+ * @LastEditTime: 2023-07-24 17:18:47
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HosptAreaManage.vue
  * @Description: 院区管理
 -->
@@ -20,8 +20,8 @@
       </template>
       <template #columns>
         <vxe-column title="操作" align="center" fixed="right">
-          <template #default="{ $columnIndex, row }">
-            <el-button link type="primary" @click="editRow($columnIndex, row)">编辑</el-button>
+          <template #default="{ row }">
+            <el-button link type="primary" @click="editRow(row)">编辑</el-button>
             <el-popconfirm confirm-button-text="是" cancel-button-text="否" :icon="InfoFilled" icon-color="#626AEF"
               title="确定要删除这条信息吗？" @confirm="deleteRow(row)">
               <template #reference>
@@ -41,6 +41,8 @@
 <script setup lang='ts'>
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
+import { hospAreaInfo } from '/@/api/system/types/user';
+import update from './update.vue';
 import {
   Plus,
   InfoFilled
@@ -48,56 +50,53 @@ import {
 
 const vxeTableLayout = ref();
 const updateRef = ref<any>();
-let records = reactive([])
+let tableList = ref<hospAreaInfo[]>([])
 const columnsList = [
   {
-    title: '编码',
-    field: 'hospAreaCode',
+    title: '院区编码',
+    field: 'hospAreaCode'
   },
   {
     title: '院区名称',
-    field: 'hospAreaName',
+    field: 'hospAreaName'
   }
 ];
 const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
   console.log(`行选中事件`, row);
 };
-async function initMethod(params: any) {
-  console.log(params, 'params1');
+async function initMethod() {
   try {
-    const data = await fetchHosptAreaInfo()
-    console.log(data, "data"); // true
-
-    records = data.map(item => {
-      const { id, hospAreaCode, hospAreaName } = item
+    const result: hospAreaInfo[] = await fetchHosptAreaInfo()
+    tableList.value = result.map(item => {
+      const { id, hospAreaName } = item
       return {
         id,
-        hospAreaCode,
         hospAreaName
       }
     })
-    const total = records.length
+    // const total = result.total
+    // const records = result.pageData
+    // const total = result.length
+    // const { records,total } = tableList
     return {
-      total,
-      records
+      // total,
+      // records
     };
   } catch (error) {
-    throw (error as Error)
+    throw (error)
   }
 }
 const add = () => {
   updateRef.value.open();
 };
-const editRow = (columnIndex, row) => {
-  console.log(row);
-
-  console.log(columnIndex, 'columnIndex');
+const editRow = (row: hospAreaInfo) => {
+  console.log(row, 'row');
 
   updateRef.value.open(row);
 };
-const deleteRow = (row) => {
-  console.log(row,'row');
-  deleteHosptAreaInfo(row.id).then((res) => {
+const deleteRow = (row: hospAreaInfo) => {
+  console.log(row, 'row');
+  deleteHosptAreaInfo(row.hospAreaCode).then((res) => {
     if (res) {
       reFresh();
     }
@@ -108,6 +107,4 @@ const reFresh = () => {
 }
 </script>
   
-<style scoped lang='scss'>
-
-</style>
+<style scoped lang='scss'></style>

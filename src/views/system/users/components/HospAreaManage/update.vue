@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 11:26:37
+ * @LastEditTime: 2023-07-22 15:56:40
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 
 -->
@@ -11,10 +11,10 @@
     <el-form ref="formRef" :model="form" :rules="rules" label-width="auto" label-position="right">
 
       <el-form-item label="编码" prop="hospAreaCode" required>
-        <el-input v-model="form.hospAreaCode" type="text" placeholder="请输入描述" />
+        <el-input v-model="form.hospAreaCode" type="text" placeholder="请输入院区编码" />
       </el-form-item>
       <el-form-item label="院区名称" prop="hospAreaName" required>
-        <el-input v-model="form.hospAreaName" placeholder="请输入描述" />
+        <el-input v-model="form.hospAreaName" placeholder="请输入院区名称" />
       </el-form-item>
     </el-form>
   </DialogLayout>
@@ -23,26 +23,27 @@
 <script setup lang="ts">
 import DialogLayout from '/@/components/DialogLayout/index.vue';
 import type { FormRules } from 'element-plus';
-import type { updateHospAreaInfo } from '/@/api/system/types/user'
+import type { hospAreaInfo } from '/@/api/system/types/user';
+
 const title = ref('新增院区');
 const dialogLayout = ref<any>();
-
-
-const open = (data) => {
+const open = (data:hospAreaInfo) => {
+  console.log(data,'dattt');
   title.value = `${data ? '编辑' : '新增'}院区`;
+  // ;
   Object.assign(form, data);
+  console.log(form,'formmmmmmmmmm')
   dialogLayout.value.open();
 };
 const close = () => {
   dialogLayout.value.close();
 };
 const emits = defineEmits(['reFetchtableList']);
-const form = reactive<updateHospAreaInfo>({
-  id: '',
+const form = ref<hospAreaInfo>({
   hospAreaCode: '',
   hospAreaName: ''
 });
-const rules = reactive<FormRules<updateHospAreaInfo>>({
+const rules = reactive<FormRules<hospAreaInfo>>({
   hospAreaCode: [
     {
       required: true,
@@ -71,15 +72,14 @@ defineExpose({
   close
 });
 const sureMethod = () => {
-  updateHosptAreaInfo(form).then((res) => {
+  updateHosptAreaInfo(form.value).then((res) => {
     if (res) {
       dialogLayout.value.close()
-      //重新获取tableList
+      // 重新获取tableList
       emits('reFetchtableList')
     }
-    console.log(res, 'res');
-  })
-  console.log(form, 'sure form');
+  }).catch((error)=>{throw(error)})
+  console.log(form.value, 'sure form');
 }
 </script>
 
