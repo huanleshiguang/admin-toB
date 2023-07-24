@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-24 16:41:56
+ * @LastEditTime: 2023-07-24 18:07:53
  * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
  * @Description: 架构管理模块
 -->
@@ -60,8 +60,8 @@
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled } from '@element-plus/icons-vue';
-import type { hospAreaInfo, fetchHospAreaDepList, fetchHosptAreaDepUserList } from '/@/api/system/types/user';
-import { columnsList, transmitProps } from './useCommon';
+import type { hospAreaInfo, fetchHospAreaDepList } from '/@/api/system/types/user';
+import { columnsList, transmitProps, params } from './useCommon';
 import update from './update.vue';
 const vxeTableLayout = ref();
 const updateRef = ref();
@@ -69,13 +69,7 @@ const hospAreaName = ref<string>('');
 const treeSelect = ref();
 const hospAreaList = ref<hospAreaInfo[]>([]);
 const reactHospAreaDepList = ref<fetchHospAreaDepList[]>([]);
-const params = ref<fetchHosptAreaDepUserList>({
-  AreaId: '',
-  DeptId: '',
-  Keyword: '',
-  PageIndex: 1,
-  PageCount: 20
-});
+
 onMounted(() => {
   // 获取初始院区列表
   fetchinitHsopAreaList();

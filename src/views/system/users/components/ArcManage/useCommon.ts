@@ -1,5 +1,6 @@
 
 import type { FormRules } from 'element-plus';
+import type { hospAreaInfo, fetchHospAreaDepList, fetchHosptAreaDepUserList } from '/@/api/system/types/user';
 /**
  * columnsList: 需要显示的表格字段
  */
@@ -42,7 +43,16 @@ export const transmitProps = {
   isMainDept: 'isMainDept',
   children: 'children'
 };
-
+/**
+ * params;请求参数
+ */
+export const params = ref<fetchHosptAreaDepUserList>({
+  AreaId: '',
+  DeptId: '',
+  Keyword: '',
+  PageIndex: 1,
+  PageCount: 20
+});
 /**
  *  update组件： rules
  */
