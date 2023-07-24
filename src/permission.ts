@@ -2,14 +2,14 @@
  * @Author: QMZhao
  * @Description: 登录权限验证
  * @Date: 2021-07-26 10:46:56
- * @LastEditTime: 2023-07-19 18:26:46
+ * @LastEditTime: 2023-07-24 09:18:58
  * @Reference:
  */
 import { router } from './router';
 
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
-import { getToken } from '/@/utils/session'; // get token from cookie
+import { useConfigParams } from '/@/hooks/request/useRequestConfigParams';
 
 import { store } from '/@/store';
 import { useNavMenuList } from '/@/store/common/routerList';
@@ -22,14 +22,14 @@ router.beforeEach(async (to, _from, next) => {
   NProgress.start();
 
   // 判断是否登录
-  const hasToken = getToken();
+  const { token } = useConfigParams();
 
   // 工作台导航条
 
   setShowSideBar(to.meta.showSideBar === false ? to.meta.showSideBar : true);
 
   if (to.meta.requireAuth) {
-    if (hasToken) {
+    if (token) {
       next();
     } else {
       // 项目里有 token 验证的时候请切换成这个注释内容
