@@ -2,14 +2,14 @@
  * @Autor: ZhouHao joehall@foxmail.com
  * @Date: 2023-02-17 22:45:44
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 17:05:59
+ * @LastEditTime: 2023-07-26 17:46:47
  * @Description: 
  * @FilePath: \servious-illness-admin\src\views\system\users\index.vue
 -->
 <template>
   <div class=" w_100 h_100">
     <div>
-      <CommonTabs :navList="tabList" @change="change" />
+      <CommonTabList :navList="tabList" @change="change" />
     </div>
     <div class="contentBox">
       <component :is="data.componentName"></component>

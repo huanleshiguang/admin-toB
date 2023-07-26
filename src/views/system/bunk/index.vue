@@ -2,14 +2,14 @@
  * @Autor: ZhouHao joehall@foxmail.com
  * @Date: 2023-02-17 22:45:44
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 11:49:07
+ * @LastEditTime: 2023-07-26 17:48:40
  * @Description: 
  * @FilePath: /vue-vite-elementplus-zhao/src/views/system/menu.vue
 -->
 <template>
    <div class=" w_100 h_100">
     <div>
-      <CommonTabs :navList="tabList" @change="change" />
+      <CommonTabList :navList="tabList" @change="change" />
     </div>
     <div class="contentBox">
       <component :is="data.componentName"></component>
@@ -17,9 +17,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import CommonTabs from '/src/components/common/CommonTabs.vue';
-import BunkManage from './components/BunkManage.vue';
 import BedEquipment from './components/BedEquipment.vue';
+import BunkManage from './components/BunkManage.vue';
 const tabList = [
   {
     label: '床位管理',
