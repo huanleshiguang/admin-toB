@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 17:20:47
+ * @LastEditTime: 2023-07-26 19:16:22
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 科室管理模块
  -->
@@ -84,7 +84,7 @@ const fetchinitHsopAreaList = async () => {
     else
       ElMessage({
         type: 'error',
-        message: '未知错误'
+        message: '获取院区信息出现未知错误'
       });
   }
 };
@@ -100,7 +100,7 @@ const selectedHospArea = async (AreaId: string) => {
     else {
       ElMessage({
         type: 'error',
-        message: '未知错误'
+        message: '获取科室信息出现未知错误'
       })
     }
   }
@@ -132,9 +132,12 @@ async function initMethod() {
     if (error instanceof Error)
       throw (error.cause, 'catch捕获')
     else {
+      console.log(error);
+      
+      
       ElMessage({
         type: 'error',
-        message: '未知错误'
+        message: '获取人员信息出现未知错误'
       })
     }
   }

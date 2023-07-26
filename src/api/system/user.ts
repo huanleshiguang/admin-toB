@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 15:36:33
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-24 13:58:19
+ * @LastEditTime: 2023-07-26 19:19:58
  * @FilePath: \servious-illness-admin\src\api\system\user.ts
  * @Description: 人员管理界面 相关接口
  */
@@ -17,7 +17,7 @@ enum API {
   DELETE_HOSPT_AREA_INFO = `${commonUrl}/OrgManage/DeleteOrgAreaInfo`,
   FETCH_FEATURE_LIST = `${commonUrl}/RoleManage/GetOrgMenuTrees`,
   FETCH_HOSPT_AREA__DEP_INFO_URL = `${commonUrl}/OrgManage/GetOrgDeptTrees`,
-  FETCH_HOSPAREADEP_USER_URL = `${commonUrl}/OrgManage/GetDeptUserInfo`,
+  FETCH_HOSPAREADEP_USER_URL = `${commonUrl}/UserManage/GetDeptUserInfo`,
 }
 
 // 获取院区信息

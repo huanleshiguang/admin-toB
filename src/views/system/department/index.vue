@@ -2,7 +2,7 @@
  * @Autor: ZhouHao joehall@foxmail.com
  * @Date: 2023-02-17 22:45:44
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 17:46:47
+ * @LastEditTime: 2023-07-26 18:42:30
  * @Description: 
  * @FilePath: \servious-illness-admin\src\views\system\users\index.vue
 -->
@@ -32,10 +32,10 @@ const tabList = [
 ];
 const data = reactive({
   componentName: tabList[0].component
-})
+});
 const change = (index: number) => {
   data.componentName = tabList[index].component;
-}
+};
 
 </script>
 <style scoped lang="scss">

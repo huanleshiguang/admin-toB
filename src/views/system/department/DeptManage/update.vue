@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 09:12:11
+ * @LastEditTime: 2023-07-26 18:43:22
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 
 -->
@@ -59,7 +59,7 @@ const form = ref({
   phone: '',
   userWorkCode: ''
 });
-const formRef = ref<any>();
+const formRef = ref();
 const open = (data:userInfo) => {
   console.log(data, 'dattt');
   title.value = `${data ? '编辑' : '新增'}人员`;
