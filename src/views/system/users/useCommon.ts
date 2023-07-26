@@ -1,6 +1,14 @@
+/*
+ * @Author: ZhouHao joehall@foxmail.com
+ * @Date: 2023-07-24 14:55:17
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-07-26 17:18:23
+ * @FilePath: \servious-illness-admin\src\views\system\users\components\ArcManage\useCommon.ts
+ * @Description: 科室管理相关数据
+ */
 
 import type { FormRules } from 'element-plus';
-import type { hospAreaInfo, fetchHospAreaDepList, fetchHosptAreaDepUserList } from '/@/api/system/types/user';
+import type { fetchHosptAreaDepUserList } from '/@/api/system/types/user';
 /**
  * columnsList: 需要显示的表格字段
  */
@@ -31,8 +39,9 @@ export const columnsList = [
   }
 ];
 
-//是否勾选重症科室
-export const isCheckedMainDept = ref<Boolean>(false);
+// 院区名称
+export const hospAreaName = ref<string>('');
+
 
 /**
  * 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）
@@ -44,7 +53,7 @@ export const transmitProps = {
   children: 'children'
 };
 /**
- * params;请求参数
+ * params: 请求参数
  */
 export const params = ref<fetchHosptAreaDepUserList>({
   AreaId: '',
@@ -53,8 +62,10 @@ export const params = ref<fetchHosptAreaDepUserList>({
   PageIndex: 1,
   PageCount: 20
 });
+
+
 /**
- *  update组件： rules
+ *  同级目录下的update组件：表单 rules
  */
 export const rules = reactive<FormRules>({
   deptName: [

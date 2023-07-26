@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 19:57:02
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-24 17:18:47
+ * @LastEditTime: 2023-07-26 17:00:06
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HosptAreaManage.vue
  * @Description: 院区管理
 -->
@@ -50,7 +50,6 @@ import {
 
 const vxeTableLayout = ref();
 const updateRef = ref<any>();
-let tableList = ref<hospAreaInfo[]>([])
 const columnsList = [
   {
     title: '院区编码',
@@ -65,15 +64,18 @@ const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
   console.log(`行选中事件`, row);
 };
 async function initMethod() {
+  let tableList = ref<hospAreaInfo[]>([])
   try {
     const result: hospAreaInfo[] = await fetchHosptAreaInfo()
-    tableList.value = result.map(item => {
-      const { id, hospAreaName } = item
-      return {
-        id,
-        hospAreaName
-      }
-    })
+    if (Array.isArray(result)) {
+      tableList.value = result.map(item => {
+        const { id, hospAreaName } = item
+        return {
+          id,
+          hospAreaName
+        }
+      })
+    }
     // const total = result.total
     // const records = result.pageData
     // const total = result.length
@@ -96,7 +98,7 @@ const editRow = (row: hospAreaInfo) => {
 };
 const deleteRow = (row: hospAreaInfo) => {
   console.log(row, 'row');
-  deleteHosptAreaInfo(row.hospAreaCode).then((res) => {
+  deleteHosptAreaInfo(row.id).then((res) => {
     if (res) {
       reFresh();
     }

@@ -2,9 +2,9 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-21 20:58:51
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-24 14:06:21
+ * @LastEditTime: 2023-07-26 10:37:44
  * @FilePath: \servious-illness-admin\src\views\system\users\components\ArcManage\useFilter.ts
- * @Description: 架构管理板块 相关方法
+ * @Description: 科室管理相关方法
  */
 import type { fetchHospAreaDepList } from '/@/api/system/types/user'
 

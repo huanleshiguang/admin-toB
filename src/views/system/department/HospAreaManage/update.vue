@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-22 15:56:40
+ * @LastEditTime: 2023-07-26 17:08:23
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 
 -->
@@ -11,7 +11,7 @@
     <el-form ref="formRef" :model="form" :rules="rules" label-width="auto" label-position="right">
 
       <el-form-item label="编码" prop="hospAreaCode" required>
-        <el-input v-model="form.hospAreaCode" type="text" placeholder="请输入院区编码" />
+        <el-input v-model="form.id" type="text" placeholder="请输入院区编码" />
       </el-form-item>
       <el-form-item label="院区名称" prop="hospAreaName" required>
         <el-input v-model="form.hospAreaName" placeholder="请输入院区名称" />
@@ -40,11 +40,11 @@ const close = () => {
 };
 const emits = defineEmits(['reFetchtableList']);
 const form = ref<hospAreaInfo>({
-  hospAreaCode: '',
+  id: '',
   hospAreaName: ''
 });
 const rules = reactive<FormRules<hospAreaInfo>>({
-  hospAreaCode: [
+  id: [
     {
       required: true,
       message: '请输入编码',

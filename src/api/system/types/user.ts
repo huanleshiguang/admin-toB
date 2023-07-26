@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-18 14:33:39
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-24 14:00:53
+ * @LastEditTime: 2023-07-25 15:00:42
  * @FilePath: \servious-illness-admin\src\api\system\types\user.ts
  * @Description: 人员管理模块接口约束
  */
@@ -41,7 +41,7 @@ export interface fetchHospAreaDepList {
 
 // 科室人员列表
 
-interface userInfo {
+export interface userInfo {
   deptName:string
   userWorkCode:string
   userName:string
