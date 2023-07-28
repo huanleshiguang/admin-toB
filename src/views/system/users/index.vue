@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 19:16:22
+ * @LastEditTime: 2023-07-27 09:38:21
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 科室管理模块
  -->
@@ -45,7 +45,13 @@
       <template #columns>
         <vxe-column title="操作" align="center" fixed="right">
           <template #default="{ row }">
-
+            <el-button  type="primary" :icon="Edit" size="small" @click="editRow(row)">编辑</el-button>
+            <el-popconfirm confirm-button-text="是" cancel-button-text="否" :icon="InfoFilled" icon-color="#626AEF"
+              title="确定要删除这条信息吗？" @confirm="deleteRow(row)">
+              <template #reference>
+                <el-button  type="danger" :icon="Delete" size="small">删除</el-button>
+              </template>
+            </el-popconfirm>
           </template>
         </vxe-column>
       </template>
@@ -58,7 +64,7 @@
 <script lang="ts" setup>
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
-import { ArrowDown, Search, Document, Folder, FolderOpened } from '@element-plus/icons-vue';
+import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled,Edit,Delete } from '@element-plus/icons-vue';
 import type { hospAreaInfo, fetchHospAreaDepList } from '/@/api/system/types/user';
 import { columnsList, transmitProps, params, hospAreaName } from './useCommon';
 import update from './update.vue';
@@ -148,14 +154,19 @@ async function initMethod() {
 const addUser = () => {
   updateRef.value.open();
 };
-// const editRow = (row: userInfo) => {
-//   console.log(row, 'row');
-//   updateRef.value.open(row);
-// };
-// const deleteRow = (row: userInfo) => {
-//   // deleteUser(row.userWorkCode);
-//   console.log(row, 'row');
-// }
+const editRow = (row: hospAreaInfo) => {
+  console.log(row, 'row');
+
+  updateRef.value.open(row);
+};
+const deleteRow = (row: hospAreaInfo) => {
+  console.log(row, 'row');
+  deleteHosptAreaInfo(row.id).then((res) => {
+    if (res) {
+      reFresh();
+    }
+  })
+}
 const reFresh = () => {
   vxeTableLayoutRef.value.refresh();
 }
