@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 14:32:21
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 13:35:56
+ * @LastEditTime: 2023-07-26 11:41:54
  * @FilePath: \servious-illness-admin\src\views\system\bunk\components\BunkManagement.vue
  * @Description: 院区管理
 -->
@@ -84,11 +84,9 @@ const fetchHospAreaList = async () => {
 
 <style lang="scss" scoped>
 .bunk-manage {
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
+  height: 100%;
 }
-
 .font-stl {
   font-size: $font-size-14;
   font-weight: $font-weight-500;

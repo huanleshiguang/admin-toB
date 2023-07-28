@@ -1,12 +1,12 @@
 <!--
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-28 16:38:24
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-07-26 17:07:32
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 科室管理模块
  -->
-<template>
+ <template>
   <div class="common-layout">
     <vxe-table-layout ref="vxeTableLayoutRef" class="h_100" border has-index :loader="initMethod"
       :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="columnsList"
@@ -33,8 +33,8 @@
             <Document />
           </template>
         </common-tree-select>
-        <span class="ml-3  text-gray-600 inline-flex items-center">人员检索：</span>
-        <el-input v-model="params.Keyword" class="w-60" placeholder="姓名/工号" :suffix-icon="Search" />
+        <span class="ml-3  text-gray-600 inline-flex items-center">科室检索：</span>
+        <el-input v-model="params.Keyword" class="w-60" placeholder="用户名称/工号" :suffix-icon="Search" />
         <el-button type="primary" class="ml-3" @click="handleSearch">搜索</el-button>
       </template>
       <template #operator-right>
@@ -43,15 +43,9 @@
         </div>
       </template>
       <template #columns>
-        <vxe-column title="操作" align="center" fixed="right">
+        <vxe-column :title="isMainDept" align="center" fixed="right">
           <template #default="{ row }">
-            <el-button  type="primary" :icon="Edit" size="small" @click="editRow(row)">编辑</el-button>
-            <el-popconfirm confirm-button-text="是" cancel-button-text="否" :icon="InfoFilled" icon-color="#626AEF"
-              title="确定要删除这条信息吗？" @confirm="deleteRow(row)">
-              <template #reference>
-                <el-button  type="danger" :icon="Delete" size="small">删除</el-button>
-              </template>
-            </el-popconfirm>
+            <el-switch v-model="isSelecteddMainDept" @change="onChangeMainDept(row)" />
           </template>
         </vxe-column>
       </template>
@@ -64,9 +58,9 @@
 <script lang="ts" setup>
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
-import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled,Edit,Delete } from '@element-plus/icons-vue';
+import { ArrowDown, Search, Document, Folder, FolderOpened } from '@element-plus/icons-vue';
 import type { hospAreaInfo, fetchHospAreaDepList } from '/@/api/system/types/user';
-import { columnsList, transmitProps, params, hospAreaName } from './useCommon';
+import { columnsList, transmitProps, params, isSelecteddMainDept, isMainDept, hospAreaName } from './useCommon';
 import update from './update.vue';
 const vxeTableLayoutRef = ref();
 const updateRef = ref();
@@ -76,7 +70,7 @@ const hospAreaList = ref<hospAreaInfo[]>([]);
 // 科室列表
 const hospAreaDepList = ref<fetchHospAreaDepList[]>([]);
 
-onMounted(() => {
+onMounted(() => { 
   fetchinitHsopAreaList();
 });
 // 获取初始院区列表
@@ -90,7 +84,7 @@ const fetchinitHsopAreaList = async () => {
     else
       ElMessage({
         type: 'error',
-        message: '获取院区信息出现未知错误'
+        message: '未知错误'
       });
   }
 };
@@ -106,7 +100,7 @@ const selectedHospArea = async (AreaId: string) => {
     else {
       ElMessage({
         type: 'error',
-        message: '获取科室信息出现未知错误'
+        message: '未知错误'
       })
     }
   }
@@ -138,35 +132,30 @@ async function initMethod() {
     if (error instanceof Error)
       throw (error.cause, 'catch捕获')
     else {
-      console.log(error);
-      
-      
       ElMessage({
         type: 'error',
-        message: '获取人员信息出现未知错误'
+        message: '未知错误'
       })
     }
   }
 
 };
-
+// 是否为重症科室
+const onChangeMainDept = (row: any) => {
+  console.log(row, 'row');
+}
 // 新增用户
 const addUser = () => {
   updateRef.value.open();
 };
-const editRow = (row: hospAreaInfo) => {
-  console.log(row, 'row');
-
-  updateRef.value.open(row);
-};
-const deleteRow = (row: hospAreaInfo) => {
-  console.log(row, 'row');
-  deleteHosptAreaInfo(row.id).then((res) => {
-    if (res) {
-      reFresh();
-    }
-  })
-}
+// const editRow = (row: userInfo) => {
+//   console.log(row, 'row');
+//   updateRef.value.open(row);
+// };
+// const deleteRow = (row: userInfo) => {
+//   // deleteUser(row.userWorkCode);
+//   console.log(row, 'row');
+// }
 const reFresh = () => {
   vxeTableLayoutRef.value.refresh();
 }

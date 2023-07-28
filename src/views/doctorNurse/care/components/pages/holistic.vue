@@ -3,12 +3,11 @@
 		整体护理组件
 	</div>
 </template>
-<script>
-export default {
-  name: 'care_0',
-}
-</script>
+
 <script setup lang="ts">
+	const data = reactive({
+		dd:1
+	})
 </script>
 
 <style>
