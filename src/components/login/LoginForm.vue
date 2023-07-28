@@ -14,7 +14,7 @@ import { debounce } from 'lodash-es';
 
 const { createMessage } = useMessage();
 
-const { loginForm, setUserInfo, setUserName } = useLoginStorage();
+const { loginForm, setUserInfoStorage, setUserNameStorage } = useLoginStorage();
 const { jumpTo } = useLoginEvent();
 
 // 登录按钮loading
@@ -29,8 +29,8 @@ async function loadLogin() {
   try {
     const response = await fetchLogin(loginForm.value);
     isLoginLoading.value = false;
-    setUserInfo(response);
-    setUserName(isRecordUser.value);
+    setUserInfoStorage(response);
+    setUserNameStorage(isRecordUser.value);
     createMessage.success('登录成功');
     jumpTo();
   } catch (error) {
@@ -81,12 +81,12 @@ const onLogin = debounce(() => loadLogin(), 200);
         </el-checkbox>
       </el-form-item>
       <el-form-item label="">
-        <el-button color="#00A0DF" type="primary" class="w_100 submit-btn" :loading="isLoginLoading" @click="onLogin">
+        <el-button color="#00A0DF" type="primary" class="w-full submit-btn" :loading="isLoginLoading" @click="onLogin">
           登录
         </el-button>
       </el-form-item>
     </el-form>
-    <span class="company-name w_100">©扁鹊飞救科技（北京）股份有限公司</span>
+    <span class="company-name w-full">©扁鹊飞救科技（北京）股份有限公司</span>
   </div>
 </template>
 

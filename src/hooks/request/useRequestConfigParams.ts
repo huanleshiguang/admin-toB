@@ -16,7 +16,7 @@ export function useConfigParams(): RequestConfigParams {
     userPrivies: [],
     userRoles: []
   };
-  const formatUserInfo: LoginResponse = JSON.parse(userInfo || JSON.stringify(targetResData));
+  const formatUserInfo: LoginResponse = userInfo || targetResData;
   const { accountTokenInfo } = formatUserInfo;
   const token = accountTokenInfo?.jwtAuth?.accessToken ?? '';
   const userId = accountTokenInfo?.accountInfo?.userId ?? '';

@@ -6,7 +6,7 @@
  * @Reference: 
 -->
 <template>
-	<div class="w_100 h_100 page-container">
+	<div class="w-full h_100 page-container">
 		<headerBar></headerBar>
 		<el-container class="containerBox">
 			<div class="app-sidebar h_100" v-show="leftBar.showSideBar">
@@ -20,7 +20,7 @@
 					<!-- <div class="mt10">
 						<navList />
 					</div> -->
-					<div class="main-container w_100">
+					<div class="main-container w-full">
 						<app-main />
 					</div>
 				</el-main>

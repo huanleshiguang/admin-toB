@@ -6,15 +6,15 @@
  * @Reference: 
 -->
 <template>
-  <div class="w_100 h_100 page-container">
+  <div class="w-full h_100 page-container">
     <el-container class="h_100">
       <el-aside width="auto">
         <SideBar />
       </el-aside>
       <el-container>
-        <el-header height="30px" class="w_100 layout-header"><Navbar /></el-header>
+        <el-header height="30px" class="w-full layout-header"><Navbar /></el-header>
         <el-main>
-          <div class="main-container w_100 h_100">
+          <div class="main-container w-full h_100">
             <app-main />
           </div>
         </el-main>

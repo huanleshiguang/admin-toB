@@ -7,7 +7,7 @@
  * @Description: 院区管理
 -->
 <template>
-  <div class="three-container w_100 h_100">
+  <div class="three-container w-full h_100">
     <vxe-table-layout ref="vxeTableLayout" class="h_100" border has-index :loader="initMethod"
       :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="columnsList"
       @current-change="currentChangeEvent">

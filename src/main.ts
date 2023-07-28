@@ -2,14 +2,14 @@
  * @Autor: QMZhao
  * @Date: 2021-09-08 23:54:23
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-21 18:55:36
+ * @LastEditTime: 2023-07-28 14:51:34
  * @Description:
  * @FilePath: \servious-illness-admin\src\main.ts
  */
 
 import App from './App.vue';
 import { ExceptionlessErrorHandler } from '@exceptionless/vue';
-// import { setExceptionless } from '/@/utils/exceptionless';
+import { setExceptionless } from '/@/utils/exceptionless';
 import 'virtual:svg-icons-register';
 import './assets/icon/icon-style.css';
 
@@ -43,7 +43,7 @@ function bootstrap() {
   setupGlobalDirective(app);
 
   // 错误上报
-  // setExceptionless();
+  setExceptionless();
 
   // 全局错误监听
   app.config.errorHandler = ExceptionlessErrorHandler;

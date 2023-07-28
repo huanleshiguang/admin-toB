@@ -1,19 +1,22 @@
 /*
- * @Author: QMZhao
+ * @Autor: QMZhao
+ * @Date: 2023-07-14 09:57:52
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-07-28 15:48:01
  * @Description:
- * @Date: 2021-09-10 10:08:11
- * @LastEditTime: 2023-07-22 17:36:22
- * @Reference:
+ * @FilePath: \servious-illness-admin\src\utils\request.ts
  */
 import axios, { AxiosResponse, AxiosError } from 'axios';
 // import type { ResponseData } from '/@/types/axios';
-// import { Exceptionless } from '@exceptionless/vue';
+import { Exceptionless } from '@exceptionless/vue';
 import { ErrorResponseData } from '/@/model/common/axiosOption';
 
-import { useResponseErrorData } from '/@/hooks/request/useAxios';
+import { useResponseErrorData, useReqeustHeaderType } from '/@/hooks/request/useAxios';
 import { useErrorResponse } from '/@/hooks/request/useErrorResponse';
 import { useConfigParams } from '/@/hooks/request/useRequestConfigParams';
 import { useClearParams } from '/@/hooks/common';
+
+import { cloneDeep } from 'lodash-es';
 
 type PartialResponse = DeepPartial<AxiosResponse<ErrorResponseData<null>>>;
 
@@ -67,6 +70,7 @@ service.interceptors.response.use(
       duration: 1500,
       message: useErrorResponse(errorRes?.status ?? 0)
     });
+    Exceptionless.submitException(error);
     return Promise.reject(error.response);
   }
 );
@@ -92,13 +96,13 @@ function useResponse<T = any>(response: AxiosResponse): Promise<T> {
         });
         reject(responsedData);
       }
-      resolve(data);
+      resolve(cloneDeep(data));
     }
   });
 }
 
 const request = {
-  get: async <T>({ ...opt }: any): Promise<T> => {
+  get: async <T = any>({ ...opt }: any): Promise<T> => {
     const { url, data, headers } = opt;
     return await service({
       method: 'GET',
@@ -107,22 +111,16 @@ const request = {
       headers: headers ?? { 'Content-Type': 'application/json' }
     }).then(useResponse);
   },
-  post: async <T>({ ...opt }: any): Promise<T> => {
-    const { url, data, headers } = opt;
-    // const client = exceptionlessClient;
-
+  post: async <T = any>({ ...opt }: any): Promise<T> => {
+    const { url, data: bodayData, params, headers, requestType } = opt;
+    const signHeaders = { ...headers, ...{ 'Content-Type': `application/${useReqeustHeaderType(requestType)}` } };
     return await service({
       method: 'POST',
       url,
-      data,
-      headers: headers ?? {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(useResponse)
-      .catch((error) => {
-        throw new Error(`重症项目报错上传: ${error}`);
-      });
+      params,
+      data: bodayData,
+      headers: signHeaders
+    }).then(useResponse);
   }
 };
 

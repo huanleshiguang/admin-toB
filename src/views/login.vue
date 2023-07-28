@@ -3,10 +3,10 @@
 </script>
 
 <template>
-  <div class="w_100 h_100 flex flex-items-center grid-justify-center login-container">
+  <div class="w-full h_100 flex flex-items-center grid-justify-center login-container">
     <div class="flex flex-items-center grid-justify-between login-form-content">
       <div class="login-image">
-        <el-image class="w_100 h_100" :src="require('/@/assets/image/login/login.png')"></el-image>
+        <el-image class="w-full h_100" :src="require('/@/assets/image/login/login.png')"></el-image>
       </div>
       <div>
         <div class="flex flex-items-center">

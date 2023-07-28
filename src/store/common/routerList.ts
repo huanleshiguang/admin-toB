@@ -22,6 +22,20 @@ export const useNavMenuList = defineStore('navMenuList', () => {
       path: '/system/users'
     },
     {
+      id: 1002,
+      label: '菜单管理',
+      icon: 'patient',
+      permission: 'system_user',
+      path: '/system/menus'
+    },
+    {
+      id: 1002,
+      label: '权限管理',
+      icon: 'patient',
+      permission: 'system_user',
+      path: '/system/roles'
+    },
+    {
       id: 1003,
       label: '床位管理',
       icon: 'kc',
@@ -39,14 +53,14 @@ export const useNavMenuList = defineStore('navMenuList', () => {
   function setNavMenuList(menuList: Array<ICUCommon.MenuList>) {
     navMenuList.value = menuList;
   }
-  
+
   const leftBar = reactive({
-	  showSideBar:false
-  }) 
-   
-   function setShowSideBar(data:boolean){
-	   leftBar.showSideBar = data;
-   }
-   
-  return { navMenuList, setNavMenuList,leftBar,setShowSideBar };
+    showSideBar: false
+  });
+
+  function setShowSideBar(data: boolean) {
+    leftBar.showSideBar = data;
+  }
+
+  return { navMenuList, setNavMenuList, leftBar, setShowSideBar };
 });

@@ -1,8 +1,8 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-18 12:03:08
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 10:01:03
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-07-24 17:24:05
  * @Description:系统设置
  * @FilePath: \servious-illness-admin\src\router\modules\system.ts
  */
@@ -27,6 +27,18 @@ const systemRouter: RouteRecordRaw = {
       component: () => import('/@/views/system/users/index.vue'),
       name: 'Users',
       meta: { title: '人员管理', icon: 'dashboard', affix: true, requireAuth: true }
+    },
+    {
+      path: 'menus',
+      component: () => import('/@/views/system/menus/index.vue'),
+      name: 'Menus',
+      meta: { title: '菜单管理', icon: 'dashboard', affix: true, requireAuth: true }
+    },
+    {
+      path: 'roles',
+      component: () => import('/@/views/system/roles/index.vue'),
+      name: 'Roles',
+      meta: { title: '权限管理', icon: 'dashboard', affix: true, requireAuth: true }
     },
     {
       path: 'bunk',

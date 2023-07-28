@@ -7,8 +7,8 @@
  * @FilePath: /vue-vite-elementplus-zhao/src/views/system/menu.vue
 -->
 <template>
-  <div class="three-container w_100 h_100">
-    <div ref="container" class="w_100 h_100">
+  <div class="three-container w-full h_100">
+    <div ref="container" class="w-full h_100">
       <!-- <el-button type="primary" @click="testClick">test</el-button> -->
       <el-button v-auth="'sysMenuTableSync'">同步</el-button>
       <vxe-table-layout

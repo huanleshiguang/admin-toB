@@ -2,11 +2,12 @@
  * @Autor: QMZhao
  * @Date: 2023-07-19 17:54:48
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-22 16:35:12
- * @Description: 
+ * @LastEditTime: 2023-07-28 16:24:57
+ * @Description:
  * @FilePath: \servious-illness-admin\src\components\login\useLoginStorage.ts
  */
 import { LoginResponse, UserLoginForm } from '/@/model/views/login';
+import { setUserInfo, removeUserInfo } from '/@/utils/session';
 
 /**
  * 用户登录信息存储
@@ -22,7 +23,7 @@ export function useLoginStorage() {
    *
    * @param resData 用户登录成功信息
    */
-  function setUserInfo(resData: LoginResponse) {
+  function setUserInfoStorage(resData: LoginResponse) {
     const targetResData: LoginResponse = {
       accountTokenInfo: {},
       userInfo: {},
@@ -30,14 +31,14 @@ export function useLoginStorage() {
       userRoles: []
     };
     const targetData = resData ?? targetResData;
-    useStorage('userInfo', targetData, sessionStorage);
+    setUserInfo(JSON.stringify(targetData));
   }
 
   /**
    * 初始化 storage 和 pinia 数据
    */
   function initStorageData(): void {
-    useGetSessionStorage('userInfo').value = null;
+    removeUserInfo();
   }
 
   /**
@@ -61,7 +62,7 @@ export function useLoginStorage() {
    * @param isRecrod 是否记住用户名选项
    * @param loginForm 用户账户密码
    */
-  function setUserName(isRecrod: boolean): void {
+  function setUserNameStorage(isRecrod: boolean): void {
     isRecrod && useSessionStorage('recordUser', loginForm.value);
   }
 
@@ -76,7 +77,7 @@ export function useLoginStorage() {
         loginForm
       })
     ),
-    setUserInfo,
-    setUserName
+    setUserInfoStorage,
+    setUserNameStorage
   };
 }

@@ -7,7 +7,7 @@
  * @FilePath: /vue-vite-elementplus-zhao/src/views/system/menu.vue
 -->
 <template>
-  <div class="three-container w_100 h_100">
+  <div class="three-container w-full h_100">
     <common-tabs :tab-list="tabList" />
   </div>
 </template>
