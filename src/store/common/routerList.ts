@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2023-02-11 15:51:21
- * @LastEditTime: 2023-07-21 19:14:26
+ * @LastEditTime: 2023-07-26 10:10:39
  * @Reference:
  */
 export const useNavMenuList = defineStore('navMenuList', () => {
@@ -34,6 +34,13 @@ export const useNavMenuList = defineStore('navMenuList', () => {
       icon: 'data',
       permission: 'system_menu',
       path: '/system/dictionary'
+    },
+    {
+      id: 1005,
+      label: '科室管理',
+      icon: 'kc',
+      permission: 'system_menu',
+      path: '/system/department'
     }
   ]);
   function setNavMenuList(menuList: Array<ICUCommon.MenuList>) {

@@ -2,7 +2,7 @@
  * @Autor: QMZhao
  * @Date: 2023-07-18 12:03:08
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-21 10:01:03
+ * @LastEditTime: 2023-07-26 10:12:03
  * @Description:系统设置
  * @FilePath: \servious-illness-admin\src\router\modules\system.ts
  */
@@ -39,6 +39,12 @@ const systemRouter: RouteRecordRaw = {
       component: () => import('/@/views/system/dictionary/index.vue'),
       name: 'Dictionary',
       meta: { title: '字典维护', icon: 'dashboard', affix: true, requireAuth: true }
+    },
+    {
+      path: 'department',
+      component: () => import('/@/views/system/department/index.vue'),
+      name: 'Department',
+      meta: { title: '科室管理', icon: 'dashboard', affix: true, requireAuth: true }
     }
   ]
 };
