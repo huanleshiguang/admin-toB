@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-24 14:55:17
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 15:11:50
+ * @LastEditTime: 2023-07-29 16:15:17
  * @FilePath: \servious-illness-admin\src\views\system\users\components\ArcManage\useCommon.ts
  * @Description: 科室管理相关数据
  */
@@ -43,7 +43,7 @@ export const columnsList = [
 export const hospAreaName = ref<string>('');
 
 // 是否重症科室
-export const isMainDept = '是否重症科室'
+export const titleMainDept = '是否重症科室'
 export const isSelecteddMainDept = ref<Boolean>(false);
 
 /**
