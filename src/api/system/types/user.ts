@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-18 14:33:39
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 15:09:37
+ * @LastEditTime: 2023-07-29 15:40:27
  * @FilePath: \servious-illness-admin\src\api\system\types\user.ts
  * @Description: 人员管理模块接口约束
  */
@@ -21,7 +21,7 @@ export interface resHosptAreaDepUserList {
   DeptId: string,
   Keyword?: string;
   PageIndex?: number;
-  PageCount?: number
+  PageSize?: number
 }
 
 
@@ -62,7 +62,7 @@ export interface resHospAreaDepUserList {
   total: number
   pageData: userInfo[]
   pageIndex: number
-  pageCount: number
+  pageSize: number
 }
 
 // 院区科室信息树

@@ -25,7 +25,7 @@ export const params = ref<resHosptAreaDepUserList>({
   DeptId: '',
   Keyword: '',
   PageIndex: 1,
-  PageCount: 20
+  PageSize: 20
 });
 
 // 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）

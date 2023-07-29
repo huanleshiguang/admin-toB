@@ -1,8 +1,8 @@
 /*
  * @Author: QMZhao zhao971462054@163.com
  * @Date: 2023-07-05 18:18:46
- * @LastEditors: QMZhao zhao971462054@163.com
- * @LastEditTime: 2023-07-07 18:08:28
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-07-29 15:40:15
  * @FilePath: \servious-illness-admin\src\types\axios.d.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -52,14 +52,14 @@ declare interface BaseParams {
   // 当前页
   pageIndex: number;
   // 分页条数
-  pageCount: number;
+  pageSize: number;
   // 搜索条件
   [key: string]: any;
 }
 
 // 分页请求返回DTO
 declare interface PageResult<T = any[]> {
-  pageCount: number;
+  pageSize: number;
   pageData: T;
   pageIndex: number;
   total: number;
