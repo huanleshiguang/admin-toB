@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-18 14:33:39
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 15:40:27
+ * @LastEditTime: 2023-07-29 18:06:20
  * @FilePath: \servious-illness-admin\src\api\system\types\user.ts
  * @Description: 人员管理模块接口约束
  */
@@ -77,7 +77,7 @@ export interface resHospAreaDepTree {
 }
 
 //角色信息
-export interface resRoleList {
+export interface resUserList {
   id: string
   roleCode: string,
   roleName: string,

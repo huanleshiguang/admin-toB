@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 10:54:18
+ * @LastEditTime: 2023-07-29 18:06:29
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 人员管理新增编辑组件
 -->
@@ -96,7 +96,7 @@ const loadHospAreaDepTree = async () => {
 // 获取角色信息
 async function loadRoleList() {
   try {
-    roleList.value = await fetchRoleList();
+    roleList.value = await fetchUserList();
   } catch (error) {
     console.log(error);
   }
