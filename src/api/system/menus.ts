@@ -1,9 +1,15 @@
+/*
+ * @Autor: QMZhao
+ * @Date: 2023-07-24 14:55:25
+ * @LastEditTime: 2023-07-28 16:42:30
+ * @Description: 
+ */
 import defHttp from '/@/utils/request';
 
 const common = '/Organization/';
 
 enum MENUURL {
-  ORG_MENU_LIST = `${common}RoleManage/GetOrgMenuLists`,
+  ORG_MENU_LIST = `${common}PrivsManage/GetOrgMenuLists`,
   ORG_MENU_TREES = `${common}PrivsManage/GetOrgMenuTrees`
 }
 
