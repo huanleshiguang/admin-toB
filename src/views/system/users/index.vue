@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 15:37:00
+ * @LastEditTime: 2023-07-29 15:44:49
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -65,7 +65,7 @@
 <script lang="ts" setup>
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
-import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled, Edit, Delete,Search,Plus,Refresh } from '@element-plus/icons-vue';
+import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled, Edit, Delete,Plus,Refresh } from '@element-plus/icons-vue';
 import type { hospAreaInfo, resDepList, userInfo } from '/@/api/system/types/user';
 import { columnsList, params, hospAreaName } from './useCommon';
 import update from './update.vue';
