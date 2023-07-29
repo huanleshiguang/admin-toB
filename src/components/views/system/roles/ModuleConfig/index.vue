@@ -1,11 +1,11 @@
 <!--
  * @Autor: QMZhao
  * @Date: 2023-07-29 14:51:42
- * @LastEditTime: 2023-07-29 15:29:06
+ * @LastEditTime: 2023-07-29 16:15:07
  * @Description: 功能菜单抽屉树
 -->
 <template>
-  <el-drawer v-model="moduleConfigDrawerVisiable" size="500px" v-bind="$attrs">
+  <el-drawer v-model="moduleConfigDrawerVisiable" destroy-on-close size="500px" v-bind="$attrs">
     <SimpleCard :title="cardTitle">
       <template #headerBtn>
         <el-button :loading="isSaveLoading" size="small" type="primary" @click="onSaveRoleModules(getTreeParams)">
@@ -64,6 +64,10 @@ const moduleTreeRef = ref<TreeStore | null>(null);
 
 const { moduleTrees, defaultProps, moduleTreesLoading, getTreeParams, isCheckStrictily } =
   useRoleTreeData(moduleTreeRef);
-const { isSaveLoading, onSaveRoleModules, onCheckedModuleTree } = useModuleTreeEvent(moduleTreeRef, isCheckStrictily);
+const { isSaveLoading, onSaveRoleModules, onCheckedModuleTree } = useModuleTreeEvent({
+  moduleTreeRef,
+  isCheckStrictily,
+  roleFormEmits
+});
 </script>
 <style lang="scss" scoped></style>

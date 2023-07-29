@@ -120,19 +120,6 @@ export function useRoleTreeEvent({ ...arg }) {
     } catch (error) {}
   }
 
-  /**
-   * 树节点点击事件
-   *
-   * @param data tree节点数据
-   */
-  function handleNodeClick(data: Iobj): void {
-    const { id } = data;
-    const params: RoleConfig.RolePrivsParams = {
-      objType: '0',
-      objId: id
-    };
-    setRoleConfigTreeParams(params);
-  }
 
   return {
     roleFormData,
@@ -140,7 +127,6 @@ export function useRoleTreeEvent({ ...arg }) {
     onEditRoleTree,
     onDeleteRole,
     onConfigAuth,
-    onSubmitRoleForm,
-    handleNodeClick
+    onSubmitRoleForm
   };
 }

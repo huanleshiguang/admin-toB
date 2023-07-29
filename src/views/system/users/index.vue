@@ -1,8 +1,8 @@
 <!--
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 15:14:36
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-07-29 16:08:33
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -44,7 +44,7 @@
         </div>
       </template>
       <template #columns>
-        <vxe-column title="操作" align="center" width="170" fixed="right">
+        <vxe-column title="操作" align="center" width="250" fixed="right">
           <template #default="{ row }">
             <el-button type="primary" :icon="Edit" size="small" @click="editRow(row)">编辑</el-button>
             <el-popconfirm confirm-button-text="是" cancel-button-text="否" :icon="InfoFilled" title="确定要删除这条信息吗？"
@@ -53,22 +53,31 @@
                 <el-button type="danger" :icon="Delete" size="small">删除</el-button>
               </template>
             </el-popconfirm>
+            <el-button text type="primary" size="small" @click="onConfigAuth(row)">分配权限</el-button>
           </template>
         </vxe-column>
       </template>
     </vxe-table-layout>
     <!-- 新增编辑-->
     <update ref="updateRef" @reFetchtableList="reFresh" />
+    <!-- 角色权限配置 -->
+    <ModuleConfig
+      v-model:module-config-visiable="moduleConfigDrawer.visiable"
+      :card-title="moduleConfigDrawer.cardTitle"
+      title="人员配置"
+    />
   </div>
 </template>
  
 <script lang="ts" setup>
-import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled, Edit, Delete } from '@element-plus/icons-vue';
+import update from './update.vue';
 import type { hospAreaInfo, resDepList, userInfo } from '/@/api/system/types/user';
 import { columnsList, params, hospAreaName } from './useCommon';
-import update from './update.vue';
+import { useModuleConfigDrawer } from './composables/useModuleConfig';
+
+const { moduleConfigDrawer, onConfigAuth } = useModuleConfigDrawer();
 const vxeTableLayoutRef = ref();
 const updateRef = ref();
 const treeSelectRef = ref();
