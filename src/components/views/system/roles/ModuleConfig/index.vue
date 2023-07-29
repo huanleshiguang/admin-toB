@@ -1,12 +1,12 @@
 <!--
  * @Autor: QMZhao
- * @Date: 2023-07-24 18:59:46
- * @LastEditTime: 2023-07-27 16:42:01
- * @Description: 功能清单
+ * @Date: 2023-07-29 14:51:42
+ * @LastEditTime: 2023-07-29 15:29:06
+ * @Description: 功能菜单抽屉树
 -->
 <template>
-  <div class="uno-wh-full">
-    <SimpleCard :title="title">
+  <el-drawer v-model="moduleConfigDrawerVisiable" size="500px" v-bind="$attrs">
+    <SimpleCard :title="cardTitle">
       <template #headerBtn>
         <el-button :loading="isSaveLoading" size="small" type="primary" @click="onSaveRoleModules(getTreeParams)">
           保存
@@ -20,11 +20,12 @@
           :props="defaultProps"
           :check-strictly="isCheckStrictily"
           node-key="id"
+          default-expand-all
           @check="onCheckedModuleTree"
         />
       </SimpleLoading>
     </SimpleCard>
-  </div>
+  </el-drawer>
 </template>
 
 <script lang="ts" setup>
@@ -33,14 +34,30 @@ import { useModuleTreeEvent } from './composiables/useModuleTreeEvent';
 
 import type TreeStore from 'element-plus/es/components/tree/src/model/tree-store';
 
-withDefaults(
+const moduleConfigDrawerProps = withDefaults(
   defineProps<{
-    title: string;
+    moduleConfigVisiable: boolean;
+    cardTitle: string;
   }>(),
   {
-    title: ''
+    moduleConfigVisiable: false,
+    cardTitle: ''
   }
 );
+
+const roleFormEmits = defineEmits<{
+  (event: 'update:moduleConfigVisiable', visiable: boolean): void;
+}>();
+
+// 表单 v-model 处理
+const moduleConfigDrawerVisiable = computed({
+  get: () => {
+    return moduleConfigDrawerProps.moduleConfigVisiable;
+  },
+  set: (value) => {
+    roleFormEmits('update:moduleConfigVisiable', value);
+  }
+});
 
 // 菜单树组件引用
 const moduleTreeRef = ref<TreeStore | null>(null);

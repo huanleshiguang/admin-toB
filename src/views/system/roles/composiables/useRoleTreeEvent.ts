@@ -1,14 +1,16 @@
+/*
+ * @Autor: QMZhao
+ * @Date: 2023-07-28 17:31:10
+ * @LastEditTime: 2023-07-29 15:05:10
+ * @Description: 权限事件
+ */
 import { useRoleConfigTreeParams } from '/@/store/system/role';
 
-export function useRoleTreeEvent(loadRoleData: () => Promise<void>) {
+export function useRoleTreeEvent({ ...arg }) {
   const { createMessage, createConfirm } = useMessage();
   const { setRoleConfigTreeParams } = useRoleConfigTreeParams();
-  // const roleFormVisiable = ref(false);
-  const roleFormTitle = ref('');
 
-  const roleFormDialogRef = ref();
-  // 配置表单请求接口
-  const loadSaveRole = fetchSaveRole;
+  const { roleFormTitle, roleFormDialogRef, rolesTableRef, moduleConfigDrawer } = arg;
 
   // 角色配置表单
   const roleFormData = ref<RoleConfig.RoleForm>({
@@ -17,6 +19,8 @@ export function useRoleTreeEvent(loadRoleData: () => Promise<void>) {
     roleCode: '',
     // 角色名称
     roleName: '',
+    roleDisplayName: '',
+    sort: 0,
     // 描述
     remark: ''
   });
@@ -29,17 +33,16 @@ export function useRoleTreeEvent(loadRoleData: () => Promise<void>) {
     roleFormTitle.value = `添加角色`;
     roleFormData.value = {
       id: '',
-      // 角色类型：0--目录，1--角色
-      roleType: 1,
       // 角色代码
       roleCode: '',
       // 角色名称
       roleName: '',
-      group: '',
+      roleDisplayName: '',
+      sort: 0,
       // 描述
       remark: ''
     };
-    roleFormDialogRef.value?.open();
+    roleFormDialogRef.value?.onOpenRoleFormDialog();
   }
 
   /**
@@ -50,37 +53,29 @@ export function useRoleTreeEvent(loadRoleData: () => Promise<void>) {
    */
   function onEditRoleTree(data: Iobj): void {
     roleFormTitle.value = `修改${data.roleName}`;
-    const { id, roleType, roleCode, roleName, group, remark } = data;
+    const { id, roleDisplayName, roleCode, roleName, sortNo, remark } = data;
     roleFormData.value = Object.assign(roleFormData.value, {
       id,
-      roleType,
+      roleDisplayName,
       roleCode,
       roleName,
-      group,
+      sortNo,
       remark
     });
-    console.log('roleFormData.value-->', roleFormData.value);
-    roleFormDialogRef.value?.open();
+    roleFormDialogRef.value?.onOpenRoleFormDialog();
   }
 
   /**
    * 提交表单
+   *
+   * @param requestStatus 提交结果状态
    */
-  async function onSubmitRoleForm() {
-    console.log(roleFormData.value);
-    // const result = await formRef.value.validate();
-    // if (result) {
-    //   const { id } = form;
-    //   try {
-    //     const result = await updateBaseDictValue(form);
-    //     console.log(result);
-
-    //     createMessage.success(`${id ? '编辑' : '新增'}成功`);
-    //     close();
-    //   } catch (e) {
-    //     createMessage.error(e || `${id ? '编辑' : '新增'}失败`);
-    //   }
-    // }
+  function onSubmitRoleForm(requestStatus: boolean) {
+    // 请求成功关闭弹窗重载表格
+    if (requestStatus) {
+      roleFormDialogRef.value?.onCloseRoleFormDialog();
+      rolesTableRef.value!.refresh();
+    }
   }
 
   /**
@@ -94,6 +89,22 @@ export function useRoleTreeEvent(loadRoleData: () => Promise<void>) {
   }
 
   /**
+   * 分配权限
+   *
+   * @param data 角色信息
+   */
+  function onConfigAuth(data: Iobj): void {
+    const { id, roleName } = data;
+    const params: RoleConfig.RolePrivsParams = {
+      objType: '0',
+      objId: id
+    };
+    setRoleConfigTreeParams(params);
+    moduleConfigDrawer.value.visiable = true;
+    moduleConfigDrawer.value.title = roleName;
+  }
+
+  /**
    * 删除角色请求
    *
    * @param roleId 角色id
@@ -104,8 +115,8 @@ export function useRoleTreeEvent(loadRoleData: () => Promise<void>) {
     };
     try {
       await fetchDeleteRole(params);
-      createMessage('删除成功!');
-      loadRoleData();
+      createMessage.success('删除成功!');
+      rolesTableRef.value!.refresh();
     } catch (error) {}
   }
 
@@ -124,13 +135,11 @@ export function useRoleTreeEvent(loadRoleData: () => Promise<void>) {
   }
 
   return {
-    roleFormTitle,
-    roleFormDialogRef,
     roleFormData,
-    loadSaveRole,
     onAddRoleTree,
     onEditRoleTree,
     onDeleteRole,
+    onConfigAuth,
     onSubmitRoleForm,
     handleNodeClick
   };

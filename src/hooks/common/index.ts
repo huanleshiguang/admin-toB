@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-09-10 17:37:16
- * @LastEditTime: 2023-07-28 14:41:50
+ * @LastEditTime: 2023-07-29 09:43:15
  * @Reference:
  */
 
@@ -17,7 +17,7 @@ export function useClearParams(queryParams: Indexable<string | number>) {
     if (Object.prototype.hasOwnProperty.call(queryParams, key)) {
       const queryItem = queryParams[key];
       if (typeof queryItem === 'string' && queryItem === '') {
-        delete queryParams[key];
+        // delete queryParams[key];
       }
     }
   }
@@ -26,9 +26,9 @@ export function useClearParams(queryParams: Indexable<string | number>) {
 
 /**
  * 格式化session字符串转对象
- * 
+ *
  * @param target session存储数据
- * @returns 
+ * @returns
  */
 export function formatSessionJson(target: string | null): any {
   if (target?.indexOf('{') === 0) {

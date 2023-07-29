@@ -30,7 +30,7 @@ export const useNavMenuList = defineStore('navMenuList', () => {
     },
     {
       id: 1002,
-      label: '权限管理',
+      label: '角色管理',
       icon: 'patient',
       permission: 'system_user',
       path: '/system/roles'
