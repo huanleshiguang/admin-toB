@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 14:32:45
+ * @LastEditTime: 2023-07-29 18:06:57
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 床位管理新增与编辑 
 -->
@@ -31,7 +31,7 @@
 import { cloneDeep } from 'lodash-es';
 // import { rules } from './useCommon';
 import type { userInfo } from '/@/api/system/types/user';
-import type { resHospAreaDepTree, resRoleList } from '/@/api/system/types/user'
+import type { resHospAreaDepTree, resUserList } from '/@/api/system/types/user'
 const title = ref<string>('新增人员');
 const dialogLayoutRef = ref();
 const belongToTreeRef = ref()
@@ -58,7 +58,7 @@ const transmitProps = {
   children: 'children'
 };
 const hospAreaDepList = ref<resHospAreaDepTree[]>([]);
-const roleList = ref<resRoleList[]>([]);
+const roleList = ref<resUserList[]>([]);
 const formRef = ref<any>();
 onMounted(() => {
   loadHospAreaDepTree()
