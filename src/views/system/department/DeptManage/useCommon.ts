@@ -2,13 +2,13 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-24 14:55:17
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 15:55:26
+ * @LastEditTime: 2023-07-29 15:11:50
  * @FilePath: \servious-illness-admin\src\views\system\users\components\ArcManage\useCommon.ts
  * @Description: 科室管理相关数据
  */
 
 import type { FormRules } from 'element-plus';
-import type { fetchHosptAreaDepUserList } from '/@/api/system/types/user';
+import type { resHosptAreaDepUserList } from '/@/api/system/types/user';
 /**
  * columnsList: 需要显示的表格字段
  */
@@ -58,7 +58,7 @@ export const transmitProps = {
 /**
  * params: 请求参数
  */
-export const params = ref<fetchHosptAreaDepUserList>({
+export const params = ref<resHosptAreaDepUserList>({
   AreaId: '',
   DeptId: '',
   Keyword: '',

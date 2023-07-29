@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-18 09:32:45
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-28 17:03:04
+ * @LastEditTime: 2023-07-29 15:03:55
  * @FilePath: \servious-illness-admin\src\components\common\CommonTree.vue
  * @Description: 公共tree-select组件
 -->
@@ -39,9 +39,7 @@ const props = defineProps({
     default: [],
     required: true
   },
-  modelData:{
-    type: Array || String
-  },
+  modelData:{},
   // 是否展示checkbox
   showCheckbox: {
     type: Boolean,
@@ -67,6 +65,9 @@ const props = defineProps({
   }
 });
 const tempData = ref()
+defineExpose({
+  tempData
+})
 watch(() => props.modelData, (newVal) => {
   tempData.value = newVal;
 },{ immediate: true })

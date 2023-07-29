@@ -8,7 +8,7 @@
  */
 
 import type { FormRules } from 'element-plus';
-import type { fetchHosptAreaDepUserList } from '/@/api/system/types/user';
+import type { resHosptAreaDepUserList } from '/@/api/system/types/user';
 /**
  * columnsList: 需要显示的表格字段
  */
@@ -53,7 +53,7 @@ export const hospAreaName = ref<string>('');
 /**
  * params: 请求参数
  */
-export const params = ref<fetchHosptAreaDepUserList>({
+export const params = ref<resHosptAreaDepUserList>({
   AreaId: '',
   DeptId: '',
   Keyword: '',

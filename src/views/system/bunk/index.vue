@@ -2,7 +2,7 @@
  * @Autor: ZhouHao joehall@foxmail.com
  * @Date: 2023-02-17 22:45:44
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 18:36:53
+ * @LastEditTime: 2023-07-29 14:59:42
  * @Description: 
  * @FilePath: /vue-vite-elementplus-zhao/src/views/system/menu.vue
 -->
@@ -17,76 +17,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import BedEquipment from './components/BedEquipment.vue';
-import BunkManage from './components/BunkManage.vue';
+import BedEquipment from './components/BedEquipment/index.vue';
+import BunkManage from './components/BunkManage/index.vue';
 const tabList = [
   {
     label: '床位管理',
     component: BunkManage
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
-  },
-  {
-    label: '床旁设备',
-    component: BedEquipment
   },
   {
     label: '床旁设备',
