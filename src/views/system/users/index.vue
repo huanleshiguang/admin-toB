@@ -2,9 +2,9 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-27 09:38:21
+ * @LastEditTime: 2023-07-28 18:30:08
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
-  * @Description: 科室管理模块
+  * @Description: 人员管理模块
  -->
 <template>
   <div class="common-layout">
@@ -43,13 +43,13 @@
         </div>
       </template>
       <template #columns>
-        <vxe-column title="操作" align="center" fixed="right">
+        <vxe-column title="操作" align="center" width="170" fixed="right">
           <template #default="{ row }">
-            <el-button  type="primary" :icon="Edit" size="small" @click="editRow(row)">编辑</el-button>
-            <el-popconfirm confirm-button-text="是" cancel-button-text="否" :icon="InfoFilled" icon-color="#626AEF"
+            <el-button type="primary" :icon="Edit" size="small" @click="editRow(row)">编辑</el-button>
+            <el-popconfirm confirm-button-text="是" cancel-button-text="否" :icon="InfoFilled"
               title="确定要删除这条信息吗？" @confirm="deleteRow(row)">
               <template #reference>
-                <el-button  type="danger" :icon="Delete" size="small">删除</el-button>
+                <el-button type="danger" :icon="Delete" size="small">删除</el-button>
               </template>
             </el-popconfirm>
           </template>
@@ -64,9 +64,9 @@
 <script lang="ts" setup>
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
-import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled,Edit,Delete } from '@element-plus/icons-vue';
-import type { hospAreaInfo, fetchHospAreaDepList } from '/@/api/system/types/user';
-import { columnsList, transmitProps, params, hospAreaName } from './useCommon';
+import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled, Edit, Delete } from '@element-plus/icons-vue';
+import type { hospAreaInfo, fetchHospAreaDepList, userInfo } from '/@/api/system/types/user';
+import { columnsList, params, hospAreaName } from './useCommon';
 import update from './update.vue';
 const vxeTableLayoutRef = ref();
 const updateRef = ref();
@@ -75,7 +75,13 @@ const treeSelectRef = ref();
 const hospAreaList = ref<hospAreaInfo[]>([]);
 // 科室列表
 const hospAreaDepList = ref<fetchHospAreaDepList[]>([]);
-
+// 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）
+const transmitProps = {
+  label: 'deptName',
+  deptCode: 'deptCode',
+  isMainDept: 'isMainDept',
+  children: 'children'
+};
 onMounted(() => {
   fetchinitHsopAreaList();
 });
@@ -98,7 +104,7 @@ const fetchinitHsopAreaList = async () => {
 const selectedHospArea = async (AreaId: string) => {
   try {
     params.value.AreaId = AreaId;
-    const result = await fetchHosptAreaDepList(AreaId);
+    const result = await fetchDepList(AreaId);
     hospAreaDepList.value = result;
   } catch (error) {
     if (error instanceof Error)
@@ -139,33 +145,28 @@ async function initMethod() {
       throw (error.cause, 'catch捕获')
     else {
       console.log(error);
-      
-      
       ElMessage({
         type: 'error',
         message: '获取人员信息出现未知错误'
       })
     }
   }
-
 };
-
 // 新增用户
 const addUser = () => {
   updateRef.value.open();
 };
-const editRow = (row: hospAreaInfo) => {
-  console.log(row, 'row');
-
+const editRow = (row: userInfo) => {
+  console.log(row,'qqqqqq');
   updateRef.value.open(row);
 };
-const deleteRow = (row: hospAreaInfo) => {
-  console.log(row, 'row');
-  deleteHosptAreaInfo(row.id).then((res) => {
-    if (res) {
-      reFresh();
-    }
-  })
+const deleteRow = async (row: userInfo) => {
+   const result =  await deleteUserInfo(row.id);
+   console.log(result);
+   if(result){
+    reFresh()
+   }
+   
 }
 const reFresh = () => {
   vxeTableLayoutRef.value.refresh();
