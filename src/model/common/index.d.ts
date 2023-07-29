@@ -48,6 +48,6 @@ declare namespace ICUCommon {
     // 当前页下标
     pageIndex?: number;
     // 每页数据行数
-    pageCount?: number;
+    pageSize?: number;
   }
 }

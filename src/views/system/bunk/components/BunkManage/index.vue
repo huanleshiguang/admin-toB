@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 14:32:21
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 15:28:21
+ * @LastEditTime: 2023-07-29 15:36:25
  * @FilePath: \servious-illness-admin\src\views\system\bunk\components\BunkManagement.vue
  * @Description: 床位管理
 -->
@@ -21,8 +21,12 @@
         <common-tree-select ref="treeSelectRef" :data="hospAreaDepList" :transmit-props="transmitProps"
           @handleNodeClick="handleNodeClick" />
         <span class="ml-3 text-gray-600 inline-flex items-center font-stl">类型：</span>
-        <el-select v-model="type" class="w-150 mr-2px" placeholder="Pick a date" :suffix-icon="ArrowDown" />
-        <el-button type="primary" @click="handleSearch">搜索</el-button>
+        <el-select v-model="type" class="w-150 mr-2px" placeholder="请选择类型" :suffix-icon="ArrowDown" />
+        <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
+      </template>
+      <template #operator-right>
+        <el-button type="primary" :icon="Plus" @click="handleSearch">新增</el-button>
+        <el-button type="primary" :icon="Refresh" @click="handleSearch">同步</el-button>
       </template>
       <template #columns>
         <vxe-column title="操作" align="center" width="170" fixed="right">
@@ -46,7 +50,7 @@
 <script setup lang='ts'>
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
-import { ArrowDown, Edit, Delete, InfoFilled } from '@element-plus/icons-vue';
+import { ArrowDown, Edit, Delete, InfoFilled,Search,Plus,Refresh } from '@element-plus/icons-vue';
 import type { hospAreaInfo,resDepList, resHosptAreaDepUserList } from '/@/api/system/types/user';
 import { columnsList,params, transmitProps } from './useCommon';
 const updateRef = ref();
@@ -64,10 +68,10 @@ const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
 };
 async function initMethod(params:resHosptAreaDepUserList) {
   console.log(params, 'params');
-  const { PageCount } = params;
+  const { PageSize } = params;
   return {
     total: 100,
-    records: [...new Array(PageCount)].map((_, index) => {
+    records: [...new Array(PageSize)].map((_, index) => {
       return { id: index, srial: 'adad', name: '张三', value: '1', desc: '12414' };
     })
   };

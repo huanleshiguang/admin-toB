@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-29 16:08:33
+ * @LastEditTime: 2023-07-29 16:21:00
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -35,12 +35,12 @@
         </common-tree-select>
         <span class="ml-3  text-gray-600 inline-flex items-center font-stl">人员检索：</span>
         <el-input v-model="params.Keyword" class="w-150" placeholder="姓名/工号" :suffix-icon="Search" />
-        <el-button type="primary" class="ml-3" @click="handleSearch">搜索</el-button>
+        <el-button type="primary" class="ml-3" :icon="Search" @click="handleSearch">搜索</el-button>
       </template>
       <template #operator-right>
         <div>
-          <el-button type="primary" @click="addUser">新增</el-button>
-          <el-button type="primary" class="ml-3" @click="handleSearch">同步</el-button>
+          <el-button type="primary" :icon="Plus" @click="addUser">新增</el-button>
+          <el-button type="primary" class="ml-3" :icon="Refresh" @click="handleSearch">同步</el-button>
         </div>
       </template>
       <template #columns>
@@ -71,8 +71,7 @@
  
 <script lang="ts" setup>
 import { VxeTableEvents } from 'vxe-table';
-import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled, Edit, Delete } from '@element-plus/icons-vue';
-import update from './update.vue';
+import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled, Edit, Delete,Plus,Refresh } from '@element-plus/icons-vue';
 import type { hospAreaInfo, resDepList, userInfo } from '/@/api/system/types/user';
 import { columnsList, params, hospAreaName } from './useCommon';
 import { useModuleConfigDrawer } from './composables/useModuleConfig';

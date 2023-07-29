@@ -58,7 +58,7 @@ export const params = ref<resHosptAreaDepUserList>({
   DeptId: '',
   Keyword: '',
   PageIndex: 1,
-  PageCount: 20
+  PageSize: 20
 });
 
 
