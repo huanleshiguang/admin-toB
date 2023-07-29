@@ -7,7 +7,7 @@
  * @FilePath: \servious-illness-admin\src\views\dashboard\index.vue
 -->
 <template>
-  <div class="w_100 h_100 dashboard-container flex flex-col">
+  <div class="w-full h_100 dashboard-container flex flex-col">
     <NavHeader />
     <div class="company-logo">
       <el-image :src="require('/@/assets/image/dashboard/logo-desktop.png')"></el-image>

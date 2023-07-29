@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 17:07:32
+ * @LastEditTime: 2023-07-28 15:36:34
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 科室管理模块
  -->
@@ -92,7 +92,7 @@ const fetchinitHsopAreaList = async () => {
 const selectedHospArea = async (AreaId: string) => {
   try {
     params.value.AreaId = AreaId;
-    const result = await fetchHosptAreaDepList(AreaId);
+    const result = await fetchDepList(AreaId);
     hospAreaDepList.value = result;
   } catch (error) {
     if (error instanceof Error)
@@ -116,7 +116,7 @@ const handleSearch = async () => {
   vxeTableLayoutRef.value.refresh(true);
 };
 const handleClear = () => {
-  treeSelectRef.value.deptName = '';
+  treeSelectRef.value.deptIds = '';
   params.value.AreaId = '';
   params.value.DeptId = '';
 }

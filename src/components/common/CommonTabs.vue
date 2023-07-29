@@ -1,26 +1,19 @@
 <template>
   <el-tabs class="common-tabs" :type="props.type">
-    <el-tab-pane v-for="item in tabList" :key="item.id" :label="item.label" :lazy="lazy" >
+    <el-tab-pane v-for="item in tabList" :key="item.label" :label="item.label" :lazy="lazy">
       <component :is="item.component" class="common-tabs_component" />
     </el-tab-pane>
     <slot />
   </el-tabs>
 </template>
 <script setup lang="ts" name="CommonTabs">
-import { PropType } from 'vue';
-
-interface TabList {
-  id: string;
-  label: string;
-  component: PropType<Component | string>;
-}
 
 const props = withDefaults(
   defineProps<{
     type?: string;
-    tabList: TabList[];
+    tabList: ICUCommon.TabsComponens[];
     // 标签是否延迟渲染
-    lazy: boolean;
+    lazy?: boolean;
   }>(),
   {
     type: 'border-card',

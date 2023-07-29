@@ -1,6 +1,7 @@
 <script setup lang="ts" name="VxeTableLayout">
 import type { VxeColumnProps, VxePagerPropTypes } from 'vxe-table';
 import { PropType } from 'vue';
+import { cloneDeep } from 'lodash-es';
 // defineComponent({
 //   name: 'VxeTableLayout',
 //   inheritAttrs: false
@@ -75,15 +76,6 @@ const props = defineProps({
   }
 });
 
-// withDefaults(
-//   defineProps<{
-//     columnsList: VxeColumnProps[];
-//   }>(),
-//   {
-//     columnsList: (): VxeColumnProps[] => []
-//   }
-// );
-
 // emit事件
 const emit = defineEmits(['loaded', 'load-error', 'load-finish', 'load-start']);
 
@@ -100,8 +92,16 @@ const params = reactive<{ pageIndex: number; pageCount: number }>({
   pageIndex: 1,
   pageCount: props.pageCount
 });
-const list = ref([]);
-const refresh = async (resetPage?: boolean) => {
+
+// 表格数据
+const tableData = ref<Iobj[]>([]);
+
+/**
+ * 表格请求方法
+ * 
+ * @param resetPage 重置分页
+ */
+async function refresh(resetPage?: boolean) {
   if (loading.value) return;
 
   if (resetPage) {
@@ -117,22 +117,21 @@ const refresh = async (resetPage?: boolean) => {
     const result = await props.loader(params);
     // 没有分页：返回的是 list
     if (props.intact) {
-      list.value = result;
+      tableData.value = cloneDeep(result);
       total.value = result && result.length;
     } else {
       const { records, total: rTotal } = unref(result);
-
       if (records && !records.length && rTotal && params.pageIndex > 1) {
         params.pageIndex--;
         loading.value = false;
         await refresh();
       } else {
-        list.value = records || [];
+        tableData.value = records || [];
         total.value = rTotal;
       }
     }
   } catch (err) {
-    list.value = [];
+    tableData.value = [];
     total.value = 0;
     if (process.env.NODE_ENV !== 'production') console.error('layout load', err);
 
@@ -144,7 +143,7 @@ const refresh = async (resetPage?: boolean) => {
   }
 
   await nextTick();
-  emit('loaded', list.value);
+  emit('loaded', tableData.value);
 };
 
 const onPageChange = () => {
@@ -184,7 +183,8 @@ onMounted(async () => {
     <div class="table-layout__content">
       <slot name="table" v-bind="$attrs">
         <div class="table-layout__main">
-          <vxe-table ref="table" :loading="loading" stripe :data="list" v-bind="$attrs">
+          <!-- <vxe-table ref="table" :loading="loading" stripe :data="tableData" v-bind="$attrs"> -->
+          <vxe-table ref="table" :loading="loading" stripe :data="cloneDeep(tableData)" v-bind="$attrs">
             <vxe-column v-if="hasSelection" type="checkbox" width="40" align="center" fixed="left"></vxe-column>
             <vxe-column v-if="hasIndex" title="序号" width="80" fixed="left" align="center">
               <template #default="{ $rowIndex }">
@@ -233,6 +233,7 @@ onMounted(async () => {
     height: 45px;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
   }
 
   &__content {

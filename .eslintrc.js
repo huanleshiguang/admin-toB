@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-09-02 18:04:56
- * @LastEditTime: 2023-07-12 10:12:44
+ * @LastEditTime: 2023-07-24 14:09:02
  * @Reference:
  */
 module.exports = {
@@ -51,6 +51,13 @@ module.exports = {
       {
         argsIgnorePattern: "^_",
         varsIgnorePattern: "^_"
+      }
+    ],
+    // https://github.com/typescript-eslint/typescript-eslint/blob/v4.31.2/packages/eslint-plugin/docs/rules/no-empty-interface.md
+    "@typescript-eslint/no-empty-interface": [
+      "error",
+      {
+        "allowSingleExtends": true
       }
     ]
   },

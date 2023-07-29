@@ -18,7 +18,7 @@ import { jumpToLogin } from './useBackToLogin';
 export function useErrorResponse(status: number, message?: string) {
   const errorMap = new Map<number, string>([
     [200, `${message}`],
-    [400, `错误请求`],
+    [400, `请求参数有误`],
     [401, `请重新登录`],
     [403, `服务器拒绝访问`],
     [404, `无服务器请求`],

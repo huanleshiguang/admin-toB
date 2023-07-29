@@ -7,7 +7,7 @@
  * @FilePath: \servious-illness-admin\src\views\dashboard\components\NavHeader.vue
 -->
 <template>
-  <div class="w_100 dashboard-header p-xAxis-20 flex items-center flex-justify-end">
+  <div class="w-full dashboard-header p-xAxis-20 flex items-center flex-justify-end">
     <p>
       (
       <span>{{ dashboardNavData.organization }}</span>

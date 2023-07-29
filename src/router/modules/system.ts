@@ -29,6 +29,18 @@ const systemRouter: RouteRecordRaw = {
       meta: { title: '人员管理', icon: 'dashboard', affix: true, requireAuth: true }
     },
     {
+      path: 'menus',
+      component: () => import('/@/views/system/menus/index.vue'),
+      name: 'Menus',
+      meta: { title: '菜单管理', icon: 'dashboard', affix: true, requireAuth: true }
+    },
+    {
+      path: 'roles',
+      component: () => import('/@/views/system/roles/index.vue'),
+      name: 'Roles',
+      meta: { title: '权限管理', icon: 'dashboard', affix: true, requireAuth: true }
+    },
+    {
       path: 'bunk',
       component: () => import('/@/views/system/bunk/index.vue'),
       name: 'Bunk',

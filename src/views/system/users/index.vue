@@ -1,8 +1,13 @@
 <!--
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
+<<<<<<< HEAD
  * @LastEditors: ZhouHao joehall@foxmail.com
  * @LastEditTime: 2023-07-28 18:30:08
+=======
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-07-28 16:38:24
+>>>>>>> 08aa964a7d78bcfa404e87edb161647cf192feea
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->

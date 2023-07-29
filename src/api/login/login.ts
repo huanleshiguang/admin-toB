@@ -8,9 +8,8 @@
  */
 import defHttp from '/@/utils/request';
 
-enum loginPath {
-  // login = '/Organization/UserManage/OrgUserLogin111'
-  login = '/Organization/UserManage/OrgUserLogin'
+enum LOGINURL {
+  LOGIN = '/Organization/UserManage/OrgUserLogin'
 }
 
 /**
@@ -19,4 +18,4 @@ enum loginPath {
  * @param data 请求参数
  * @returns
  */
-export const fetchLogin = <T>(data: T) => defHttp.post({ url: loginPath.login, data });
+export const fetchLogin = <T>(data: T) => defHttp.post({ url: LOGINURL.LOGIN, data });

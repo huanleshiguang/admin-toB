@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-24 14:55:17
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-27 10:43:18
+ * @LastEditTime: 2023-07-28 14:23:41
  * @FilePath: \servious-illness-admin\src\views\system\users\components\ArcManage\useCommon.ts
  * @Description: 科室管理相关数据
  */
@@ -13,6 +13,10 @@ import type { fetchHosptAreaDepUserList } from '/@/api/system/types/user';
  * columnsList: 需要显示的表格字段
  */
 export const columnsList = [
+  {
+    title: '同步ID',
+    field: 'syncId'
+  },
   {
     title: '姓名',
     field: 'userName',
@@ -26,32 +30,26 @@ export const columnsList = [
     field: 'userWorkNo',
   },
   {
-    title: '登录名',
-    field: 'loginName',
-  },
-  {
-    title: '类型',
+    title: '职务类别',
     field: 'positionLevelName',
   },
   {
     title: '性别',
     field: 'genderName',
-  }
+  },
+  {
+    title: '联系电话',
+    field: 'userTel',
+  },
+  {
+    title: '身份证号',
+    field: 'userIdNo',
+  },
 ];
 
 // 院区名称
 export const hospAreaName = ref<string>('');
 
-
-/**
- * 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）
- */
-export const transmitProps = {
-  label: 'deptName',
-  deptCode: 'deptCode',
-  isMainDept: 'isMainDept',
-  children: 'children'
-};
 /**
  * params: 请求参数
  */
@@ -71,16 +69,9 @@ export const rules = reactive<FormRules>({
   deptName: [
     {
       required: true,
-      message: '请输入科室!',
+      message: '请输入所属科室!',
       trigger: 'change'
     },
-  ],
-  bePartOfDeptName: [
-    {
-      required: true,
-      message: '请输入所属科室！',
-      trigger: 'change'
-    }
   ],
   userName: [
     {
@@ -89,20 +80,28 @@ export const rules = reactive<FormRules>({
       trigger: 'change'
     }
   ],
-  loginName: [
+  genderName: [{
+    required: true,
+    message: '请输入性别！',
+    trigger: 'change'
+  }],
+  userWorkNo: [{
+    required: true,
+    message: '请输入用户工号！',
+    trigger: 'change'
+  }],
+  positionLevelName: [
     {
       required: true,
-      message: '请输入登录名！',
+      message: '请选择职务类别！',
       trigger: 'change'
     }
   ],
-  type: [
-    {
-      required: true,
-      message: '请选择用户类型！',
-      trigger: 'change'
-    }
-  ]
+  userRoleIds: [{
+    required: true,
+    message: '请选择用户角色！',
+    trigger: 'change'
+  }]
 });
 
 

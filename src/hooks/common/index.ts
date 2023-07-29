@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-09-10 17:37:16
- * @LastEditTime: 2023-07-10 12:55:55
+ * @LastEditTime: 2023-07-28 14:41:50
  * @Reference:
  */
 
@@ -22,4 +22,17 @@ export function useClearParams(queryParams: Indexable<string | number>) {
     }
   }
   return queryParams;
+}
+
+/**
+ * 格式化session字符串转对象
+ * 
+ * @param target session存储数据
+ * @returns 
+ */
+export function formatSessionJson(target: string | null): any {
+  if (target?.indexOf('{') === 0) {
+    return JSON.parse(target);
+  }
+  return target ?? '';
 }

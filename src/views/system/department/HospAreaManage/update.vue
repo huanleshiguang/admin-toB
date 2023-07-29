@@ -31,7 +31,7 @@ const open = (data:hospAreaInfo) => {
   console.log(data,'dattt');
   title.value = `${data ? '编辑' : '新增'}院区`;
   // ;
-  Object.assign(form, data);
+  Object.assign(form.value, data);
   console.log(form,'formmmmmmmmmm')
   dialogLayout.value.open();
 };
