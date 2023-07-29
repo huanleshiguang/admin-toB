@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-18 17:55:07
- * @LastEditTime: 2023-07-28 15:52:28
+ * @LastEditTime: 2023-07-29 14:20:54
  * @Description: 错误信息上报
  */
 import { Configuration } from '@exceptionless/core';
@@ -15,7 +15,7 @@ import { useExceptionless } from '/@/config/exceptionless';
 export function setExceptionless() {
   const { userWorkNo, userName, apiKey, serverUrl } = useExceptionless();
   Exceptionless.startup((c: Configuration) => {
-    c.useDebugLogger();
+    // c.useDebugLogger();
     c.apiKey = apiKey;
     c.serverUrl = serverUrl;
     c.updateSettingsWhenIdleInterval = 15000;

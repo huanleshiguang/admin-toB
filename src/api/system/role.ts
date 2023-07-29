@@ -2,7 +2,7 @@
  * @Autor: QMZhao
  * @Date: 2023-07-24 19:26:48
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-28 15:17:40
+ * @LastEditTime: 2023-07-29 09:47:30
  * @Description: 权限管理
  * @FilePath: \servious-illness-admin\src\api\system\role.ts
  */
@@ -44,7 +44,7 @@ export function fetchSaveRole<T>(data: T) {
  * 删除角色
  */
 export function fetchDeleteRole<T>(data: T) {
-  return defHttp.post({ url: `${ROLEURL.DELETE_ROLE}`, data, requestType: 'form' });
+  return defHttp.post({ url: `${ROLEURL.DELETE_ROLE}`, params: data, requestType: 'form' });
 }
 
 /**

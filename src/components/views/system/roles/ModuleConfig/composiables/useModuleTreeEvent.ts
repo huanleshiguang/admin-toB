@@ -1,13 +1,14 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-26 10:28:47
- * @LastEditTime: 2023-07-28 16:26:26
+ * @LastEditTime: 2023-07-29 16:14:47
  * @Description: 功能清单树事件
  */
-import type TreeStore from 'element-plus/es/components/tree/src/model/tree-store';
+// import type TreeStore from 'element-plus/es/components/tree/src/model/tree-store';
 
-export function useModuleTreeEvent(moduleTreeRef: Ref<TreeStore | null>, isCheckStrictily: Ref<boolean>) {
+export function useModuleTreeEvent({ ...arg }) {
   const { createMessage } = useMessage();
+  const { moduleTreeRef, isCheckStrictily, roleFormEmits } = arg;
   const isSaveLoading = ref(false);
 
   /**
@@ -33,6 +34,7 @@ export function useModuleTreeEvent(moduleTreeRef: Ref<TreeStore | null>, isCheck
       await fetchSaveRolePrivs(params);
       createMessage.success('保存成功!');
       isSaveLoading.value = false;
+      roleFormEmits('update:moduleConfigVisiable', false);
     } catch (error) {
       isSaveLoading.value = false;
     }
