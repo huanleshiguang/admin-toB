@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 17:07:32
+ * @LastEditTime: 2023-07-29 15:13:42
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 科室管理模块
  -->
@@ -14,7 +14,7 @@
       <template #operator-left>
         <!-- 院区选择 -->
         <span class="ml-3  text-gray-600 inline-flex items-center">选择院区：</span>
-        <el-select v-model="hospAreaName" clearable class="w-60" placeholder="请选择院区" :suffix-icon="ArrowDown"
+        <el-select v-model="hospAreaName" clearable class="w-150" placeholder="请选择院区" :suffix-icon="ArrowDown"
           @clear="handleClear">
           <el-option v-for="item in hospAreaList" :key="item.id" :label="item.hospAreaName" :value="item.hospAreaName"
             @click="selectedHospArea(item.id)" /></el-select>
@@ -34,7 +34,7 @@
           </template>
         </common-tree-select>
         <span class="ml-3  text-gray-600 inline-flex items-center">科室检索：</span>
-        <el-input v-model="params.Keyword" class="w-60" placeholder="用户名称/工号" :suffix-icon="Search" />
+        <el-input v-model="params.Keyword" class="w-150" placeholder="用户名称/工号" :suffix-icon="Search" />
         <el-button type="primary" class="ml-3" @click="handleSearch">搜索</el-button>
       </template>
       <template #operator-right>
@@ -59,7 +59,7 @@
 import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import { ArrowDown, Search, Document, Folder, FolderOpened } from '@element-plus/icons-vue';
-import type { hospAreaInfo, fetchHospAreaDepList } from '/@/api/system/types/user';
+import type { hospAreaInfo, resDepList } from '/@/api/system/types/user';
 import { columnsList, transmitProps, params, isSelecteddMainDept, isMainDept, hospAreaName } from './useCommon';
 import update from './update.vue';
 const vxeTableLayoutRef = ref();
@@ -68,7 +68,7 @@ const treeSelectRef = ref();
 // 院区列表
 const hospAreaList = ref<hospAreaInfo[]>([]);
 // 科室列表
-const hospAreaDepList = ref<fetchHospAreaDepList[]>([]);
+const hospAreaDepList = ref<resDepList[]>([]);
 
 onMounted(() => { 
   fetchinitHsopAreaList();
@@ -92,7 +92,7 @@ const fetchinitHsopAreaList = async () => {
 const selectedHospArea = async (AreaId: string) => {
   try {
     params.value.AreaId = AreaId;
-    const result = await fetchHosptAreaDepList(AreaId);
+    const result = await fetchDepList(AreaId);
     hospAreaDepList.value = result;
   } catch (error) {
     if (error instanceof Error)
@@ -116,7 +116,7 @@ const handleSearch = async () => {
   vxeTableLayoutRef.value.refresh(true);
 };
 const handleClear = () => {
-  treeSelectRef.value.deptName = '';
+  treeSelectRef.value.deptIds = '';
   params.value.AreaId = '';
   params.value.DeptId = '';
 }

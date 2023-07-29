@@ -1,8 +1,8 @@
 /*
  * @Autor: QMZhao
  * @Date: 2021-09-06 22:26:37
- * @LastEditors: QMZhao zhao971462054@163.com
- * @LastEditTime: 2023-07-07 17:39:58
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-07-28 17:56:13
  * @Description:
  * @FilePath: /vue-vite-template/vite.config.ts
  */
@@ -74,6 +74,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           `
         }
       }
-    }
+    },
   };
 };

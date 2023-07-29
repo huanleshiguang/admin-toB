@@ -6,7 +6,7 @@
  * @FilePath: \servious-illness-admin\src\views\system\users\components\ArcManage\useFilter.ts
  * @Description: 科室管理相关方法
  */
-import type { fetchHospAreaDepList } from '/@/api/system/types/user'
+import type { resDepList } from '/@/api/system/types/user'
 
 /**
  * 递归查询
@@ -15,7 +15,7 @@ import type { fetchHospAreaDepList } from '/@/api/system/types/user'
  * @param newValue // 判断字段与当前值是否相等
  */
 // 递归: 判断是否有子级 && 过滤 非 newValue 项
-export const useFilterCurrentField = (depItem: fetchHospAreaDepList, filterField: string, newValue: Boolean) => {
+export const useFilterCurrentField = (depItem: resDepList, filterField: string, newValue: Boolean) => {
   if (depItem.children?.length) {
     depItem.children = depItem.children.filter((depItem) => {
       return useFilterCurrentField(depItem, filterField, newValue);
