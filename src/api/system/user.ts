@@ -41,10 +41,6 @@ export const fetchHospAreaDepTree = (): Promise<Users.resHospAreaDepTree[]> => r
 export const fetchHosptAreaDepUserList = (data: Users.resHosptAreaDepUserList): Promise<Users.resHospAreaDepUserList> =>
   request.get({ url: USERAPI.FETCH_HOSPAREADEP_USER_URL, data })
 
-// 获取角色信息
-// export const fetchUserList = (): Promise<Users.resUserList[]> =>
-//   request.get({ url: USERAPI.FETCH_ROLE_LIST_URL })
-
 // 保存用户信息
 export const updateUserInfo = (data: Users.hospAreaInfo) => request.post({ url: USERAPI.UPDATE_HOSPT_AREA_INFO, data })
 

@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 16:42:10
+ * @LastEditTime: 2023-07-31 10:06:41
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 科室管理模块
  -->
@@ -120,6 +120,7 @@ const handleClear = () => {
   treeSelectRef.value.tempData = '';
   params.value.AreaId = '';
   params.value.DeptId = '';
+  hospAreaDepList.value = [];
 }
 async function initMethod() {
   try {

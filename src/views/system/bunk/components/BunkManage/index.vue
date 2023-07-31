@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 14:32:21
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 15:36:25
+ * @LastEditTime: 2023-07-31 10:30:00
  * @FilePath: \servious-illness-admin\src\views\system\bunk\components\BunkManagement.vue
  * @Description: 床位管理
 -->
@@ -25,7 +25,7 @@
         <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
       </template>
       <template #operator-right>
-        <el-button type="primary" :icon="Plus" @click="handleSearch">新增</el-button>
+        <el-button type="primary" :icon="Plus" @click="addRow">新增</el-button>
         <el-button type="primary" :icon="Refresh" @click="handleSearch">同步</el-button>
       </template>
       <template #columns>
@@ -53,6 +53,7 @@ import { VxeTableEvents } from 'vxe-table';
 import { ArrowDown, Edit, Delete, InfoFilled,Search,Plus,Refresh } from '@element-plus/icons-vue';
 import type { hospAreaInfo,resDepList, resHosptAreaDepUserList } from '/@/api/system/types/user';
 import { columnsList,params, transmitProps } from './useCommon';
+import update from './update.vue'
 const updateRef = ref();
 const treeSelectRef = ref();
 const vxeTableLayoutRef = ref();
@@ -107,9 +108,13 @@ const selectedHospArea = async (AreaId: string) => {
 const handleNodeClick = (DeptId: string) => {
   params.value.DeptId = DeptId;
 };
+const addRow = () => {
+  console.log('adduser');
+  updateRef.value.open();
+};
 const editRow = (row:hospAreaInfo) => {
   console.log(row, 'qqqqqq');
-  // updateRef.value.open(row);
+  updateRef.value.open(row);
 };
 const deleteRow = async (row:hospAreaInfo) => {
   const result = await deleteUserInfo(row.id);
@@ -122,6 +127,7 @@ const handleClear = () => {
   treeSelectRef.value.tempData = '';
   params.value.AreaId = '';
   params.value.DeptId = '';
+  hospAreaDepList.value = [];
 }
 const reFresh = () => {
   vxeTableLayoutRef.value.refresh();

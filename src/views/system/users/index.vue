@@ -1,8 +1,8 @@
 <!--
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-29 16:21:00
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-07-31 10:06:55
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -75,7 +75,7 @@ import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled, Edit, De
 import type { hospAreaInfo, resDepList, userInfo } from '/@/api/system/types/user';
 import { columnsList, params, hospAreaName } from './useCommon';
 import { useModuleConfigDrawer } from './composables/useModuleConfig';
-
+import update from './update.vue'
 const { moduleConfigDrawer, onConfigAuth } = useModuleConfigDrawer();
 const vxeTableLayoutRef = ref();
 const updateRef = ref();
@@ -140,6 +140,7 @@ const handleClear = () => {
   treeSelectRef.value.tempData = '';
   params.value.AreaId = '';
   params.value.DeptId = '';
+  hospAreaDepList.value = [];
 }
 async function initMethod() {
   try {
@@ -163,6 +164,7 @@ async function initMethod() {
 };
 // 新增用户
 const addUser = () => {
+  console.log('adduser');
   updateRef.value.open();
 };
 const editRow = (row: userInfo) => {
