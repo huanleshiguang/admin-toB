@@ -13,7 +13,7 @@ const commonUrl = '/Organization'
 // 统一接口管理
 enum USERAPI {
   FETCH_HOSPT_AREA_INFO_URL = `${commonUrl}/OrgManage/GetOrgAreaInfos`,
-  UPDATE_HOSPT_AREA_INFO = `${commonUrl}/OrgManage/UpdateOrgAreaInfo`,
+  UPDATE_HOSPT_AREA_INFO = `${commonUrl}/OrgManage/SaveOrgAreaInfo`,
   DELETE_HOSPT_AREA_INFO = `${commonUrl}/OrgManage/DeleteOrgAreaInfo`,
   FETCH_FEATURE_LIST = `${commonUrl}/RoleManage/GetOrgMenuTrees`,
   FETCH__DEP_INFO_URL = `${commonUrl}/OrgManage/GetOrgDeptTrees`,
@@ -31,9 +31,6 @@ export const updateHosptAreaInfo = (data: Users.hospAreaInfo) => request.post({ 
 // 删除院区信息
 export const deleteHosptAreaInfo = (areaId: string) => request.post({ url: `${USERAPI.DELETE_HOSPT_AREA_INFO}?areaId=${areaId}` })
 
-// 获取科室信息
-export const fetchDepList = (areaId: string): Promise<Users.resDepList[]> => request.get({ url: `${USERAPI.FETCH__DEP_INFO_URL}?areaId=${areaId}` })
-
 // 获取院区科室组合树
 export const fetchHospAreaDepTree = (): Promise<Users.resHospAreaDepTree[]> => request.get({ url: USERAPI.FETCH_HOSPAREA_DEP_TREE_URL })
 
@@ -46,8 +43,6 @@ export const updateUserInfo = (data: Users.hospAreaInfo) => request.post({ url: 
 
 // 删除用户信息
 export const deleteUserInfo = (userId: string) => request.post({ url: USERAPI.UPDATE_HOSPT_AREA_INFO, data: { userId } })
-
-
 
 // 获取功能菜单
 export const fetchFeatureList = () => request.get({ url: USERAPI.FETCH_FEATURE_LIST })

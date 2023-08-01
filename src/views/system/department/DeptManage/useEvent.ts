@@ -1,47 +1,71 @@
-/*
- * @Author: ZhouHao joehall@foxmail.com
- * @Date: 2023-07-21 20:58:51
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-01 11:50:05
- * @FilePath: \servious-illness-admin\src\views\system\users\components\ArcManage\useFilter.ts
- * @Description: 科室管理相关方法
- */
-import type { resDepList } from '/@/api/system/types/user'
-
-/**
- * 递归查询
- * @param depItem   //需要过滤的对象
- * @param filterField  //需要判断的字段
- * @param newValue // 判断字段与当前值是否相等
- */
-// 递归: 判断是否有子级 && 过滤 非 newValue 项
-export const useFilterCurrentField = (depItem: resDepList, filterField: string, newValue: Boolean) => {
-  if (depItem.children?.length) {
-    depItem.children = depItem.children.filter((depItem) => {
-      return useFilterCurrentField(depItem, filterField, newValue);
-    })
-    return depItem.children.length;
-  } else {
-    return depItem[filterField] === newValue;
+import { VxeTableEvents } from 'vxe-table';
+import { resDepInfo } from '/@/api/system/types/area'
+export function useEvent({ ...arg }) {
+  const { vxeTableLayoutRef, hospAreaList, params, hospAreaName, hospAreaDepList, loading,deptTypeName,deptTypes } = arg
+  // 获取初始院区列表
+  const loadInitHsopAreaList = async () => {
+    const result = await fetchHosptAreaInfo();
+    hospAreaList.value = result || [];
+    // 默认取第一个院区下的科室
+    params.value.AreaId = result[0].id;
+    // 为下拉框赋值
+    hospAreaName.value = result[0].hospAreaName;
+    deptTypeName.value = deptTypes.value[0].deptTypeName;
+    // 刷新
+    reFresh();
+  };
+  // 根据院区获取相应科室
+  const selectedHospArea = async (AreaId: string) => {
+    params.value.AreaId = AreaId;
+    const result = await fetchDepList(params.value);
+    hospAreaDepList.value = result || [];
+  };
+  const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
+    console.log(`行选中事件`, row);
+  };
+  // 搜索
+  const handleSearch = async () => {
+    vxeTableLayoutRef.value.refresh(true);
+  };
+  const handleClear = () => {
+    params.value.AreaId = '';
+    hospAreaDepList.value = [];
   }
-};
-
-// function filterDepList(newValue: boolean): void {
-//   // 过滤前拿到初始数据
-//   reactHospAreaDepList.value = JSON.parse(JSON.stringify(tempHospAreaDepList.value));
-//   const filteredDepList = reactHospAreaDepList.value.filter((depItem) => {
-//     return useFilterCurrentField(depItem, 'isMainDept', newValue);
-//   });
-//   // 赋值过滤后的数据
-//   reactHospAreaDepList.value = filteredDepList;
-// }
-// function onChanageDept(event: boolean): void {
-//   // 勾选重症
-//   if (event) {
-//     filterDepList(event);
-//   }
-//   // 未勾选重症
-//   else {
-//     reactHospAreaDepList.value = JSON.parse(JSON.stringify(tempHospAreaDepList.value));
-//   }
-// }
+  async function initMethod() {
+    const result = await fetchDepList(params.value);
+    return {
+      total: result.length,
+      records: result || []
+    };
+  };
+  // 是否为重症科室
+  const switchBeforeChange = (row: resDepInfo) => {
+    console.log(row)
+    loading.value = true
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        loading.value = false
+        ElMessage.success('切换成功')
+        return resolve(true)
+      }, 1000)
+    })
+  }
+  const handleDeptType = (item) => {
+    params.DeptType = item.DeptType;
+  }
+  // 刷新数据
+  const reFresh = () => {
+    vxeTableLayoutRef.value.refresh();
+  }
+  return {
+    loadInitHsopAreaList,
+    selectedHospArea,
+    handleSearch,
+    handleClear,
+    initMethod,
+    switchBeforeChange,
+    reFresh,
+    currentChangeEvent,
+    handleDeptType
+  }
+}

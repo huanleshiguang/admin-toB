@@ -41,7 +41,7 @@ declare global {
   const enabledBaseDict: typeof import('./src/api/system/dict')['enabledBaseDict']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const fetchDeleteRole: typeof import('./src/api/system/role')['fetchDeleteRole']
-  const fetchDepList: typeof import('./src/api/system/user')['fetchDepList']
+  const fetchDepList: typeof import('./src/api/system/area')['fetchDepList']
   const fetchFeatureList: typeof import('./src/api/system/user')['fetchFeatureList']
   const fetchHospAreaDepTree: typeof import('./src/api/system/user')['fetchHospAreaDepTree']
   const fetchHosptAreaDepUserList: typeof import('./src/api/system/user')['fetchHosptAreaDepUserList']

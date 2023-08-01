@@ -8,8 +8,8 @@
 -->
 <template>
   <div class="three-container w-full h_100">
-    <vxe-table-layout ref="vxeTableLayout" class="h_100" border has-index :loader="initMethod"
-      :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="columnsList"
+    <vxe-table-layout ref="vxeTableLayoutRef" class="h_100" border has-index :loader="initMethod"
+      :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="hospAreacolumnsList"
       @current-change="currentChangeEvent">
       <template #operator-left>
         <h2>院区管理</h2>
@@ -32,81 +32,19 @@
         </vxe-column>
       </template>
     </vxe-table-layout>
-
     <!-- 新增院区的dialog -->
     <update ref="updateRef" @reFetchtableList="reFresh" />
   </div>
 </template>
   
 <script setup lang='ts'>
-import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
-import { VxeTableEvents } from 'vxe-table';
-import { hospAreaInfo } from '/@/api/system/types/user';
-import update from './update.vue';
-import {
-  Plus,
-  InfoFilled
-} from '@element-plus/icons-vue'
-
-const vxeTableLayout = ref();
-const updateRef = ref<any>();
-const columnsList = [
-  {
-    title: '院区编码',
-    field: 'hospAreaCode'
-  },
-  {
-    title: '院区名称',
-    field: 'hospAreaName'
-  }
-];
-const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
-  console.log(`行选中事件`, row);
-};
-async function initMethod() {
-  let tableList = ref<hospAreaInfo[]>([])
-  try {
-    const result: hospAreaInfo[] = await fetchHosptAreaInfo()
-    if (Array.isArray(result)) {
-      tableList.value = result.map(item => {
-        const { id, hospAreaName } = item
-        return {
-          id,
-          hospAreaName
-        }
-      })
-    }
-    // const total = result.total
-    // const records = result.pageData
-    // const total = result.length
-    // const { records,total } = tableList
-    return {
-      // total,
-      // records
-    };
-  } catch (error) {
-    throw (error)
-  }
-}
-const add = () => {
-  updateRef.value.open();
-};
-const editRow = (row: hospAreaInfo) => {
-  console.log(row, 'row');
-
-  updateRef.value.open(row);
-};
-const deleteRow = (row: hospAreaInfo) => {
-  console.log(row, 'row');
-  deleteHosptAreaInfo(row.id).then((res) => {
-    if (res) {
-      reFresh();
-    }
-  })
-}
-const reFresh = () => {
-  vxeTableLayout.value.refresh()
-}
+import { update } from './components';
+import { Plus, InfoFilled } from '@element-plus/icons-vue'
+import { useHospManageCommon } from './composiables/useHospManageCommon'
+import { useHospManageEvent } from './composiables/useHospManageEvent'
+const { vxeTableLayoutRef, updateRef, hospAreacolumnsList } = useHospManageCommon();
+const { currentChangeEvent, initMethod, add, editRow, deleteRow, reFresh } = useHospManageEvent({
+  vxeTableLayoutRef, updateRef, hospAreacolumnsList
+})
 </script>
-  
 <style scoped lang='scss'></style>

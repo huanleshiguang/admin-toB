@@ -31,7 +31,7 @@ export function useUserEvent({ ...arg }) {
    * 删除
    * @param row - 用户信息
    */
-  const deleteRow = async (row:userInfo) => {
+  const deleteRow = async (row: userInfo) => {
     await deleteUserInfo(row.id) ? reFresh() : createMessage.error('删除用户失败')
   }
 
@@ -40,8 +40,8 @@ export function useUserEvent({ ...arg }) {
    * @returns 
    */
   const loadInitHsopAreaList = async () => {
-      const result = await fetchHosptAreaInfo();
-      hospAreaList.value = result || [];
+    const result = await fetchHosptAreaInfo();
+    hospAreaList.value = result || [];
   };
 
   /**
@@ -49,9 +49,9 @@ export function useUserEvent({ ...arg }) {
    * @param AreaId 院区Id
    */
   const selectedHospArea = async (AreaId: string) => {
-      params.value.AreaId = AreaId;
-      const result = await fetchDepList(AreaId);
-      hospAreaDepList.value = result || [];
+    params.value.AreaId = AreaId;
+    const result = await fetchDepList(AreaId);
+    hospAreaDepList.value = result || [];
   };
 
   /**
@@ -76,7 +76,7 @@ export function useUserEvent({ ...arg }) {
   const handleSearch = async () => {
     vxeTableLayoutRef.value.refresh(true);
   };
-  
+
   /**
    * 清除
    */
@@ -87,10 +87,10 @@ export function useUserEvent({ ...arg }) {
     hospAreaDepList.value = [];
   }
 
-/**
- * 
- * @returns 数据总数,数据列表
- */
+  /**
+   * 
+   * @returns 数据总数,数据列表
+   */
   async function initMethod() {
     try {
       const result = await fetchHosptAreaDepUserList(params.value);
@@ -100,15 +100,15 @@ export function useUserEvent({ ...arg }) {
         records
       };
     } catch (error) {
-        createMessage.error('获取人员信息出现未知错误!');
+      createMessage.error('获取人员信息出现未知错误!');
     }
   };
 
-/**
- * 
- * @param is1PageIndex 是否回退到第一页
- */
-  const reFresh = (is1PageIndex:Boolean = false) => {
+  /**
+   * 
+   * @param is1PageIndex 是否回退到第一页
+   */
+  const reFresh = (is1PageIndex: Boolean = false) => {
     vxeTableLayoutRef.value.refresh(is1PageIndex);
   }
   return {

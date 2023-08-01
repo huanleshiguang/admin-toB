@@ -11,10 +11,13 @@
 /**
  * 请求参数接口
  */
-// 更新院区信息
+// 院区信息
 export interface hospAreaInfo {
-  id: string
-  hospAreaName: string;
+  hospId:string
+  hospAreaCode:string
+  id: string  
+  hospAreaName: string
+  dataStatus:number
 }
 export interface resHosptAreaDepUserList {
   AreaId: string
@@ -29,15 +32,7 @@ export interface resHosptAreaDepUserList {
  * 响应参数接口
  */
 
-// 科室信息列表
-export interface resDepList {
-  children?: resDepList[]
-  deptCode: string
-  deptName: string
-  id: string
-  isMainDept: Boolean
-  parentId: string
-}
+
 
 // 科室人员列表
 export interface userInfo {

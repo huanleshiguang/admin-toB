@@ -2,19 +2,19 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 17:08:23
+ * @LastEditTime: 2023-08-01 14:59:50
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 
 -->
 <template>
-  <DialogLayout ref="dialogLayout" show-close :title="title" :sure-method="submit" @sure="sureMethod">
-    <el-form ref="formRef" :model="form" :rules="rules" label-width="auto" label-position="right">
+  <DialogLayout ref="dialogLayoutRef" show-close :title="title" :sure-method="submit" @sure="sureMethod">
+    <el-form ref="hospAreaFormRef" :model="hospAreaForm" :rules="rules" label-width="auto" label-position="right">
 
       <el-form-item label="编码" prop="hospAreaCode" required>
-        <el-input v-model="form.id" type="text" placeholder="请输入院区编码" />
+        <el-input v-model="hospAreaForm.id" type="text" placeholder="请输入院区编码" />
       </el-form-item>
       <el-form-item label="院区名称" prop="hospAreaName" required>
-        <el-input v-model="form.hospAreaName" placeholder="请输入院区名称" />
+        <el-input v-model="hospAreaForm.hospAreaName" placeholder="请输入院区名称" />
       </el-form-item>
     </el-form>
   </DialogLayout>
@@ -24,26 +24,12 @@
 import DialogLayout from '/@/components/DialogLayout/index.vue';
 import type { FormRules } from 'element-plus';
 import type { hospAreaInfo } from '/@/api/system/types/user';
+import { cloneDeep } from 'lodash-es';
 
+const hospAreaFormRef = ref();
 const title = ref('新增院区');
-const dialogLayout = ref<any>();
-const open = (data:hospAreaInfo) => {
-  console.log(data,'dattt');
-  title.value = `${data ? '编辑' : '新增'}院区`;
-  // ;
-  Object.assign(form.value, data);
-  console.log(form,'formmmmmmmmmm')
-  dialogLayout.value.open();
-};
-const close = () => {
-  dialogLayout.value.close();
-};
-const emits = defineEmits(['reFetchtableList']);
-const form = ref<hospAreaInfo>({
-  id: '',
-  hospAreaName: ''
-});
-const rules = reactive<FormRules<hospAreaInfo>>({
+const dialogLayoutRef = ref<any>();
+  const rules = reactive<FormRules<hospAreaInfo>>({
   id: [
     {
       required: true,
@@ -60,27 +46,41 @@ const rules = reactive<FormRules<hospAreaInfo>>({
     }
   ]
 });
-const formRef = ref<any>();
+const hospAreaForm = ref<any>({
+  hospId:'',
+  hospAreaCode:'',
+  id: '',
+  hospAreaName: '',
+  dataStatus:0,
+});
+const emits = defineEmits(['reFetchtableList']);
 const submit = async () => {
-  const result = await formRef.value.validate();
+  const result = await hospAreaFormRef.value.validate();
   if (result) {
     // dosomething
   }
 };
-defineExpose({
-  open,
-  close
-});
+const open = (data:hospAreaInfo) => {
+  title.value = `${data ? '编辑' : '新增'}院区`;
+  hospAreaForm.value =data?  cloneDeep(data) : {}
+  dialogLayoutRef.value.open();
+};
+const close = () => {
+  dialogLayoutRef.value.close();
+};
 const sureMethod = () => {
-  updateHosptAreaInfo(form.value).then((res) => {
+  updateHosptAreaInfo(hospAreaForm.value).then((res) => {
     if (res) {
-      dialogLayout.value.close()
+      dialogLayoutRef.value.close()
       // 重新获取tableList
       emits('reFetchtableList')
     }
   }).catch((error)=>{throw(error)})
-  console.log(form.value, 'sure form');
 }
+defineExpose({
+  open,
+  close
+});
 </script>
 
 <style lang="scss" scoped></style>
