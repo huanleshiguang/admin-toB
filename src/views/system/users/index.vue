@@ -2,14 +2,14 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-31 10:06:55
+ * @LastEditTime: 2023-07-31 18:47:48
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
 <template>
   <div class="common-layout">
     <vxe-table-layout ref="vxeTableLayoutRef" class="h_100" border :loader="initMethod"
-      :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="columnsList"
+      :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="columnsUserList"
       @current-change="currentChangeEvent">
       <template #operator-left>
         <!-- 院区选择 -->
@@ -20,7 +20,7 @@
             @click="selectedHospArea(item.id)" /></el-select>
         <!-- 科室选择 -->
         <span class="ml-3  text-gray-600 inline-flex items-center font-stl">选择科室：</span>
-        <common-tree-select ref="treeSelectRef" v-model:data="hospAreaDepList" :transmit-props="transmitProps"
+        <common-tree-select ref="treeSelectRef" v-model:data="hospAreaDepList" :transmit-props="treeSelectProps"
           @handleNodeClick="handleNodeClick">
           <!--传递 icon -->
           <template #icon-haschild&expanded>
@@ -35,7 +35,8 @@
         </common-tree-select>
         <span class="ml-3  text-gray-600 inline-flex items-center font-stl">人员检索：</span>
         <el-input v-model="params.Keyword" class="w-150" placeholder="姓名/工号" :suffix-icon="Search" />
-        <el-button type="primary" class="ml-3" :icon="Search" @click="handleSearch">搜索</el-button>
+        <el-button type="primary" class="ml-3" @click="handleSearch"><i-ep-search
+            class="el-icon"></i-ep-search><span>搜索</span></el-button>
       </template>
       <template #operator-right>
         <div>
@@ -61,126 +62,30 @@
     <!-- 新增编辑-->
     <update ref="updateRef" @reFetchtableList="reFresh" />
     <!-- 角色权限配置 -->
-    <ModuleConfig
-      v-model:module-config-visiable="moduleConfigDrawer.visiable"
-      :card-title="moduleConfigDrawer.cardTitle"
-      title="人员配置"
-    />
+    <ModuleConfig v-model:module-config-visiable="moduleConfigDrawer.visiable" :card-title="moduleConfigDrawer.cardTitle"
+      title="人员配置" />
   </div>
 </template>
  
 <script lang="ts" setup>
-import { VxeTableEvents } from 'vxe-table';
-import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled, Edit, Delete,Plus,Refresh } from '@element-plus/icons-vue';
-import type { hospAreaInfo, resDepList, userInfo } from '/@/api/system/types/user';
-import { columnsList, params, hospAreaName } from './useCommon';
+
+import { update } from './components';
+import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled, Edit, Delete, Plus, Refresh } from '@element-plus/icons-vue';
+import { useUserCommon } from './composables/useUserCommon';
 import { useModuleConfigDrawer } from './composables/useModuleConfig';
-import update from './update.vue'
+import { useUserEvent } from './composables/useUserEvent';
+
+const { updateRef, vxeTableLayoutRef, treeSelectRef, treeSelectProps, params, hospAreaList, hospAreaDepList, columnsUserList } = useUserCommon();
+const { loadInitHsopAreaList, reFresh, handleSearch, addUser, editRow, deleteRow,
+  handleClear, selectedHospArea, handleNodeClick, currentChangeEvent, initMethod } = useUserEvent({
+    vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params
+  });
 const { moduleConfigDrawer, onConfigAuth } = useModuleConfigDrawer();
-const vxeTableLayoutRef = ref();
-const updateRef = ref();
-const treeSelectRef = ref();
-// 院区列表
-const hospAreaList = ref<hospAreaInfo[]>([]);
-// 科室列表
-const hospAreaDepList = ref<resDepList[]>([]);
-// 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）
-const transmitProps = {
-  label: 'deptName',
-  deptCode: 'deptCode',
-  isMainDept: 'isMainDept',
-  children: 'children'
-};
+
+const hospAreaName = ref('');
 onMounted(() => {
-  fetchinitHsopAreaList();
+  loadInitHsopAreaList();
 });
-// 获取初始院区列表
-const fetchinitHsopAreaList = async () => {
-  try {
-    const result = await fetchHosptAreaInfo();
-    hospAreaList.value = result;
-  } catch (error) {
-    if (error instanceof Error)
-      throw (error.cause, 'catch捕获');
-    else
-      ElMessage({
-        type: 'error',
-        message: '获取院区信息出现未知错误'
-      });
-  }
-};
-// 根据院区获取相应科室
-const selectedHospArea = async (AreaId: string) => {
-  try {
-    params.value.AreaId = AreaId;
-    const result = await fetchDepList(AreaId);
-    hospAreaDepList.value = result;
-  } catch (error) {
-    if (error instanceof Error)
-      throw (error.cause, 'catch捕获');
-    else {
-      ElMessage({
-        type: 'error',
-        message: '获取科室信息出现未知错误'
-      })
-    }
-  }
-};
-const handleNodeClick = (DeptId: string) => {
-  params.value.DeptId = DeptId;
-};
-const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
-  console.log(`行选中事件`, row);
-};
-// 搜索
-const handleSearch = async () => {
-  vxeTableLayoutRef.value.refresh(true);
-};
-const handleClear = () => {
-  treeSelectRef.value.tempData = '';
-  params.value.AreaId = '';
-  params.value.DeptId = '';
-  hospAreaDepList.value = [];
-}
-async function initMethod() {
-  try {
-    const result = await fetchHosptAreaDepUserList(params.value);
-    const { pageData: records, total } = result || {};
-    return {
-      total,
-      records
-    };
-  } catch (error) {
-    if (error instanceof Error)
-      throw (error.cause, 'catch捕获')
-    else {
-      console.log(error);
-      ElMessage({
-        type: 'error',
-        message: '获取人员信息出现未知错误'
-      })
-    }
-  }
-};
-// 新增用户
-const addUser = () => {
-  console.log('adduser');
-  updateRef.value.open();
-};
-const editRow = (row: userInfo) => {
-  console.log(row, 'qqqqqq');
-  updateRef.value.open(row);
-};
-const deleteRow = async (row: userInfo) => {
-  const result = await deleteUserInfo(row.id);
-  console.log(result);
-  if (result) {
-    reFresh()
-  }
-}
-const reFresh = () => {
-  vxeTableLayoutRef.value.refresh();
-}
 </script>
  
 <style scoped lang="scss">

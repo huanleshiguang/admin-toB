@@ -31,7 +31,7 @@
 import { cloneDeep } from 'lodash-es';
 // import { rules } from './useCommon';
 import type { userInfo } from '/@/api/system/types/user';
-import type { resHospAreaDepTree, resUserList } from '/@/api/system/types/user'
+import type { resHospAreaDepTree, resRoleInfo } from '/@/api/system/types/user'
 const title = ref<string>('新增人员');
 const dialogLayoutRef = ref();
 const belongToTreeRef = ref()
@@ -58,7 +58,7 @@ const transmitProps = {
   children: 'children'
 };
 const hospAreaDepList = ref<resHospAreaDepTree[]>([]);
-const roleList = ref<resUserList[]>([]);
+const roleList = ref<resRoleInfo[]>([]);
 const formRef = ref<any>();
 onMounted(() => {
   loadHospAreaDepTree()

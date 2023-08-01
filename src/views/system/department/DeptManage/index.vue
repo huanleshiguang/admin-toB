@@ -39,7 +39,7 @@
       </template>
       <template #operator-right>
         <div>
-          <el-button type="primary" :icon="Refresh" @click="addUser">同步</el-button>
+          <el-button type="primary" :icon="Refresh" @click="handleSearch">同步</el-button>
         </div>
       </template>
       <template #columns>
@@ -72,10 +72,10 @@ const hospAreaList = ref<hospAreaInfo[]>([]);
 const hospAreaDepList = ref<resDepList[]>([]);
 const loading = ref<boolean>(false)
 onMounted(() => {
-  fetchinitHsopAreaList();
+  loadInitHsopAreaList();
 });
 // 获取初始院区列表
-const fetchinitHsopAreaList = async () => {
+const loadInitHsopAreaList = async () => {
   try {
     const result = await fetchHosptAreaInfo();
     hospAreaList.value = result;
@@ -153,9 +153,9 @@ const onChangeMainDept = () => {
   })
 }
 // 新增用户
-const addUser = () => {
-  updateRef.value.open();
-};
+// const addUser = () => {
+//   updateRef.value.open();
+// };
 // const editRow = (row: userInfo) => {
 //   console.log(row, 'row');
 //   updateRef.value.open(row);

@@ -2,12 +2,12 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-31 10:13:15
+ * @LastEditTime: 2023-07-31 18:14:41
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 人员管理新增与编辑
 -->
 <template>
-  <DialogLayout ref="dialogLayoutRef" show-close :title="title" :sure-method="submit" @sure="sureMethod">
+  <DialogLayout ref="dialogLayoutRef" show-close :title="userFormtitle" :sure-method="submit" @sure="sureMethod">
     <el-form ref="formRef" :model="userForm" :rules="rules" label-width="auto" label-position="right">
       <el-form-item label="所属科室" prop="deptName">
         <common-tree-select ref="belongToTreeRef" :data="hospAreaDepList" :modelData="userForm.deptId"
@@ -49,95 +49,22 @@
 </template>
 
 <script setup lang="ts">
-import { cloneDeep } from 'lodash-es';
-import { rules } from './useCommon';
-import type { resHospAreaDepTree, resRoleInfo, userInfo } from '/@/api/system/types/user'
-const title = ref<string>('新增人员');
-const dialogLayoutRef = ref();
-const belongToTreeRef = ref()
-const bePartTreeRef = ref()
-const isMultiple = ref<Boolean>(true)
-const userForm = ref<any>({
-  deptId: '',
-  deptIds: [],
-  userName: '',
-  userIdNo: '',
-  positionLevelName: '',
-  genderName: '',
-  userTel: '',
-  userWorkNo: '',
-  userRoleIds: []
+import { useUpdateCommon } from './composiables/useUpdateCommon'
+const {formRef, rules, userForm, userFormtitle, dialogLayoutRef, belongToTreeRef, bePartTreeRef,
+  hospAreaDepList, roleList, transmitProps, isMultiple } = useUpdateCommon();
+import { useUpdateEvent } from './composiables/useUpdateEvent';
+const { loadHospAreaDepTree, loadRoleList, handleRoleSelected, submit, sureMethod, handlePartOfDept, handleClickPartInDept,open,close } = useUpdateEvent({
+  formRef,dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm, 
 });
-/**
- * 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）
- */
-const transmitProps = {
-  id: 'id',
-  type: 'type',
-  label: 'areaDeptName',
-  children: 'children'
-};
-const hospAreaDepList = ref<resHospAreaDepTree[]>([]);
-const roleList = ref<resRoleInfo[]>([]);
-const formRef = ref<any>();
+
 onMounted(() => {
   loadHospAreaDepTree();
   loadRoleList();
 })
-// 获取院区科室Tree
-const loadHospAreaDepTree = async () => {
-  try {
-    hospAreaDepList.value = await fetchHospAreaDepTree();
-  } catch (error) {
-    console.log(error);
-  }
-}
-// 获取角色信息
-async function loadRoleList() {
-  try {
-    roleList.value = await fetchRoleList();
-  } catch (error) {
-    console.log(error);
-  }
-}
-// 处理角色选中
-const handleRoleSelected = (item: resRoleInfo) => {
-  // console.log(item.id,'item.id');
-  // console.log(userForm.value.userRoleIds);
-
-  // userForm.value.userRoleIds.value = item.id
-}
-const open = (data: userInfo) => {
-  console.log(123321);
-  title.value = `${data ? '编辑' : '新增'}人员`;
-  userForm.value = data ? cloneDeep(data) : {};
-  dialogLayoutRef.value.open();
-};
-const close = () => {
-  dialogLayoutRef.value.close();
-};
-const submit = async () => {
-  const result = await formRef.value.validate();
-  if (result) {
-    // dosomething
-  }
-};
 defineExpose({
   open,
   close
 });
-const sureMethod = () => {
-  // updateHosptAreaInfo(form.value).then((res) => {
-  //   if (res) {
-  //     dialogLayoutRef.value.close()
-  //     // 重新获取tableList
-  //     emits('reFetchtableList')
-  //   }
-  // }).catch((error) => { throw (error) })
-  // console.log(form.value, 'sure form');
-}
-const handlePartOfDept = () => { }
-const handleClickPartInDept = () => { }
 </script>
 
 <style lang="scss" scoped>
