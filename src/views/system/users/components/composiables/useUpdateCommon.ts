@@ -66,7 +66,7 @@ export function useUpdateCommon() {
     }]
   });
   /**
-  * userForm:表单字段
+  * userForm:表单
   */
   const userForm = ref<any>({
     deptId: '',

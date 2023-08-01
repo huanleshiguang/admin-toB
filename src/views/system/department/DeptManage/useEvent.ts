@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-21 20:58:51
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 10:37:44
+ * @LastEditTime: 2023-08-01 11:50:05
  * @FilePath: \servious-illness-admin\src\views\system\users\components\ArcManage\useFilter.ts
  * @Description: 科室管理相关方法
  */
@@ -20,7 +20,7 @@ export const useFilterCurrentField = (depItem: resDepList, filterField: string, 
     depItem.children = depItem.children.filter((depItem) => {
       return useFilterCurrentField(depItem, filterField, newValue);
     })
-    return depItem.children.length ? true : false;
+    return depItem.children.length;
   } else {
     return depItem[filterField] === newValue;
   }

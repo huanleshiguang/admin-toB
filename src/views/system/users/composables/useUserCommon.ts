@@ -1,4 +1,4 @@
-import type { hospAreaInfo, resDepList, userInfo, resHosptAreaDepUserList } from '/@/api/system/types/user';
+import type { hospAreaInfo, resDepList, resHosptAreaDepUserList } from '/@/api/system/types/user';
 
 export function useUserCommon() {
   // update组件实例

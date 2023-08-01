@@ -1,8 +1,8 @@
 <!--
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-31 18:47:48
+  * @LastEditors: ZhouHao joehall@foxmail.com
+  * @LastEditTime: 2023-07-31 18:47:48
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -94,9 +94,9 @@ onMounted(() => {
   overflow: hidden;
   height: 100%;
 }
+
 .font-stl {
   font-size: $font-size-14;
   font-weight: $font-weight-500;
-}
-</style>
+}</style>
  
