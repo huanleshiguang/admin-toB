@@ -8,17 +8,7 @@
  */
 
 
-/**
- * 请求参数接口
- */
-// 院区信息
-export interface hospAreaInfo {
-  hospId:string
-  hospAreaCode:string
-  id: string  
-  hospAreaName: string
-  dataStatus:number
-}
+
 export interface resHosptAreaDepUserList {
   AreaId: string
   DeptId: string,
@@ -27,14 +17,11 @@ export interface resHosptAreaDepUserList {
   PageSize?: number
 }
 
-
 /**
  * 响应参数接口
  */
 
-
-
-// 科室人员列表
+// 用户信息
 export interface userInfo {
   id: string
   syncId: null | string
@@ -52,7 +39,7 @@ export interface userInfo {
   userRoleIds: string[]
 }
 
-// 科室人员信息
+// 返回的科室人员信息接口
 export interface resHospAreaDepUserList {
   total: number
   pageData: userInfo[]
@@ -60,18 +47,9 @@ export interface resHospAreaDepUserList {
   pageSize: number
 }
 
-// 院区科室信息树
-export interface resHospAreaDepTree {
-  id: string
-  parentId: null | string,
-  hospAreaid: null | string,
-  areaDeptName: string,
-  type: string,
-  disabled: boolean,
-  children: resHospAreaDepTree[]
-}
 
-//角色信息
+
+// 角色信息
 export interface resRoleInfo {
   id: string
   roleCode: string,
