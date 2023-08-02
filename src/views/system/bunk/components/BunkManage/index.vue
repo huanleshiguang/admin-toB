@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 14:32:21
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-31 10:30:00
+ * @LastEditTime: 2023-08-02 10:29:32
  * @FilePath: \servious-illness-admin\src\views\system\bunk\components\BunkManagement.vue
  * @Description: 床位管理
 -->
@@ -13,7 +13,8 @@
       @current-change="currentChangeEvent">
       <template #operator-left>
         <span class="ml-3 text-gray-600 inline-flex items-center font-stl">所选院区：</span>
-        <el-select v-model="hospArea" class="w-150 mr-2px" clearable placeholder="请选择院区" :suffix-icon="ArrowDown"  @clear="handleClear">
+        <el-select v-model="hospArea" class="w-150 mr-2px" clearable placeholder="请选择院区" :suffix-icon="ArrowDown"
+          @clear="handleClear">
           <el-option v-for="item in hospAreaList" :key="item.id" :label="item.hospAreaName" :value="item.hospAreaName"
             @click="selectedHospArea(item.id)" />
         </el-select>
@@ -48,11 +49,11 @@
 </template>
   
 <script setup lang='ts'>
-import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
-import { ArrowDown, Edit, Delete, InfoFilled,Search,Plus,Refresh } from '@element-plus/icons-vue';
-import type { hospAreaInfo,resDepList, resHosptAreaDepUserList } from '/@/api/system/types/user';
-import { columnsList,params, transmitProps } from './useCommon';
+import { ArrowDown, Edit, Delete, InfoFilled, Search, Plus, Refresh } from '@element-plus/icons-vue';
+import type { hospAreaInfo, resDepInfo } from '/@/api/system/types/area';
+import type { resHosptAreaDepUserList } from '/@/api/system/types/user';
+import { columnsList, params, transmitProps } from './useCommon';
 import update from './update.vue'
 const updateRef = ref();
 const treeSelectRef = ref();
@@ -60,14 +61,14 @@ const vxeTableLayoutRef = ref();
 const hospArea = ref('');
 const type = ref('');
 const hospAreaList = ref<hospAreaInfo[]>([])
-const hospAreaDepList = ref<resDepList[]>([])
+const hospAreaDepList = ref<resDepInfo[]>([])
 const handleSearch = () => {
   vxeTableLayoutRef.value.refresh(true);
 };
 const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
   console.log(`行选中事件`, row);
 };
-async function initMethod(params:resHosptAreaDepUserList) {
+async function initMethod(params: resHosptAreaDepUserList) {
   console.log(params, 'params');
   const { PageSize } = params;
   return {
@@ -81,18 +82,15 @@ onMounted(() => {
   loadHospAreaList()
 });
 const loadHospAreaList = async () => {
-  try {
-    const result = await fetchHosptAreaInfo()
-    hospAreaList.value = result;
-  } catch (error) {
-    console.log(error);
-  }
+  const result = await fetchHosptAreaInfo()
+  hospAreaList.value = result || []
+
 }
 // 根据院区获取相应科室
 const selectedHospArea = async (AreaId: string) => {
   try {
     params.value.AreaId = AreaId;
-    const result = await fetchDepList(AreaId);
+    const result = await fetchDepList(params.value);
     hospAreaDepList.value = result;
   } catch (error) {
     if (error instanceof Error)
@@ -112,11 +110,11 @@ const addRow = () => {
   console.log('adduser');
   updateRef.value.open();
 };
-const editRow = (row:hospAreaInfo) => {
+const editRow = (row: hospAreaInfo) => {
   console.log(row, 'qqqqqq');
   updateRef.value.open(row);
 };
-const deleteRow = async (row:hospAreaInfo) => {
+const deleteRow = async (row: hospAreaInfo) => {
   const result = await deleteUserInfo(row.id);
   console.log(result);
   if (result) {
@@ -139,6 +137,7 @@ const reFresh = () => {
   overflow: hidden;
   height: 100%;
 }
+
 .font-stl {
   font-size: $font-size-14;
   font-weight: $font-weight-500;

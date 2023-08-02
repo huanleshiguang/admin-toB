@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import DialogLayout from '/@/components/DialogLayout/index.vue';
 import type { FormRules } from 'element-plus';
-import type { hospAreaInfo } from '/@/api/system/types/user';
+import type { hospAreaInfo } from '/@/api/system/types/area';
 import { cloneDeep } from 'lodash-es';
 
 const hospAreaFormRef = ref();

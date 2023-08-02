@@ -2,11 +2,10 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-29 09:37:37
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-01 19:17:41
+ * @LastEditTime: 2023-08-02 10:01:37
  * @FilePath: \servious-illness-admin\src\views\system\department\DeptManage\index.vue
  * @Description: 
 -->
-
 <template>
   <div class="common-layout">
     <vxe-table-layout ref="vxeTableLayoutRef" class="h_100" border :loader="initMethod" :immediate="false"
@@ -55,9 +54,10 @@ import { useCommon } from './useCommon';
 import { useEvent } from './useEvent';
 const { vxeTableLayoutRef, updateRef, hospAreaList, loading, deptColumnsList, hospAreaName,
   titleMainDept, params, hospAreaDepList, deptTypes, deptTypeName } = useCommon();
-const { loadInitHsopAreaList, selectedHospArea, handleSearch, handleClear, initMethod, switchBeforeChange, reFresh, currentChangeEvent, handleDeptType } = useEvent({
-  vxeTableLayoutRef, hospAreaList, params, hospAreaName, hospAreaDepList, loading, deptTypes, deptTypeName
-});
+const { loadInitHsopAreaList, selectedHospArea, handleSearch, handleClear, initMethod,
+  switchBeforeChange, reFresh, currentChangeEvent, handleDeptType } = useEvent({
+    vxeTableLayoutRef, hospAreaList, params, hospAreaName, hospAreaDepList, loading, deptTypes, deptTypeName
+  });
 
 onMounted(() => {
   loadInitHsopAreaList();

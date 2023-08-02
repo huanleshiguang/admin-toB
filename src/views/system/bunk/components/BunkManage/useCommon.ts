@@ -1,5 +1,3 @@
-import type { resHosptAreaDepUserList } from '/@/api/system/types/user';
-
 export const columnsList = [
   {
     title: '设置',
@@ -20,7 +18,7 @@ export const columnsList = [
 /**
  * params:请求参数
  */
-export const params = ref<resHosptAreaDepUserList>({
+export const params = ref<any>({
   AreaId: '',
   DeptId: '',
   Keyword: '',

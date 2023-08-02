@@ -1,5 +1,6 @@
 import type { FormRules } from 'element-plus';
-import type { resHospAreaDepTree, resRoleInfo } from '/@/api/system/types/user'
+import type {  resRoleInfo } from '/@/api/system/types/user'
+import type { resHospAreaDepTree } from '/@/api/system/types/area'
 export function useUpdateCommon() {
 
   /**

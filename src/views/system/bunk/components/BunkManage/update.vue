@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 18:06:57
+ * @LastEditTime: 2023-08-02 14:59:40
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 床位管理新增与编辑 
 -->
@@ -31,7 +31,8 @@
 import { cloneDeep } from 'lodash-es';
 // import { rules } from './useCommon';
 import type { userInfo } from '/@/api/system/types/user';
-import type { resHospAreaDepTree, resRoleInfo } from '/@/api/system/types/user'
+import type { resRoleInfo } from '/@/api/system/types/user'
+import type { resHospAreaDepTree } from '/@/api/system/types/area'
 const title = ref<string>('新增人员');
 const dialogLayoutRef = ref();
 const belongToTreeRef = ref()

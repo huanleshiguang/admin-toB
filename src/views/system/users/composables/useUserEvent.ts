@@ -8,10 +8,9 @@
  */
 import type { userInfo } from '/@/api/system/types/user';
 import { VxeTableEvents } from 'vxe-table';
-const { createMessage } = useMessage();
 export function useUserEvent({ ...arg }) {
   const { vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params } = arg
-
+  const { createMessage } = useMessage();
   /**
    * 新增
    */
@@ -50,7 +49,7 @@ export function useUserEvent({ ...arg }) {
    */
   const selectedHospArea = async (AreaId: string) => {
     params.value.AreaId = AreaId;
-    const result = await fetchDepList(AreaId);
+    const result = await fetchDepList(params.value);
     hospAreaDepList.value = result || [];
   };
 

@@ -1,5 +1,5 @@
 import { VxeTableEvents } from 'vxe-table';
-import { hospAreaInfo } from '/@/api/system/types/user';
+import { hospAreaInfo } from '/@/api/system/types/area';
 
 export function useHospManageEvent({ ...arg }) {
   const { vxeTableLayoutRef, updateRef } = arg;

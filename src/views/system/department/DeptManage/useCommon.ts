@@ -1,15 +1,5 @@
-/*
- * @Author: ZhouHao joehall@foxmail.com
- * @Date: 2023-07-24 14:55:17
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 16:15:17
- * @FilePath: \servious-illness-admin\src\views\system\users\components\ArcManage\useCommon.ts
- * @Description: 科室管理相关数据
- */
-
 import type { FormRules } from 'element-plus';
-import type { hospAreaInfo } from '/@/api/system/types/user';
-import type { resDepInfo, fetchDepListParams } from '/@/api/system/types/area';
+import type {hospAreaInfo, resDepInfo, fetchDepListParams } from '/@/api/system/types/area';
 export function useCommon() {
   const vxeTableLayoutRef = ref();
   const updateRef = ref();

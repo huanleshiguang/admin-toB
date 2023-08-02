@@ -1,4 +1,5 @@
-import type { hospAreaInfo, resDepList, resHosptAreaDepUserList } from '/@/api/system/types/user';
+import type { resHosptAreaDepUserList } from '/@/api/system/types/user';
+import type { hospAreaInfo, resDepInfo } from '/@/api/system/types/area';
 
 export function useUserCommon() {
   // update组件实例
@@ -10,7 +11,7 @@ export function useUserCommon() {
   // 院区列表
   const hospAreaList = ref<hospAreaInfo[]>([]);
   // 科室列表
-  const hospAreaDepList = ref<resDepList[]>([]);
+  const hospAreaDepList = ref<resDepInfo[]>([]);
   // 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）
   const treeSelectProps = {
     label: 'deptName',

@@ -18,7 +18,7 @@ export function useHospManageCommon() {
       field: 'hospAreaName'
     }
   ];
-  return{
+  return {
     ...toRefs(
       reactive({
         vxeTableLayoutRef,
