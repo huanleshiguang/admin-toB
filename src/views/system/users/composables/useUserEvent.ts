@@ -23,7 +23,7 @@ export function useUserEvent({ ...arg }) {
    * 编辑
    * @param userInfo 用户信息
    */
-  const editRow = (userInfo: userInfo) => {
+  const editUser = (userInfo: userInfo) => {
     updateRef.value.open(userInfo);
   };
 
@@ -31,7 +31,7 @@ export function useUserEvent({ ...arg }) {
    * 删除
    * @param userInfo - 用户信息
    */
-  const deleteRow = async (userInfo: userInfo) => {
+  const deleteUser = async (userInfo: userInfo) => {
     await deleteUserInfo(userInfo.id) ? reFresh() : createMessage.error('删除用户失败')
   }
 
@@ -113,8 +113,8 @@ export function useUserEvent({ ...arg }) {
   };
   return {
     addUser,
-    editRow,
-    deleteRow,
+    editUser,
+    deleteUser,
     loadInitHsopAreaList,
     selectedHospArea,
     handleNodeClick,

@@ -1,8 +1,8 @@
 <!--
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
-  * @LastEditors: ZhouHao joehall@foxmail.com
-  * @LastEditTime: 2023-07-31 18:47:48
+ * @LastEditors: ZhouHao Joehall@foxmail.com
+ * @LastEditTime: 2023-08-02 22:17:35
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -47,9 +47,9 @@
       <template #columns>
         <vxe-column title="操作" align="center" width="250" fixed="right">
           <template #default="{ row }">
-            <el-button type="primary" :icon="Edit" size="small" @click="editRow(row)">编辑</el-button>
+            <el-button type="primary" :icon="Edit" size="small" @click="editUser(row)">编辑</el-button>
             <el-popconfirm confirm-button-text="是" cancel-button-text="否" :icon="InfoFilled" title="确定要删除这条信息吗？"
-              @confirm="deleteRow(row)">
+              @confirm="deleteUser(row)">
               <template #reference>
                 <el-button type="danger" :icon="Delete" size="small">删除</el-button>
               </template>
@@ -76,7 +76,7 @@ import { useModuleConfigDrawer } from './composables/useModuleConfig';
 import { useUserEvent } from './composables/useUserEvent';
 
 const { updateRef, vxeTableLayoutRef, treeSelectRef, treeSelectProps, params, hospAreaList, hospAreaDepList, columnsUserList } = useUserCommon();
-const { loadInitHsopAreaList, reFresh, handleSearch, addUser, editRow, deleteRow,
+const { loadInitHsopAreaList, reFresh, handleSearch, addUser, editUser, deleteUser,
   handleClear, selectedHospArea, handleNodeClick, currentChangeEvent, initMethod } = useUserEvent({
     vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params
   });
