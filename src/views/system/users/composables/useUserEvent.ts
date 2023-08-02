@@ -1,16 +1,17 @@
 /*
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:11:43
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-01 11:31:21
+ * @LastEditors: ZhouHao Joehall@foxmail.com
+ * @LastEditTime: 2023-08-02 22:11:15
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserEvent.ts
  * @Description: 
  */
 import type { userInfo } from '/@/api/system/types/user';
-import { VxeTableEvents } from 'vxe-table';
+// import { VxeTableEvents } from 'vxe-table';
 export function useUserEvent({ ...arg }) {
   const { vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params } = arg
   const { createMessage } = useMessage();
+  
   /**
    * 新增
    */
@@ -20,22 +21,37 @@ export function useUserEvent({ ...arg }) {
 
   /**
    * 编辑
-   * @param row 用户信息
+   * @param userInfo 用户信息
    */
-  const editRow = (row: userInfo) => {
-    updateRef.value.open(row);
+  const editRow = (userInfo: userInfo) => {
+    updateRef.value.open(userInfo);
   };
 
   /**
    * 删除
-   * @param row - 用户信息
+   * @param userInfo - 用户信息
    */
-  const deleteRow = async (row: userInfo) => {
-    await deleteUserInfo(row.id) ? reFresh() : createMessage.error('删除用户失败')
+  const deleteRow = async (userInfo: userInfo) => {
+    await deleteUserInfo(userInfo.id) ? reFresh() : createMessage.error('删除用户失败')
   }
 
   /**
-   * 加载初始院区列表
+   * 搜索
+   */
+  const handleSearch = async () => {
+    vxeTableLayoutRef.value.refresh(true);
+  };
+
+  /**
+   * 更新Table
+   * @param isReturnPageOne 是否回退到第一页
+   */
+  const reFresh = (isReturnPageOne: Boolean = false) => {
+    vxeTableLayoutRef.value.refresh(isReturnPageOne);
+  }
+  
+  /**
+   * index组件挂载后，加载初始院区列表
    * @returns 
    */
   const loadInitHsopAreaList = async () => {
@@ -54,7 +70,7 @@ export function useUserEvent({ ...arg }) {
   };
 
   /**
-   * 处理树节点点击...
+   * 处理下拉框节点点击...
    * @param DeptId 科室id
    */
   const handleNodeClick = (DeptId: string) => {
@@ -63,21 +79,14 @@ export function useUserEvent({ ...arg }) {
 
   /**
    * 
-   * @param row 列表当前行
+   * @param userInfo 列表当前行用户
    */
-  const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
-    console.log(`行选中事件`, row);
+  const currentChangeEvent = (userInfo: userInfo) => {
+    console.log(`行选中事件`, userInfo);
   };
 
   /**
-   * 搜索
-   */
-  const handleSearch = async () => {
-    vxeTableLayoutRef.value.refresh(true);
-  };
-
-  /**
-   * 清除
+   * clear后，请求参数置空值
    */
   const handleClear = () => {
     treeSelectRef.value.tempData = '';
@@ -88,7 +97,7 @@ export function useUserEvent({ ...arg }) {
 
   /**
    * 
-   * @returns 数据总数,数据列表
+   * @returns total:数据总数,records:数据列表
    */
   async function initMethod() {
     try {
@@ -102,14 +111,6 @@ export function useUserEvent({ ...arg }) {
       createMessage.error('获取人员信息出现未知错误!');
     }
   };
-
-  /**
-   * 
-   * @param is1PageIndex 是否回退到第一页
-   */
-  const reFresh = (is1PageIndex: Boolean = false) => {
-    vxeTableLayoutRef.value.refresh(is1PageIndex);
-  }
   return {
     addUser,
     editRow,
