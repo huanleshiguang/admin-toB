@@ -7,7 +7,7 @@
  * @FilePath: \servious-illness-admin\src\api\system\role.ts
  */
 import defHttp from '/@/utils/request';
-
+import * as ROLE from './types/role'
 const common = '/Organization/';
 
 enum ROLEURL {
@@ -29,7 +29,7 @@ export function fetchRoleTrees() {
 /**
  * 获取角色信息（扁平结构）
  */
-export function fetchRoleList() {
+export function fetchRoleList():Promise<ROLE.resRoleInfo> {
   return defHttp.get({ url: ROLEURL.ROLE_LIST });
 }
 

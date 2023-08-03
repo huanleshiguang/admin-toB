@@ -7,24 +7,24 @@ export function useUpdateEvent({ ...arg }) {
    *  加载院区科室Tree
    */
   const loadHospAreaDepTree = async () => {
-      const result = await fetchHospAreaDepTree();
-      hospAreaDepList.value = result || []
+    const result = await fetchHospAreaDepTree();
+    hospAreaDepList.value = result || []
   }
 
- /**
-  * 加载角色列表
-  */
+  /**
+   * 加载角色列表
+   */
   async function loadRoleList() {
-      const result = await fetchRoleList();
-      roleList.value = result || [];
+    const result = await fetchRoleList();
+    roleList.value = result?.pageData || [];
   }
 
   /**
    * 
-   * @param roleItem 角色信息
+   * @param roleInfo 角色信息
    */
-  const handleRoleSelected = (roleItem: resRoleInfo) => {
-    console.log(roleItem.id, 'roleItem.id');
+  const handleRoleSelected = (roleInfo: resRoleInfo) => {
+    console.log(roleInfo.id, 'roleInfo.id');
     // userForm.value.userRoleIds.value = item.id
   }
 
