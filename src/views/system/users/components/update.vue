@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-03 18:35:11
+ * @LastEditTime: 2023-08-03 19:40:45
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 人员管理新增与编辑
 -->
@@ -50,11 +50,11 @@
 
 <script setup lang="ts">
 import { useUpdateCommon } from './composiables/useUpdateCommon'
-const { formRef, rules, userForm, userFormtitle, dialogLayoutRef, belongToTreeRef, bePartTreeRef,
+const { rules, userForm, userFormtitle, dialogLayoutRef, belongToTreeRef, bePartTreeRef,
   hospAreaDepList, roleList, transmitProps, isMultiple } = useUpdateCommon();
 import { useUpdateEvent } from './composiables/useUpdateEvent';
-const { loadHospAreaDepTree, loadRoleList, handleRoleSelected, sureMethod, handlePartOfDept, handleClickPartInDept,open,close } = useUpdateEvent({
-  formRef,dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm, 
+const { loadHospAreaDepTree, loadRoleList, handleRoleSelected, sureMethod, handlePartOfDept, handleClickPartInDept, open, close } = useUpdateEvent({
+  dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm,
 });
 
 onMounted(() => {

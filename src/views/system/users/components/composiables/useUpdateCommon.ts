@@ -2,13 +2,14 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 18:16:16
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-03 18:11:15
+ * @LastEditTime: 2023-08-04 09:30:21
  * @FilePath: \servious-illness-admin\src\views\system\users\components\composiables\useUpdateCommon.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Description: 
  */
 import type { FormRules } from 'element-plus';
 import type { resRoleInfo } from '/@/api/system/types/user'
 import type { resHospAreaDepTree } from '/@/api/system/types/area'
+
 export function useUpdateCommon() {
 
   /**
@@ -17,10 +18,11 @@ export function useUpdateCommon() {
   const dialogLayoutRef = ref();
   const belongToTreeRef = ref();
   const bePartTreeRef = ref();
-  const formRef = ref();
+
   // userFormtitle
   const userFormtitle = ref('');
 
+  // common-tree-select是否多选
   const isMultiple = ref<Boolean>(true);
 
   // 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）
@@ -90,7 +92,6 @@ export function useUpdateCommon() {
   return {
     ...toRefs(
       reactive({
-        formRef,
         dialogLayoutRef,
         belongToTreeRef,
         bePartTreeRef,

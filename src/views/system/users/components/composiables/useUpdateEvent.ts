@@ -1,8 +1,10 @@
-import { cloneDeep } from 'lodash-es';
+import { useCompRef } from '/@/hooks/common/useCompRef'
 import type { resRoleInfo, userInfo } from '/@/api/system/types/user'
+import { ElForm } from 'element-plus';
+import { cloneDeep } from 'lodash-es';
 export function useUpdateEvent({ ...arg }) {
-  const { formRef, dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm } = arg
-
+  const { dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm } = arg
+  const formRef = useCompRef(ElForm)
   /**
    *  加载院区科室Tree
    */
@@ -16,7 +18,7 @@ export function useUpdateEvent({ ...arg }) {
    */
   async function loadRoleList() {
     const result = await fetchRoleList();
-    roleList.value = result?.pageData || [];
+    roleList.value = result.pageData || [];
   }
 
   /**
@@ -30,18 +32,18 @@ export function useUpdateEvent({ ...arg }) {
 
   /**
    * 
-   * @param userItem 用户信息
+   * @param userInfo 用户信息
    */
-  const open = (userItem: userInfo) => {
-    userFormtitle.value = `${userItem ? '编辑' : '新增'}用户`;
-    userForm.value = userItem ? cloneDeep(userItem) : {};
+  const open = (userInfo: userInfo) => {
+    userFormtitle.value = `${userInfo ? '编辑' : '新增'}用户`;
+    userForm.value = userInfo ? cloneDeep(userInfo) : {};
     dialogLayoutRef.value.open();
   };
   const close = () => {
     dialogLayoutRef.value.close();
   };
   const sureMethod = async () => {
-    const result = await formRef.value.validate();
+    const result = await formRef.value?.validate();
     if (result) {
       // dosomething
     }
