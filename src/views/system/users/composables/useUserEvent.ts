@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:11:43
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-03 19:33:21
+ * @LastEditTime: 2023-08-04 13:40:14
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserEvent.ts
  * @Description: 
  */
@@ -56,7 +56,7 @@ export function useUserEvent({ ...arg }) {
    */
   const loadInitHsopAreaList = async () => {
     const result = await fetchHosptAreaInfo();
-    hospAreaList.value = result || [];
+    (hospAreaList).value = result || [];
   };
 
   /**

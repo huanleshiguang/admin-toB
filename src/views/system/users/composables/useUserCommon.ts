@@ -4,7 +4,7 @@
  * @LastEditors: ZhouHao joehall@foxmail.com
  * @LastEditTime: 2023-08-04 10:49:15
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserCommon.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Description:
  */
 import type { resHosptAreaDepUserList } from '/@/api/system/types/user';
 import type { hospAreaInfo, resDepInfo } from '/@/api/system/types/area';
