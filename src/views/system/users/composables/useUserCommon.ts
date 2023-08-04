@@ -1,3 +1,11 @@
+/*
+ * @Author: ZhouHao joehall@foxmail.com
+ * @Date: 2023-07-31 17:15:02
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-08-04 10:49:15
+ * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserCommon.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import type { resHosptAreaDepUserList } from '/@/api/system/types/user';
 import type { hospAreaInfo, resDepInfo } from '/@/api/system/types/area';
 
@@ -8,6 +16,7 @@ export function useUserCommon() {
   const vxeTableLayoutRef = ref();
   // common-tree-select组件实例
   const treeSelectRef = ref();
+
   // 院区列表
   const hospAreaList = ref<hospAreaInfo[]>([]);
   // 科室列表

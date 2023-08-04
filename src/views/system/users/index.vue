@@ -1,8 +1,8 @@
 <!--
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
- * @LastEditors: ZhouHao Joehall@foxmail.com
- * @LastEditTime: 2023-08-02 22:17:35
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-08-03 19:34:41
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -77,7 +77,7 @@ import { useUserEvent } from './composables/useUserEvent';
 
 const { updateRef, vxeTableLayoutRef, treeSelectRef, treeSelectProps, params, hospAreaList, hospAreaDepList, columnsUserList } = useUserCommon();
 const { loadInitHsopAreaList, reFresh, handleSearch, addUser, editUser, deleteUser,
-  handleClear, selectedHospArea, handleNodeClick, currentChangeEvent, initMethod } = useUserEvent({
+  handleClear, selectedHospArea, handleNodeClick, currentChangeEvent, initMethod, } = useUserEvent({
     vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params
   });
 const { moduleConfigDrawer, onConfigAuth } = useModuleConfigDrawer();
@@ -98,5 +98,6 @@ onMounted(() => {
 .font-stl {
   font-size: $font-size-14;
   font-weight: $font-weight-500;
-}</style>
+}
+</style>
  
