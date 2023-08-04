@@ -1,4 +1,5 @@
 <script setup lang="ts" name="VxeTableLayout">
+import { isArray } from '/@/utils';
 import type { VxeColumnProps, VxePagerPropTypes } from 'vxe-table';
 import { PropType } from 'vue';
 import { cloneDeep } from 'lodash-es';
@@ -97,8 +98,30 @@ const params = reactive<{ pageIndex: number; pageSize: number }>({
 const tableData = ref<Iobj[]>([]);
 
 /**
+ * 初始化请求结果数据
+ *
+ * @param resData
+ */
+function responseDataWrapper(resData: any) {
+  const targetResData = resData || [];
+  // 没有分页，直接返回数组时
+  if (isArray(targetResData)) {
+    return targetResData;
+  }
+  // 有分页，返回分页格式
+  return (
+    resData || {
+      pageData: [],
+      pageIndex: 0,
+      pageSize: 0,
+      total: 0
+    }
+  );
+}
+
+/**
  * 表格请求方法
- * 
+ *
  * @param resetPage 重置分页
  */
 async function refresh(resetPage?: boolean) {
@@ -113,13 +136,16 @@ async function refresh(resetPage?: boolean) {
     emit('load-start');
     loading.value = true;
 
-    const result = await props.loader(params);
+    const targetResData = await props.loader(params);
+
+    // 异常数据默认值
+    const result = responseDataWrapper(targetResData);
     // 没有分页：返回的是 list
     if (props.intact) {
       tableData.value = cloneDeep(result);
       total.value = result && result.length;
     } else {
-      const { records, total: rTotal } = unref(result);
+      const { pageData: records, total: rTotal } = unref(result);
       if (records && !records.length && rTotal && params.pageIndex > 1) {
         params.pageIndex--;
         loading.value = false;
@@ -143,11 +169,12 @@ async function refresh(resetPage?: boolean) {
 
   await nextTick();
   emit('loaded', tableData.value);
-};
+}
 
 const onPageChange = () => {
   refresh();
 };
+
 defineExpose({
   refresh
 });
@@ -182,7 +209,6 @@ onMounted(async () => {
     <div class="table-layout__content">
       <slot name="table" v-bind="$attrs">
         <div class="table-layout__main">
-          <!-- <vxe-table ref="table" :loading="loading" stripe :data="tableData" v-bind="$attrs"> -->
           <vxe-table ref="table" :loading="loading" stripe :data="cloneDeep(tableData)" v-bind="$attrs">
             <vxe-column v-if="hasSelection" type="checkbox" width="40" align="center" fixed="left"></vxe-column>
             <vxe-column v-if="hasIndex" title="序号" width="80" fixed="left" align="center">

@@ -1,14 +1,14 @@
 /*
  * @Author: QMZhao zhao971462054@163.com
  * @Date: 2023-07-05 18:18:46
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 15:40:15
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-08-02 14:38:06
  * @FilePath: \servious-illness-admin\src\types\axios.d.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 // export type ErrorMessageMode = "none" | "modal" | "message" | undefined;
 // export type SuccessMessageMode = ErrorMessageMode;
-
+import { LocationQueryRaw, RouteParamsRaw } from 'vue-router';
 export interface RequestOptions {
   // 将请求参数拼接到url
   joinParamsToUrl?: boolean;
@@ -37,7 +37,7 @@ export interface RequestOptions {
 
 declare interface ResponseData<T = any> {
   code: number;
-  // type: "success" | "error";
+  success: boolean;
   message: string;
   data: T;
 }
@@ -83,4 +83,26 @@ export interface UploadFileCallBack {
   success?: any;
   // 是否返回响应头,需要获取响应头时使用此属性
   isReturnResponse?: boolean;
+}
+
+/**
+ * 请求公共参数
+ */
+export interface RequestConfigParams {
+  token: string;
+  userId: string;
+  tenantId: string;
+  // 设备运行医院
+  hospitalArea: string;
+  // 系统运行设备
+  clientSide: string;
+}
+
+/**
+ * 页面路由数据
+ */
+export interface ErrorPathOption {
+  path: string;
+  params: RouteParamsRaw;
+  query: LocationQueryRaw;
 }

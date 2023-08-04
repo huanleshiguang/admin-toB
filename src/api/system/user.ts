@@ -1,8 +1,8 @@
 /*
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 15:36:33
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 15:09:01
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-07-31 09:25:18
  * @FilePath: \servious-illness-admin\src\api\system\user.ts
  * @Description: 人员管理界面 相关接口
  */
@@ -41,9 +41,9 @@ export const fetchHospAreaDepTree = (): Promise<Users.resHospAreaDepTree[]> => r
 export const fetchHosptAreaDepUserList = (data: Users.resHosptAreaDepUserList): Promise<Users.resHospAreaDepUserList> =>
   request.get({ url: USERAPI.FETCH_HOSPAREADEP_USER_URL, data })
 
-// 获取角色信息
-export const fetchRoleList = (): Promise<Users.resRoleList[]> =>
-  request.get({ url: USERAPI.FETCH_ROLE_LIST_URL })
+// // 获取角色信息
+// export const fetchRoleList = (): Promise<Users.resRoleList[]> =>
+//   request.get({ url: USERAPI.FETCH_ROLE_LIST_URL })
 
 // 保存用户信息
 export const updateUserInfo = (data: Users.hospAreaInfo) => request.post({ url: USERAPI.UPDATE_HOSPT_AREA_INFO, data })
