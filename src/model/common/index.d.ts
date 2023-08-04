@@ -1,4 +1,4 @@
-declare namespace ICUCommon {
+declare module 'ICUCommon' {
   /**
    * 二级菜单
    */
@@ -36,9 +36,9 @@ declare namespace ICUCommon {
   /**
    * 下拉组件自定义数据类型
    */
-  export interface SelectOption {
+  export interface SelectOption<T = string | number> {
     id?: string | number;
-    value: string | number;
+    value: T;
     label: string;
   }
   /**

@@ -2,12 +2,13 @@
  * @Autor: QMZhao
  * @Date: 2023-07-25 15:53:07
  * @LastEditTime: 2023-07-29 10:26:40
- * @Description: 
+ * @Description: 角色管理
  */
+// import { TableCommon } from 'ICUCommon';
 /**
  * 角色管理
  */
-declare namespace RoleConfig {
+declare module 'RoleConfig' {
   /**
    * 角色配置表单
    */
@@ -47,9 +48,9 @@ declare namespace RoleConfig {
   /**
    * 科室下人员查询
    */
-  export interface DepartmentUser extends ICUCommon.TableCommon {
-    areaId?: string;
-    deptId?: string;
-    Keyword?: string;
-  }
+  // export interface DepartmentUser extends TableCommon {
+  //   areaId?: string;
+  //   deptId?: string;
+  //   Keyword?: string;
+  // }
 }

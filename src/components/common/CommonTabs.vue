@@ -1,3 +1,9 @@
+<!--
+ * @Autor: QMZhao
+ * @Date: 2023-07-19 18:23:23
+ * @LastEditTime: 2023-08-04 17:39:37
+ * @Description: 
+-->
 <template>
   <el-tabs class="common-tabs" :type="props.type">
     <el-tab-pane v-for="item in tabList" :key="item.label" :label="item.label" :lazy="lazy">
@@ -7,11 +13,11 @@
   </el-tabs>
 </template>
 <script setup lang="ts" name="CommonTabs">
-
+import { TabsComponens } from 'ICUCommon';
 const props = withDefaults(
   defineProps<{
     type?: string;
-    tabList: ICUCommon.TabsComponens[];
+    tabList: TabsComponens[];
     // 标签是否延迟渲染
     lazy?: boolean;
   }>(),
