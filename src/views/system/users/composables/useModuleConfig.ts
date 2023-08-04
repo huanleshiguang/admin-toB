@@ -1,5 +1,7 @@
 import { useRoleConfigTreeParams } from '/@/store/system/role';
 
+import { RolePrivsParams } from 'RoleConfig';
+
 export function useModuleConfigDrawer() {
   const { setRoleConfigTreeParams } = useRoleConfigTreeParams();
 
@@ -16,7 +18,7 @@ export function useModuleConfigDrawer() {
    */
   function onConfigAuth(data: Iobj): void {
     const { id, userName } = data;
-    const params: RoleConfig.RolePrivsParams = {
+    const params: RolePrivsParams = {
       objType: '0',
       objId: id
     };

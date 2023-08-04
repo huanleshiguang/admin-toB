@@ -2,9 +2,8 @@
  * @Autor: QMZhao
  * @Date: 2023-07-24 13:56:23
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-25 14:04:33
+ * @LastEditTime: 2023-08-01 11:28:55
  * @Description: 菜单管理树表格数据
- * @FilePath: \servious-illness-admin\src\views\system\menus\composiables\useMenuTable.ts
  */
 import { menuTypeNameWrapper } from '/@/utils/dict';
 
@@ -15,17 +14,20 @@ export function useMenuTable() {
       title: '菜单代码',
       field: 'menuCode',
       headerAlign: 'center',
-      minWidth: '150px',
-      treeNode: true
+      minWidth: 300,
+      treeNode: true,
+      fixed: 'left'
     },
     {
       title: '菜单名称',
-      field: 'menuName'
+      field: 'menuName',
+      width: '150'
     },
     {
       title: '菜单类型',
       field: 'menuType',
       headerAlign: 'center',
+      width: '120',
       formatter: ({ row }) => {
         return menuTypeNameWrapper(row.menuType);
       }
@@ -33,12 +35,29 @@ export function useMenuTable() {
     {
       title: '菜单图标',
       field: 'menuIcon',
-      headerAlign: 'center'
+      headerAlign: 'center',
+      width: '120'
     },
     {
       title: '路由地址',
       field: 'routeAddr',
-      headerAlign: 'center'
+      headerAlign: 'center',
+      width: '240'
+    },
+    {
+      title: '是否缓存',
+      field: 'isCache',
+      headerAlign: 'center',
+      width: '120',
+      formatter: ({ row }) => {
+        return row.isCache ? '是' : '否';
+      }
+    },
+    {
+      title: '描述',
+      field: 'remark',
+      headerAlign: 'center',
+      width: '240'
     }
   ];
 
