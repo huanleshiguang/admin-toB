@@ -51,7 +51,7 @@ declare global {
   const fetchLogin: typeof import('./src/api/login/login')['fetchLogin']
   const fetchOrgMenuList: typeof import('./src/api/system/menus')['fetchOrgMenuList']
   const fetchOrgMenuTrees: typeof import('./src/api/system/menus')['fetchOrgMenuTrees']
-  const fetchRoleList: typeof import('./src/api/system/user')['fetchRoleList']
+  const fetchRoleList: typeof import('./src/api/system/role')['fetchRoleList']
   const fetchRolePrivs: typeof import('./src/api/system/role')['fetchRolePrivs']
   const fetchRoleTrees: typeof import('./src/api/system/role')['fetchRoleTrees']
   const fetchSaveRole: typeof import('./src/api/system/role')['fetchSaveRole']

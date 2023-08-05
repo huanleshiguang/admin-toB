@@ -1,30 +1,28 @@
 /*
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 18:16:16
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-04 09:30:21
+ * @LastEditors: ZhouHao Joehall@foxmail.com
+ * @LastEditTime: 2023-08-05 17:07:06
  * @FilePath: \servious-illness-admin\src\views\system\users\components\composiables\useUpdateCommon.ts
  * @Description: 
  */
-import type { FormRules } from 'element-plus';
-import type { resRoleInfo } from '/@/api/system/types/user'
-import type { resHospAreaDepTree } from '/@/api/system/types/area'
+
+import type { FormInstance, FormRules } from 'element-plus';
+import roleType from 'roleTypeModules'
+import areaType from 'areaTypeModules'
+import userType from 'userTypeModules'
 
 export function useUpdateCommon() {
 
-  /**
- * form组件内单个select实例
- */
+
   const dialogLayoutRef = ref();
   const belongToTreeRef = ref();
   const bePartTreeRef = ref();
-
-  // userFormtitle
+  const userFormRef = ref<FormInstance>();
+  // dlalog标题
   const userFormtitle = ref('');
-
-  // common-tree-select是否多选
-  const isMultiple = ref<Boolean>(true);
-
+  // 作为common-tree-select组件的props:是否支持多选
+  const isMultiple = ref(true);
   // 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）
   const transmitProps = {
     id: 'id',
@@ -32,12 +30,12 @@ export function useUpdateCommon() {
     label: 'areaDeptName',
     children: 'children'
   };
-  const hospAreaDepList = ref<resHospAreaDepTree[]>([]);
-  const roleList = ref<resRoleInfo[]>([]);
+  const hospAreaDepList = ref<areaType.resHospAreaDepTree[]>([]);
+  const roleList = ref<roleType.roleInfo[]>([]);
 
   /**
-*  同级目录下的update组件：表单 rules
-*/
+  *  同级目录下的update组件：表单 rules
+  */
   const rules = reactive<FormRules>({
     deptName: [
       {
@@ -75,10 +73,11 @@ export function useUpdateCommon() {
       trigger: 'change'
     }]
   });
+
   /**
   * userForm:表单
   */
-  const userForm = ref<any>({
+  const userForm = ref<userType.userForm>({
     deptId: '',
     deptIds: [],
     userName: '',
@@ -101,7 +100,8 @@ export function useUpdateCommon() {
         isMultiple,
         userFormtitle,
         rules,
-        userForm
+        userForm,
+        userFormRef,
       })
     )
   }

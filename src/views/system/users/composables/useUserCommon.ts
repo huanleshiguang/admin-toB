@@ -1,26 +1,26 @@
 /*
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:15:02
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-04 10:49:15
+ * @LastEditors: ZhouHao Joehall@foxmail.com
+ * @LastEditTime: 2023-08-05 14:56:36
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserCommon.ts
  * @Description:
  */
-import type { resHosptAreaDepUserList } from '/@/api/system/types/user';
-import type { hospAreaInfo, resDepInfo } from '/@/api/system/types/area';
+
+import * as areaType from 'areaTypeModules';
 
 export function useUserCommon() {
   // update组件实例
-  const updateRef = ref<any>(null);
+  const updateRef = ref(null);
   // vxe-table组件实例
   const vxeTableLayoutRef = ref();
   // common-tree-select组件实例
   const treeSelectRef = ref();
 
   // 院区列表
-  const hospAreaList = ref<hospAreaInfo[]>([]);
+  const hospAreaList = ref<areaType.hospAreaInfo[]>([]);
   // 科室列表
-  const hospAreaDepList = ref<resDepInfo[]>([]);
+  const hospAreaDepList = ref<areaType.resDepInfo[]>([]);
   // 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）
   const treeSelectProps = {
     label: 'deptName',
@@ -31,7 +31,7 @@ export function useUserCommon() {
   /**
   * params: 请求参数
   */
-  const params = ref<resHosptAreaDepUserList>({
+  const params = ref({
     AreaId: '',
     DeptId: '',
     Keyword: '',
