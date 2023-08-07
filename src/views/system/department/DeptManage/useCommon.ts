@@ -3,14 +3,8 @@ import * as areaType from 'areaTypeModules';
 export function useCommon() {
   const vxeTableLayoutRef = ref();
   const updateRef = ref();
-  // 院区列表
   const hospAreaList = ref<areaType.hospAreaInfo[]>([]);
-  // 科室列表
-  const hospAreaDepList = ref<areaType.resDepInfo[]>([]);
   const loading = ref<boolean>(false)
-  /**
- * params: 请求参数
- */
   const params = ref<areaType.fetchDepListParams>({
     AreaId: '',
     DeptType: 0,
@@ -46,7 +40,6 @@ export function useCommon() {
   const hospAreaName = ref('');
   // 科室类型
   const deptTypeName = ref('');
-
   // 科室类型
   const deptTypes = [
     {
@@ -62,10 +55,7 @@ export function useCommon() {
       DeptTypeName: "非重症科室"
     }
   ]
-
-  /**
-   *  同级目录下的update组件：表单 rules
-   */
+  // 同级目录下的update组件：表单 rules
   const rules = reactive<FormRules>({
     deptName: [
       {
@@ -120,7 +110,6 @@ export function useCommon() {
         vxeTableLayoutRef,
         updateRef,
         hospAreaList,
-        hospAreaDepList,
         loading,
         deptColumnsList,
         hospAreaName,

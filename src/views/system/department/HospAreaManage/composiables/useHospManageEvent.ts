@@ -14,14 +14,14 @@ export function useHospManageEvent({ ...arg }) {
 
   /**
    * 
-   * @returns total:总数 records:数据列表
+   * @returns total:总数 pageData:数据列表
    */
   async function initMethod() {
     try {
       const result = await fetchHosptAreaInfo()  
       return {
         total:result.length,
-        records:result || []
+        pageData:result || []
       };
     } catch (error) {
       throw (error)

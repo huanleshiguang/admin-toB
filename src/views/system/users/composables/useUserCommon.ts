@@ -16,7 +16,8 @@ export function useUserCommon() {
   const vxeTableLayoutRef = ref();
   // common-tree-select组件实例
   const treeSelectRef = ref();
-
+  // 绑定院区名称
+  const hospAreaName = ref('');
   // 院区列表
   const hospAreaList = ref<areaType.hospAreaInfo[]>([]);
   // 科室列表
@@ -83,6 +84,7 @@ export function useUserCommon() {
         hospAreaList,
         hospAreaDepList,
         columnsUserList,
+        hospAreaName
       })
     )
   }

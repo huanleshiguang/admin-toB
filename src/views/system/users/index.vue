@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-04 10:58:02
+ * @LastEditTime: 2023-08-07 15:40:55
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -66,23 +66,19 @@
       title="人员配置" />
   </div>
 </template>
- 
 <script lang="ts" setup>
-
 import { update } from './components';
 import { ArrowDown, Search, Document, Folder, FolderOpened, InfoFilled, Edit, Delete, Plus, Refresh } from '@element-plus/icons-vue';
 import { useUserCommon } from './composables/useUserCommon';
 import { useModuleConfigDrawer } from './composables/useModuleConfig';
 import { useUserEvent } from './composables/useUserEvent';
-
-const { updateRef, vxeTableLayoutRef, treeSelectRef, treeSelectProps, params, hospAreaList, hospAreaDepList, columnsUserList } = useUserCommon();
+const { updateRef, vxeTableLayoutRef, treeSelectRef, treeSelectProps, params,
+  hospAreaList, hospAreaDepList, columnsUserList,hospAreaName } = useUserCommon();
 const { loadInitHsopAreaList, reFresh, handleSearch, addUser, editUser, deleteUser,
   handleClear, selectedHospArea, handleNodeClick, currentChangeEvent, loadTableData, } = useUserEvent({
     vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params
   });
 const { moduleConfigDrawer, onConfigAuth } = useModuleConfigDrawer();
-
-const hospAreaName = ref('');
 onMounted(() => {
   loadInitHsopAreaList();
 });

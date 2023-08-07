@@ -1,8 +1,8 @@
 /*
  * @Author: ZhouHao Joehall@foxmail.com
  * @Date: 2023-08-02 17:21:22
- * @LastEditors: ZhouHao Joehall@foxmail.com
- * @LastEditTime: 2023-08-05 17:20:30
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-08-07 10:02:49
  * @Descripttion: 
  */
 import userType from 'userTypeModules'
@@ -11,7 +11,7 @@ import areaType from 'areaTypeModules'
 import { FormInstance } from 'element-plus';
 
 interface argsType {
-  userFormRef: Ref<FormInstance>
+  userFormRef: Ref<FormInstance | undefined>
   dialogLayoutRef: Ref<any>
   hospAreaDepList: Ref<areaType.resHospAreaDepTree[]>
   roleList: Ref<roleType.roleInfo[]>
@@ -47,7 +47,7 @@ export function useUpdateEvent(args: argsType) {
   }
 
   /**
-   * 
+   * userForm赋值
    * @param userInfo 用户信息
    */
   const open = (userInfo: userType.userInfo) => {

@@ -8,7 +8,7 @@
 -->
 <template>
   <div class="common-layout">
-    <vxe-table-layout ref="vxeTableLayoutRef" class="h_100" border :loader="initMethod" :immediate="false"
+    <vxe-table-layout ref="vxeTableLayoutRef" class="h_100" border :loader="loadTableData" :immediate="false"
       :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="deptColumnsList"
       @current-change="currentChangeEvent">
       <template #operator-left>
@@ -16,8 +16,8 @@
         <span class="ml-3  text-gray-600 inline-flex items-center font-stl">选择院区：</span>
         <el-select v-model="hospAreaName" clearable class="w-150" placeholder="请选择院区" :suffix-icon="ArrowDown" clearble
           @clear="handleClear">
-          <el-option v-for="item in hospAreaList" :key="item.id" :label="item.hospAreaName" :value="item.hospAreaName"
-            @click="selectedHospArea(item.id)" /></el-select>
+          <el-option v-for="item in hospAreaList" :key="item.id" :label="item.hospAreaName"
+            :value="item.hospAreaName" /></el-select>
         <!-- 科室类型选择 -->
         <span class="ml-3  text-gray-600 inline-flex items-center font-stl">科室类型：</span>
         <el-select v-model="deptTypeName">
@@ -43,20 +43,20 @@
       </template>
     </vxe-table-layout>
     <!-- 新增院区的dialog -->
-    <update ref="updateRef" @reFetchtableList="reFresh" />
+    <!-- <update ref="updateRef" @reFetchtableList="reFresh" /> -->
   </div>
 </template>
  
 <script lang="ts" setup>
-import update from './update.vue';
+// import update from './update.vue';
 import { ArrowDown, Search, Refresh } from '@element-plus/icons-vue';
 import { useCommon } from './useCommon';
 import { useEvent } from './useEvent';
-const { vxeTableLayoutRef, updateRef, hospAreaList, loading, deptColumnsList, hospAreaName,
-  titleMainDept, params, hospAreaDepList, deptTypes, deptTypeName } = useCommon();
-const { loadInitHsopAreaList, selectedHospArea, handleSearch, handleClear, initMethod,
-  switchBeforeChange, reFresh, currentChangeEvent, handleDeptType } = useEvent({
-    vxeTableLayoutRef, hospAreaList, params, hospAreaName, hospAreaDepList, loading, deptTypes, deptTypeName
+const { vxeTableLayoutRef, hospAreaList, loading, deptColumnsList, hospAreaName,
+  titleMainDept, params, deptTypes, deptTypeName } = useCommon();
+const { loadInitHsopAreaList, handleSearch, handleClear, loadTableData,
+  switchBeforeChange, currentChangeEvent, handleDeptType } = useEvent({
+    vxeTableLayoutRef, hospAreaList, params, hospAreaName, loading, deptTypes, deptTypeName
   });
 
 onMounted(() => {

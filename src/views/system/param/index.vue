@@ -58,7 +58,7 @@ async function initMethod(params: any) {
   const { pageSize } = params;
   return {
     total: 100,
-    records: [...new Array(pageSize)].map((_, index) => {
+    pageData: [...new Array(pageSize)].map((_, index) => {
       console.log(index);
       return { id: index, srial: 'adad', name: '张三', value: '1', desc: '12414' };
     })

@@ -1,8 +1,8 @@
 /*
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:11:43
- * @LastEditors: ZhouHao Joehall@foxmail.com
- * @LastEditTime: 2023-08-05 14:17:25
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-08-07 10:04:06
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserEvent.ts
  * @Description: 
  */
@@ -97,17 +97,17 @@ export function useUserEvent({ ...args }) {
 
   /**
    * 加载表格数据
-   * @returns total:数据总数,records:数据列表
+   * @returns total:数据总数,pagaData:数据列表
    */
   async function loadTableData({pageIndex,pageSize}) {
     params.value.PageIndex = pageIndex
     params.value.PageSize = pageSize
     try {
       const result = await fetchHosptAreaDepUserList(params.value);
-      const { pageData: records, total } = result || {};
+      const { pageData, total } = result || {};
       return {
         total,
-        records
+        pageData
       };
     } catch (error) {
       createMessage.error('获取人员信息出现未知错误!');

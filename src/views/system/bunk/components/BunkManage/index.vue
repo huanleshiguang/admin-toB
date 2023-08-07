@@ -73,7 +73,7 @@ async function initMethod(params: fetchHosptAreaDepUserList) {
   const { PageSize } = params;
   return {
     total: 100,
-    records: [...new Array(PageSize)].map((_, index) => {
+    pageData: [...new Array(PageSize)].map((_, index) => {
       return { id: index, srial: 'adad', name: '张三', value: '1', desc: '12414' };
     })
   };
