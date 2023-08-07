@@ -1,10 +1,22 @@
-import { useCompRef } from '/@/hooks/common/useCompRef'
-import type { resRoleInfo, userInfo } from '/@/api/system/types/user'
-import { ElForm } from 'element-plus';
+
+import type { userInfo } from '/@/api/system/types/user'
+import type { resHospAreaDepTree } from '/@/api/system/types/area'
+import type { roleInfo } from '/@/api/system/types/role'
 import { cloneDeep } from 'lodash-es';
-export function useUpdateEvent({ ...arg }) {
-  const { dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm } = arg
-  const formRef = useCompRef(ElForm)
+import type { FormInstance } from 'element-plus'
+
+interface argType {
+  formRef: Ref<FormInstance>
+  dialogLayoutRef: Ref<any>
+  hospAreaDepList: Ref<resHospAreaDepTree[]>
+  roleList: Ref<roleInfo[]>
+  userFormtitle: Ref<string>
+  userForm: Ref<any>
+}
+
+export function useUpdateEvent(args: argType) {
+  const { formRef, dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm } = args
+
   /**
    *  加载院区科室Tree
    */
@@ -25,7 +37,7 @@ export function useUpdateEvent({ ...arg }) {
    * 
    * @param roleInfo 角色信息
    */
-  const handleRoleSelected = (roleInfo: resRoleInfo) => {
+  const handleRoleSelected = (roleInfo: roleInfo) => {
     console.log(roleInfo.id, 'roleInfo.id');
     // userForm.value.userRoleIds.value = item.id
   }

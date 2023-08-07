@@ -52,7 +52,7 @@
 import { VxeTableEvents } from 'vxe-table';
 import { ArrowDown, Edit, Delete, InfoFilled, Search, Plus, Refresh } from '@element-plus/icons-vue';
 import type { hospAreaInfo, resDepInfo } from '/@/api/system/types/area';
-import type { resHosptAreaDepUserList } from '/@/api/system/types/user';
+import type { fetchHosptAreaDepUserList } from '/@/api/system/types/user';
 import { columnsList, params, transmitProps } from './useCommon';
 import update from './update.vue'
 const updateRef = ref();
@@ -68,7 +68,7 @@ const handleSearch = () => {
 const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
   console.log(`行选中事件`, row);
 };
-async function initMethod(params: resHosptAreaDepUserList) {
+async function initMethod(params: fetchHosptAreaDepUserList) {
   console.log(params, 'params');
   const { PageSize } = params;
   return {

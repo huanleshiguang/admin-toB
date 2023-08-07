@@ -2,14 +2,14 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 18:16:16
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-04 09:30:21
+ * @LastEditTime: 2023-08-04 16:35:45
  * @FilePath: \servious-illness-admin\src\views\system\users\components\composiables\useUpdateCommon.ts
  * @Description: 
  */
 import type { FormRules } from 'element-plus';
-import type { resRoleInfo } from '/@/api/system/types/user'
+import type { roleInfo } from '/@/api/system/types/role'
 import type { resHospAreaDepTree } from '/@/api/system/types/area'
-
+import type { FormInstance } from 'element-plus'
 export function useUpdateCommon() {
 
   /**
@@ -24,7 +24,8 @@ export function useUpdateCommon() {
 
   // common-tree-select是否多选
   const isMultiple = ref<Boolean>(true);
-
+  // form组件实例
+  const formRef = ref<FormInstance>();
   // 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）
   const transmitProps = {
     id: 'id',
@@ -33,7 +34,7 @@ export function useUpdateCommon() {
     children: 'children'
   };
   const hospAreaDepList = ref<resHospAreaDepTree[]>([]);
-  const roleList = ref<resRoleInfo[]>([]);
+  const roleList = ref<roleInfo[]>([]);
 
   /**
 *  同级目录下的update组件：表单 rules
@@ -101,7 +102,8 @@ export function useUpdateCommon() {
         isMultiple,
         userFormtitle,
         rules,
-        userForm
+        userForm,
+        formRef
       })
     )
   }

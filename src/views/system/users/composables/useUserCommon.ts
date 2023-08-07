@@ -2,11 +2,11 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:15:02
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-04 10:49:15
+ * @LastEditTime: 2023-08-04 18:07:49
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserCommon.ts
  * @Description:
  */
-import type { resHosptAreaDepUserList } from '/@/api/system/types/user';
+import type { fetchHosptAreaDepUserList } from '/@/api/system/types/user';
 import type { hospAreaInfo, resDepInfo } from '/@/api/system/types/area';
 
 export function useUserCommon() {
@@ -31,12 +31,10 @@ export function useUserCommon() {
   /**
   * params: 请求参数
   */
-  const params = ref<resHosptAreaDepUserList>({
+  const params = ref<fetchHosptAreaDepUserList>({
     AreaId: '',
     DeptId: '',
-    Keyword: '',
-    PageIndex: 1,
-    PageSize: 20
+    Keyword: ''
   });
   // table列
   const columnsUserList = [

@@ -2,19 +2,15 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-18 14:33:39
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-31 09:32:33
+ * @LastEditTime: 2023-08-04 18:22:16
  * @FilePath: \servious-illness-admin\src\api\system\types\user.ts
  * @Description: 人员管理模块接口约束
  */
 
-
-
-export interface resHosptAreaDepUserList {
-  AreaId: string
-  DeptId: string,
+export interface fetchHosptAreaDepUserList {
+  AreaId?: string
+  DeptId?: string
   Keyword?: string;
-  PageIndex?: number;
-  PageSize?: number
 }
 
 /**

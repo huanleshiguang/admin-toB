@@ -50,12 +50,13 @@
 
 <script setup lang="ts">
 import { useUpdateCommon } from './composiables/useUpdateCommon'
-const { rules, userForm, userFormtitle, dialogLayoutRef, belongToTreeRef, bePartTreeRef,
+const { formRef, rules, userForm, userFormtitle, dialogLayoutRef, belongToTreeRef, bePartTreeRef,
   hospAreaDepList, roleList, transmitProps, isMultiple } = useUpdateCommon();
 import { useUpdateEvent } from './composiables/useUpdateEvent';
-const { loadHospAreaDepTree, loadRoleList, handleRoleSelected, sureMethod, handlePartOfDept, handleClickPartInDept, open, close } = useUpdateEvent({
-  dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm,
-});
+const { loadHospAreaDepTree, loadRoleList, handleRoleSelected, sureMethod,
+  handlePartOfDept, handleClickPartInDept, open, close } = useUpdateEvent({
+    dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm, formRef
+  });
 
 onMounted(() => {
   loadHospAreaDepTree();

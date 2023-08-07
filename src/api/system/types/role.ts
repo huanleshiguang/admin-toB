@@ -1,5 +1,5 @@
 
-interface roleInfo {
+export interface roleInfo {
   roleCode:string
   roleName:string
   roleDisplayName:string

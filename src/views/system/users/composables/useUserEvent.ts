@@ -2,14 +2,24 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:11:43
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-04 13:40:14
+ * @LastEditTime: 2023-08-04 18:14:35
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserEvent.ts
  * @Description: 
  */
 import type { userInfo } from '/@/api/system/types/user';
+import type { hospAreaInfo,resDepInfo } from '/@/api/system/types/area';
+import type { fetchHosptAreaDepUserList } from '/@/api/system/types/user'
+interface argsType {
+  vxeTableLayoutRef:Ref<any>
+  treeSelectRef:Ref<any>
+  updateRef:Ref<any>
+  hospAreaList:Ref<hospAreaInfo[]>
+  hospAreaDepList:Ref<resDepInfo[]>
+  params:Ref<fetchHosptAreaDepUserList>
+}
 // import { VxeTableEvents } from 'vxe-table';
-export function useUserEvent({ ...arg }) {
-  const { vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params } = arg
+export function useUserEvent(args:argsType) {
+  const { vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params } = args
   const { createMessage } = useMessage();
   
   /**

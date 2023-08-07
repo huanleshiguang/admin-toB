@@ -13,9 +13,9 @@ export interface hospAreaInfo {
 
 // 获取科室 params
 export interface fetchDepListParams {
-  AreaId: string
-  DeptType: number
-  Keyword: string
+  AreaId?: string
+  DeptType?: number
+  Keyword?: string
 }
 // 科室信息列表
 export interface resDepInfo {
@@ -30,7 +30,7 @@ export interface resDepInfo {
   dataStatus: number
 }
 
-// 院区科室信息树
+// 院区科室信息组合树
 export interface resHospAreaDepTree {
   id: string
   parentId: null | string,
