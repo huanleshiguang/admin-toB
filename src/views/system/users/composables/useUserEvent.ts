@@ -1,24 +1,14 @@
 /*
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:11:43
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-04 18:14:35
+ * @LastEditors: ZhouHao Joehall@foxmail.com
+ * @LastEditTime: 2023-08-05 14:17:25
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserEvent.ts
  * @Description: 
  */
-import type { userInfo } from '/@/api/system/types/user';
-import type { hospAreaInfo,resDepInfo } from '/@/api/system/types/area';
-import type { fetchHosptAreaDepUserList } from '/@/api/system/types/user'
-interface argsType {
-  vxeTableLayoutRef:Ref<any>
-  treeSelectRef:Ref<any>
-  updateRef:Ref<any>
-  hospAreaList:Ref<hospAreaInfo[]>
-  hospAreaDepList:Ref<resDepInfo[]>
-  params:Ref<fetchHosptAreaDepUserList>
-}
-// import { VxeTableEvents } from 'vxe-table';
-export function useUserEvent(args:argsType) {
+import * as userType from 'userTypeModules';
+
+export function useUserEvent({ ...args }) {
   const { vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params } = args
   const { createMessage } = useMessage();
   
@@ -33,7 +23,7 @@ export function useUserEvent(args:argsType) {
    * 编辑
    * @param userInfo 用户信息
    */
-  const editUser = (userInfo: userInfo) => {
+  const editUser = (userInfo: userType.userInfo) => {
     updateRef.value.open(userInfo);
   };
 
@@ -41,7 +31,7 @@ export function useUserEvent(args:argsType) {
    * 删除
    * @param userInfo - 用户信息
    */
-  const deleteUser = async (userInfo: userInfo) => {
+  const deleteUser = async (userInfo: userType.userInfo) => {
     await deleteUserInfo(userInfo.id) ? reFresh() : createMessage.error('删除用户失败')
   }
 
@@ -49,7 +39,7 @@ export function useUserEvent(args:argsType) {
    * 搜索
    */
   const handleSearch = async () => {
-    vxeTableLayoutRef.value.refresh(true);
+    reFresh(true);
   };
 
   /**
@@ -91,7 +81,7 @@ export function useUserEvent(args:argsType) {
    * 
    * @param userInfo 列表当前行用户
    */
-  const currentChangeEvent = (userInfo: userInfo) => {
+  const currentChangeEvent = (userInfo: userType.userInfo) => {
     console.log(`行选中事件`, userInfo);
   };
 
@@ -106,10 +96,12 @@ export function useUserEvent(args:argsType) {
   }
 
   /**
-   * 
+   * 加载表格数据
    * @returns total:数据总数,records:数据列表
    */
-  async function initMethod() {
+  async function loadTableData({pageIndex,pageSize}) {
+    params.value.PageIndex = pageIndex
+    params.value.PageSize = pageSize
     try {
       const result = await fetchHosptAreaDepUserList(params.value);
       const { pageData: records, total } = result || {};
@@ -131,7 +123,7 @@ export function useUserEvent(args:argsType) {
     currentChangeEvent,
     handleSearch,
     handleClear,
-    initMethod,
+    loadTableData,
     reFresh
   }
 }

@@ -1,8 +1,8 @@
 <!--
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 18:43:22
+ * @LastEditors: ZhouHao Joehall@foxmail.com
+ * @LastEditTime: 2023-08-05 14:56:17
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 
 -->
@@ -47,13 +47,13 @@
 <script setup lang="ts">
 import { cloneDeep } from 'lodash-es';
 import { useCommon } from './useCommon'
+import * as userType from 'userTypeModules'
 const {  rules,deptForm } = useCommon();
-import type { userInfo } from '/@/api/system/types/user';
-const title = ref<string>('新增人员');
+const title = ref('新增人员');
 const dialogLayoutRef = ref();
 const formRef = ref();
 
-const open = (data: userInfo) => {
+const open = (data: userType.userInfo) => {
   title.value = `${data ? '编辑' : '新增'}人员`;
   deptForm.value = data ? cloneDeep(data) : {}
   dialogLayoutRef.value.open();

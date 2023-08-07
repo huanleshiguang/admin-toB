@@ -1,8 +1,12 @@
-import { ErrorResponseData } from '/@/model/common/axiosOption';
+import { ResponseData } from '/@/types/axios';
 
-export function useResponseErrorData(): ErrorResponseData<null> {
+/**
+ * 请求响应默认参数
+ */
+export function useResponseErrorData(): ResponseData<null> {
   return {
     code: 1000,
+    success: false,
     message: `请求错误`,
     data: null
   };

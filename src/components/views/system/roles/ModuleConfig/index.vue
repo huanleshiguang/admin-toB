@@ -29,8 +29,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useRoleTreeData } from './composiables/useModuleTreeData';
-import { useModuleTreeEvent } from './composiables/useModuleTreeEvent';
+import { useRoleTreeData } from './composables/useModuleTreeData';
+import { useModuleTreeEvent } from './composables/useModuleTreeEvent';
 
 import type TreeStore from 'element-plus/es/components/tree/src/model/tree-store';
 

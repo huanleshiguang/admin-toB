@@ -41,8 +41,10 @@
 <script lang="ts" setup>
 import { LoginResponse } from '/@/model/views/login';
 
+import { DropDownItem } from 'Dashboard';
+
 const privateRouter = useRouter();
-const dropDownList = ref<Dashboard.DropDownItem[]>([
+const dropDownList = ref<DropDownItem[]>([
   {
     title: '修改角色',
     roleName: 'editRole'
@@ -76,7 +78,7 @@ function initUserInfo(): void {
 
 /**
  * 根据下拉配置项调用对应方法
- * 
+ *
  * @param item roleName
  */
 function setdropDownMap(item: string) {

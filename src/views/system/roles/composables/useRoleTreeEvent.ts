@@ -6,6 +6,8 @@
  */
 import { useRoleConfigTreeParams } from '/@/store/system/role';
 
+import { RoleForm, RolePrivsParams } from 'RoleConfig';
+
 export function useRoleTreeEvent({ ...arg }) {
   const { createMessage, createConfirm } = useMessage();
   const { setRoleConfigTreeParams } = useRoleConfigTreeParams();
@@ -13,7 +15,7 @@ export function useRoleTreeEvent({ ...arg }) {
   const { roleFormTitle, roleFormDialogRef, rolesTableRef, moduleConfigDrawer } = arg;
 
   // 角色配置表单
-  const roleFormData = ref<RoleConfig.RoleForm>({
+  const roleFormData = ref<RoleForm>({
     id: '',
     // 角色代码
     roleCode: '',
@@ -95,7 +97,7 @@ export function useRoleTreeEvent({ ...arg }) {
    */
   function onConfigAuth(data: Iobj): void {
     const { id, roleName } = data;
-    const params: RoleConfig.RolePrivsParams = {
+    const params: RolePrivsParams = {
       objType: '0',
       objId: id
     };
@@ -119,7 +121,6 @@ export function useRoleTreeEvent({ ...arg }) {
       rolesTableRef.value!.refresh();
     } catch (error) {}
   }
-
 
   return {
     roleFormData,

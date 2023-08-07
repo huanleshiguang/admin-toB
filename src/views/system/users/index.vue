@@ -8,7 +8,7 @@
  -->
 <template>
   <div class="common-layout">
-    <vxe-table-layout ref="vxeTableLayoutRef" class="h_100" border :loader="initMethod"
+    <vxe-table-layout ref="vxeTableLayoutRef" class="h_100" border :loader="loadTableData"
       :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="columnsUserList"
       @current-change="currentChangeEvent">
       <template #operator-left>
@@ -77,7 +77,7 @@ import { useUserEvent } from './composables/useUserEvent';
 
 const { updateRef, vxeTableLayoutRef, treeSelectRef, treeSelectProps, params, hospAreaList, hospAreaDepList, columnsUserList } = useUserCommon();
 const { loadInitHsopAreaList, reFresh, handleSearch, addUser, editUser, deleteUser,
-  handleClear, selectedHospArea, handleNodeClick, currentChangeEvent, initMethod, } = useUserEvent({
+  handleClear, selectedHospArea, handleNodeClick, currentChangeEvent, loadTableData, } = useUserEvent({
     vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params
   });
 const { moduleConfigDrawer, onConfigAuth } = useModuleConfigDrawer();

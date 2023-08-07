@@ -1,14 +1,14 @@
 <!--
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-03 19:40:45
+ * @LastEditors: ZhouHao Joehall@foxmail.com
+ * @LastEditTime: 2023-08-05 17:22:17
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 人员管理新增与编辑
 -->
 <template>
   <DialogLayout ref="dialogLayoutRef" show-close :title="userFormtitle" @sure="sureMethod">
-    <el-form ref="formRef" :model="userForm" :rules="rules" label-width="auto" label-position="right">
+    <el-form ref="userFormRef" :model="userForm" :rules="rules" label-width="auto" label-position="right">
       <el-form-item label="所属科室" prop="deptName">
         <common-tree-select ref="belongToTreeRef" :data="hospAreaDepList" :modelData="userForm.deptId"
           :transmit-props="transmitProps" @handleNodeClick="handlePartOfDept">
@@ -50,13 +50,12 @@
 
 <script setup lang="ts">
 import { useUpdateCommon } from './composiables/useUpdateCommon'
-const { formRef, rules, userForm, userFormtitle, dialogLayoutRef, belongToTreeRef, bePartTreeRef,
-  hospAreaDepList, roleList, transmitProps, isMultiple } = useUpdateCommon();
+const { rules, userForm, userFormtitle, dialogLayoutRef, belongToTreeRef, bePartTreeRef,
+  hospAreaDepList, roleList, transmitProps, isMultiple, userFormRef } = useUpdateCommon();
 import { useUpdateEvent } from './composiables/useUpdateEvent';
-const { loadHospAreaDepTree, loadRoleList, handleRoleSelected, sureMethod,
-  handlePartOfDept, handleClickPartInDept, open, close } = useUpdateEvent({
-    dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm, formRef
-  });
+const { loadHospAreaDepTree, loadRoleList, handleRoleSelected, sureMethod, handlePartOfDept, handleClickPartInDept, open, close } = useUpdateEvent({
+  dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm, userFormRef
+});
 
 onMounted(() => {
   loadHospAreaDepTree();

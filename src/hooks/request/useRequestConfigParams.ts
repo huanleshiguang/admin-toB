@@ -1,5 +1,5 @@
 import { LoginResponse } from '/@/model/views/login';
-import { RequestConfigParams } from '/@/model/common/axiosOption';
+import { RequestConfigParams } from '/@/types/axios';
 import { getUserInfo } from '/@/utils/session';
 
 /**

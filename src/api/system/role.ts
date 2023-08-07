@@ -15,7 +15,7 @@ enum ROLEURL {
   ROLE_LIST = `${common}RoleManage/GetOrgRoleLists`,
   SAVE_ROLE = `${common}RoleManage/SaveOrgRoleInfo`,
   DELETE_ROLE = `${common}RoleManage/DeleteOrgRoleInfo`,
-  ROLE_PRIVS = `${common}PrivsManage/GetOrgRolePrivs`,
+  ROLE_PRIVS = `${common}PrivsManage/GetOrgUserRolePrivs`,
   SAVE_ROLE_PRIVS = `${common}PrivsManage/SavePrivsInfo`
 }
 

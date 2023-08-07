@@ -5,8 +5,11 @@
  * @LastEditTime: 2023-07-26 10:10:39
  * @Reference:
  */
+
+import { MenuList } from 'ICUCommon';
+
 export const useNavMenuList = defineStore('navMenuList', () => {
-  const navMenuList = ref<Array<ICUCommon.MenuList>>([
+  const navMenuList = ref<Array<MenuList>>([
     {
       id: 1001,
       label: '运行参数',
@@ -57,7 +60,7 @@ export const useNavMenuList = defineStore('navMenuList', () => {
       path: '/system/department'
     }
   ]);
-  function setNavMenuList(menuList: Array<ICUCommon.MenuList>) {
+  function setNavMenuList(menuList: Array<MenuList>) {
     navMenuList.value = menuList;
   }
 

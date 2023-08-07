@@ -1,7 +1,15 @@
+/*
+ * @Author: ZhouHao Joehall@foxmail.com
+ * @Date: 2023-08-02 20:21:53
+ * @LastEditors: ZhouHao Joehall@foxmail.com
+ * @LastEditTime: 2023-08-05 14:48:07
+ * @Descripttion: 
+ */
 import { VxeTableEvents } from 'vxe-table';
-import { resDepInfo } from '/@/api/system/types/area'
+import * as areaType from 'areaTypeModules';
+
 export function useEvent({ ...arg }) {
-  const { vxeTableLayoutRef, hospAreaList, params, hospAreaName, hospAreaDepList, loading,deptTypeName,deptTypes } = arg
+  const { vxeTableLayoutRef, hospAreaList, params, hospAreaName, hospAreaDepList, loading, deptTypeName, deptTypes } = arg
   // 获取初始院区列表
   const loadInitHsopAreaList = async () => {
     const result = await fetchHosptAreaInfo();
@@ -14,7 +22,11 @@ export function useEvent({ ...arg }) {
     // 刷新
     reFresh();
   };
-  // 根据院区获取相应科室
+
+  /**
+   * 根据院区获取相应科室
+   * @param AreaId 院区ID
+   */
   const selectedHospArea = async (AreaId: string) => {
     params.value.AreaId = AreaId;
     const result = await fetchDepList(params.value);
@@ -31,16 +43,22 @@ export function useEvent({ ...arg }) {
     params.value.AreaId = '';
     hospAreaDepList.value = [];
   }
-  async function initMethod() {
+  async function initMethod({ pageIndex, pageSize }) {
+    params.value.PageIndex = pageIndex
+    params.value.PageSize = pageSize
     const result = await fetchDepList(params.value);
     return {
       total: result.length,
       records: result || []
     };
   };
-  // 是否为重症科室
-  const switchBeforeChange = (row: resDepInfo) => {
-    console.log(row)
+  /**
+   * 更改重症科室字段前的回调
+   * @param depInfo 当前行科室信息 
+   * @returns 
+   */
+  const switchBeforeChange = (depInfo: areaType.resDepInfo) => {
+    console.log(depInfo)
     loading.value = true
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -50,8 +68,12 @@ export function useEvent({ ...arg }) {
       }, 1000)
     })
   }
-  const handleDeptType = (item) => {
-    params.DeptType = item.DeptType;
+  /**   
+   *  选择科室类型下拉框后的回调
+   * @param item 科室类型信息
+   */
+  const handleDeptType = (item: areaType.deptTypInfo) => {
+    params.value.DeptType = item.DeptType;
   }
   // 刷新数据
   const reFresh = () => {

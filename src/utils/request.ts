@@ -1,24 +1,22 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-14 09:57:52
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-28 15:48:01
- * @Description:
- * @FilePath: \servious-illness-admin\src\utils\request.ts
+ * @LastEditTime: 2023-08-03 13:48:56
+ * @Description: http 请求
  */
 import axios, { AxiosResponse, AxiosError } from 'axios';
-// import type { ResponseData } from '/@/types/axios';
-import { Exceptionless } from '@exceptionless/vue';
-import { ErrorResponseData } from '/@/model/common/axiosOption';
+import { ResponseData } from '/@/types/axios';
+// import { Exceptionless } from '@exceptionless/vue';
 
 import { useResponseErrorData, useReqeustHeaderType } from '/@/hooks/request/useAxios';
 import { useErrorResponse } from '/@/hooks/request/useErrorResponse';
 import { useConfigParams } from '/@/hooks/request/useRequestConfigParams';
+import { useExceptionLess } from '/@/hooks/request/useExceptionless';
 import { useClearParams } from '/@/hooks/common';
 
 import { cloneDeep } from 'lodash-es';
 
-type PartialResponse = DeepPartial<AxiosResponse<ErrorResponseData<null>>>;
+type PartialResponse = DeepPartial<AxiosResponse<ResponseData<null>>>;
 
 const { createMessage } = useMessage();
 
@@ -70,7 +68,7 @@ service.interceptors.response.use(
       duration: 1500,
       message: useErrorResponse(errorRes?.status ?? 0)
     });
-    Exceptionless.submitException(error);
+    useExceptionLess(error, true);
     return Promise.reject(error.response);
   }
 );
@@ -86,16 +84,17 @@ function useResponse<T = any>(response: AxiosResponse): Promise<T> {
   const { code, data, message, success } = responsedData;
   return new Promise((resolve, reject) => {
     // 正常请求成功时
-    if (reponseStatsus === 200) {
-      // 接口请求错误时 实际code值与后端约定为准
-      if (code !== 200 && !success) {
-        createMessage({
-          type: 'error',
-          duration: 1500,
-          message
-        });
-        reject(responsedData);
-      }
+    if (reponseStatsus !== 200) reject(responsedData);
+    // 接口请求错误时 实际code值与后端约定为准
+    if (code !== 200 && !success) {
+      createMessage({
+        type: 'error',
+        duration: 1500,
+        message
+      });
+      useExceptionLess(response);
+      reject(responsedData);
+    } else {
       resolve(cloneDeep(data));
     }
   });

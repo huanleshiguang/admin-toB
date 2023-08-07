@@ -1,7 +1,7 @@
 <!--
  * @Autor: QMZhao
  * @Date: 2023-07-28 17:00:18
- * @LastEditTime: 2023-07-29 15:17:21
+ * @LastEditTime: 2023-08-03 15:25:40
  * @Description: 角色管理
 -->
 <template>
@@ -10,7 +10,6 @@
       ref="rolesTableRef"
       class="h_100"
       border="full"
-      intact
       :loader="loadTableData"
       height="100%"
       :columns-list="columns"
@@ -20,26 +19,26 @@
           <el-input placeholder="请输入角色名称/角色代码"></el-input>
           <p class="p-20">
             <el-button type="primary">
-              <i-ep-search></i-ep-search>
-              搜索
+              <i-ep-search class="el-icon"></i-ep-search>
+              <span>搜索</span>
             </el-button>
           </p>
         </div>
       </template>
       <template #operator-right>
         <el-button type="primary" @click="onAddRoleTree">
-          <i-ep-plus></i-ep-plus>
-          添加角色
+          <i-ep-plus class="el-icon"></i-ep-plus>
+          <span>添加角色</span>
         </el-button>
       </template>
       <template #columns>
-        <vxe-column title="操作" align="center" width="250">
+        <vxe-column title="操作" align="center" width="260">
           <template #default="{ row }">
             <div class="uno-flex-y-center">
               <p>
                 <el-button text type="info" @click="onEditRoleTree(row)">
-                  <i-ep-edit></i-ep-edit>
-                  修改
+                  <i-ep-edit class="el-icon"></i-ep-edit>
+                  <span>修改</span>
                 </el-button>
               </p>
               <p>
@@ -47,8 +46,8 @@
               </p>
               <p>
                 <el-button text type="danger" @click="onDeleteRole(row)">
-                  <i-ep-delete></i-ep-delete>
-                  删除
+                  <i-ep-delete class="el-icon"></i-ep-delete>
+                  <span>删除</span>
                 </el-button>
               </p>
             </div>
@@ -73,15 +72,20 @@
 </template>
 
 <script lang="ts" setup>
-import { useMenusCommon } from './composiables/useMenusCommon';
-import { useMenuTable } from './composiables/useMenuTable';
-import { useRoleTreeEvent } from './composiables/useRoleTreeEvent';
+import { useMenusCommon } from './composables/useMenusCommon';
+import { useMenuTable } from './composables/useMenuTable';
+import { useRoleTreeEvent } from './composables/useRoleTreeEvent';
 
 import { RoleForm } from './components';
 import { ModuleConfig } from '/@/components/views/system/roles';
 
+// 角色配置通用数据
 const { roleFormTitle, roleFormDialogRef, rolesTableRef, moduleConfigDrawer } = useMenusCommon();
+
+// 角色配置表格
 const { columns, loadTableData } = useMenuTable();
+
+// 角色表格增删改查事件
 const { roleFormData, onAddRoleTree, onEditRoleTree, onDeleteRole, onConfigAuth, onSubmitRoleForm } = useRoleTreeEvent({
   roleFormTitle,
   roleFormDialogRef,

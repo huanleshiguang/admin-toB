@@ -1,8 +1,8 @@
 <!--
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-29 09:37:37
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-02 10:01:37
+ * @LastEditors: ZhouHao Joehall@foxmail.com
+ * @LastEditTime: 2023-08-05 14:38:57
  * @FilePath: \servious-illness-admin\src\views\system\department\DeptManage\index.vue
  * @Description: 
 -->
@@ -18,10 +18,10 @@
           @clear="handleClear">
           <el-option v-for="item in hospAreaList" :key="item.id" :label="item.hospAreaName" :value="item.hospAreaName"
             @click="selectedHospArea(item.id)" /></el-select>
-        <!-- 科室选择 -->
+        <!-- 科室类型选择 -->
         <span class="ml-3  text-gray-600 inline-flex items-center font-stl">科室类型：</span>
         <el-select v-model="deptTypeName">
-          <el-option v-for="item in deptTypes" :key="item.DeptType" :label="item.deptTypeName" :value="item.deptTypeName"
+          <el-option v-for="item in deptTypes" :key="item.DeptType" :label="item.DeptTypeName" :value="item.DeptTypeName"
             @click="handleDeptType(item)" />
         </el-select>
         <span class="ml-3  text-gray-600 inline-flex items-center font-stl">科室检索：</span>

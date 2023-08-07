@@ -6,6 +6,8 @@
  */
 // import type TreeStore from 'element-plus/es/components/tree/src/model/tree-store';
 
+import { RolePrivsParams, RoleSaveParams } from 'RoleConfig';
+
 export function useModuleTreeEvent({ ...arg }) {
   const { createMessage } = useMessage();
   const { moduleTreeRef, isCheckStrictily, roleFormEmits } = arg;
@@ -16,11 +18,11 @@ export function useModuleTreeEvent({ ...arg }) {
    *
    * @param treeParams 角色 / 人员权限树数据 从 useRoleConfigTreeParams 获取
    */
-  function onSaveRoleModules(treeParams: RoleConfig.RolePrivsParams | null) {
+  function onSaveRoleModules(treeParams: RolePrivsParams | null) {
     const checkedKeys = moduleTreeRef.value!.getCheckedKeys() as string[];
     const halfCheckedKeys = moduleTreeRef.value!.getHalfCheckedKeys() as string[];
     const targetTreeParams = treeParams ?? { objType: '', objId: '' };
-    const params: RoleConfig.RoleSaveParams = { ...targetTreeParams, menuIds: [...checkedKeys, ...halfCheckedKeys] };
+    const params: RoleSaveParams = { ...targetTreeParams, menuIds: [...checkedKeys, ...halfCheckedKeys] };
     loadSaveModules(params);
   }
 
@@ -28,7 +30,7 @@ export function useModuleTreeEvent({ ...arg }) {
    * 保存角色 / 人员配置权限
    *
    */
-  async function loadSaveModules(params: RoleConfig.RoleSaveParams) {
+  async function loadSaveModules(params: RoleSaveParams) {
     isSaveLoading.value = true;
     try {
       await fetchSaveRolePrivs(params);

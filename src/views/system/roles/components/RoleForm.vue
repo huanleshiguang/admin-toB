@@ -55,13 +55,15 @@
 </template>
 
 <script lang="ts" setup>
+import { RoleForm } from 'RoleConfig';
+
 const roleFormProps = withDefaults(
   defineProps<{
-    roleFormData: RoleConfig.RoleForm;
+    roleFormData: RoleForm;
     roleFormTitle: string;
   }>(),
   {
-    roleFormData: (): RoleConfig.RoleForm => ({
+    roleFormData: (): RoleForm => ({
       id: '',
       // 角色代码
       roleCode: '',
@@ -77,7 +79,7 @@ const roleFormProps = withDefaults(
 );
 
 const roleFormEmits = defineEmits<{
-  (event: 'update:roleFormData', roleFormData: RoleConfig.RoleForm): void;
+  (event: 'update:roleFormData', roleFormData: RoleForm): void;
   (event: 'handleSubmitRoleForm', status: boolean): void;
 }>();
 
