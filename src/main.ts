@@ -2,7 +2,7 @@
  * @Autor: QMZhao
  * @Date: 2021-09-08 23:54:23
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-02 18:07:06
+ * @LastEditTime: 2023-08-08 09:14:15
  * @Description:
  * @FilePath: \servious-illness-admin\src\main.ts
  */
@@ -10,6 +10,7 @@
 import App from './App.vue';
 import { Exceptionless } from '@exceptionless/vue';
 // import { ExceptionlessErrorHandler } from '@exceptionless/vue';
+import { ICUWebResError } from '/@/utils/error';
 import { setExceptionless } from '/@/utils/exceptionless';
 import 'virtual:svg-icons-register';
 import './assets/icon/icon-style.css';
@@ -49,8 +50,7 @@ function bootstrap() {
   // 全局错误监听
   // app.config.errorHandler = ExceptionlessErrorHandler;
   app.config.errorHandler = (err, instance, info) => {
-    console.log('vue自身报错', err, instance, info);
-    Exceptionless.submitException({ err, instance, info });
+    Exceptionless.submitException(new ICUWebResError(JSON.stringify({ err, instance, info })));
   };
 
   app.mount('#app');

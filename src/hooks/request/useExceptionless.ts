@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-08-02 11:21:27
- * @LastEditTime: 2023-08-02 18:58:29
+ * @LastEditTime: 2023-08-07 11:45:27
  * @Description: 错误上报数据格式化
  */
 import { Exceptionless } from '@exceptionless/vue';
@@ -55,5 +55,5 @@ export function useExceptionLess(response: AxiosResponse | AxiosError, isError =
   } else {
     error = responseErrorWrapper(response as AxiosResponse);
   }
-  Exceptionless.submitException(new ICUWebResError({ ...error, routerOptions }));
+  Exceptionless.submitException(new ICUWebResError(JSON.stringify({ ...error, routerOptions })));
 }
