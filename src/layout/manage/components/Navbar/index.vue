@@ -2,25 +2,26 @@
  * @Author: QMZhao
  * @Description: 导航栏
  * @Date: 2022-10-31 13:54:35
- * @LastEditTime: 2023-07-13 15:46:04
+ * @LastEditTime: 2023-08-07 14:59:11
  * @Reference: 
 -->
 <script lang="ts" setup>
 import Breakcrumb from './breakcrumb.vue';
+import { LogoutDialog } from '/@/components/views/Logout';
+
 import { useMenuCollapse } from '/@/store/common/useCommon';
+import { useUserInfo } from '/@/store/common/useUserInfo';
 
-import { IUserInfo } from '/@/model/views/login';
-
-const privateRouter = useRouter();
+const { userInfoData } = storeToRefs(useUserInfo());
 
 const { setCollapse } = useMenuCollapse();
 
 // 是否折叠侧边栏
 const isCollapse = ref(false);
 
-const userInfo = ref<IUserInfo>({
-  username: 'admin'
-});
+const logoutDialogVisiable = ref(false);
+
+const getUserInfoData = computed(() => userInfoData.value);
 
 // 折叠侧边栏方法
 function onCollapaseSideBar(): void {
@@ -30,9 +31,7 @@ function onCollapaseSideBar(): void {
 
 // 登出
 function onLogout(): void {
-  privateRouter.push({
-    path: '/'
-  });
+  logoutDialogVisiable.value = true;
 }
 </script>
 
@@ -51,9 +50,9 @@ function onLogout(): void {
     <!-- 用户信息 -->
     <div>
       <el-dropdown>
-        <el-button text class="el-dropdown-link">
-          {{ userInfo.username }}
-        </el-button>
+        <span class="c-white cursor-pointer">
+          {{ getUserInfoData?.userName }}
+        </span>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="onLogout">退出</el-dropdown-item>
@@ -61,11 +60,13 @@ function onLogout(): void {
         </template>
       </el-dropdown>
     </div>
+    <LogoutDialog v-model:logout-dialog-visiable="logoutDialogVisiable" />
   </div>
 </template>
 
 <style scoped lang="scss">
 .nav-bar-content {
+  color: $color-white;
   .menu-btn {
     .menu-btn-icon {
       width: 40px;

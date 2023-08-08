@@ -8,8 +8,11 @@
  */
 import defHttp from '/@/utils/request';
 
+const commonUrl = '/Organization/UserManage/';
+
 enum LOGINURL {
-  LOGIN = '/Organization/UserManage/OrgUserLogin'
+  LOGIN = `${commonUrl}OrgUserLogin`,
+  LOGOUT = `${commonUrl}OrgUserLogout`
 }
 
 /**
@@ -19,3 +22,11 @@ enum LOGINURL {
  * @returns
  */
 export const fetchLogin = <T>(data: T) => defHttp.post({ url: LOGINURL.LOGIN, data });
+
+/**
+ * 登出
+ *
+ * @param data
+ * @returns
+ */
+export const fetchLogout = <T>(data: T) => defHttp.post({ url: LOGINURL.LOGOUT, params: data });

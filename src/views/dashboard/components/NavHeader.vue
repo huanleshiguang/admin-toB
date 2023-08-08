@@ -2,7 +2,7 @@
  * @Autor: QMZhao
  * @Date: 2023-07-18 14:18:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-22 14:45:42
+ * @LastEditTime: 2023-08-07 15:50:42
  * @Description: 主界面导航栏
  * @FilePath: \servious-illness-admin\src\views\dashboard\components\NavHeader.vue
 -->
@@ -27,7 +27,6 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <!-- <el-dropdown-item v-for="item in dropDownList" :key="item.roleName"> -->
             <el-dropdown-item v-for="item in dropDownList" :key="item.roleName" :command="item.roleName">
               {{ item.title }}
             </el-dropdown-item>
@@ -36,14 +35,16 @@
       </el-dropdown>
     </p>
   </div>
+  <LogoutDialog v-model:logout-dialog-visiable="logoutDialogVisiable" />
 </template>
 
 <script lang="ts" setup>
-import { LoginResponse } from '/@/model/views/login';
+import { LogoutDialog } from '/@/components/views/Logout';
+
+import { LoginResponse } from 'login';
 
 import { DropDownItem } from 'Dashboard';
 
-const privateRouter = useRouter();
 const dropDownList = ref<DropDownItem[]>([
   {
     title: '修改角色',
@@ -58,6 +59,8 @@ const dropDownList = ref<DropDownItem[]>([
     roleName: 'logout'
   }
 ]);
+
+const logoutDialogVisiable = ref(false);
 
 const dashboardNavData = ref({
   organization: '扁鹊飞救医院（北京）',
@@ -102,9 +105,7 @@ function onEditPassword() {
 
 // 登出
 function onLogout() {
-  privateRouter.push({
-    path: '/'
-  });
+  logoutDialogVisiable.value = true;
 }
 
 // 用户下拉选项事件
