@@ -31,12 +31,13 @@ function onChangeMenuIcon(value: string) {
 
 <template>
   <div
-    v-for="item in menuIcons"
+    v-for="(item, index) in menuIcons"
     :key="item.value"
     class="w-80 h-80 m-xAxis-5 flex-col uno-flex-center menu-icon"
     @click="onChangeMenuIcon(`${item.value}`)"
   >
-    <SvgIcon :icon-class="item.value" class="w-40 h-40" color="000"></SvgIcon>
+    <SvgIcon v-if="index <= 3" :icon-class="item.value" class="w-40 h-40"></SvgIcon>
+    <span v-else :class="['w-40 h-40 f-s-44 line-height-none iconfont', `icon-${item.value}`]"></span>
     <span>{{ item.label }}</span>
   </div>
 </template>

@@ -215,7 +215,7 @@ async function loadMenuForm() {
               <template #reference>
                 <el-input
                   v-model="setMenuFormData.menuIcon"
-                  readonly
+                  clearable
                   placeholder="请选择图标"
                   @click="onFocusMenuIcon"
                 />
