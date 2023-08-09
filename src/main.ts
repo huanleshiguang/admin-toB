@@ -2,7 +2,7 @@
  * @Autor: QMZhao
  * @Date: 2021-09-08 23:54:23
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-08 09:14:15
+ * @LastEditTime: 2023-08-09 12:32:16
  * @Description:
  * @FilePath: \servious-illness-admin\src\main.ts
  */
@@ -13,7 +13,7 @@ import { Exceptionless } from '@exceptionless/vue';
 import { ICUWebResError } from '/@/utils/error';
 import { setExceptionless } from '/@/utils/exceptionless';
 import 'virtual:svg-icons-register';
-import './assets/icon/icon-style.css';
+import './assets/icon/iconfont.css';
 
 // 菜单路由 permission control
 import './permission';
