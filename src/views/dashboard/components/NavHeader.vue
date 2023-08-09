@@ -2,45 +2,12 @@
  * @Autor: QMZhao
  * @Date: 2023-07-18 14:18:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-07 15:50:42
+ * @LastEditTime: 2023-08-09 10:17:01
  * @Description: 主界面导航栏
  * @FilePath: \servious-illness-admin\src\views\dashboard\components\NavHeader.vue
 -->
-<template>
-  <div class="w-full dashboard-header p-xAxis-20 flex items-center flex-justify-end">
-    <p>
-      (
-      <span>{{ dashboardNavData.organization }}</span>
-      <span>{{ dashboardNavData.roleName }}</span>
-      )
-    </p>
-    <p class="p-xAxis-20">
-      <span>所属科室：</span>
-      <span>{{ dashboardNavData.office }}</span>
-    </p>
-    <p class="flex items-center">
-      <span>欢迎您，</span>
-      <el-dropdown trigger="click" @command="onCommandOption">
-        <span class="user-name flex items-center">
-          {{ dashboardNavData.userName }}
-          <el-icon class="el-icon--right"><i-ep-arrow-down /></el-icon>
-        </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item v-for="item in dropDownList" :key="item.roleName" :command="item.roleName">
-              {{ item.title }}
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-    </p>
-  </div>
-  <LogoutDialog v-model:logout-dialog-visiable="logoutDialogVisiable" />
-</template>
 
 <script lang="ts" setup>
-import { LogoutDialog } from '/@/components/views/Logout';
-
 import { LoginResponse } from 'login';
 
 import { DropDownItem } from 'Dashboard';
@@ -117,6 +84,39 @@ onMounted(() => {
   initUserInfo();
 });
 </script>
+
+<template>
+  <div class="w-full dashboard-header p-xAxis-20 flex items-center flex-justify-end">
+    <p>
+      (
+      <span>{{ dashboardNavData.organization }}</span>
+      <span>{{ dashboardNavData.roleName }}</span>
+      )
+    </p>
+    <p class="p-xAxis-20">
+      <span>所属科室：</span>
+      <span>{{ dashboardNavData.office }}</span>
+    </p>
+    <p class="flex items-center">
+      <span>欢迎您，</span>
+      <el-dropdown trigger="click" @command="onCommandOption">
+        <span class="user-name flex items-center">
+          {{ dashboardNavData.userName }}
+          <el-icon class="el-icon--right"><i-ep-arrow-down /></el-icon>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item v-for="item in dropDownList" :key="item.roleName" :command="item.roleName">
+              {{ item.title }}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </p>
+  </div>
+  <LogoutDialog v-model:logout-dialog-visiable="logoutDialogVisiable" />
+</template>
+
 <style lang="scss" scoped>
 .dashboard-header {
   height: 40px;

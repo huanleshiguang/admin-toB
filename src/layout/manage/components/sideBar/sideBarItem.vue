@@ -1,13 +1,11 @@
 <!--
- * @Author: QMZhao
+ * @Autor: QMZhao
+ * @Date: 2023-07-14 15:48:54
+ * @LastEditTime: 2023-08-09 12:46:33
  * @Description: 
- * @Date: 2022-08-17 17:31:02
- * @LastEditTime: 2023-07-13 18:46:17
- * @Reference: 
 -->
 <script lang="ts" setup>
-import { useNavMenuList } from '/@/store/common/routerList';
-import { Document, Menu as IconMenu, Location, Setting } from '@element-plus/icons-vue';
+import { useMenus } from '/@/store/common/useMenus';
 
 withDefaults(
   defineProps<{
@@ -17,12 +15,14 @@ withDefaults(
     collapseValue: false
   }
 );
-const { navMenuList } = useNavMenuList();
+const { targetMenus } = storeToRefs(useMenus());
 const privateRoute = useRoute();
 
 const currentRouteName = computed(() => {
   return privateRoute.path;
 });
+
+const getTargetMenus = computed(() => targetMenus.value);
 </script>
 
 <template>
@@ -32,17 +32,23 @@ const currentRouteName = computed(() => {
     :default-active="currentRouteName"
     class="qm-menu"
     :collapse="collapseValue"
-    background-color="#E8E8E8"
+    background-color="#D9D9D9"
     text-color="#606266"
     active-text-color="#fff"
     popper-effect="dark"
   >
-    <template v-for="item in navMenuList" :key="item.id">
-      <el-menu-item :index="item.path" class="menu-item_custom">
-        <i :class="['menu-icon', `icon-${item.icon}`]"></i>
+    <template v-for="item in getTargetMenus" :key="item.id">
+      <el-menu-item :index="item.routeAddr" class="menu-item_custom">
+        <span
+          :class="[
+            'menu-icon',
+            `iconfont icon-${item.menuIcon}`,
+            currentRouteName === item.routeAddr && 'menu-icon__trigger'
+          ]"
+        ></span>
         <template #title>
           <p class="flex grid-items-center">
-            <span>{{ item.label }}</span>
+            <span>{{ item.menuName }}</span>
           </p>
         </template>
       </el-menu-item>
@@ -54,17 +60,20 @@ const currentRouteName = computed(() => {
 .qm-menu {
   border-right-color: transparent;
   :deep(.is-active) {
-    background-color: #00a0df;
+    background-color: $color-primary;
   }
 }
 .menu-icon {
-  // width: 24px;
-  // height: 24px;
-
+  width: 50px;
+  height: 50px;
+  color: $color-primary;
   display: inline-block;
   margin-right: 5px;
   &::before {
-    font-size: 18px;
+    font-size: 42px;
+  }
+  &__trigger {
+    color: $color-white;
   }
 }
 </style>

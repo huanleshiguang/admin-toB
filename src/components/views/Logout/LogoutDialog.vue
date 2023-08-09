@@ -1,15 +1,9 @@
-<template>
-  <el-dialog v-model="getVisiable" title="" destroy-on-close width="500px" @close="onCloseLogoutDialog">
-    <span class="f-s-16">{{ logoutDialogData.message }}</span>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="onCancelLogout">取消</el-button>
-        <el-button :loading="logoutDialogData.loading" type="primary" @click="onComfirmLogout">确定</el-button>
-      </span>
-    </template>
-  </el-dialog>
-</template>
-
+<!--
+ * @Autor: QMZhao
+ * @Date: 2023-08-07 13:56:05
+ * @LastEditTime: 2023-08-09 10:29:28
+ * @Description: 
+-->
 <script lang="ts" setup>
 import { Logout } from 'login';
 
@@ -63,8 +57,7 @@ function onComfirmLogout(): void {
 
 // 退出注销请求
 async function loadLogout() {
-  const { id } = getUserInfoData.value;
-  const params: Logout = { accountInfoId: id };
+  const params: Logout = { accountInfoId: getUserInfoData.value!.id };
   logoutDialogData.loading = true;
   try {
     await fetchLogout(params);
@@ -84,4 +77,17 @@ function onCloseLogoutDialog(): void {
   logoutDialogData.loading = false;
 }
 </script>
+
+<template>
+  <el-dialog v-model="getVisiable" title="" destroy-on-close width="500px" @close="onCloseLogoutDialog">
+    <span class="f-s-16">{{ logoutDialogData.message }}</span>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="onCancelLogout">取消</el-button>
+        <el-button :loading="logoutDialogData.loading" type="primary" @click="onComfirmLogout">确定</el-button>
+      </span>
+    </template>
+  </el-dialog>
+</template>
+
 <style lang="scss" scoped></style>

@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2022-08-17 17:30:49
- * @LastEditTime: 2023-07-13 17:13:28
+ * @LastEditTime: 2023-08-08 10:59:12
  * @Reference: 
 -->
 <script lang="ts" setup>
@@ -86,12 +86,10 @@ const getCollapaseStatus = computed(() => store.isCollapse);
     height: 100%;
     overflow-y: auto;
     box-sizing: border-box;
-    // background-color: #545c64;
-    background-color: #e8e8e8;
+    background-color: $color-border;
   }
   .menu-btn {
     height: calc(100% - 730px);
-    // background-color: #e8e8e8;
     .menu-btn-icon {
       width: 40px;
       height: 40px;

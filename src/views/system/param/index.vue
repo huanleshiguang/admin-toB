@@ -1,8 +1,8 @@
 <!--
  * @Autor: ZhouHao joehall@foxmail.com
  * @Date: 2023-02-17 22:45:44
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-13 14:53:34
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-08-08 16:10:17
  * @Description: 
  * @FilePath: /vue-vite-elementplus-zhao/src/views/system/menu.vue
 -->
@@ -54,18 +54,19 @@ const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
   console.log(`行选中事件`, row);
 };
 async function initMethod(params: any) {
-  console.log(params, 'params');
+  // console.log(params, 'params');
   const { pageSize } = params;
   return {
     total: 100,
     records: [...new Array(pageSize)].map((_, index) => {
-      console.log(index);
       return { id: index, srial: 'adad', name: '张三', value: '1', desc: '12414' };
     })
   };
 }
+
+
 onMounted(() => {
-  console.log(vxeTableLayout.value);
+  // console.log(vxeTableLayout.value);
 });
 </script>
 <style scoped lang="scss">

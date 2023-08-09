@@ -5,6 +5,14 @@
  * @LastEditTime: 2023-02-18 22:42:48
  * @Reference: 
 -->
+<script lang="ts" setup>
+import { AppMain, Navbar, SideBar } from './components';
+
+defineComponent({
+  name: 'Layout'
+});
+</script>
+
 <template>
   <div class="w-full h_100 page-container">
     <el-container class="h_100">
@@ -23,30 +31,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { AppMain, Navbar, SideBar } from './components';
-
-export default defineComponent({
-  name: 'Layout',
-  components: {
-    AppMain,
-    SideBar,
-    Navbar
-  },
-  setup() {
-    return {};
-  }
-});
-</script>
 <style lang="scss" scoped>
 .layout-header {
-  background-color: $color-background;
+  background-color: $btn-bg-primary;
 }
 .page-container {
   min-width: 1280px;
   overflow-x: auto;
-}
-.main-container {
-  // background-color: $color-background;
 }
 </style>

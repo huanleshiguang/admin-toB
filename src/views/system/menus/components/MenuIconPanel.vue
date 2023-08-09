@@ -1,15 +1,3 @@
-<template>
-  <div
-    v-for="item in menuIcons"
-    :key="item.value"
-    class="w-60 h-60 m-xAxis-5 flex-col uno-flex-center menu-icon"
-    @click="onChangeMenuIcon(`${item.value}`)"
-  >
-    <SvgIcon :icon-class="item.value" class="w-20 h-20" color="000"></SvgIcon>
-    <span>{{ item.label }}</span>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { setMenuIcons } from '/@/utils/dict';
 
@@ -40,6 +28,19 @@ function onChangeMenuIcon(value: string) {
   menuIconPaneEmits('update:menuIconVisiable', !menuIconPaneProps.menuIconVisiable);
 }
 </script>
+
+<template>
+  <div
+    v-for="item in menuIcons"
+    :key="item.value"
+    class="w-80 h-80 m-xAxis-5 flex-col uno-flex-center menu-icon"
+    @click="onChangeMenuIcon(`${item.value}`)"
+  >
+    <SvgIcon :icon-class="item.value" class="w-40 h-40" color="000"></SvgIcon>
+    <span>{{ item.label }}</span>
+  </div>
+</template>
+
 <style lang="scss" scoped>
 .menu-icon {
   @include cursor;

@@ -7,7 +7,6 @@
 -->
 <script lang="ts" setup>
 import Breakcrumb from './breakcrumb.vue';
-import { LogoutDialog } from '/@/components/views/Logout';
 
 import { useMenuCollapse } from '/@/store/common/useCommon';
 import { useUserInfo } from '/@/store/common/useUserInfo';
