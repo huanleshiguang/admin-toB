@@ -1,6 +1,6 @@
 <script setup lang="ts" name="VxeTableLayout">
 import { isArray } from '/@/utils';
-import type { VxeColumnProps, VxePagerPropTypes } from 'vxe-table';
+import type { VxeColumnProps, VxePagerPropTypes, VxeTablePropTypes } from 'vxe-table';
 import { PropType } from 'vue';
 import { cloneDeep } from 'lodash-es';
 // defineComponent({
@@ -171,6 +171,13 @@ async function refresh(resetPage?: boolean) {
   emit('loaded', tableData.value);
 }
 
+/**
+ * 表单头部自定义样式
+ */
+function headerCellClassName(): VxeTablePropTypes.HeaderCellClassName<Iobj> | null {
+  return 'col-blue';
+}
+
 const onPageChange = () => {
   refresh();
 };
@@ -209,7 +216,14 @@ onMounted(async () => {
     <div class="table-layout__content">
       <slot name="table" v-bind="$attrs">
         <div class="table-layout__main">
-          <vxe-table ref="table" :loading="loading" stripe :data="cloneDeep(tableData)" v-bind="$attrs">
+          <vxe-table
+            ref="table"
+            :header-cell-class-name="headerCellClassName"
+            :loading="loading"
+            stripe
+            :data="cloneDeep(tableData)"
+            v-bind="$attrs"
+          >
             <vxe-column v-if="hasSelection" type="checkbox" width="40" align="center" fixed="left"></vxe-column>
             <vxe-column v-if="hasIndex" title="序号" width="80" fixed="left" align="center">
               <template #default="{ $rowIndex }">
@@ -298,6 +312,10 @@ onMounted(async () => {
 
   &--outline &__content {
     border: 1px solid #ddd;
+  }
+  :deep(.col-blue) {
+    color: $color-primary;
+    background-color: #f6f9fb;
   }
 }
 </style>
