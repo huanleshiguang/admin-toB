@@ -7,7 +7,7 @@
  * @Description: 
  */
 import request from "/@/utils/request";
-import * as Area from './types/area'
+import * as Area from "areaTypeModules"
 
 const commonUrl = '/Organization'
 // 统一接口管理

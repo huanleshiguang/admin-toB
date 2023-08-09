@@ -151,14 +151,14 @@ async function initMethod(params: any) {
   const { total, pageData } = await getBaseDictList({ ...params, dictName: dictName.value });
   return {
     total: total,
-    records: pageData
+    pageData
   };
 }
 async function initValueMethod(params: any) {
   const { total, pageData } = await getBaseDictValueList({ ...params, dictCode: currentRow.value.dictCode });
   return {
     total: total,
-    records: pageData
+    pageData
   };
 }
 
