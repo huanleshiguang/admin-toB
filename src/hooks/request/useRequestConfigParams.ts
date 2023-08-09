@@ -1,4 +1,4 @@
-import { LoginResponse } from '/@/model/views/login';
+import { LoginResponse } from 'login';
 import { RequestConfigParams } from '/@/types/axios';
 import { getUserInfo } from '/@/utils/session';
 

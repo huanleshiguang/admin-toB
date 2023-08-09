@@ -1,38 +1,16 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-18 10:47:40
- * @LastEditors:
- * @LastEditTime: 2023-07-18 11:41:21
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-08-08 09:57:32
  * @Description:
- * @FilePath: \servious-illness-admin\src\views\dashboard\composition\useCommon.ts
  */
+
+import { useModules } from '/@/store/common/useMenus';
+
 export function useDashboardCommon() {
-  const menuList = ref<Iobj[]>([
-    {
-      id: 1,
-      icon: 'doctor',
-      name: '医护工作站',
-      url: '/system/param'
-    },
-    {
-      id: 2,
-      icon: 'manage',
-      name: '医生工作站',
-      url: '/doctorNurse/berth/index'
-    },
-    {
-      id: 3,
-      icon: 'statistics',
-      name: '统计查询',
-      url: '/system/param'
-    },
-    {
-      id: 4,
-      icon: 'setup',
-      name: '系统配置',
-      url: '/system/param'
-    }
-  ]);
+  const { targetModules } = storeToRefs(useModules());
+  // 更新通知
   const notificationList = ref<Iobj[]>([
     {
       id: 1,
@@ -47,6 +25,7 @@ export function useDashboardCommon() {
       title: '3、增加打印配置项'
     }
   ]);
+  // 系统支持人员
   const supportList = ref<Iobj[]>([
     {
       id: 1,
@@ -57,6 +36,10 @@ export function useDashboardCommon() {
       title: '2、飞救实施：李xx13681209999'
     }
   ]);
+
+  // 用户目录模块
+  const menuList = computed(() => targetModules.value);
+
   return {
     ...toRefs(
       reactive({

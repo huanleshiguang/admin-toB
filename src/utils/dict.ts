@@ -17,6 +17,22 @@ export function menuTypeNameWrapper(type: string | number): string {
 }
 
 /**
+ * 初始化菜单类型
+ *
+ * @param type 菜单类型 0--目录，1--菜单，2--功能
+ * @returns 菜单类型
+ */
+export function menuTypeWrapper(type: string | number): number {
+  const targetType = `${type}`;
+  const typeMap = new Map<string, number>([
+    ['目录', 0],
+    ['菜单', 1],
+    ['功能', 2]
+  ]);
+  return typeMap.get(targetType) ?? -1;
+}
+
+/**
  * 菜单类型下拉选项
  */
 // export function setMenuTypeSelects(): SelectOption[] {
@@ -64,21 +80,69 @@ export function setMenuTypeSelects(): SelectOption[] {
  */
 export function setMenuIcons(): SelectOption[] {
   const menuIcons: SelectOption[] = [
+    // 医护工作站
     {
       label: 'doctor',
       value: 'doctor'
     },
+    // 医生管理
     {
       label: 'manage',
       value: 'manage'
     },
+    // 查询统计
     {
       label: 'statistics',
       value: 'statistics'
     },
+    // 系统配置
     {
       label: 'setup',
       value: 'setup'
+    },
+    {
+      label: '运行参数',
+      value: 'yxcs'
+    },
+    {
+      label: '科室管理',
+      value: 'ksgl'
+    },
+    {
+      label: '人员管理',
+      value: 'rygl'
+    },
+    {
+      label: '菜单管理',
+      value: 'cdgl'
+    },
+    {
+      label: '角色管理',
+      value: 'jsgl'
+    },
+    {
+      label: '床位管理',
+      value: 'cwgl'
+    },
+    {
+      label: '客户端管理',
+      value: 'khdgl'
+    },
+    {
+      label: '设备管理',
+      value: 'sbgl'
+    },
+    {
+      label: '模板管理',
+      value: 'mkgl'
+    },
+    {
+      label: '字典管理',
+      value: 'zdgl'
+    },
+    {
+      label: '数据管理',
+      value: 'sjgl'
     }
   ];
   return menuIcons;

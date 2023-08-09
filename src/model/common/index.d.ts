@@ -42,6 +42,12 @@ declare module 'ICUCommon' {
     label: string;
   }
   /**
+   * 按钮权限数据
+   */
+  export interface ButtonAuth {
+    [key: string]: SelectOption;
+  }
+  /**
    * 表格查询通用参数
    */
   export interface TableCommon {

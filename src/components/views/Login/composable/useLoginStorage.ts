@@ -2,17 +2,23 @@
  * @Autor: QMZhao
  * @Date: 2023-07-19 17:54:48
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-28 16:24:57
+ * @LastEditTime: 2023-08-08 15:33:28
  * @Description:
- * @FilePath: \servious-illness-admin\src\components\login\useLoginStorage.ts
  */
-import { LoginResponse, UserLoginForm } from '/@/model/views/login';
-import { setUserInfo, removeUserInfo } from '/@/utils/session';
+import { LoginResponse, UserLoginForm } from 'login';
+import { MenuForm } from 'MenuConfig';
+import { setUserInfo, removeUserInfo, removeMenuParentId } from '/@/utils/session';
+
+import { useModules, useMenus, useButtons } from '/@/store/common/useMenus';
 
 /**
  * 用户登录信息存储
  */
 export function useLoginStorage() {
+  const { setTargetModule } = useModules();
+  const { setTargetMenus } = useMenus();
+  const { setTargetButton } = useButtons();
+
   // 登录表单
   const loginForm = ref<UserLoginForm>({
     loginName: '',
@@ -23,22 +29,33 @@ export function useLoginStorage() {
    *
    * @param resData 用户登录成功信息
    */
-  function setUserInfoStorage(resData: LoginResponse) {
-    const targetResData: LoginResponse = {
+  function setUserInfoStorage(resData: LoginResponse<MenuForm>) {
+    const targetResData: LoginResponse<MenuForm> = {
       accountTokenInfo: {},
       userInfo: {},
       userPrivies: [],
       userRoles: []
     };
     const targetData = resData ?? targetResData;
-    setUserInfo(JSON.stringify(targetData));
+    setUserInfo(targetData);
+    setTargetModule(targetData.userPrivies);
+    setTargetButton(targetData.userPrivies);
   }
 
   /**
    * 初始化 storage 和 pinia 数据
    */
   function initStorageData(): void {
+    // 用户登录信息
     removeUserInfo();
+    // 模块id
+    removeMenuParentId();
+    // ICU系统功能·模块
+    setTargetModule(null);
+    // 全局模块下菜单
+    setTargetMenus(null);
+    // 全局功能按钮
+    setTargetButton(null);
   }
 
   /**

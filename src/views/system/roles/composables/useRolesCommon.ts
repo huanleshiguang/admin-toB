@@ -1,4 +1,6 @@
-export function useMenusCommon() {
+import { ButtonAuth } from 'ICUCommon';
+
+export function useRolesCommon() {
   // 表格引用
   const rolesTableRef = ref<any>(null);
   // 表单名称
@@ -13,16 +15,33 @@ export function useMenusCommon() {
     title: ''
   });
 
-  function clearnData(): void {
+  // 功能按钮
+  const roleBtnAuth = ref<ButtonAuth | null>({
+    roleAdd: {
+      label: '新增',
+      value: 'bqicu_sys_roleAdd'
+    },
+    roleEdit: {
+      label: '修改',
+      value: 'bqicu_sys_roleEdit'
+    },
+    roleDelete: {
+      label: '删除',
+      value: 'bqicu_sys_roleDelete'
+    }
+  });
+
+  function cleanData(): void {
     rolesTableRef.value = null;
     roleFormDialogRef.value = null;
   }
 
   onBeforeUnmount(() => {
-    clearnData();
+    cleanData();
   });
 
   return {
+    roleBtnAuth,
     ...toRefs(
       reactive({
         moduleConfigDrawer,

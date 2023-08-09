@@ -3,7 +3,6 @@
  */
 export function useLoginEvent() {
   const privateRouter = useRouter();
-
   /**
    * 登录到主界面
    */

@@ -6,7 +6,7 @@
  * @Description: 菜单管理树表格数据
  */
 
-export function useMenuTable() {
+export function useRoleTable() {
   const loadTableData = fetchRoleList;
   const columns: VxeColumns[] = [
     {

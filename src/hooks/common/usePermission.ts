@@ -1,9 +1,10 @@
-import { useUserPermisssion } from '/@/store/common/useUserPermission';
+import { useButtons } from '/@/store/common/useMenus';
 
 import { isArray } from '/@/utils';
 
 export function usePermission() {
-  const { userAuthCodes } = useUserPermisssion();
+  const { targeButtons } = storeToRefs(useButtons());
+  const getTargetButtons = computed(() => targeButtons.value);
 
   /**
    * 是否有权限判定
@@ -15,12 +16,11 @@ export function usePermission() {
     }
 
     // 异常权限code时默认隐藏
-    if (!isArray(userAuthCodes)) {
+    if (!isArray(getTargetButtons.value)) {
       return false;
     }
-
     // 当前按钮有权限时显示
-    if (userAuthCodes.includes(value)) {
+    if (getTargetButtons.value!.includes(value)) {
       return true;
     }
     return false;
