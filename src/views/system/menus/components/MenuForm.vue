@@ -2,7 +2,7 @@
  * @Autor: QMZhao
  * @Date: 2023-07-25 15:05:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-09 10:40:16
+ * @LastEditTime: 2023-08-09 13:39:48
  * @Description: 配置表单
 -->
 <script lang="ts" setup>
@@ -170,7 +170,6 @@ async function loadMenuForm() {
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="上级菜单" prop="parentId">
-            {{ setMenuFormData.parentId }}
             <el-tree-select
               v-model="setMenuFormData.parentId"
               :data="menuTrees"
