@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-14 09:57:52
- * @LastEditTime: 2023-08-03 13:48:56
+ * @LastEditTime: 2023-08-10 14:45:25
  * @Description: http 请求
  */
 import axios, { AxiosResponse, AxiosError } from 'axios';
@@ -21,7 +21,7 @@ type PartialResponse = DeepPartial<AxiosResponse<ResponseData<null>>>;
 const { createMessage } = useMessage();
 
 const service = axios.create({
-  baseURL: `${import.meta.env.VITE_BASE_API}`,
+  // baseURL: `${import.meta.env.VITE_BASE_API}`,
   // 10s 请求延时
   timeout: 10000,
   timeoutErrorMessage: `请求超时`,
@@ -105,7 +105,7 @@ const request = {
     const { url, data, headers } = opt;
     return await service({
       method: 'GET',
-      url,
+      url: `/api${url}`,
       params: data,
       headers: headers ?? { 'Content-Type': 'application/json' }
     }).then(useResponse);
@@ -115,7 +115,7 @@ const request = {
     const signHeaders = { ...headers, ...{ 'Content-Type': `application/${useReqeustHeaderType(requestType)}` } };
     return await service({
       method: 'POST',
-      url,
+      url: `/api${url}`,
       params,
       data: bodayData,
       headers: signHeaders
