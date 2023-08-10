@@ -7,22 +7,10 @@
  */
 
 // 设置侧边栏伸缩状态
-export const useMenuCollapse = defineStore("collapse", {
-  state() {
-    return {
-      isCollapse: false
-    };
-  },
-  actions: {
-    setCollapse() {
-      // setCollapse(collapseStatus: boolean) {
-      this.isCollapse = !this.isCollapse;
-    }
-  },
-  getters: {
-    getCollapseStatus(state) {
-      console.log(state.isCollapse);
-      return state.isCollapse;
-    }
+export const useMenuCollapse = defineStore('collapse', () => {
+  const isCollapse = ref(false);
+  function setCollapse(collapsed: boolean) {
+    isCollapse.value = collapsed;
   }
+  return { isCollapse, setCollapse };
 });

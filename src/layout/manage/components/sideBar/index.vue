@@ -7,6 +7,7 @@
 -->
 <script lang="ts" setup>
 import SideBarItem from './sideBarItem.vue';
+import SideBarToggle from '/@/layout/manage/components/Navbar/SideBarToggle.vue';
 import { useMenuCollapse } from '/@/store/common/useCommon';
 
 const store = useMenuCollapse();
@@ -18,10 +19,12 @@ const getCollapaseStatus = computed(() => store.isCollapse);
   <div :class="['h_100 flex flex-col sidebar-content']">
     <div
       :class="[
-        'company-cell flex items-center justify-between',
+        'company-cell h-32 uno-uno-flex-y-center',
         getCollapaseStatus ? 'sidebar-header_collapse' : 'sidebar-header_expand'
       ]"
-    ></div>
+    >
+      <SideBarToggle />
+    </div>
     <!-- 侧边栏 -->
     <div class="side-bar-list">
       <el-scrollbar>
@@ -35,7 +38,9 @@ const getCollapaseStatus = computed(() => store.isCollapse);
 .sidebar-content {
   box-sizing: border-box;
   .sidebar-header_expand {
-    width: 140px;
+    width: 151px;
+    background-color: $color-border;
+    @include cursor;
   }
   .sidebar-header_collapse {
     width: 65px;

@@ -12,8 +12,8 @@ import 'nprogress/nprogress.css'; // progress bar style
 import { useConfigParams } from '/@/hooks/request/useRequestConfigParams';
 
 import { store } from '/@/store';
-import { useNavMenuList } from '/@/store/common/routerList';
-const { setShowSideBar } = useNavMenuList(store);
+import { useWorkbenchSidebar } from './store/common/useWorkbenchSidebar';
+const { setShowSideBar } = useWorkbenchSidebar(store);
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
