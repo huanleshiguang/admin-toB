@@ -7,7 +7,7 @@ import { sortBy } from '/@/utils';
  * 系统模块
  */
 export const useModules = defineStore('modules', () => {
-  // 1 -- 目录类型
+  // MENUTYPE: 0 -- 目录类型
   const MENUTYPE = 0;
   const { menuList } = useFilterMenus(MENUTYPE);
   const targetModules = ref<MenuForm[] | null>(menuList);
@@ -26,7 +26,7 @@ export const useModules = defineStore('modules', () => {
  * 模块下菜单
  */
 export const useMenus = defineStore('menus', () => {
-  // 1 -- 菜单类型
+  // MENUTYPE: 1 -- 菜单类型
   const MENUTYPE = 1;
   const parentId = getMenuParentId();
   const { menuList } = useFilterMenus(MENUTYPE, parentId);
@@ -47,7 +47,7 @@ export const useMenus = defineStore('menus', () => {
  * 功能按钮
  */
 export const useButtons = defineStore('buttons', () => {
-  // 1 -- 功能按钮类型
+  // MENUTYPE: 2 -- 功能按钮类型
   const MENUTYPE = 2;
   const { buttonList } = useFilterMenus(MENUTYPE);
 
