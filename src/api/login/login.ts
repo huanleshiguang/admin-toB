@@ -2,17 +2,16 @@
  * @Autor: QMZhao
  * @Date: 2021-09-16 23:02:02
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-19 15:11:04
+ * @LastEditTime: 2023-08-10 10:47:02
  * @Description: 登录接口
  * @FilePath: \servious-illness-admin\src\api\login.ts
  */
 import defHttp from '/@/utils/request';
-
-const commonUrl = '/Organization/UserManage/';
+import { ApiBranch, ApiController } from '/@/enums/dict';
 
 enum LOGINURL {
-  LOGIN = `${commonUrl}OrgUserLogin`,
-  LOGOUT = `${commonUrl}OrgUserLogout`
+  LOGIN = `${ApiBranch.ORGANIZATION}${ApiController.USER_MANAGE}OrgUserLogin`,
+  LOGOUT = `${ApiBranch.ORGANIZATION}${ApiController.USER_MANAGE}OrgUserLogout`
 }
 
 /**
