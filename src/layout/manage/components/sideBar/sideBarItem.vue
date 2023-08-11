@@ -1,7 +1,7 @@
 <!--
  * @Autor: QMZhao
  * @Date: 2023-07-14 15:48:54
- * @LastEditTime: 2023-08-09 12:46:33
+ * @LastEditTime: 2023-08-11 09:47:04
  * @Description: 
 -->
 <script lang="ts" setup>
@@ -38,7 +38,7 @@ const getTargetMenus = computed(() => targetMenus.value);
     popper-effect="dark"
   >
     <template v-for="item in getTargetMenus" :key="item.id">
-      <el-menu-item :index="item.routeAddr" class="menu-item_custom">
+      <el-menu-item :index="item.routeAddr" class="menu-item__custom">
         <span
           :class="[
             'menu-icon',
@@ -63,12 +63,18 @@ const getTargetMenus = computed(() => targetMenus.value);
     background-color: $color-primary;
   }
 }
+
+.menu-item__custom {
+  :deep(.el-menu-tooltip__trigger) {
+    justify-content: center;
+  }
+}
+
 .menu-icon {
   width: 50px;
   height: 50px;
   color: $color-primary;
   display: inline-block;
-  margin-right: 5px;
   &::before {
     font-size: 42px;
   }

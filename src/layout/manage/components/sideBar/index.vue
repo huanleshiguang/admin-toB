@@ -16,10 +16,10 @@ const getCollapaseStatus = computed(() => store.isCollapse);
 </script>
 
 <template>
-  <div :class="['h_100 flex flex-col sidebar-content']">
+  <div class="h_100 flex flex-col sidebar-content">
     <div
       :class="[
-        'company-cell h-32 uno-uno-flex-y-center',
+        'company-cell h-32 uno-uno-flex-y-center cursor-pointer',
         getCollapaseStatus ? 'sidebar-header_collapse' : 'sidebar-header_expand'
       ]"
     >

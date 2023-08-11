@@ -56,4 +56,12 @@ declare module 'ICUCommon' {
     // 每页数据行数
     pageSize?: number;
   }
+
+  /**
+   * 路由跳转权限验证
+   */
+  export interface ErrorRouterParams {
+    toPath: string;
+    fromPath: string;
+  }
 }

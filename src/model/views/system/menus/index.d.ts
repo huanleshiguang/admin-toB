@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-24 14:02:37
- * @LastEditTime: 2023-08-04 16:33:04
+ * @LastEditTime: 2023-08-11 14:32:39
  * @Description: 菜单管理
  */
 
@@ -31,7 +31,7 @@ declare module 'MenuConfig' {
     // 数据状态
     dataStatus?: number;
     // 排序
-    sortNo: number;
+    sortNo?: number;
     // 描述
     remark?: string;
   }

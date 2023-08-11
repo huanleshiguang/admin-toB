@@ -14,9 +14,14 @@ function onCollapaseSideBar(): void {
 <template>
   <div :class="['h_100 ']" @click="onCollapaseSideBar">
     <div :class="['menu-btn-icon h-full uno-flex-center menu-btn-position']">
-      <SvgIcon :icon-class="isCollapse ? 'expasion' : 'shou'" color="333"></SvgIcon>
+      <SvgIcon :icon-class="isCollapse ? 'expasion' : 'shou'" color="333" class-name="w-20 h-20"></SvgIcon>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.menu-btn-icon {
+  background-color: $color-border;
+  transition: all 0.3s ease;
+}
+</style>
