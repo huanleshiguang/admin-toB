@@ -11,17 +11,18 @@ export function useMenuTable() {
   const loadTableData = fetchOrgMenuList;
   const columns: VxeColumns[] = [
     {
-      title: '菜单代码',
-      field: 'menuCode',
-      headerAlign: 'center',
-      minWidth: 300,
-      treeNode: true,
-      fixed: 'left'
-    },
-    {
       title: '菜单名称',
       field: 'menuName',
-      width: '150'
+      minWidth: 300,
+      treeNode: true,
+      fixed: 'left',
+      headerAlign: 'left',
+      align: 'left'
+    },
+    {
+      title: '菜单代码',
+      field: 'menuCode',
+      width: 150
     },
     {
       title: '菜单类型',
@@ -61,7 +62,15 @@ export function useMenuTable() {
     }
   ];
 
-  const treeConfig = { transform: true, rowField: 'id', parentField: 'parentId' };
+  const treeConfig = {
+    transform: true,
+    rowField: 'id',
+    parentField: 'parentId',
+    accordion: true,
+    line: true,
+    iconOpen: 'vxe-icon-square-minus',
+    iconClose: 'vxe-icon-square-plus'
+  };
 
   return {
     columns,

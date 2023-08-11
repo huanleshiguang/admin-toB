@@ -11,11 +11,10 @@
       @cell-dblclick="currentDbClick"
     >
       <template #operator-left>
-        <el-input v-model="dictName" placeholder="请输入字典名称" clearable>
-          <template #append>
-            <el-button :icon="Search" @click="refresh" />
-          </template>
-        </el-input>
+        <div class="flex">
+          <el-input v-model="dictName" placeholder="请输入字典名称" class="mr_10" clearable />
+          <el-button type="primary" :icon="Search" @click="refresh">搜索</el-button>
+        </div>
       </template>
       <template #operator-right>
         <el-button @click="add">新增</el-button>
@@ -56,111 +55,33 @@
   </div>
 </template>
 <script setup lang="ts">
-// import { getBaseDictList, enabledBaseDict, getBaseDictValueList } from '/@/api/system/dict';
-import { VxeTableEvents } from 'vxe-table';
-// import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
-// import DrawerLayout from '/@/components/DrawerLayout/index.vue';
-import Update from './update.vue';
+import Update from './components/update.vue';
 import { columnsList, childColumnsList } from './enum';
-import UpdateValue from '/@/views/system/dictionary/BasicDict/updateValue.vue';
-const { createConfirm, createMessage } = useMessage();
+import UpdateValue from './components/updateValue.vue';
 import { Search } from '@element-plus/icons-vue';
-// 右键菜单
-const menuConfig = ref({
-  className: 'right-menu',
-  body: {
-    options: [
-      [
-        { code: 'edit', name: '编辑' },
-        { code: 'delete', name: '删除' }
-      ]
-    ]
-  }
+import { useCommon } from './composables/useDictCommon';
+import { useEvent } from './composables/useDictEvents';
+const {
+  menuConfig,
+  dictName,
+  vxeTableLayout,
+  childTableRef,
+  updateRef,
+  updateValueRef,
+  drawerLayout,
+  currentRow,
+  initMethod,
+  initValueMethod
+} = useCommon();
+
+const { currentDbClick, add, addValue, editRow, enableRow, refresh, refreshChild, contextMenuClickEvent } = useEvent({
+  drawerLayout,
+  updateRef,
+  updateValueRef,
+  vxeTableLayout,
+  childTableRef,
+  currentRow
 });
-const dictName = ref<string>('');
-const vxeTableLayout = ref();
-const childTableRef = ref();
-const updateRef = ref();
-const updateValueRef = ref();
-const drawerLayout = ref();
-let currentRow = ref();
-const add = () => {
-  updateRef.value.open();
-};
-const addValue = () => {
-  updateValueRef.value.open({ dictId: currentRow.value.id, dictName: currentRow.value.dictName });
-};
-const editRow = (row) => {
-  console.log(row);
-
-  updateRef.value.open(row);
-};
-const enableRow = (row) => {
-  const { dataStatus, dictName, id } = row;
-  const isEnable = dataStatus === 0;
-  createConfirm(`确定${isEnable ? '停用' : '启用'}${dictName}字典吗`, isEnable ? 'warning' : 'success').then(
-    async () => {
-      try {
-        await enabledBaseDict({ id: id, isEnabled: !isEnable });
-        createMessage.success(`${isEnable ? '停用' : '启用'}成功`);
-        refresh();
-      } catch (e) {
-        createMessage.error(`${isEnable ? '停用' : '启用'}失败`);
-      }
-    }
-  );
-};
-const refresh = () => {
-  vxeTableLayout.value.refresh();
-};
-const refreshChild = () => {
-  childTableRef.value.refresh();
-};
-const contextMenuClickEvent: VxeTableEvents.MenuClick = async ({ menu, row, column }) => {
-  switch (menu.code) {
-    case 'edit':
-      // 示例
-      if (row && column) {
-        updateValueRef.value.open(row);
-        console.log('编辑');
-      }
-      break;
-    case 'delete':
-      // 示例
-      if (row && column) {
-        createConfirm('删除后不可恢复，是否确认删除？', 'warning').then(async () => {
-          try {
-            await deleteBaseDictValue(row.id);
-            createMessage.success('删除成功');
-            refreshChild();
-          } catch (error) {
-            createMessage.success(error || '删除失败');
-          }
-        });
-      }
-      break;
-  }
-};
-
-const currentDbClick: VxeTableEvents.CellDblclick = async ({ row }) => {
-  currentRow.value = row;
-  drawerLayout.value.open();
-};
-
-async function initMethod(params: any) {
-  const { total, pageData } = await getBaseDictList({ ...params, dictName: dictName.value });
-  return {
-    total: total,
-    pageData
-  };
-}
-async function initValueMethod(params: any) {
-  const { total, pageData } = await getBaseDictValueList({ ...params, dictCode: currentRow.value.dictCode });
-  return {
-    total: total,
-    pageData
-  };
-}
 
 onMounted(() => {
   // console.log(vxeTableLayout.value);
