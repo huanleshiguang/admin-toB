@@ -1,19 +1,8 @@
 <!--
- * @Autor: QMZhao
- * @Date: 2023-08-09 12:54:53
- * @LastEditTime: 2023-08-09 12:56:14
- * @Description: 
--->
-<!--
  * @Autor: ZhouHao joehall@foxmail.com
  * @Date: 2023-02-17 22:45:44
-<<<<<<< HEAD
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-11 16:07:57
-=======
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-08 16:10:17
->>>>>>> 8212f27734eadde2f51f9a8ecd2e9ebf540c9e24
+ * @LastEditTime: 2023-08-11 18:59:44
  * @Description: 
  * @FilePath: /vue-vite-elementplus-zhao/src/views/system/menu.vue
 -->
@@ -81,7 +70,6 @@ async function initMethod(params: any) {
     })
   };
 }
-
 
 onMounted(() => {
   // console.log(vxeTableLayout.value);
