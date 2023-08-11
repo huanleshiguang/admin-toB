@@ -2,11 +2,12 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2022-08-17 17:30:49
- * @LastEditTime: 2023-07-13 17:13:28
+ * @LastEditTime: 2023-08-11 16:03:06
  * @Reference: 
 -->
 <script lang="ts" setup>
 import SideBarItem from './sideBarItem.vue';
+import SideBarToggle from '/@/layout/manage/components/Navbar/SideBarToggle.vue';
 import { useMenuCollapse } from '/@/store/common/useCommon';
 
 const store = useMenuCollapse();
@@ -15,13 +16,15 @@ const getCollapaseStatus = computed(() => store.isCollapse);
 </script>
 
 <template>
-  <div :class="['h_100 flex flex-col sidebar-content']">
+  <div class="h_100 flex flex-col sidebar-content">
     <div
       :class="[
-        'company-cell flex items-center justify-between',
+        'company-cell h-32 uno-uno-flex-y-center cursor-pointer',
         getCollapaseStatus ? 'sidebar-header_collapse' : 'sidebar-header_expand'
       ]"
-    ></div>
+    >
+      <SideBarToggle />
+    </div>
     <!-- 侧边栏 -->
     <div class="side-bar-list">
       <el-scrollbar>
@@ -35,13 +38,15 @@ const getCollapaseStatus = computed(() => store.isCollapse);
 .sidebar-content {
   box-sizing: border-box;
   .sidebar-header_expand {
-    width: 140px;
+    width: 151px;
+    background-color: $color-border;
+    @include cursor;
   }
   .sidebar-header_collapse {
-    width: 65px;
+    width: 40px;
   }
   .company-cell {
-    transition: all 0.2s ease-in;
+    transition: all 0.3s ease-in;
     .logo {
       width: 50px;
       height: 50px;
@@ -86,12 +91,13 @@ const getCollapaseStatus = computed(() => store.isCollapse);
     height: 100%;
     overflow-y: auto;
     box-sizing: border-box;
-    // background-color: #545c64;
-    background-color: #e8e8e8;
+    background-color: $color-border;
+    :deep(.el-menu--collapse) {
+      width: 40px;
+    }
   }
   .menu-btn {
     height: calc(100% - 730px);
-    // background-color: #e8e8e8;
     .menu-btn-icon {
       width: 40px;
       height: 40px;

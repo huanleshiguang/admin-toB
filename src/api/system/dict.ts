@@ -1,15 +1,16 @@
 import request from '/@/utils/request';
+import { ApiBranch, ApiController } from '/@/enums/dict';
 import { BaseParams, PageResult } from '/@/types/axios';
 import { DictInfo, DictValueInfo } from './types/dict';
-const commonUrl = '/BaseData/DictManage';
+
 // 统一接口管理
 enum API {
-  GET_BASEDICT_LIST = `${commonUrl}/GetBaseDictMainLists`,
-  UPDATE_BASEDICT = `${commonUrl}/UpdateBaseDictMain`,
-  ENABLED_BASEDICT = `${commonUrl}/EnabledBaseDictMain`,
-  GET_BASEDICT_VALUE_LIST = `${commonUrl}/GetBaseDictRanges`,
-  UPDATE_BASEDICT_VALUE = `${commonUrl}/UpdateBaseDictRange`,
-  DELETE_BASEDICT_VALUE = `${commonUrl}/DeleteBaseDictRange`
+  GET_BASEDICT_LIST = `${ApiBranch.BASEDATA}${ApiController.DICT_MANAGE}GetBaseDictMainLists`,
+  UPDATE_BASEDICT = `${ApiBranch.BASEDATA}${ApiController.DICT_MANAGE}UpdateBaseDictMain`,
+  ENABLED_BASEDICT = `${ApiBranch.BASEDATA}${ApiController.DICT_MANAGE}EnabledBaseDictMain`,
+  GET_BASEDICT_VALUE_LIST = `${ApiBranch.BASEDATA}${ApiController.DICT_MANAGE}GetBaseDictRanges`,
+  UPDATE_BASEDICT_VALUE = `${ApiBranch.BASEDATA}${ApiController.DICT_MANAGE}UpdateBaseDictRange`,
+  DELETE_BASEDICT_VALUE = `${ApiBranch.BASEDATA}${ApiController.DICT_MANAGE}DeleteBaseDictRange`
 }
 
 // 获取字典列表

@@ -1,12 +1,14 @@
 /*
  * @Author: QMZhao
  * @Date: 2020-08-19 14:05:33
- * @LastEditTime: 2021-09-15 21:53:20
- * @LastEditors: QMZhao
+ * @LastEditTime: 2023-08-07 10:49:11
+ * @LastEditors: Please set LastEditors
  * @Description: 简单的工具方法
  * @FilePath: /vue-vite-template/src/utils/index.ts
  */
 import dayjs from 'dayjs';
+
+import { MenuForm } from 'MenuConfig';
 
 import relativeTime from 'dayjs/plugin/relativeTime';
 import duration from 'dayjs/plugin/duration';
@@ -434,4 +436,18 @@ export function deepMerge<T extends object | null | undefined, U extends object 
     }
     return undefined;
   });
+}
+
+/**
+ * 根据某个属性值排序
+ *
+ * @param key 排序用属性值
+ * @param reverse 升序/降序 默认升序
+ */
+export function sortBy(key: string, reverse = true) {
+  return function (prev: MenuForm, next: MenuForm) {
+    const targetFirst = prev[key];
+    const targetSecond = next[key];
+    return reverse ? targetFirst - targetSecond : targetSecond - targetFirst;
+  };
 }

@@ -1,6 +1,18 @@
 <template>
   <DialogLayout ref="dialogLayout" show-close :title="title" :sure-method="submit">
     <el-form ref="formRef" :model="form" :rules="rules" label-width="auto" label-position="right">
+      <el-form-item label="上级分类" prop="parentId">
+        <el-tree-select
+          v-model="form['parentId']"
+          class="w100"
+          lazy
+          :load="loadTreeData"
+          :props="{ label: 'dictName', children: 'children', isLeaf: 'isLeaf' }"
+          :cache-data="cacheData"
+          placeholder="请选择上级分类"
+          :render-after-expand="false"
+        />
+      </el-form-item>
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="编码" prop="dictCode" required>
@@ -81,12 +93,14 @@ const rules = reactive<FormRules<DictInfo>>({
 });
 const formRef = ref<any>();
 let form = reactive<DictInfo>({
+  parentId: '',
   dictCode: '',
   dictName: '',
   dictEnName: '',
   dictEnAbbr: '',
   remark: ''
 });
+
 const open = (data: DictInfo) => {
   title.value = `${data?.id ? '编辑' : '新增'}基础字典`;
   if (data) {
@@ -104,9 +118,23 @@ const open = (data: DictInfo) => {
 
   dialogLayout.value.open();
 };
+
 const close = () => {
   formRef.value.resetFields();
   dialogLayout.value.close();
+};
+/**
+ * tree缓存数据
+ */
+const cacheData = [];
+
+const loadTreeData = (node, resolve) => {
+  console.log(node);
+  if (node.level === 0) {
+    resolve([]);
+  } else {
+    resolve([]);
+  }
 };
 
 // interface BasicForm {
@@ -140,4 +168,8 @@ defineExpose({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.w100 {
+  width: 100%;
+}
+</style>

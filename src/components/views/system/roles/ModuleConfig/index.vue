@@ -1,33 +1,9 @@
 <!--
  * @Autor: QMZhao
  * @Date: 2023-07-29 14:51:42
- * @LastEditTime: 2023-07-29 16:15:07
+ * @LastEditTime: 2023-08-09 10:31:23
  * @Description: 功能菜单抽屉树
 -->
-<template>
-  <el-drawer v-model="moduleConfigDrawerVisiable" destroy-on-close size="500px" v-bind="$attrs">
-    <SimpleCard :title="cardTitle">
-      <template #headerBtn>
-        <el-button :loading="isSaveLoading" size="small" type="primary" @click="onSaveRoleModules(getTreeParams)">
-          保存
-        </el-button>
-      </template>
-      <SimpleLoading :loading="moduleTreesLoading" :source-data="moduleTrees">
-        <el-tree
-          ref="moduleTreeRef"
-          show-checkbox
-          :data="moduleTrees"
-          :props="defaultProps"
-          :check-strictly="isCheckStrictily"
-          node-key="id"
-          default-expand-all
-          @check="onCheckedModuleTree"
-        />
-      </SimpleLoading>
-    </SimpleCard>
-  </el-drawer>
-</template>
-
 <script lang="ts" setup>
 import { useRoleTreeData } from './composables/useModuleTreeData';
 import { useModuleTreeEvent } from './composables/useModuleTreeEvent';
@@ -70,4 +46,29 @@ const { isSaveLoading, onSaveRoleModules, onCheckedModuleTree } = useModuleTreeE
   roleFormEmits
 });
 </script>
+
+<template>
+  <el-drawer v-model="moduleConfigDrawerVisiable" destroy-on-close size="500px" v-bind="$attrs">
+    <SimpleCard :title="cardTitle">
+      <template #headerBtn>
+        <el-button :loading="isSaveLoading" size="small" type="primary" @click="onSaveRoleModules(getTreeParams)">
+          保存
+        </el-button>
+      </template>
+      <SimpleLoading :loading="moduleTreesLoading" :source-data="moduleTrees">
+        <el-tree
+          ref="moduleTreeRef"
+          show-checkbox
+          :data="moduleTrees"
+          :props="defaultProps"
+          :check-strictly="isCheckStrictily"
+          node-key="id"
+          default-expand-all
+          @check="onCheckedModuleTree"
+        />
+      </SimpleLoading>
+    </SimpleCard>
+  </el-drawer>
+</template>
+
 <style lang="scss" scoped></style>

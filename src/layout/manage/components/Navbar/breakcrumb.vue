@@ -2,23 +2,9 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2023-02-14 14:00:04
- * @LastEditTime: 2023-02-18 22:45:40
+ * @LastEditTime: 2023-08-08 10:46:31
  * @Reference: 
 -->
-<template>
-  <div class="breakcrumb-box">
-    <el-breadcrumb class="app-breadcrumb" separator="/">
-      <transition-group name="breadcrumb">
-        <el-breadcrumb-item v-for="(item, index) in routes" :key="item.path">
-          <span v-if="item.redirect === 'noRedirect' || index == routes.length - 1" class="no-redirect">
-            {{ item.meta.title }}
-          </span>
-          <a v-else href="javascript: void(0)" @click.prevent="onJumpTo(item)">{{ item.meta.title }}</a>
-        </el-breadcrumb-item>
-      </transition-group>
-    </el-breadcrumb>
-  </div>
-</template>
 
 <script lang="ts" setup>
 import { RouteRecordNormalized } from 'vue-router';
@@ -62,6 +48,21 @@ function onJumpTo(item: RouteRecordNormalized) {
 }
 </script>
 
+<template>
+  <div class="breakcrumb-box">
+    <el-breadcrumb class="app-breadcrumb" separator="/">
+      <transition-group name="breadcrumb">
+        <el-breadcrumb-item v-for="(item, index) in routes" :key="item.path">
+          <span v-if="item.redirect === 'noRedirect' || index == routes.length - 1" class="no-redirect c-white">
+            {{ item.meta.title }}
+          </span>
+          <a v-else href="javascript: void(0)" @click.prevent="onJumpTo(item)">{{ item.meta.title }}</a>
+        </el-breadcrumb-item>
+      </transition-group>
+    </el-breadcrumb>
+  </div>
+</template>
+
 <style scoped lang="scss">
 .app-breadcrumb {
   position: relative;
@@ -73,13 +74,16 @@ function onJumpTo(item: RouteRecordNormalized) {
     margin-left: 8px;
 
     .no-redirect {
-      color: #97a8be;
       cursor: text;
     }
+  }
+  :deep(.el-breadcrumb__inner a, .el-breadcrumb__inner.is-link) {
+    color: $color-white;
   }
 }
 .breakcrumb-box {
   position: relative;
+  color: $color-white;
 }
 /* breadcrumb transition */
 .breadcrumb-move,

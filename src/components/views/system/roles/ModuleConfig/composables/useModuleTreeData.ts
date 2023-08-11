@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-25 11:08:11
- * @LastEditTime: 2023-08-04 18:33:53
+ * @LastEditTime: 2023-08-09 10:49:47
  * @Description: 功能清单数据
  */
 import type TreeStore from 'element-plus/es/components/tree/src/model/tree-store';
@@ -66,11 +66,12 @@ export function useRoleTreeData(moduleTreeRef: Ref<TreeStore | null>) {
    */
   async function loadRolePrivs(params: RolePrivsParams) {
     // mark: 在显示复选框的情况下，初始化渲染时节点不遵循父子互相关联
-    isCheckStrictily.value = false;
+    isCheckStrictily.value = true;
     try {
       const response = await fetchRolePrivs(params);
       moduleRoleKeys.value = roleTreeKeyWarapper(response);
       moduleTreeRef.value?.setCheckedKeys(moduleRoleKeys.value);
+      isCheckStrictily.value = false;
     } catch (error) {
       moduleRoleKeys.value;
     }
@@ -108,13 +109,9 @@ export function useRoleTreeData(moduleTreeRef: Ref<TreeStore | null>) {
   });
   return {
     defaultProps,
-    ...toRefs(
-      reactive({
-        getTreeParams,
-        moduleTreesLoading,
-        moduleTrees,
-        isCheckStrictily
-      })
-    )
+    getTreeParams,
+    moduleTreesLoading,
+    moduleTrees,
+    isCheckStrictily
   };
 }

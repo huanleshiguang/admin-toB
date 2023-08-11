@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="w-full h_100 flex flex-items-center grid-justify-center login-container">

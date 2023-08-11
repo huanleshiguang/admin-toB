@@ -1,8 +1,8 @@
 /*
  * @Author: QMZhao
  * @Date: 2023-07-11 10:16:08
- * @LastEditors: QMZhao zhao971462054@163.com
- * @LastEditTime: 2023-07-11 15:10:37
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-08-08 16:52:46
  * @FilePath: \servious-illness-admin\src\directives\permission.ts
  * @Description: 全局按钮权限指令
  */

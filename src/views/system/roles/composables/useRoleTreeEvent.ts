@@ -122,6 +122,10 @@ export function useRoleTreeEvent({ ...arg }) {
     } catch (error) {}
   }
 
+  onBeforeUnmount(() => {
+    setRoleConfigTreeParams(null);
+  });
+
   return {
     roleFormData,
     onAddRoleTree,

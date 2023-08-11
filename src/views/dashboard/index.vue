@@ -2,13 +2,23 @@
  * @Autor: QMZhao
  * @Date: 2023-07-03 09:49:52
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-20 11:55:36
+ * @LastEditTime: 2023-08-10 09:25:57
  * @Description: 主界面
  * @FilePath: \servious-illness-admin\src\views\dashboard\index.vue
 -->
+<script lang="ts" setup>
+import { useDashboardCommon } from './composables/useCommon';
+import { useDashboradEvent } from './composables/useEvent';
+
+const { menuList, notificationList, supportList } = useDashboardCommon();
+const { onJumpTo } = useDashboradEvent();
+</script>
+
 <template>
   <div class="w-full h_100 dashboard-container flex flex-col">
-    <NavHeader />
+    <div class="h-40 p-xAxis-20">
+      <NavHeader />
+    </div>
     <div class="company-logo">
       <el-image :src="require('/@/assets/image/dashboard/logo-desktop.png')"></el-image>
     </div>
@@ -20,12 +30,12 @@
             v-for="item in menuList"
             :key="item.id"
             class="menu-list-item flex flex-items-center"
-            @click="onJumpTo(item.url)"
+            @click="onJumpTo(item)"
           >
             <p class="mli-icon grid-justify-center flex flex-items-center">
-              <SvgIcon :icon-class="item.icon" class-name="mli-icon__item"></SvgIcon>
+              <SvgIcon :icon-class="item.menuIcon" class-name="mli-icon__item"></SvgIcon>
             </p>
-            <span class="mli-title">{{ item.name }}</span>
+            <span class="mli-title">{{ item.menuName }}</span>
           </div>
         </div>
       </div>
@@ -47,13 +57,6 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { NavHeader } from './components';
-import { useDashboardCommon } from './composables/useCommon';
-import { useDashboradEvent } from './composables/useEvent';
-const { menuList, notificationList, supportList } = useDashboardCommon();
-const { onJumpTo } = useDashboradEvent();
-</script>
 <style lang="scss" scoped>
 .dashboard-container {
   background: url('/@/assets/image/dashboard/desktop-bg.png') 100% 100%;

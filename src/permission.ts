@@ -2,41 +2,52 @@
  * @Author: QMZhao
  * @Description: 登录权限验证
  * @Date: 2021-07-26 10:46:56
- * @LastEditTime: 2023-07-24 09:18:58
+ * @LastEditTime: 2023-08-11 17:17:11
  * @Reference:
  */
-import { router } from './router';
+import { RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
+import { ErrorRouterParams } from 'ICUCommon';
 
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
-import { useConfigParams } from '/@/hooks/request/useRequestConfigParams';
 
-import { store } from '/@/store';
-import { useNavMenuList } from '/@/store/common/routerList';
-const { setShowSideBar } = useNavMenuList(store);
+import { router } from './router';
+
+import { useConfigParams } from '/@/hooks/request/useRequestConfigParams';
+import { useAuthRouter } from '/@/hooks/common/useAuthRouter';
+
+import { useWorkbenchSidebar } from '/@/store/common/useWorkbenchSidebar';
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
-router.beforeEach(async (to, _from, next) => {
+router.beforeEach(async (to: RouteLocationNormalized, _from: RouteLocationNormalized, next: NavigationGuardNext) => {
   // start progress bar
   NProgress.start();
+
+  const { setShowSideBar } = useWorkbenchSidebar();
 
   // 判断是否登录
   const { token } = useConfigParams();
 
   // 工作台导航条
-
+  const routerParams: ErrorRouterParams = { toPath: to.path, fromPath: _from.path };
   setShowSideBar(to.meta.showSideBar === false ? to.meta.showSideBar : true);
+
+  // 在登录页无token时, 地址栏错误路径输入跳转到错误页
+  if (!to.name) {
+    next({
+      path: '/error'
+    });
+    return;
+  }
 
   if (to.meta.requireAuth) {
     if (token) {
-      next();
+      useAuthRouter(routerParams, next);
     } else {
-      // 项目里有 token 验证的时候请切换成这个注释内容
-      // next({
-      //   path: "/"
-      // });
-      next();
+      next({
+        path: '/error'
+      });
     }
   } else {
     next();

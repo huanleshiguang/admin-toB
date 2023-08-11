@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-29 16:50:28
- * @LastEditTime: 2023-08-04 17:29:07
+ * @LastEditTime: 2023-08-09 09:57:41
  * @Description:
  */
 import { cloneDeep } from 'lodash-es';
@@ -19,7 +19,6 @@ export function useMenuEvent({ ...arg }) {
     formatMenuStatusChangeName,
     formatMenuStatusChangeParams
   } = arg;
-
   /**
    * 菜单状态改变前的钩子， 返回 false 或者返回 Promise 且被 reject 则停止切换
    * mark: 由于钩子函数执行顺序会优先于点击事件执行，采用定时器方式获取点击事件的参数
@@ -78,6 +77,7 @@ export function useMenuEvent({ ...arg }) {
    */
   function onEditMenuForm(row: Iobj): void {
     menuFormData.value = row;
+    menuFormData.value.parentId = !row.parentId || row.parentId === '0' ? '' : row.parentId;
     menuFormDialogRef.value?.onOpenMenuFormDialog();
   }
 
@@ -130,6 +130,6 @@ export function useMenuEvent({ ...arg }) {
     onEditMenuForm,
     onDeleteMenu,
     onSubmitMenuForm,
-    onChangeMenuFormSearch
+    onChangeMenuFormSearch,
   };
 }

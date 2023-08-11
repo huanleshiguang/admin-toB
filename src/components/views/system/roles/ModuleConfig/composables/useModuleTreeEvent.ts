@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-26 10:28:47
- * @LastEditTime: 2023-07-29 16:14:47
+ * @LastEditTime: 2023-08-11 17:38:12
  * @Description: 功能清单树事件
  */
 // import type TreeStore from 'element-plus/es/components/tree/src/model/tree-store';
@@ -53,11 +53,7 @@ export function useModuleTreeEvent({ ...arg }) {
   return {
     onSaveRoleModules,
     onCheckedModuleTree,
-    ...toRefs(
-      reactive({
-        isSaveLoading,
-        moduleTreeRef
-      })
-    )
+    isSaveLoading,
+    moduleTreeRef
   };
 }

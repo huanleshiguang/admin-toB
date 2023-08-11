@@ -10,13 +10,14 @@ import request from '/@/utils/request';
 // import * as Users from './types/user';
 import * as userType from 'userTypeModules';
 
-const commonUrl = '/Organization';
+import { ApiBranch, ApiController } from '/@/enums/dict';
+
 // 统一接口管理
 enum USERAPI {
-  SAVE_USERINFO = `${commonUrl}/OrgManage/SaveOrgUserInfo`,
-  DELETE_USERINFO = `${commonUrl}/UserManage/DeleteUserInfo`,
-  FETCH_FEATURE_LIST = `${commonUrl}/RoleManage/GetOrgMenuTrees`,
-  FETCH_HOSPAREADEP_USER_URL = `${commonUrl}/UserManage/GetDeptUserInfo`
+  SAVE_USERINFO = `${ApiBranch.ORGANIZATION}${ApiController.ORG_MANAGE}SaveOrgUserInfo`,
+  DELETE_USERINFO = `${ApiBranch.ORGANIZATION}${ApiController.USER_MANAGE}DeleteUserInfo`,
+  FETCH_FEATURE_LIST = `${ApiBranch.ORGANIZATION}${ApiController.Role_MANAGE}GetOrgMenuTrees`,
+  FETCH_HOSPAREADEP_USER_URL = `${ApiBranch.ORGANIZATION}${ApiController.USER_MANAGE}GetDeptUserInfo`
 }
 
 // 获取科室人员信息

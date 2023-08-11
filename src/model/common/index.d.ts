@@ -42,6 +42,12 @@ declare module 'ICUCommon' {
     label: string;
   }
   /**
+   * 按钮权限数据
+   */
+  export interface ButtonAuth {
+    [key: string]: SelectOption;
+  }
+  /**
    * 表格查询通用参数
    */
   export interface TableCommon {
@@ -49,5 +55,13 @@ declare module 'ICUCommon' {
     pageIndex?: number;
     // 每页数据行数
     pageSize?: number;
+  }
+
+  /**
+   * 路由跳转权限验证
+   */
+  export interface ErrorRouterParams {
+    toPath: string;
+    fromPath: string;
   }
 }

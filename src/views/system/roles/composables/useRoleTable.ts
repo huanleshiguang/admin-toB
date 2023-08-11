@@ -6,7 +6,7 @@
  * @Description: 菜单管理树表格数据
  */
 
-export function useMenuTable() {
+export function useRoleTable() {
   const loadTableData = fetchRoleList;
   const columns: VxeColumns[] = [
     {
@@ -20,7 +20,7 @@ export function useMenuTable() {
     {
       title: '角色代码',
       field: 'roleCode',
-      headerAlign: 'center',
+      headerAlign: 'center'
     },
     {
       title: '描述',
@@ -30,11 +30,7 @@ export function useMenuTable() {
   ];
 
   return {
-    ...toRefs(
-      reactive({
-        columns,
-        loadTableData
-      })
-    )
+    columns,
+    loadTableData
   };
 }

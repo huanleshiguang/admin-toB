@@ -1,19 +1,20 @@
 import { ComponentInternalInstance } from 'vue';
 import { MenuForm } from 'MenuConfig';
+import { ButtonAuth } from 'ICUCommon';
 
 export function useMenusCommon() {
   // 当前菜单管理页面实 用于菜单状态切换 switch 绑定参数用
   const menuConfigInstance = ref<ComponentInternalInstance | null>(getCurrentInstance());
 
   // 表格查询条件
-  const menuSearchForm = reactive({
+  const menuSearchForm = ref({
     menuType: '',
     menuName: ''
   });
   // 菜单表单表头
   const menuFormTitle = ref('');
   // 菜单表单参数
-  const menuFormData = reactive<MenuForm>({
+  const menuFormData = ref<MenuForm>({
     id: '',
     parentId: '',
     menuType: 0,
@@ -33,7 +34,22 @@ export function useMenusCommon() {
   // 菜单表单弹窗引用实例
   const menuFormDialogRef = ref<any>(null);
   // 菜单树
-  const menuTrees = ref<Iobj[]>([]);
+  const menuTrees = ref<Iobj[] | null>([]);
+  // 功能按钮
+  const menuBtnAuth = ref<ButtonAuth | null>({
+    menuAdd: {
+      label: '新增',
+      value: 'bqicu_sys_menuAdd'
+    },
+    menuEdit: {
+      label: '修改',
+      value: 'bqicu_sys_menuEdit'
+    },
+    menuDelete: {
+      label: '删除',
+      value: 'bqicu_sys_menuDelete'
+    }
+  });
 
   /**
    * 格式化切换菜单消息弹窗状态名称
@@ -76,24 +92,36 @@ export function useMenusCommon() {
     }
   }
 
+  /**
+   * 清理数据
+   */
+  function cleanData() {
+    menuConfigInstance.value = null;
+    menuTabeRef.value = null;
+    menuFormDialogRef.value = null;
+    menuTrees.value = null;
+    menuBtnAuth.value = null;
+  }
+
   onBeforeMount(() => {
     loadMenuTree();
+  });
+
+  onBeforeUnmount(() => {
+    cleanData();
   });
 
   return {
     formatMenuStatusChangeName,
     formatMenuStatusChangeParams,
-    ...toRefs(
-      reactive({
-        menuSearchForm,
-        menuConfigInstance,
-        menuTabeRef,
-        menuFormDialogRef,
-        isMenuStatusLoading,
-        menuFormTitle,
-        menuTrees,
-        menuFormData
-      })
-    )
+    menuBtnAuth,
+    menuSearchForm,
+    menuConfigInstance,
+    menuTabeRef,
+    menuFormDialogRef,
+    isMenuStatusLoading,
+    menuFormTitle,
+    menuTrees,
+    menuFormData
   };
 }

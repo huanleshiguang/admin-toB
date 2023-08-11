@@ -5,55 +5,6 @@
  * @LastEditTime: 2023-07-29 09:52:54
  * @Description: 配置表单
 -->
-<template>
-  <DialogLayout ref="roleFormDialogRef" show-close width="500px" :title="roleFormTitle" @sure="onSubmitRoleForm">
-    <el-form
-      ref="roleConfigformRef"
-      :model="roleFormData"
-      :rules="roleFormRules"
-      label-width="auto"
-      label-position="top"
-    >
-      <el-row :gutter="20">
-        <el-col :span="12">
-          <el-form-item label="系统名称" prop="roleName" class="w-full">
-            <el-input v-model="setRoleFormData.roleName" clearable placeholder="请输入名称" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="角色代码" prop="roleCode">
-            <el-input v-model="setRoleFormData.roleCode" clearable placeholder="请输入角色代码" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="显示名称" prop="roleDisplayName">
-            <el-input v-model="setRoleFormData.roleDisplayName" clearable placeholder="请输入角色代码" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="排序" prop="sort" class="role-form-item">
-            <el-input-number v-model="setRoleFormData.sort" class="w-full" :min="0" controls-position="right" />
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="24">
-          <el-form-item label="描述" prop="remark">
-            <el-input
-              v-model="setRoleFormData.remark"
-              :autosize="{ minRows: 2, maxRows: 4 }"
-              clearable
-              type="textarea"
-              maxlength="200"
-              placeholder="请输入描述"
-            />
-          </el-form-item>
-        </el-col>
-      </el-row>
-    </el-form>
-  </DialogLayout>
-</template>
-
 <script lang="ts" setup>
 import { RoleForm } from 'RoleConfig';
 
@@ -156,6 +107,56 @@ async function loadRoleForm() {
   }
 }
 </script>
+
+<template>
+  <DialogLayout ref="roleFormDialogRef" show-close width="500px" :title="roleFormTitle" @sure="onSubmitRoleForm">
+    <el-form
+      ref="roleConfigformRef"
+      :model="roleFormData"
+      :rules="roleFormRules"
+      label-width="auto"
+      label-position="top"
+    >
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-form-item label="系统名称" prop="roleName" class="w-full">
+            <el-input v-model="setRoleFormData.roleName" clearable placeholder="请输入名称" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="角色代码" prop="roleCode">
+            <el-input v-model="setRoleFormData.roleCode" clearable placeholder="请输入角色代码" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="显示名称" prop="roleDisplayName">
+            <el-input v-model="setRoleFormData.roleDisplayName" clearable placeholder="请输入角色代码" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="排序" prop="sort" class="role-form-item">
+            <el-input-number v-model="setRoleFormData.sort" class="w-full" :min="0" controls-position="right" />
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24">
+          <el-form-item label="描述" prop="remark">
+            <el-input
+              v-model="setRoleFormData.remark"
+              :autosize="{ minRows: 2, maxRows: 4 }"
+              clearable
+              type="textarea"
+              maxlength="200"
+              placeholder="请输入描述"
+            />
+          </el-form-item>
+        </el-col>
+      </el-row>
+    </el-form>
+  </DialogLayout>
+</template>
+
 <style lang="scss" scoped>
 .role-form-item {
   :deep(.el-input-number) {

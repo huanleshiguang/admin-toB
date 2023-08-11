@@ -5,14 +5,13 @@
  * @Description: 菜单管理
  */
 import defHttp from '/@/utils/request';
-
-const common = '/Organization/';
+import { ApiBranch, ApiController } from '/@/enums/dict';
 
 enum MENUURL {
-  ORG_MENU_LIST = `${common}PrivsManage/GetOrgMenuLists`,
-  ORG_MENU_TREES = `${common}PrivsManage/GetOrgMenuTrees`,
-  ORG_MENU_EDIT = `${common}PrivsManage/SaveOrgMenuInfo`,
-  ORG_MENU_DELETE = `${common}PrivsManage/DeleteOrgMenuInfo`
+  ORG_MENU_LIST = `${ApiBranch.ORGANIZATION}${ApiController.PRIVS_MANAGE}GetOrgMenuLists`,
+  ORG_MENU_TREES = `${ApiBranch.ORGANIZATION}${ApiController.PRIVS_MANAGE}GetOrgMenuTrees`,
+  ORG_MENU_EDIT = `${ApiBranch.ORGANIZATION}${ApiController.PRIVS_MANAGE}SaveOrgMenuInfo`,
+  ORG_MENU_DELETE = `${ApiBranch.ORGANIZATION}${ApiController.PRIVS_MANAGE}DeleteOrgMenuInfo`
 }
 
 /**

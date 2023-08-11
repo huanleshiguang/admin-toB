@@ -1,3 +1,37 @@
+<script lang="ts" setup>
+import { useMenusCommon } from './composables/useMenusCommon';
+import { useMenuTable } from './composables/useMenuTable';
+import { useMenuEvent } from './composables/useMenuEvent';
+
+import { MenuForm } from './components';
+
+const {
+  menuSearchForm,
+  menuTabeRef,
+  menuConfigInstance,
+  isMenuStatusLoading,
+  menuFormData,
+  menuFormTitle,
+  menuFormDialogRef,
+  formatMenuStatusChangeName,
+  formatMenuStatusChangeParams,
+  menuTrees,
+  menuBtnAuth
+} = useMenusCommon();
+
+const { columns, treeConfig, loadTableData } = useMenuTable();
+
+const { onChangeMenuStatus, onAddMenu, onEditMenuForm, onDeleteMenu, onSubmitMenuForm, onChangeMenuFormSearch } =
+  useMenuEvent({
+    menuTabeRef,
+    isMenuStatusLoading,
+    menuFormDialogRef,
+    menuFormData,
+    formatMenuStatusChangeName,
+    formatMenuStatusChangeParams
+  });
+</script>
+
 <template>
   <div class="w-full h_100">
     <vxe-table-layout
@@ -29,9 +63,9 @@
         </el-form>
       </template>
       <template #operator-right>
-        <el-button type="primary" @click="onAddMenu">
+        <el-button v-auth="menuBtnAuth?.menuAdd.value" class="default-btn" @click="onAddMenu">
           <i-ep-plus class="el-icon"></i-ep-plus>
-          <span>新增菜单</span>
+          <span>{{ menuBtnAuth?.menuAdd.label }}</span>
         </el-button>
       </template>
       <template #columns>
@@ -52,16 +86,16 @@
         <vxe-column title="操作" width="180" align="center" fixed="right">
           <template #default="{ row }">
             <div class="uno-flex-y-center">
-              <p>
+              <p v-auth="menuBtnAuth?.menuEdit.value">
                 <el-button text type="info" @click="onEditMenuForm(row)">
                   <i-ep-edit class="el-icon"></i-ep-edit>
-                  <span>修改</span>
+                  <span>{{ menuBtnAuth?.menuEdit.label }}</span>
                 </el-button>
               </p>
-              <p>
+              <p v-auth="menuBtnAuth?.menuDelete.value">
                 <el-button text type="danger" @click="onDeleteMenu(row)">
                   <i-ep-delete class="el-icon"></i-ep-delete>
-                  <span>删除</span>
+                  <span>{{ menuBtnAuth?.menuDelete.label }}</span>
                 </el-button>
               </p>
             </div>
@@ -73,44 +107,12 @@
       ref="menuFormDialogRef"
       v-model:menu-form-data="menuFormData"
       :menu-form-title="menuFormTitle"
-      :menu-trees="menuTrees"
+      :menu-trees="menuTrees ?? []"
       @handle-submit-menu-form="onSubmitMenuForm"
     />
   </div>
 </template>
 
-<script lang="ts" setup>
-import { useMenusCommon } from './composables/useMenusCommon';
-import { useMenuTable } from './composables/useMenuTable';
-import { useMenuEvent } from './composables/useMenuEvent';
-
-import { MenuForm } from './components';
-
-const {
-  menuSearchForm,
-  menuTabeRef,
-  menuConfigInstance,
-  isMenuStatusLoading,
-  menuFormData,
-  menuFormTitle,
-  menuFormDialogRef,
-  formatMenuStatusChangeName,
-  formatMenuStatusChangeParams,
-  menuTrees
-} = useMenusCommon();
-
-const { columns, treeConfig, loadTableData } = useMenuTable();
-
-const { onChangeMenuStatus, onAddMenu, onEditMenuForm, onDeleteMenu, onSubmitMenuForm, onChangeMenuFormSearch } =
-  useMenuEvent({
-    menuTabeRef,
-    isMenuStatusLoading,
-    menuFormDialogRef,
-    menuFormData,
-    formatMenuStatusChangeName,
-    formatMenuStatusChangeParams
-  });
-</script>
 <style lang="scss" scoped>
 .menu-search-form {
   :deep(.el-form-item) {

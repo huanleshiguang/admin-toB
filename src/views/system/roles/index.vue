@@ -1,9 +1,31 @@
 <!--
  * @Autor: QMZhao
  * @Date: 2023-07-28 17:00:18
- * @LastEditTime: 2023-08-03 15:25:40
+ * @LastEditTime: 2023-08-09 10:25:34
  * @Description: 角色管理
 -->
+<script lang="ts" setup>
+import { useRolesCommon } from './composables/useRolesCommon';
+import { useRoleTable } from './composables/useRoleTable';
+import { useRoleTreeEvent } from './composables/useRoleTreeEvent';
+
+import { RoleForm } from './components';
+
+// 角色配置通用数据
+const { roleBtnAuth, roleFormTitle, roleFormDialogRef, rolesTableRef, moduleConfigDrawer } = useRolesCommon();
+
+// 角色配置表格
+const { columns, loadTableData } = useRoleTable();
+
+// 角色表格增删改查事件
+const { roleFormData, onAddRoleTree, onEditRoleTree, onDeleteRole, onConfigAuth, onSubmitRoleForm } = useRoleTreeEvent({
+  roleFormTitle,
+  roleFormDialogRef,
+  rolesTableRef,
+  moduleConfigDrawer
+});
+</script>
+
 <template>
   <div class="uno-wh-full">
     <vxe-table-layout
@@ -26,28 +48,28 @@
         </div>
       </template>
       <template #operator-right>
-        <el-button type="primary" @click="onAddRoleTree">
+        <el-button v-auth="roleBtnAuth?.roleAdd.value" class="default-btn" @click="onAddRoleTree">
           <i-ep-plus class="el-icon"></i-ep-plus>
-          <span>添加角色</span>
+          <span>{{ roleBtnAuth?.roleAdd.label }}</span>
         </el-button>
       </template>
       <template #columns>
         <vxe-column title="操作" align="center" width="260">
           <template #default="{ row }">
             <div class="uno-flex-y-center">
-              <p>
+              <p v-auth="roleBtnAuth?.roleEdit.value">
                 <el-button text type="info" @click="onEditRoleTree(row)">
                   <i-ep-edit class="el-icon"></i-ep-edit>
-                  <span>修改</span>
+                  <span>{{ roleBtnAuth?.roleEdit.label }}</span>
                 </el-button>
               </p>
               <p>
                 <el-button text type="primary" @click="onConfigAuth(row)">分配权限</el-button>
               </p>
-              <p>
+              <p v-auth="roleBtnAuth?.roleDelete.value">
                 <el-button text type="danger" @click="onDeleteRole(row)">
                   <i-ep-delete class="el-icon"></i-ep-delete>
-                  <span>删除</span>
+                  <span>{{ roleBtnAuth?.roleDelete.label }}</span>
                 </el-button>
               </p>
             </div>
@@ -71,28 +93,6 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { useMenusCommon } from './composables/useMenusCommon';
-import { useMenuTable } from './composables/useMenuTable';
-import { useRoleTreeEvent } from './composables/useRoleTreeEvent';
-
-import { RoleForm } from './components';
-import { ModuleConfig } from '/@/components/views/system/roles';
-
-// 角色配置通用数据
-const { roleFormTitle, roleFormDialogRef, rolesTableRef, moduleConfigDrawer } = useMenusCommon();
-
-// 角色配置表格
-const { columns, loadTableData } = useMenuTable();
-
-// 角色表格增删改查事件
-const { roleFormData, onAddRoleTree, onEditRoleTree, onDeleteRole, onConfigAuth, onSubmitRoleForm } = useRoleTreeEvent({
-  roleFormTitle,
-  roleFormDialogRef,
-  rolesTableRef,
-  moduleConfigDrawer
-});
-</script>
 <style lang="scss" scoped>
 .menu-search-form {
   :deep(.el-form-item) {

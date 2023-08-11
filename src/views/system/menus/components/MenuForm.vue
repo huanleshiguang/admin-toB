@@ -2,126 +2,9 @@
  * @Autor: QMZhao
  * @Date: 2023-07-25 15:05:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-04 17:56:28
+ * @LastEditTime: 2023-08-09 13:39:48
  * @Description: 配置表单
 -->
-<template>
-  <DialogLayout ref="menuFormDialogRef" show-close width="500px" :title="menuFormTitle" @sure="onSubmitMenuForm">
-    <el-form
-      ref="menuConfigformRef"
-      :model="menuFormData"
-      :rules="menuFormRules"
-      label-width="auto"
-      label-position="top"
-    >
-      <el-row :gutter="20">
-        <el-col :span="12">
-          <el-form-item label="菜单名称" prop="menuName" class="w-full">
-            <el-input v-model="setMenuFormData.menuName" clearable placeholder="请输入名称" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="菜单代码" prop="menuCode">
-            <el-input v-model="setMenuFormData.menuCode" clearable placeholder="请输入菜单代码" />
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20">
-        <el-col :span="12">
-          <el-form-item label="上级菜单" prop="parentId">
-            <el-tree-select
-              v-model="setMenuFormData.parentId"
-              :data="menuTrees"
-              :props="defaultProps"
-              check-strictly
-              :render-after-expand="false"
-              show-checkbox
-              node-key="id"
-              check-on-click-node
-            ></el-tree-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="菜单类型" prop="menuType" class="menu-form-item">
-            <el-select v-model="setMenuFormData.menuType" placeholder="请选择菜单类型">
-              <el-option
-                v-for="item in menuTypes"
-                :key="item.value"
-                :value="item.value"
-                :label="item.label"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20">
-        <el-col :span="12">
-          <el-form-item label="菜单图标" prop="menuIcon" class="menu-form-item">
-            <el-popover
-              :visible="menuIconVisiable"
-              placement="bottom"
-              width="300"
-              popper-class="overflow-y-auto overflow-x-hidden"
-            >
-              <template #default>
-                <div class="w-300 h-200 flex flex-wrap overflow-y-auto">
-                  <MenuIconPanel
-                    v-model:menu-icon-visiable="menuIconVisiable"
-                    v-model:menu-icon="setMenuFormData.menuIcon"
-                  />
-                </div>
-              </template>
-              <template #reference>
-                <el-input
-                  v-model="setMenuFormData.menuIcon"
-                  readonly
-                  placeholder="请选择图标"
-                  @click="onFocusMenuIcon"
-                />
-              </template>
-            </el-popover>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="路由地址" prop="routeAddr">
-            <el-input v-model="setMenuFormData.routeAddr" clearable placeholder="请输入路由地址" />
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12">
-          <el-form-item label="是否缓存" prop="isCache">
-            <el-radio-group v-model="setMenuFormData.isCache">
-              <el-radio v-for="item in simpleBooleanSelects" :key="item.value" :label="item.value">
-                {{ item.label }}
-              </el-radio>
-            </el-radio-group>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="排序" prop="sortNo" class="menu-form-item">
-            <el-input-number v-model="setMenuFormData.sortNo" class="w-full" :min="0" controls-position="right" />
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="24">
-          <el-form-item label="描述" prop="remark">
-            <el-input
-              v-model="setMenuFormData.remark"
-              :autosize="{ minRows: 2, maxRows: 4 }"
-              clearable
-              type="textarea"
-              maxlength="200"
-              placeholder="请输入描述"
-            />
-          </el-form-item>
-        </el-col>
-      </el-row>
-    </el-form>
-  </DialogLayout>
-</template>
-
 <script lang="ts" setup>
 import { setMenuTypeSelects, setSimpleBooleanSelects } from '/@/utils/dict';
 
@@ -253,13 +136,131 @@ async function loadMenuForm() {
   try {
     await fetchEditMenu(setMenuFormData.value);
     createMessage.success(`${status}成功`);
-    menuConfigformRef.value!.resetField();
     menuFormEmits('handleSubmitMenuForm', true);
+    menuConfigformRef.value!.resetField();
   } catch (error) {
     menuFormEmits('handleSubmitMenuForm', false);
   }
 }
 </script>
+
+<template>
+  <DialogLayout ref="menuFormDialogRef" show-close width="500px" :title="menuFormTitle" @sure="onSubmitMenuForm">
+    <el-form
+      ref="menuConfigformRef"
+      :model="menuFormData"
+      :rules="menuFormRules"
+      label-width="auto"
+      label-position="top"
+    >
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-form-item label="菜单名称" prop="menuName" class="w-full">
+            <el-input v-model="setMenuFormData.menuName" clearable placeholder="请输入名称" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="菜单代码" prop="menuCode">
+            <el-input v-model="setMenuFormData.menuCode" clearable placeholder="请输入菜单代码" />
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-form-item label="上级菜单" prop="parentId">
+            <el-tree-select
+              v-model="setMenuFormData.parentId"
+              :data="menuTrees"
+              :props="defaultProps"
+              check-strictly
+              :render-after-expand="false"
+              show-checkbox
+              node-key="id"
+              check-on-click-node
+            ></el-tree-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="菜单类型" prop="menuType" class="menu-form-item">
+            <el-select v-model="setMenuFormData.menuType" placeholder="请选择菜单类型">
+              <el-option
+                v-for="item in menuTypes"
+                :key="item.value"
+                :value="item.value"
+                :label="item.label"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-form-item label="菜单图标" prop="menuIcon" class="menu-form-item">
+            <el-popover
+              :visible="menuIconVisiable"
+              placement="bottom"
+              width="400"
+              popper-class="overflow-y-auto overflow-x-hidden"
+            >
+              <template #default>
+                <div class="w-full h-200 flex flex-wrap overflow-y-auto">
+                  <MenuIconPanel
+                    v-model:menu-icon-visiable="menuIconVisiable"
+                    v-model:menu-icon="setMenuFormData.menuIcon"
+                  />
+                </div>
+              </template>
+              <template #reference>
+                <el-input
+                  v-model="setMenuFormData.menuIcon"
+                  clearable
+                  placeholder="请选择图标"
+                  @click="onFocusMenuIcon"
+                />
+              </template>
+            </el-popover>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="路由地址" prop="routeAddr">
+            <el-input v-model="setMenuFormData.routeAddr" clearable placeholder="请输入路由地址" />
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="是否缓存" prop="isCache">
+            <el-radio-group v-model="setMenuFormData.isCache">
+              <el-radio v-for="item in simpleBooleanSelects" :key="item.value" :label="item.value">
+                {{ item.label }}
+              </el-radio>
+            </el-radio-group>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="排序" prop="sortNo" class="menu-form-item">
+            <el-input-number v-model="setMenuFormData.sortNo" class="w-full" :min="0" controls-position="right" />
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24">
+          <el-form-item label="描述" prop="remark">
+            <el-input
+              v-model="setMenuFormData.remark"
+              :autosize="{ minRows: 2, maxRows: 4 }"
+              clearable
+              type="textarea"
+              maxlength="200"
+              placeholder="请输入描述"
+            />
+          </el-form-item>
+        </el-col>
+      </el-row>
+    </el-form>
+  </DialogLayout>
+</template>
+
 <style lang="scss" scoped>
 .menu-form-item {
   :deep(.el-input-number) {

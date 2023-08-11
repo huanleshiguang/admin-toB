@@ -2,13 +2,13 @@
  * @Autor: QMZhao
  * @Date: 2023-07-18 10:47:12
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-20 09:31:07
+ * @LastEditTime: 2023-08-09 10:18:18
  * @Description: 登录表单
  * @FilePath: \servious-illness-admin\src\components\login\LoginForm.vue
 -->
 <script setup lang="ts">
-import { useLoginStorage } from './useLoginStorage';
-import { useLoginEvent } from './useLoginEvent';
+import { useLoginStorage } from './composable/useLoginStorage';
+import { useLoginEvent } from './composable/useLoginEvent';
 
 import { debounce } from 'lodash-es';
 
@@ -28,21 +28,18 @@ async function loadLogin() {
   isLoginLoading.value = true;
   try {
     const response = await fetchLogin(loginForm.value);
-    isLoginLoading.value = false;
     setUserInfoStorage(response);
     setUserNameStorage(isRecordUser.value);
     createMessage.success('登录成功');
     jumpTo();
   } catch (error) {
     isLoginLoading.value = false;
-    // throw new Error(`重症项目报错上传: ${today}`);
   }
 }
 
 // 登录
 const onLogin = debounce(() => loadLogin(), 200);
 </script>
-
 <template>
   <div class="user-form">
     <el-form :model="loginForm" label-width="80px" label-position="top">
