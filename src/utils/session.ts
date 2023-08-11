@@ -5,7 +5,7 @@
  * @Description: 存储 session
  */
 
-import { LoginResponse } from 'login';
+import { LoginResponse, UserLoginForm } from 'login';
 
 import { formatSessionJson } from '/@/hooks/common';
 
@@ -17,6 +17,16 @@ export const setUserInfo = (info: LoginResponse) => {
 };
 export const removeUserInfo = () => {
   sessionStorage.removeItem(userKey);
+};
+
+// 用户信息保存
+const recordUser = 'recordUser';
+export const getRecordUser = () => formatSessionJson(sessionStorage.getItem(recordUser));
+export const setRecordUser = (userForm: UserLoginForm) => {
+  sessionStorage.setItem(recordUser, JSON.stringify(userForm));
+};
+export const removeRecordUser = () => {
+  sessionStorage.removeItem(recordUser);
 };
 
 // 模块下菜单

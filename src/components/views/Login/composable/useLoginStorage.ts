@@ -2,12 +2,19 @@
  * @Autor: QMZhao
  * @Date: 2023-07-19 17:54:48
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-08 15:33:28
+ * @LastEditTime: 2023-08-11 18:33:55
  * @Description:
  */
 import { LoginResponse, UserLoginForm } from 'login';
 import { MenuForm } from 'MenuConfig';
-import { setUserInfo, removeUserInfo, removeMenuParentId } from '/@/utils/session';
+import {
+  setUserInfo,
+  removeUserInfo,
+  removeMenuParentId,
+  getRecordUser,
+  setRecordUser,
+  removeRecordUser
+} from '/@/utils/session';
 
 import { useModules, useMenus, useButtons } from '/@/store/common/useMenus';
 
@@ -50,6 +57,7 @@ export function useLoginStorage() {
     removeUserInfo();
     // 模块id
     removeMenuParentId();
+
     // ICU系统功能·模块
     setTargetModule(null);
     // 全局模块下菜单
@@ -62,7 +70,7 @@ export function useLoginStorage() {
    * 根据记住用户勾选项填充登录信息
    */
   function setRecordUserName() {
-    const userForm = useGetSessionStorage('recordUser').value as UserLoginForm;
+    const userForm = getRecordUser() as UserLoginForm;
     if (userForm && Object.keys(userForm).length) {
       loginForm.value = userForm;
     } else {
@@ -80,7 +88,7 @@ export function useLoginStorage() {
    * @param loginForm 用户账户密码
    */
   function setUserNameStorage(isRecrod: boolean): void {
-    isRecrod && useSessionStorage('recordUser', loginForm.value);
+    isRecrod ? setRecordUser(loginForm.value) : removeRecordUser();
   }
 
   onBeforeMount(() => {
