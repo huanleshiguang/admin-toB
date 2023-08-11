@@ -75,6 +75,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SimpleCard: typeof import('./src/components/common/SimpleCard.vue')['default']
     SimpleLoading: typeof import('./src/components/common/SimpleLoading.vue')['default']
+    SimpleSelect: typeof import('./src/components/common/SimpleSelect.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
     VxeTableLayout: typeof import('./src/components/VxeTable/VxeTableLayout.vue')['default']
   }

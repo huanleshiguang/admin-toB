@@ -13,7 +13,8 @@ function onCollapaseSideBar(): void {
 </script>
 <template>
   <div :class="['h_100 ']" @click="onCollapaseSideBar">
-    <div :class="['menu-btn-icon h-full uno-flex-center menu-btn-position']">
+    <!-- <div :class="['menu-btn-icon h-full uno-flex-center menu-btn-position']"> -->
+    <div :class="['menu-btn-icon h-full menu-btn-position uno-flex-y-center']">
       <SvgIcon :icon-class="isCollapse ? 'expasion' : 'shou'" color="333" class-name="w-20 h-20"></SvgIcon>
     </div>
   </div>
@@ -21,6 +22,7 @@ function onCollapaseSideBar(): void {
 
 <style lang="scss" scoped>
 .menu-btn-icon {
+  padding-left: 10px;
   background-color: $color-border;
   transition: all 0.3s ease;
 }

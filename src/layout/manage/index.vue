@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2022-08-17 17:29:53
- * @LastEditTime: 2023-08-10 15:55:15
+ * @LastEditTime: 2023-08-11 14:43:16
  * @Reference: 
 -->
 <script lang="ts" setup>
@@ -24,9 +24,9 @@ defineComponent({
         <el-aside width="auto">
           <SideBar />
         </el-aside>
-        <el-main>
-          <div class="main-container w-full h_100">
-            <app-main />
+        <el-main class="main-container">
+          <div class="w-full h_100">
+            <AppMain />
           </div>
         </el-main>
       </el-container>
@@ -42,5 +42,8 @@ defineComponent({
 .page-container {
   min-width: 1280px;
   overflow-x: auto;
+  .main-container {
+    padding: 0;
+  }
 }
 </style>

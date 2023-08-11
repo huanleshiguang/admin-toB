@@ -21,22 +21,15 @@ const {
 
 const { columns, treeConfig, loadTableData } = useMenuTable();
 
-const {
-  isCheckStrictily,
-  onChangeMenuStatus,
-  onAddMenu,
-  onEditMenuForm,
-  onDeleteMenu,
-  onSubmitMenuForm,
-  onChangeMenuFormSearch
-} = useMenuEvent({
-  menuTabeRef,
-  isMenuStatusLoading,
-  menuFormDialogRef,
-  menuFormData,
-  formatMenuStatusChangeName,
-  formatMenuStatusChangeParams
-});
+const { onChangeMenuStatus, onAddMenu, onEditMenuForm, onDeleteMenu, onSubmitMenuForm, onChangeMenuFormSearch } =
+  useMenuEvent({
+    menuTabeRef,
+    isMenuStatusLoading,
+    menuFormDialogRef,
+    menuFormData,
+    formatMenuStatusChangeName,
+    formatMenuStatusChangeParams
+  });
 </script>
 
 <template>
@@ -66,11 +59,6 @@ const {
               <i-ep-search class="el-icon"></i-ep-search>
               <span>搜索</span>
             </el-button>
-            <!-- <el-button  @click="onChangeMenuFormSearch(menuSearchForm)">
-              
-              <i-ep-grid class="el-icon c-blue"></i-ep-grid>
-              <span>搜索</span>
-            </el-button> -->
           </el-form-item>
         </el-form>
       </template>
@@ -118,7 +106,6 @@ const {
     <MenuForm
       ref="menuFormDialogRef"
       v-model:menu-form-data="menuFormData"
-      v-model:is-check-strictily="isCheckStrictily"
       :menu-form-title="menuFormTitle"
       :menu-trees="menuTrees ?? []"
       @handle-submit-menu-form="onSubmitMenuForm"

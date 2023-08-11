@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2022-08-17 17:30:49
- * @LastEditTime: 2023-08-08 10:59:12
+ * @LastEditTime: 2023-08-11 16:03:06
  * @Reference: 
 -->
 <script lang="ts" setup>
@@ -43,10 +43,10 @@ const getCollapaseStatus = computed(() => store.isCollapse);
     @include cursor;
   }
   .sidebar-header_collapse {
-    width: 65px;
+    width: 40px;
   }
   .company-cell {
-    transition: all 0.2s ease-in;
+    transition: all 0.3s ease-in;
     .logo {
       width: 50px;
       height: 50px;
@@ -92,6 +92,9 @@ const getCollapaseStatus = computed(() => store.isCollapse);
     overflow-y: auto;
     box-sizing: border-box;
     background-color: $color-border;
+    :deep(.el-menu--collapse) {
+      width: 40px;
+    }
   }
   .menu-btn {
     height: calc(100% - 730px);
