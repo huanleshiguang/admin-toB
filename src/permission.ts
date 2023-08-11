@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description: 登录权限验证
  * @Date: 2021-07-26 10:46:56
- * @LastEditTime: 2023-08-11 12:45:50
+ * @LastEditTime: 2023-08-11 17:17:11
  * @Reference:
  */
 import { RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
@@ -23,13 +23,24 @@ NProgress.configure({ showSpinner: false }); // NProgress Configuration
 router.beforeEach(async (to: RouteLocationNormalized, _from: RouteLocationNormalized, next: NavigationGuardNext) => {
   // start progress bar
   NProgress.start();
+
   const { setShowSideBar } = useWorkbenchSidebar();
+
   // 判断是否登录
   const { token } = useConfigParams();
 
   // 工作台导航条
   const routerParams: ErrorRouterParams = { toPath: to.path, fromPath: _from.path };
   setShowSideBar(to.meta.showSideBar === false ? to.meta.showSideBar : true);
+
+  // 在登录页无token时, 地址栏错误路径输入跳转到错误页
+  if (!to.name) {
+    next({
+      path: '/error'
+    });
+    return;
+  }
+
   if (to.meta.requireAuth) {
     if (token) {
       useAuthRouter(routerParams, next);
