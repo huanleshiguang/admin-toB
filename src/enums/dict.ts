@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-06 15:17:49
- * @LastEditTime: 2023-08-10 17:13:28
+ * @LastEditTime: 2023-08-11 14:45:29
  * @Description:
  */
 export enum EnvBasePath {
@@ -27,4 +27,16 @@ export enum ApiController {
   DICT_MANAGE = 'DictManage/',
   ORG_MANAGE = 'OrgManage/',
   PRIVS_MANAGE = 'PrivsManage/'
+}
+
+/**
+ * 角色菜单类型
+ */
+export enum MenuType {
+  // 模块
+  MODULE,
+  // 菜单
+  MENU,
+  // 功能菜单
+  BUTTON
 }
