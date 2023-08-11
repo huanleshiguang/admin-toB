@@ -42,13 +42,9 @@ export function useRolesCommon() {
 
   return {
     roleBtnAuth,
-    ...toRefs(
-      reactive({
-        moduleConfigDrawer,
-        rolesTableRef,
-        roleFormTitle,
-        roleFormDialogRef
-      })
-    )
+    moduleConfigDrawer,
+    rolesTableRef,
+    roleFormTitle,
+    roleFormDialogRef
   };
 }

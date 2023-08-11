@@ -109,13 +109,9 @@ export function useRoleTreeData(moduleTreeRef: Ref<TreeStore | null>) {
   });
   return {
     defaultProps,
-    ...toRefs(
-      reactive({
-        getTreeParams,
-        moduleTreesLoading,
-        moduleTrees,
-        isCheckStrictily
-      })
-    )
+    getTreeParams,
+    moduleTreesLoading,
+    moduleTrees,
+    isCheckStrictily
   };
 }

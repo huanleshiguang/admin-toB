@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-08-11 11:50:51
- * @LastEditTime: 2023-08-11 14:58:14
+ * @LastEditTime: 2023-08-11 17:25:29
  * @Description:
  */
 import { NavigationGuardNext } from 'vue-router';
@@ -24,10 +24,10 @@ import { useRouterFrom } from '/@/store/common/useRouterFrom';
  */
 export function useAuthRouter(routerParams: ErrorRouterParams, next: NavigationGuardNext): void {
   const { setRouterFromPath } = useRouterFrom();
-
   const { toPath, fromPath } = routerParams;
   const menus = filterMenus();
   const hasAuth = menus.findIndex((item: MenuForm) => item.routeAddr === toPath);
+
   // 跳转路由是否为登录角色分配路由, 是则跳转, 否则转到错误页面
   if (hasAuth !== -1) {
     next();
@@ -48,7 +48,7 @@ function filterMenus() {
   const userInfoData: LoginResponse<MenuForm> | null = getUserInfo();
   const { userPrivies } = userInfoData || { userPrivies: [] };
   const MENUTYPE = MenuType.MENU;
-  return userPrivies
+  const menus = userPrivies
     .filter((item: MenuForm) => item.menuType === MENUTYPE)
     .concat([
       {
@@ -58,4 +58,5 @@ function filterMenus() {
         routeAddr: '/dashboard'
       }
     ]);
+  return menus;
 }

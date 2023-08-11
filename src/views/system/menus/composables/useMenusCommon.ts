@@ -7,14 +7,14 @@ export function useMenusCommon() {
   const menuConfigInstance = ref<ComponentInternalInstance | null>(getCurrentInstance());
 
   // 表格查询条件
-  const menuSearchForm = reactive({
+  const menuSearchForm = ref({
     menuType: '',
     menuName: ''
   });
   // 菜单表单表头
   const menuFormTitle = ref('');
   // 菜单表单参数
-  const menuFormData = reactive<MenuForm>({
+  const menuFormData = ref<MenuForm>({
     id: '',
     parentId: '',
     menuType: 0,
@@ -115,17 +115,13 @@ export function useMenusCommon() {
     formatMenuStatusChangeName,
     formatMenuStatusChangeParams,
     menuBtnAuth,
-    ...toRefs(
-      reactive({
-        menuSearchForm,
-        menuConfigInstance,
-        menuTabeRef,
-        menuFormDialogRef,
-        isMenuStatusLoading,
-        menuFormTitle,
-        menuTrees,
-        menuFormData
-      })
-    )
+    menuSearchForm,
+    menuConfigInstance,
+    menuTabeRef,
+    menuFormDialogRef,
+    isMenuStatusLoading,
+    menuFormTitle,
+    menuTrees,
+    menuFormData
   };
 }

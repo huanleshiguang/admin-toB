@@ -64,12 +64,8 @@ export function useMenuTable() {
   const treeConfig = { transform: true, rowField: 'id', parentField: 'parentId' };
 
   return {
-    ...toRefs(
-      reactive({
-        columns,
-        treeConfig,
-        loadTableData
-      })
-    )
+    columns,
+    treeConfig,
+    loadTableData
   };
 }
