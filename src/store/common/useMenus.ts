@@ -1,5 +1,14 @@
+/*
+ * @Autor: QMZhao
+ * @Date: 2023-08-07 17:25:42
+ * @LastEditTime: 2023-08-11 14:14:11
+ * @Description:
+ */
 import { MenuForm } from 'MenuConfig';
 import { useFilterMenus } from '/@/hooks/common/useFilterMenu';
+
+import { MenuType } from '/@/enums/dict';
+
 import { getMenuParentId } from '/@/utils/session';
 import { sortBy } from '/@/utils';
 
@@ -8,7 +17,7 @@ import { sortBy } from '/@/utils';
  */
 export const useModules = defineStore('modules', () => {
   // MENUTYPE: 0 -- 目录类型
-  const MENUTYPE = 0;
+  const MENUTYPE = MenuType.MODULE;
   const { menuList } = useFilterMenus(MENUTYPE);
   const targetModules = ref<MenuForm[] | null>(menuList);
   function setTargetModule(value: null | MenuForm[]) {
@@ -27,7 +36,7 @@ export const useModules = defineStore('modules', () => {
  */
 export const useMenus = defineStore('menus', () => {
   // MENUTYPE: 1 -- 菜单类型
-  const MENUTYPE = 1;
+  const MENUTYPE = MenuType.MENU;
   const parentId = getMenuParentId();
   const { menuList } = useFilterMenus(MENUTYPE, parentId);
   const targetMenus = ref<MenuForm[] | null>(menuList);
@@ -48,7 +57,7 @@ export const useMenus = defineStore('menus', () => {
  */
 export const useButtons = defineStore('buttons', () => {
   // MENUTYPE: 2 -- 功能按钮类型
-  const MENUTYPE = 2;
+  const MENUTYPE = MenuType.BUTTON;
   const { buttonList } = useFilterMenus(MENUTYPE);
 
   const targeButtons = ref<string[] | null>(buttonList);
@@ -60,7 +69,7 @@ export const useButtons = defineStore('buttons', () => {
     }
     btns &&
       btns.map((item: MenuForm) => {
-        item.menuType === 2 && buttons.push(item.menuCode);
+        item.menuType === MENUTYPE && buttons.push(item.menuCode);
       });
     targeButtons.value = buttons;
   }

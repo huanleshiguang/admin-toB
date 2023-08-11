@@ -6,12 +6,15 @@
  * @Reference:
  */
 
+/**
+ * 护士 / 医生工作站侧边栏
+ */
 export const useWorkbenchSidebar = defineStore('workbenchSidebar', () => {
   const leftBar = reactive({
     showSideBar: false
   });
 
-  function setShowSideBar(data: boolean) {
+  function setShowSideBar(data: boolean): void {
     leftBar.showSideBar = data;
   }
 

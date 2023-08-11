@@ -6,7 +6,9 @@
  * @Reference:
  */
 
-// 设置侧边栏伸缩状态
+/**
+ * 设置侧边栏伸缩状态
+ */
 export const useMenuCollapse = defineStore('collapse', () => {
   const isCollapse = ref(false);
   function setCollapse(collapsed: boolean) {

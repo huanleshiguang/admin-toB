@@ -1,5 +1,7 @@
 import { MenuForm } from 'MenuConfig';
 
+import { MenuType } from '/@/enums/dict';
+
 import { getUserInfo } from '/@/utils/session';
 
 import { sortBy } from '/@/utils';
@@ -17,10 +19,10 @@ export function useFilterMenus(menuType: number, parentId = '') {
   const buttonList: string[] = [];
   // 模块 / 菜单
   const menuList = ref<MenuForm[]>([]);
-  if (menuType <= 1) {
+  if (menuType <= MenuType.MENU) {
     menuList.value = userPrivies
       .filter((item: MenuForm) => {
-        if (menuType === 1) {
+        if (menuType === MenuType.MENU) {
           return item.parentId === parentId;
         }
         return item.menuType === menuType;
@@ -29,7 +31,7 @@ export function useFilterMenus(menuType: number, parentId = '') {
   } else {
     for (let i = 0; i < userPrivies.length; i++) {
       const item = userPrivies[i];
-      item.menuType === 2 && buttonList.push(item.menuCode);
+      item.menuType === MenuType.BUTTON && buttonList.push(item.menuCode);
     }
   }
   return {

@@ -51,7 +51,6 @@ const dashboardNavData = ref({
   userName: ''
 });
 
-
 const isDashboard = computed<boolean>(() => {
   const dashboardPath = '/dashboard';
   return priavteRoute.path === dashboardPath ? false : true;
@@ -109,7 +108,6 @@ function onBackToDashboard() {
 
 onMounted(() => {
   initUserInfo();
-  console.log(priavteRoute);
 });
 </script>
 
