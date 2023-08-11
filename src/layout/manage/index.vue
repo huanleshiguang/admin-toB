@@ -42,5 +42,8 @@ defineComponent({
 .page-container {
   min-width: 1280px;
   overflow-x: auto;
+  :deep(.el-main) {
+    padding: 0;
+  }
 }
 </style>
