@@ -202,13 +202,13 @@ onMounted(async () => {
   <div class="table-layout">
     <slot name="title" v-bind="$attrs"></slot>
     <header v-if="showHeader" class="table-layout__header">
-      <div class="flex flex-items-center flex-wrap ml_10">
+      <div class="flex flex-items-center flex-wrap">
         <slot name="operator-left" v-bind="$attrs"></slot>
       </div>
 
       <flex-spacer></flex-spacer>
 
-      <div class="flex flex-items-center flex-wrap mr_10">
+      <div class="flex flex-items-center flex-wrap">
         <slot name="operator-right" v-bind="$attrs"></slot>
       </div>
     </header>
@@ -239,7 +239,7 @@ onMounted(async () => {
             ></vxe-column>
             <slot name="columns" v-bind="$attrs"></slot>
             <template #empty>
-              <slot name="empty"></slot>
+              <slot name="empty"><el-empty description="暂无数据" /></slot>
             </template>
           </vxe-table>
         </div>
