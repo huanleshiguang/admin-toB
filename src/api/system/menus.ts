@@ -36,7 +36,6 @@ export function fetchEditMenu<T>(data: T) {
   return defHttp.post({ url: MENUURL.ORG_MENU_EDIT, data });
 }
 
-
 /**
  * 删除菜单信息
  */

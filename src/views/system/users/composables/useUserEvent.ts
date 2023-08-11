@@ -2,16 +2,24 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:11:43
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-07 10:04:06
+ * @LastEditTime: 2023-08-07 18:27:35
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserEvent.ts
- * @Description: 
+ * @Description:
  */
-import * as userType from 'userTypeModules';
-
-export function useUserEvent({ ...args }) {
-  const { vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params } = args
+import userType from 'userTypeModules';
+import areaType from 'areaTypeModules';
+interface argsType {
+  vxeTableLayoutRef: Ref<any>;
+  treeSelectRef: Ref<any>;
+  updateRef: Ref<any>;
+  hospAreaList: Ref<areaType.hospAreaInfo[]>;
+  hospAreaDepList: Ref<areaType.resDepInfo[]>;
+  params: Ref<any>;
+}
+export function useUserEvent(args: argsType) {
+  const { vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params } = args;
   const { createMessage } = useMessage();
-  
+
   /**
    * 新增
    */
@@ -21,7 +29,7 @@ export function useUserEvent({ ...args }) {
 
   /**
    * 编辑
-   * @param userInfo 用户信息
+   * @param userInfo - 用户信息
    */
   const editUser = (userInfo: userType.userInfo) => {
     updateRef.value.open(userInfo);
@@ -32,8 +40,8 @@ export function useUserEvent({ ...args }) {
    * @param userInfo - 用户信息
    */
   const deleteUser = async (userInfo: userType.userInfo) => {
-    await deleteUserInfo(userInfo.id) ? reFresh() : createMessage.error('删除用户失败')
-  }
+    (await deleteUserInfo(userInfo.id)) ? reFresh() : createMessage.error('删除用户失败');
+  };
 
   /**
    * 搜索
@@ -44,19 +52,18 @@ export function useUserEvent({ ...args }) {
 
   /**
    * 更新Table
-   * @param isReturnPageOne 是否回退到第一页
+   * @param isReturnPageOne - 是否回退到第一页
    */
   const reFresh = (isReturnPageOne: Boolean = false) => {
     vxeTableLayoutRef.value.refresh(isReturnPageOne);
-  }
-  
+  };
+
   /**
    * index组件挂载后，加载初始院区列表
-   * @returns 
    */
   const loadInitHsopAreaList = async () => {
     const result = await fetchHosptAreaInfo();
-    (hospAreaList).value = result || [];
+    hospAreaList.value = result || [];
   };
 
   /**
@@ -78,7 +85,7 @@ export function useUserEvent({ ...args }) {
   };
 
   /**
-   * 
+   *
    * @param userInfo 列表当前行用户
    */
   const currentChangeEvent = (userInfo: userType.userInfo) => {
@@ -86,22 +93,22 @@ export function useUserEvent({ ...args }) {
   };
 
   /**
-   * clear后，请求参数置空值
+   * 下拉框clear后，请求等参数置空值
    */
   const handleClear = () => {
     treeSelectRef.value.tempData = '';
     params.value.AreaId = '';
     params.value.DeptId = '';
     hospAreaDepList.value = [];
-  }
+  };
 
   /**
    * 加载表格数据
    * @returns total:数据总数,pagaData:数据列表
    */
-  async function loadTableData({pageIndex,pageSize}) {
-    params.value.PageIndex = pageIndex
-    params.value.PageSize = pageSize
+  async function loadTableData({ pageIndex, pageSize }) {
+    params.value.PageIndex = pageIndex;
+    params.value.PageSize = pageSize;
     try {
       const result = await fetchHosptAreaDepUserList(params.value);
       const { pageData, total } = result || {};
@@ -110,9 +117,9 @@ export function useUserEvent({ ...args }) {
         pageData
       };
     } catch (error) {
-      createMessage.error('获取人员信息出现未知错误!');
+      createMessage.error('获取人员信息失败!');
     }
-  };
+  }
   return {
     addUser,
     editUser,
@@ -125,5 +132,5 @@ export function useUserEvent({ ...args }) {
     handleClear,
     loadTableData,
     reFresh
-  }
+  };
 }

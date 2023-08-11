@@ -2,7 +2,7 @@
  * @Autor: ZhouHao joehall@foxmail.com
  * @Date: 2023-02-17 22:45:44
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-13 14:53:34
+ * @LastEditTime: 2023-08-11 16:07:57
  * @Description: 
  * @FilePath: /vue-vite-elementplus-zhao/src/views/system/menu.vue
 -->
@@ -10,9 +10,17 @@
   <div class="three-container w-full h_100">
     <div ref="container" class="w-full h_100">
       <!-- <el-button type="primary" @click="testClick">test</el-button> -->
-      <vxe-table-layout ref="vxeTableLayout" class="h_100" border has-index :loader="initMethod"
-        :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="columnsList"
-        @current-change="currentChangeEvent">
+      <vxe-table-layout
+        ref="vxeTableLayout"
+        class="h_100"
+        border
+        has-index
+        :loader="initMethod"
+        :row-config="{ isCurrent: true, isHover: true }"
+        height="100%"
+        :columns-list="columnsList"
+        @current-change="currentChangeEvent"
+      >
         <template #operator-left>
           <div>
             <el-input v-model="value" placeholder="请输入设置名称查询" size="default" :prefix-icon="Search" />
@@ -25,7 +33,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import VxeTableLayout from '/@/components/VxeTable/VxeTableLayout.vue';
 import { VxeTableEvents } from 'vxe-table';
 import { Search } from '@element-plus/icons-vue';
 
@@ -33,7 +40,7 @@ const value = ref('');
 const columnsList = [
   {
     title: '设置项名称',
-    field: 'name',
+    field: 'name'
   },
   {
     title: '配置值',

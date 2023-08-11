@@ -2,15 +2,24 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-18 09:32:45
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-29 15:03:55
+ * @LastEditTime: 2023-08-11 16:14:17
  * @FilePath: \servious-illness-admin\src\components\common\CommonTree.vue
  * @Description: 公共tree-select组件
 -->
 <template>
   <div class="tree-wrapper">
-    <el-tree-select ref="treeRef" v-model="tempData" :data="getTreeData" :placeholder="placeholder"
-      :multiple="multiple" :props="defaultProps" check-strictly node-key="id" @node-click="handleNodeClick">
-      <template v-if="!showCheckbox" v-slot="{ node, data }">
+    <el-tree-select
+      ref="treeRef"
+      v-model="tempData"
+      :data="getTreeData"
+      :placeholder="placeholder"
+      :multiple="multiple"
+      :props="defaultProps"
+      check-strictly
+      node-key="id"
+      @node-click="handleNodeClick"
+    >
+      <template v-if="!showCheckbox" #default="{ node, data }">
         <el-icon v-if="data.children.length && node.expanded">
           <!-- 有子节点并且已展开 -->
           <slot name="icon-haschild&expanded" />
@@ -28,18 +37,22 @@
     </el-tree-select>
   </div>
 </template>
-  
-<script setup lang='ts'>
+
+<script setup lang="ts">
 import { ElTree } from 'element-plus';
-import 'element-plus/es/components/tree/style/css'
+import 'element-plus/es/components/tree/style/css';
 
 const props = defineProps({
   data: {
     type: Array,
+    // eslint-disable-next-line vue/require-valid-default-prop
     default: [],
     required: true
   },
-  modelData:{},
+  modelData: {
+    type: String || Array,
+    default: '' || []
+  },
   // 是否展示checkbox
   showCheckbox: {
     type: Boolean,
@@ -64,13 +77,17 @@ const props = defineProps({
     defalue: false
   }
 });
-const tempData = ref()
+const tempData = ref();
 defineExpose({
   tempData
-})
-watch(() => props.modelData, (newVal) => {
-  tempData.value = newVal;
-},{ immediate: true })
+});
+watch(
+  () => props.modelData,
+  (newVal) => {
+    tempData.value = newVal;
+  },
+  { immediate: true }
+);
 const defaultProps = {
   children: `${props.transmitProps.children}`,
   label: `${props.transmitProps.label}`
@@ -83,7 +100,7 @@ const emits = defineEmits(['handleNodeClick', 'value']);
 const handleNodeClick = () => {
   const id = treeRef.value?.getCurrentKey();
   emits('handleNodeClick', id);
-}
+};
 </script>
-  
+
 <style scoped lang="scss"></style>

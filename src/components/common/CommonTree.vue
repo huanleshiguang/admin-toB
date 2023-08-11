@@ -12,9 +12,16 @@
       <el-input v-model="filterText" lazy placeholder="请输入科室名称搜索" size="default" />
     </div>
     <el-scrollbar>
-      <el-tree ref="treeRef" :data="getTreeData" :props="defaultProps" :showCheckbox="showCheckbox"
-        :filter-node-method="filterNode" node-key="id" @node-click="handleNodeClick">
-        <template v-if="!showCheckbox" v-slot="{ node, data }">
+      <el-tree
+        ref="treeRef"
+        :data="getTreeData"
+        :props="defaultProps"
+        :show-checkbox="showCheckbox"
+        :filter-node-method="filterNode"
+        node-key="id"
+        @node-click="handleNodeClick"
+      >
+        <template v-if="!showCheckbox" #default="{ node, data }">
           <el-icon v-if="data.children.length && node.expanded">
             <!-- 有子节点并且已展开 -->
             <slot name="icon-haschild&expanded" />
@@ -33,10 +40,10 @@
     </el-scrollbar>
   </div>
 </template>
-  
-<script setup lang='ts'>
+
+<script setup lang="ts">
 import { ElTree } from 'element-plus';
-import 'element-plus/es/components/tree/style/css'
+import 'element-plus/es/components/tree/style/css';
 
 const props = defineProps({
   data: {
@@ -58,8 +65,8 @@ const props = defineProps({
   transmitProps: {
     type: Object,
     required: true
-  },
-})
+  }
+});
 const defaultProps = {
   children: `${props.transmitProps.children}`,
   label: `${props.transmitProps.label}`
@@ -71,19 +78,18 @@ const getTreeData = computed(() => props.data);
 
 watch(filterText, (val) => {
   treeRef.value!.filter(val);
-})
+});
 const filterNode = (value: string, data: any) => {
   if (!value) return true;
   return data[props.transmitProps.label].includes(value);
-}
+};
 const emits = defineEmits(['handleNodeClick']);
 const handleNodeClick = () => {
   const id = treeRef.value?.getCurrentKey();
-  emits('handleNodeClick',id);
-}
-
+  emits('handleNodeClick', id);
+};
 </script>
-  
+
 <style scoped lang="scss">
 .tree-wrapper {
   flex-grow: 1;
