@@ -4,17 +4,15 @@
  * @LastEditors: ZhouHao Joehall@foxmail.com
  * @LastEditTime: 2023-08-03 17:07:06
  * @FilePath: \servious-illness-admin\src\views\system\users\components\composiables\useUpdateCommon.ts
- * @Description: 
+ * @Description:
  */
 
 import type { FormInstance, FormRules } from 'element-plus';
-import roleType from 'roleTypeModules'
-import areaType from 'areaTypeModules'
-import userType from 'userTypeModules'
+import roleType from 'roleTypeModules';
+import areaType from 'areaTypeModules';
+import userType from 'userTypeModules';
 
 export function useUpdateCommon() {
-
-
   const dialogLayoutRef = ref();
   const belongToTreeRef = ref();
   const bePartTreeRef = ref();
@@ -34,15 +32,15 @@ export function useUpdateCommon() {
   const roleList = ref<roleType.roleInfo[]>([]);
 
   /**
-  *  同级目录下的update组件：表单 rules
-  */
+   *  同级目录下的update组件：表单 rules
+   */
   const rules = reactive<FormRules>({
     deptName: [
       {
         required: true,
         message: '请输入所属科室!',
         trigger: 'change'
-      },
+      }
     ],
     userName: [
       {
@@ -51,32 +49,39 @@ export function useUpdateCommon() {
         trigger: 'change'
       }
     ],
-    genderName: [{
-      required: true,
-      message: '请输入性别！',
-      trigger: 'change'
-    }],
-    userWorkNo: [{
-      required: true,
-      message: '请输入用户工号！',
-      trigger: 'change'
-    }],
-    positionLevelName: [{
-      required: true,
-      message: '请选择职务类别！',
-      trigger: 'change'
-    }
+    genderName: [
+      {
+        required: true,
+        message: '请输入性别！',
+        trigger: 'change'
+      }
     ],
-    userRoleIds: [{
-      required: true,
-      message: '请选择用户角色！',
-      trigger: 'change'
-    }]
+    userWorkNo: [
+      {
+        required: true,
+        message: '请输入用户工号！',
+        trigger: 'change'
+      }
+    ],
+    positionLevelName: [
+      {
+        required: true,
+        message: '请选择职务类别！',
+        trigger: 'change'
+      }
+    ],
+    userRoleIds: [
+      {
+        required: true,
+        message: '请选择用户角色！',
+        trigger: 'change'
+      }
+    ]
   });
 
   /**
-  * userForm:表单
-  */
+   * userForm:表单
+   */
   const userForm = ref<userType.userForm>({
     deptId: '',
     deptIds: [],
@@ -101,8 +106,8 @@ export function useUpdateCommon() {
         userFormtitle,
         rules,
         userForm,
-        userFormRef,
+        userFormRef
       })
     )
-  }
+  };
 }

@@ -75,8 +75,6 @@ const menuTypes = setMenuTypeSelects();
 
 // 是否缓存
 const simpleBooleanSelects = setSimpleBooleanSelects();
-// // 菜单树是否父子关联
-// const isCheckStrictily = ref(false)
 
 const defaultProps = {
   label: 'menuName',

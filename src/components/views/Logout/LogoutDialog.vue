@@ -1,13 +1,13 @@
 <!--
  * @Autor: QMZhao
  * @Date: 2023-08-07 13:56:05
- * @LastEditTime: 2023-08-09 10:29:28
+ * @LastEditTime: 2023-08-10 14:55:07
  * @Description: 
 -->
 <script lang="ts" setup>
 import { Logout } from 'login';
 
-import { useUserInfo } from '/@/store/common/useUserInfo';
+import { getUserInfo } from '/@/utils/session';
 
 const logoutDialogProps = withDefaults(
   defineProps<{
@@ -22,7 +22,9 @@ const logoutDialogEmits = defineEmits<{
   (event: 'update:logoutDialogVisiable', visiable: boolean);
 }>();
 
-const { userInfoData } = storeToRefs(useUserInfo());
+const { createMessage } = useMessage();
+
+const { userInfo, accountTokenInfo } = getUserInfo();
 
 const getVisiable = computed({
   get: () => {
@@ -33,14 +35,11 @@ const getVisiable = computed({
   }
 });
 
-// 用户信息 pinia 数据
-const getUserInfoData = computed(() => userInfoData.value);
-
 const privateRouter = useRouter();
 
 // 退出提示信息
 const logoutDialogData = reactive({
-  message: `是否退出 "${getUserInfoData.value?.userName}" 账号`,
+  message: `是否退出 "${userInfo.userName}" 账号`,
   loading: false
 });
 
@@ -57,10 +56,11 @@ function onComfirmLogout(): void {
 
 // 退出注销请求
 async function loadLogout() {
-  const params: Logout = { accountInfoId: getUserInfoData.value!.id };
+  const params: Logout = { accountInfoId: accountTokenInfo.accountInfo.accountInfoId };
   logoutDialogData.loading = true;
   try {
     await fetchLogout(params);
+    createMessage.success('退出成功!');
     privateRouter.replace({
       path: '/'
     });
@@ -73,7 +73,7 @@ async function loadLogout() {
 
 // 关闭弹窗事件
 function onCloseLogoutDialog(): void {
-  logoutDialogData.message = `是否退出 "${getUserInfoData.value?.userName}" 账号`;
+  logoutDialogData.message = `是否退出 "${userInfo.userName}" 账号`;
   logoutDialogData.loading = false;
 }
 </script>

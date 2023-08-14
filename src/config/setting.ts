@@ -1,5 +1,11 @@
-import { UserConfig } from "vite";
-import { useServer } from "./server";
+/*
+ * @Autor: QMZhao
+ * @Date: 2023-07-05 18:18:46
+ * @LastEditTime: 2023-08-10 11:03:11
+ * @Description:
+ */
+import { UserConfig } from 'vite';
+import { useServer } from './server';
 
 export function configSetting(env: Recordable): UserConfig {
   return {

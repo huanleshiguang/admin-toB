@@ -20,7 +20,7 @@ export function useRoleTable() {
     {
       title: '角色代码',
       field: 'roleCode',
-      headerAlign: 'center',
+      headerAlign: 'center'
     },
     {
       title: '描述',
@@ -30,11 +30,7 @@ export function useRoleTable() {
   ];
 
   return {
-    ...toRefs(
-      reactive({
-        columns,
-        loadTableData
-      })
-    )
+    columns,
+    loadTableData
   };
 }

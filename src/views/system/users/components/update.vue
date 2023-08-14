@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-07 09:53:33
+ * @LastEditTime: 2023-08-07 17:07:12
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 人员管理新增与编辑
 -->
@@ -10,15 +10,24 @@
   <DialogLayout ref="dialogLayoutRef" show-close :title="userFormtitle" @sure="sureMethod">
     <el-form ref="userFormRef" :model="userForm" :rules="rules" label-width="auto" label-position="right">
       <el-form-item label="所属科室" prop="deptName">
-        <common-tree-select ref="belongToTreeRef" :data="hospAreaDepList" :modelData="userForm.deptId"
-          :transmit-props="transmitProps" @handleNodeClick="handlePartOfDept">
-        </common-tree-select>
+        <common-tree-select
+          ref="belongToTreeRef"
+          :data="hospAreaDepList"
+          :model-data="userForm.deptId"
+          :transmit-props="transmitProps"
+          @handleNodeClick="handlePartOfDept"
+        ></common-tree-select>
       </el-form-item>
       <el-form-item label="参与科室" prop="bePartOfDeptName">
-        <common-tree-select ref="bePartTreeRef" :data="hospAreaDepList" :modelData="userForm.deptIds"
-          :multiple="isMultiple" placeholder="选择参与科室（可多选）" :transmit-props="transmitProps"
-          @handleNodeClick="handleClickPartInDept">
-        </common-tree-select>
+        <common-tree-select
+          ref="bePartTreeRef"
+          :data="hospAreaDepList"
+          :model-data="userForm.deptIds"
+          :multiple="isMultiple"
+          placeholder="选择参与科室（可多选）"
+          :transmit-props="transmitProps"
+          @handleNodeClick="handleClickPartInDept"
+        ></common-tree-select>
       </el-form-item>
       <el-form-item label="用户姓名" prop="userName">
         <el-input v-model="userForm.userName" placeholder="请输入用户姓名" />
@@ -40,8 +49,13 @@
       </el-form-item>
       <el-form-item label="用户角色" prop="userRoleIds">
         <el-select v-model="userForm.userRoleIds" multiple placeholder="请选择（可多选）">
-          <el-option v-for="item in roleList" :key="item.id" :label="item.roleName" :value="item.id"
-            @click="handleRoleSelected(item)" />
+          <el-option
+            v-for="item in roleList"
+            :key="item.id"
+            :label="item.roleName"
+            :value="item.id"
+            @click="handleRoleSelected(item)"
+          />
         </el-select>
       </el-form-item>
     </el-form>
@@ -49,18 +63,43 @@
 </template>
 
 <script setup lang="ts">
-import { useUpdateCommon } from './composiables/useUpdateCommon'
-const { rules, userForm, userFormtitle, dialogLayoutRef, belongToTreeRef, bePartTreeRef,
-  hospAreaDepList, roleList, transmitProps, isMultiple, userFormRef } = useUpdateCommon();
+import { useUpdateCommon } from './composiables/useUpdateCommon';
+const {
+  rules,
+  userForm,
+  userFormtitle,
+  dialogLayoutRef,
+  belongToTreeRef,
+  bePartTreeRef,
+  hospAreaDepList,
+  roleList,
+  transmitProps,
+  isMultiple,
+  userFormRef
+} = useUpdateCommon();
 import { useUpdateEvent } from './composiables/useUpdateEvent';
-const { loadHospAreaDepTree, loadRoleList, handleRoleSelected, sureMethod, handlePartOfDept, handleClickPartInDept, open, close } = useUpdateEvent({
-  dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm, userFormRef
+const {
+  loadHospAreaDepTree,
+  loadRoleList,
+  handleRoleSelected,
+  sureMethod,
+  handlePartOfDept,
+  handleClickPartInDept,
+  open,
+  close
+} = useUpdateEvent({
+  dialogLayoutRef,
+  hospAreaDepList,
+  roleList,
+  userFormtitle,
+  userForm,
+  userFormRef
 });
 
 onMounted(() => {
   loadHospAreaDepTree();
   loadRoleList();
-})
+});
 defineExpose({
   open,
   close

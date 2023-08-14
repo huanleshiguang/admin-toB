@@ -1,7 +1,7 @@
 <!--
  * @Autor: QMZhao
  * @Date: 2023-07-14 15:48:54
- * @LastEditTime: 2023-08-09 12:46:33
+ * @LastEditTime: 2023-08-11 15:56:44
  * @Description: 
 -->
 <script lang="ts" setup>
@@ -38,10 +38,11 @@ const getTargetMenus = computed(() => targetMenus.value);
     popper-effect="dark"
   >
     <template v-for="item in getTargetMenus" :key="item.id">
-      <el-menu-item :index="item.routeAddr" class="menu-item_custom">
+      <el-menu-item :index="item.routeAddr" class="menu-item__custom">
         <span
           :class="[
             'menu-icon',
+            'uno-flex-center',
             `iconfont icon-${item.menuIcon}`,
             currentRouteName === item.routeAddr && 'menu-icon__trigger'
           ]"
@@ -59,16 +60,27 @@ const getTargetMenus = computed(() => targetMenus.value);
 <style scoped lang="scss">
 .qm-menu {
   border-right-color: transparent;
+  padding: 0;
   :deep(.is-active) {
     background-color: $color-primary;
   }
 }
+.qm-menu .el-menu--collapse {
+  width: 40px;
+}
+
+.menu-item__custom {
+  :deep(.el-menu-tooltip__trigger) {
+    justify-content: center;
+    padding: 0;
+  }
+}
+
 .menu-icon {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   color: $color-primary;
-  display: inline-block;
-  margin-right: 5px;
+  // display: inline-block;
   &::before {
     font-size: 42px;
   }

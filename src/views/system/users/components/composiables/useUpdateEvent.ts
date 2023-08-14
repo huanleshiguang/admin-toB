@@ -2,32 +2,34 @@
  * @Author: ZhouHao Joehall@foxmail.com
  * @Date: 2023-08-02 17:21:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-07 10:02:49
- * @Descripttion: 
+ * @LastEditTime: 2023-08-08 10:16:24
+ * @Descripttion:
  */
-import userType from 'userTypeModules'
-import roleType from 'roleTypeModules'
-import areaType from 'areaTypeModules'
+import userType from 'userTypeModules';
+import roleType from 'roleTypeModules';
+import areaType from 'areaTypeModules';
 import { FormInstance } from 'element-plus';
+import { cloneDeep } from 'lodash-es';
 
 interface argsType {
-  userFormRef: Ref<FormInstance | undefined>
-  dialogLayoutRef: Ref<any>
-  hospAreaDepList: Ref<areaType.resHospAreaDepTree[]>
-  roleList: Ref<roleType.roleInfo[]>
-  userFormtitle: Ref<string>
-  userForm: Ref<userType.userForm>,
+  userFormRef: Ref<FormInstance | undefined>;
+  dialogLayoutRef: Ref<any>;
+  hospAreaDepList: Ref<areaType.resHospAreaDepTree[]>;
+  roleList: Ref<roleType.roleInfo[]>;
+  userFormtitle: Ref<string>;
+  userForm: Ref<userType.userForm>;
 }
 export function useUpdateEvent(args: argsType) {
-  const { userFormRef, dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm } = args
+  const { userFormRef, dialogLayoutRef, hospAreaDepList, roleList, userFormtitle, userForm } = args;
+  const userFormCopy = cloneDeep(userForm.value);
 
   /**
    *  加载院区科室组合Tree
    */
   const loadHospAreaDepTree = async () => {
     const result = await fetchHospAreaDepTree();
-    hospAreaDepList.value = result || []
-  }
+    hospAreaDepList.value = result || [];
+  };
 
   /**
    * 加载角色下拉框
@@ -44,7 +46,7 @@ export function useUpdateEvent(args: argsType) {
   const handleRoleSelected = (roleInfo: roleType.roleInfo) => {
     console.log(roleInfo.id, 'roleInfo.id');
     // userForm.value.userRoleIds.value = item.id
-  }
+  };
 
   /**
    * userForm赋值
@@ -52,7 +54,15 @@ export function useUpdateEvent(args: argsType) {
    */
   const open = (userInfo: userType.userInfo) => {
     userFormtitle.value = `${userInfo ? '编辑' : '新增'}用户`;
-    const { deptId, deptIds, userName, userIdNo, positionLevelName, genderName, userTel, userWorkNo, userRoleIds } = userInfo;
+    // 新增
+    if (!userInfo) {
+      userForm.value = cloneDeep(userFormCopy);
+      dialogLayoutRef.value.open();
+      return;
+    }
+    // 编辑
+    const { deptId, deptIds, userName, userIdNo, positionLevelName, genderName, userTel, userWorkNo, userRoleIds } =
+      userInfo;
     userForm.value = Object.assign(userForm.value, {
       deptId,
       deptIds,
@@ -63,7 +73,7 @@ export function useUpdateEvent(args: argsType) {
       userTel,
       userWorkNo,
       userRoleIds
-    })
+    });
     dialogLayoutRef.value.open();
   };
   const close = () => {
@@ -86,9 +96,9 @@ export function useUpdateEvent(args: argsType) {
     //   }
     // }).catch((error) => { throw (error) })
     // console.log(form.value, 'sure form');
-  }
-  const handlePartOfDept = () => { }
-  const handleClickPartInDept = () => { }
+  };
+  const handlePartOfDept = () => {};
+  const handleClickPartInDept = () => {};
   return {
     loadHospAreaDepTree,
     loadRoleList,
@@ -98,5 +108,5 @@ export function useUpdateEvent(args: argsType) {
     sureMethod,
     handlePartOfDept,
     handleClickPartInDept
-  }
+  };
 }

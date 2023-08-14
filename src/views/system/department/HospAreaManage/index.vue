@@ -8,9 +8,17 @@
 -->
 <template>
   <div class="three-container w-full h_100">
-    <vxe-table-layout ref="vxeTableLayoutRef" class="h_100" border has-index :loader="initMethod"
-      :row-config="{ isCurrent: true, isHover: true }" height="100%" :columns-list="hospAreacolumnsList"
-      @current-change="currentChangeEvent">
+    <vxe-table-layout
+      ref="vxeTableLayoutRef"
+      class="h_100"
+      border
+      has-index
+      :loader="initMethod"
+      :row-config="{ isCurrent: true, isHover: true }"
+      height="100%"
+      :columns-list="hospAreacolumnsList"
+      @current-change="currentChangeEvent"
+    >
       <template #operator-left>
         <h2>院区管理</h2>
       </template>
@@ -22,8 +30,14 @@
         <vxe-column title="操作" align="center" fixed="right">
           <template #default="{ row }">
             <el-button link type="primary" @click="editRow(row)">编辑</el-button>
-            <el-popconfirm confirm-button-text="是" cancel-button-text="否" :icon="InfoFilled" icon-color="#626AEF"
-              title="确定要删除这条信息吗？" @confirm="deleteRow(row)">
+            <el-popconfirm
+              confirm-button-text="是"
+              cancel-button-text="否"
+              :icon="InfoFilled"
+              icon-color="#626AEF"
+              title="确定要删除这条信息吗？"
+              @confirm="deleteRow(row)"
+            >
               <template #reference>
                 <el-button link type="danger">删除</el-button>
               </template>
@@ -36,15 +50,17 @@
     <update ref="updateRef" @reFetchtableList="reFresh" />
   </div>
 </template>
-  
-<script setup lang='ts'>
+
+<script setup lang="ts">
 import { update } from './components';
-import { Plus, InfoFilled } from '@element-plus/icons-vue'
-import { useHospManageCommon } from './composiables/useHospManageCommon'
-import { useHospManageEvent } from './composiables/useHospManageEvent'
+import { Plus, InfoFilled } from '@element-plus/icons-vue';
+import { useHospManageCommon } from './composiables/useHospManageCommon';
+import { useHospManageEvent } from './composiables/useHospManageEvent';
 const { vxeTableLayoutRef, updateRef, hospAreacolumnsList } = useHospManageCommon();
 const { currentChangeEvent, initMethod, add, editRow, deleteRow, reFresh } = useHospManageEvent({
-  vxeTableLayoutRef, updateRef, hospAreacolumnsList
-})
+  vxeTableLayoutRef,
+  updateRef,
+  hospAreacolumnsList
+});
 </script>
-<style scoped lang='scss'></style>
+<style scoped lang="scss"></style>

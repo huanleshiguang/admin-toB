@@ -2,21 +2,22 @@
  * @Autor: QMZhao
  * @Date: 2023-07-24 19:26:48
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-07-29 09:47:30
+ * @LastEditTime: 2023-08-11 10:07:14
  * @Description: 权限管理
  * @FilePath: \servious-illness-admin\src\api\system\role.ts
  */
 import defHttp from '/@/utils/request';
-import * as ROLE from './types/role'
-const common = '/Organization/';
+import { resRoleInfo } from './types/role';
+
+import { ApiBranch, ApiController } from '/@/enums/dict';
 
 enum ROLEURL {
-  ROLE_TREE = `${common}RoleManage/GetOrgRoleTrees`,
-  ROLE_LIST = `${common}RoleManage/GetOrgRoleLists`,
-  SAVE_ROLE = `${common}RoleManage/SaveOrgRoleInfo`,
-  DELETE_ROLE = `${common}RoleManage/DeleteOrgRoleInfo`,
-  ROLE_PRIVS = `${common}PrivsManage/GetOrgUserRolePrivs`,
-  SAVE_ROLE_PRIVS = `${common}PrivsManage/SavePrivsInfo`
+  ROLE_TREE = `${ApiBranch.ORGANIZATION}${ApiController.Role_MANAGE}GetOrgRoleTrees`,
+  ROLE_LIST = `${ApiBranch.ORGANIZATION}${ApiController.Role_MANAGE}GetOrgRoleLists`,
+  SAVE_ROLE = `${ApiBranch.ORGANIZATION}${ApiController.Role_MANAGE}SaveOrgRoleInfo`,
+  DELETE_ROLE = `${ApiBranch.ORGANIZATION}${ApiController.Role_MANAGE}DeleteOrgRoleInfo`,
+  ROLE_PRIVS = `${ApiBranch.ORGANIZATION}${ApiController.PRIVS_MANAGE}GetOrgUserRolePrivs`,
+  SAVE_ROLE_PRIVS = `${ApiBranch.ORGANIZATION}${ApiController.PRIVS_MANAGE}SavePrivsInfo`
 }
 
 /**
@@ -29,8 +30,8 @@ export function fetchRoleTrees() {
 /**
  * 获取角色信息（扁平结构）
  */
-export function fetchRoleList():Promise<ROLE.resRoleInfo> {
-  return defHttp.get({ url: ROLEURL.ROLE_LIST });
+export function fetchRoleList<T>(data: T): Promise<resRoleInfo> {
+  return defHttp.get({ url: ROLEURL.ROLE_LIST, data });
 }
 
 /**

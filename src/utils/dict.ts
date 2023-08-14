@@ -150,7 +150,7 @@ export function setMenuIcons(): SelectOption[] {
 
 /**
  * 通用判断逻辑下拉
- * 
+ *
  * @returns menuIcons: SelectOption<boolean>[]
  */
 export function setSimpleBooleanSelects(): SelectOption<boolean>[] {
@@ -165,4 +165,34 @@ export function setSimpleBooleanSelects(): SelectOption<boolean>[] {
     }
   ];
   return menuIcons;
+}
+
+/**
+ * 格式化弹窗状态名称
+ *
+ * @param status dataStatus
+ * @returns 状态名称
+ */
+export function formatDataStatusName(status: number): string {
+  const statusMap = new Map<number, string>([
+    [0, '隐藏'],
+    [1, '显示'],
+    [2, '显示']
+  ]);
+  return statusMap.get(status) ?? '';
+}
+
+/**
+ * 格式化数据状态切换传参
+ *
+ * @param status
+ * @returns
+ */
+export function formatDataStatusParams(status: number): number {
+  const statusMap = new Map<number, number>([
+    [0, 2],
+    [1, 0],
+    [2, 0]
+  ]);
+  return statusMap.get(status) ?? 0;
 }

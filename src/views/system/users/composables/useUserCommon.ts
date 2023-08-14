@@ -1,13 +1,13 @@
 /*
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:15:02
- * @LastEditors: ZhouHao Joehall@foxmail.com
- * @LastEditTime: 2023-08-03 14:56:36
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-08-11 16:23:04
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserCommon.ts
  * @Description:
  */
 
-import * as areaType from 'areaTypeModules';
+import areaType from 'areaTypeModules';
 
 export function useUserCommon() {
   // update组件实例
@@ -30,14 +30,14 @@ export function useUserCommon() {
     children: 'children'
   };
   /**
-  * params: 请求参数
-  */
+   * params: 请求参数
+   */
   const params = ref({
     AreaId: '',
     DeptId: '',
     Keyword: ''
   });
-  // table列
+  // Table表头字段
   const columnsUserList = [
     {
       title: '同步ID',
@@ -45,32 +45,32 @@ export function useUserCommon() {
     },
     {
       title: '姓名',
-      field: 'userName',
+      field: 'userName'
     },
     {
       title: '科室',
-      field: 'deptName',
+      field: 'deptName'
     },
     {
       title: '工号',
-      field: 'userWorkNo',
+      field: 'userWorkNo'
     },
     {
       title: '职务类别',
-      field: 'positionLevelName',
+      field: 'positionLevelName'
     },
     {
       title: '性别',
-      field: 'genderName',
+      field: 'genderName'
     },
     {
       title: '联系电话',
-      field: 'userTel',
+      field: 'userTel'
     },
     {
       title: '身份证号',
-      field: 'userIdNo',
-    },
+      field: 'userIdNo'
+    }
   ];
 
   return {
@@ -87,5 +87,5 @@ export function useUserCommon() {
         hospAreaName
       })
     )
-  }
+  };
 }

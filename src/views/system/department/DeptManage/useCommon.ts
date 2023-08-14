@@ -4,38 +4,38 @@ export function useCommon() {
   const vxeTableLayoutRef = ref();
   const updateRef = ref();
   const hospAreaList = ref<areaType.hospAreaInfo[]>([]);
-  const loading = ref<boolean>(false)
+  const loading = ref<boolean>(false);
   const params = ref<areaType.fetchDepListParams>({
     AreaId: '',
     DeptType: 0,
-    Keyword: '',
+    Keyword: ''
   });
 
   // columnsList: 需要显示的表格字段
   const deptColumnsList = [
     {
       title: '同步ID',
-      field: 'syncId',
+      field: 'syncId'
     },
     {
       title: '科室名称',
-      field: 'deptName',
+      field: 'deptName'
     },
     {
       title: '科室代码',
-      field: 'deptCode',
+      field: 'deptCode'
     },
     {
       title: '科室工作地址',
-      field: 'deptAddr',
+      field: 'deptAddr'
     },
     {
       title: '科室联系电话',
-      field: 'deptTel',
-    },
+      field: 'deptTel'
+    }
   ];
   // 是否重症科室
-  const titleMainDept: string = '是否重症科室';
+  const titleMainDept = '是否重症科室';
   // 院区名称
   const hospAreaName = ref('');
   // 科室类型
@@ -44,17 +44,17 @@ export function useCommon() {
   const deptTypes = [
     {
       DeptType: 0,
-      DeptTypeName: "全部科室"
+      DeptTypeName: '全部科室'
     },
     {
       DeptType: 1,
-      DeptTypeName: "重症科室"
+      DeptTypeName: '重症科室'
     },
     {
       DeptType: 2,
-      DeptTypeName: "非重症科室"
+      DeptTypeName: '非重症科室'
     }
-  ]
+  ];
   // 同级目录下的update组件：表单 rules
   const rules = reactive<FormRules>({
     deptName: [
@@ -62,7 +62,7 @@ export function useCommon() {
         required: true,
         message: '请输入科室!',
         trigger: 'change'
-      },
+      }
     ],
     bePartOfDeptName: [
       {
@@ -121,7 +121,5 @@ export function useCommon() {
         deptTypeName
       })
     )
-  }
+  };
 }
-
-

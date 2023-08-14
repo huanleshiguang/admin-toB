@@ -2,13 +2,11 @@
  * @Autor: QMZhao
  * @Date: 2023-07-03 09:49:52
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-09 10:00:36
+ * @LastEditTime: 2023-08-10 09:25:57
  * @Description: 主界面
  * @FilePath: \servious-illness-admin\src\views\dashboard\index.vue
 -->
 <script lang="ts" setup>
-import { NavHeader } from './components';
-
 import { useDashboardCommon } from './composables/useCommon';
 import { useDashboradEvent } from './composables/useEvent';
 
@@ -18,7 +16,9 @@ const { onJumpTo } = useDashboradEvent();
 
 <template>
   <div class="w-full h_100 dashboard-container flex flex-col">
-    <NavHeader />
+    <div class="h-40 p-xAxis-20">
+      <NavHeader />
+    </div>
     <div class="company-logo">
       <el-image :src="require('/@/assets/image/dashboard/logo-desktop.png')"></el-image>
     </div>
