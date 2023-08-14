@@ -28,17 +28,17 @@
       </el-row>
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item label="英文名称" prop="dictEnName" required>
+          <el-form-item label="英文名称" prop="dictEnName">
             <el-input v-model="form['dictEnName']" placeholder="请输入英文名称" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="缩略名" prop="dictEnAbbr" required>
+          <el-form-item label="缩略名" prop="dictEnAbbr">
             <el-input v-model="form['dictEnAbbr']" placeholder="请输入缩略名" />
           </el-form-item>
         </el-col>
       </el-row>
-      <el-form-item label="描述" prop="remark" required>
+      <el-form-item label="描述" prop="remark">
         <el-input v-model="form['remark']" type="textarea" placeholder="请输入描述" />
       </el-form-item>
     </el-form>
@@ -70,28 +70,28 @@ const rules = reactive<FormRules<DictInfo>>({
       message: '请输入名称',
       trigger: 'change'
     }
-  ],
-  dictEnName: [
-    {
-      required: true,
-      message: '请输入英文名',
-      trigger: 'change'
-    }
-  ],
-  dictEnAbbr: [
-    {
-      required: true,
-      message: '请输入缩略名',
-      trigger: 'change'
-    }
-  ],
-  remark: [
-    {
-      required: true,
-      message: '请输入描述',
-      trigger: 'change'
-    }
   ]
+  // dictEnName: [
+  //   {
+  //     required: true,
+  //     message: '请输入英文名',
+  //     trigger: 'change'
+  //   }
+  // ],
+  // dictEnAbbr: [
+  //   {
+  //     required: true,
+  //     message: '请输入缩略名',
+  //     trigger: 'change'
+  //   }
+  // ],
+  // remark: [
+  //   {
+  //     required: true,
+  //     message: '请输入描述',
+  //     trigger: 'change'
+  //   }
+  //]
 });
 const formRef = ref<any>();
 let form = reactive<DictInfo>({
