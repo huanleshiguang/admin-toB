@@ -33,7 +33,7 @@ const { onChangeMenuStatus, onAddMenu, onEditMenuForm, onDeleteMenu, onSubmitMen
 </script>
 
 <template>
-  <div class="w-full h_100">
+  <div class="w-full h_100 p-16">
     <vxe-table-layout
       ref="menuTabeRef"
       class="h_100"

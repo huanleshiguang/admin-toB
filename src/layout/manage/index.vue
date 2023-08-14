@@ -44,6 +44,7 @@ defineComponent({
   overflow-x: auto;
   .main-container {
     padding: 0;
+    background-color: $bg-f5;
   }
 }
 </style>

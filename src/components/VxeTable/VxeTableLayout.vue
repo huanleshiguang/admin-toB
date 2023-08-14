@@ -174,7 +174,7 @@ async function refresh(resetPage?: boolean) {
 /**
  * 表单头部自定义样式
  */
-function headerCellClassName(): VxeTablePropTypes.HeaderCellClassName<Iobj> | null {
+function headerCellClassName(): VxeTablePropTypes.HeaderCellClassName<Iobj> {
   return 'col-blue';
 }
 
@@ -201,7 +201,7 @@ onMounted(async () => {
 <template>
   <div class="table-layout">
     <slot name="title" v-bind="$attrs"></slot>
-    <header v-if="showHeader" class="table-layout__header">
+    <header v-if="showHeader" class="table-layout__header p-xAxis-10">
       <div class="flex flex-items-center flex-wrap">
         <slot name="operator-left" v-bind="$attrs"></slot>
       </div>
@@ -213,7 +213,7 @@ onMounted(async () => {
       </div>
     </header>
 
-    <div class="table-layout__content">
+    <div class="table-layout__content p-10">
       <slot name="table" v-bind="$attrs">
         <div class="table-layout__main">
           <vxe-table
@@ -255,6 +255,7 @@ onMounted(async () => {
           :total="total"
           :page-sizes="pageSizeArr"
           :layouts="['Total', 'PrevPage', 'JumpNumber', 'NextPage', 'Sizes', 'FullJump']"
+          class="table-layout-pager"
           @page-change="onPageChange"
         ></vxe-pager>
       </slot>
@@ -272,7 +273,7 @@ onMounted(async () => {
     height: 45px;
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   &__content {
@@ -280,6 +281,7 @@ onMounted(async () => {
     background-color: #fff;
     display: flex;
     overflow: hidden;
+    border-radius: $border-radius;
   }
 
   &__main {
@@ -293,7 +295,10 @@ onMounted(async () => {
   &__footer {
     line-height: 1.5;
     color: #666;
-    border-top: 1px #ddd solid;
+    .table-layout-pager {
+      margin-top: 15px;
+      background-color: transparent;
+    }
   }
 
   &--default {
