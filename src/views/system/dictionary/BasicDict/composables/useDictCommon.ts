@@ -1,6 +1,9 @@
+import { ComponentInternalInstance } from 'vue';
 import { DictInfo } from '/@/api/system/types/dict';
 
 export function useCommon() {
+  // 当前菜单管理页面实 用于菜单状态切换 switch 绑定参数用
+  const dictConfigInstance = ref<ComponentInternalInstance | null>(getCurrentInstance());
   // 搜索字段
   const dictName = ref<string>('');
   // dict字典ref
@@ -15,6 +18,8 @@ export function useCommon() {
   const drawerLayout = ref(null);
   // 选中行
   const currentRow = ref<DictInfo>();
+  // 字典状态loading
+  const isStatusLoading = ref<boolean>(false);
 
   // 右键菜单
   const menuConfig = ref({
@@ -54,6 +59,7 @@ export function useCommon() {
     };
   }
   return {
+    dictConfigInstance,
     dictName,
     vxeTableLayout,
     childTableRef,
@@ -61,6 +67,7 @@ export function useCommon() {
     updateValueRef,
     drawerLayout,
     currentRow,
+    isStatusLoading,
     menuConfig,
     initMethod,
     initValueMethod

@@ -60,6 +60,7 @@ declare global {
   const fetchUserList: typeof import('./src/api/system/user')['fetchUserList']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getBaseDictList: typeof import('./src/api/system/dict')['getBaseDictList']
+  const getBaseDictListLazy: typeof import('./src/api/system/dict')['getBaseDictListLazy']
   const getBaseDictValueList: typeof import('./src/api/system/dict')['getBaseDictValueList']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']

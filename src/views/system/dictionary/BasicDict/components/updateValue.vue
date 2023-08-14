@@ -30,12 +30,9 @@
 </template>
 
 <script setup lang="ts">
-// import DialogLayout from '/@/components/DialogLayout/index.vue';
 import type { FormRules } from 'element-plus';
 import { DictValueInfo } from '/@/api/system/types/dict';
 import { cloneDeep } from 'lodash-es';
-// import { updateBaseDictValue } from '/@/api/system/dict';
-// import { useMessage } from '/@/hooks/common/useMessage';
 const { createMessage } = useMessage();
 
 let form = reactive<DictValueInfo>({
@@ -99,7 +96,7 @@ const submit = async () => {
       emit('refresh');
       close();
     } catch (e) {
-      createMessage.error(e || `${id ? '编辑' : '新增'}失败`);
+      // createMessage.error(e || `${id ? '编辑' : '新增'}失败`);
     }
   }
 };
