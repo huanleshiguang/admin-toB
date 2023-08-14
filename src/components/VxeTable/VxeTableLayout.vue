@@ -183,7 +183,8 @@ const onPageChange = () => {
 };
 
 defineExpose({
-  refresh
+  refresh,
+  tableData
 });
 // 初始化数据
 onMounted(async () => {

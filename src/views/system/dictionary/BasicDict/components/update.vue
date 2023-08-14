@@ -4,10 +4,11 @@
       <el-form-item label="上级分类" prop="parentId">
         <el-tree-select
           v-model="form['parentId']"
-          class="w100"
+          class="w_100"
           lazy
+          clearable
           :load="loadTreeData"
-          :props="{ label: 'dictName', children: 'children', isLeaf: 'isLeaf' }"
+          :props="{ label: 'dictName', value: 'id', children: 'children', isLeaf: 'isLeaf', disabled: isDisabled }"
           :cache-data="cacheData"
           placeholder="请选择上级分类"
           :render-after-expand="false"
@@ -16,7 +17,7 @@
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="编码" prop="dictCode" required>
-            <el-input v-model="form['dictCode']" placeholder="请输入编码" />
+            <el-input v-model="form['dictCode']" :disabled="!!form.id" placeholder="请输入编码" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
@@ -45,15 +46,16 @@
 </template>
 
 <script setup lang="ts">
-// import DialogLayout from '/@/components/DialogLayout/index.vue';
 import { DictInfo } from '/@/api/system/types/dict';
-// import { updateBaseDict } from '/@/api/system/dict';
 import type { FormRules } from 'element-plus';
-// import { useMessage } from '/@/hooks/common/useMessage';
 import { cloneDeep } from 'lodash-es';
 const { createMessage } = useMessage();
 const title = ref<string>('新增数据字典');
 const dialogLayout = ref<any>();
+/**
+ * tree缓存数据
+ */
+const cacheData = ref<DictInfo[]>([]);
 const rules = reactive<FormRules<DictInfo>>({
   dictCode: [
     {
@@ -100,14 +102,24 @@ let form = reactive<DictInfo>({
   dictEnAbbr: '',
   remark: ''
 });
-
-const open = (data: DictInfo) => {
+/**
+ * 打开方法
+ * @param data 表格行数据
+ * @param parentData 父级数据
+ */
+const open = (data: DictInfo, parentData: DictInfo) => {
   title.value = `${data?.id ? '编辑' : '新增'}基础字典`;
   if (data) {
     form = Object.assign(form, cloneDeep(data));
+    if (form.parentId === '0') {
+      form.parentId = '';
+    } else {
+      cacheData.value = [parentData];
+    }
     // form = data;
   } else {
     form = reactive<DictInfo>({
+      parentId: '',
       dictCode: '',
       dictName: '',
       dictEnName: '',
@@ -118,22 +130,34 @@ const open = (data: DictInfo) => {
 
   dialogLayout.value.open();
 };
-
+/**
+ * 判断节点是否禁用
+ * @param data
+ */
+const isDisabled = (data) => {
+  return data.id === form.id;
+};
+/**
+ * 弹窗关闭方法
+ */
 const close = () => {
   formRef.value.resetFields();
   dialogLayout.value.close();
 };
 /**
- * tree缓存数据
+ * 懒加载tree
+ * @param node 当前节点
+ * @param resolve 返回方法
  */
-const cacheData = [];
-
-const loadTreeData = (node, resolve) => {
-  console.log(node);
+const loadTreeData = async (node, resolve) => {
+  // 第一级
   if (node.level === 0) {
-    resolve([]);
+    const result = await getBaseDictListLazy('0');
+    resolve(result);
   } else {
-    resolve([]);
+    // 其他级
+    const result = await getBaseDictListLazy(node.data.id);
+    resolve(result);
   }
 };
 
@@ -146,6 +170,9 @@ const loadTreeData = (node, resolve) => {
 // }
 
 const emit = defineEmits(['refresh']);
+/**
+ * 表格提交方法
+ */
 const submit = async () => {
   const result = await formRef.value.validate();
   if (result) {
@@ -158,7 +185,7 @@ const submit = async () => {
       emit('refresh');
       close();
     } catch (e) {
-      createMessage.error(e || `${id ? '编辑' : '新增'}失败`);
+      // createMessage.error(e || `${id ? '编辑' : '新增'}失败`);
     }
   }
 };
@@ -169,7 +196,7 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-.w100 {
+.w_100 {
   width: 100%;
 }
 </style>
