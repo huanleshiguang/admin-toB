@@ -2,12 +2,13 @@
  * @Author: QMZhao
  * @Description: 
  * @Date: 2022-08-17 17:29:53
- * @LastEditTime: 2023-08-11 18:45:51
+ * @LastEditTime: 2023-08-14 18:09:40
  * @Reference: 
 -->
 <script lang="ts" setup>
 import { AppMain, SideBar } from './components';
 import custom from '/@/styles/custom.module.scss';
+import SideBarToggle from '/@/layout/manage/components/Navbar/SideBarToggle.vue';
 
 defineComponent({
   name: 'Layout'
@@ -25,6 +26,7 @@ defineComponent({
           <SideBar />
         </el-aside>
         <el-main class="main-container">
+          <SideBarToggle />
           <div class="w-full h_100">
             <AppMain />
           </div>
@@ -45,6 +47,8 @@ defineComponent({
   overflow-x: auto;
   .main-container {
     padding: 0;
+    background-color: $bg-f5;
+    position: relative;
   }
 }
 </style>

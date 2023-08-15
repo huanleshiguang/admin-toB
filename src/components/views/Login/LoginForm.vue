@@ -1,10 +1,8 @@
 <!--
  * @Autor: QMZhao
  * @Date: 2023-07-18 10:47:12
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-09 10:18:18
+ * @LastEditTime: 2023-08-15 14:15:23
  * @Description: 登录表单
- * @FilePath: \servious-illness-admin\src\components\login\LoginForm.vue
 -->
 <script setup lang="ts">
 import { useLoginStorage } from './composable/useLoginStorage';
@@ -26,6 +24,11 @@ const isRecordUser = ref(false);
 // 登录请求
 async function loadLogin() {
   isLoginLoading.value = true;
+  /** btoa() 方法可以将一个二进制字符串（例如，将字符串中的每一个字节都视为一个二进制数据字节）编码为 Base64 编码的 ASCII 字符串。
+   *
+   * https://developer.mozilla.org/zh-CN/docs/Web/API/btoa
+   */
+  // loginForm.value.password = window.btoa(`${loginForm.value.password}`);
   try {
     const response = await fetchLogin(loginForm.value);
     setUserInfoStorage(response);

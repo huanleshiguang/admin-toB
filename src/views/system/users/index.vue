@@ -7,7 +7,7 @@
   * @Description: 人员管理模块
  -->
 <template>
-  <div class="common-layout">
+  <div class="common-layout p-16">
     <vxe-table-layout
       ref="vxeTableLayoutRef"
       class="h_100"

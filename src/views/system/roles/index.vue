@@ -1,7 +1,7 @@
 <!--
  * @Autor: QMZhao
  * @Date: 2023-07-28 17:00:18
- * @LastEditTime: 2023-08-09 10:25:34
+ * @LastEditTime: 2023-08-14 11:12:44
  * @Description: 角色管理
 -->
 <script lang="ts" setup>
@@ -27,7 +27,7 @@ const { roleFormData, onAddRoleTree, onEditRoleTree, onDeleteRole, onConfigAuth,
 </script>
 
 <template>
-  <div class="uno-wh-full">
+  <div class="uno-wh-full p-16">
     <vxe-table-layout
       ref="rolesTableRef"
       class="h_100"
@@ -37,9 +37,9 @@ const { roleFormData, onAddRoleTree, onEditRoleTree, onDeleteRole, onConfigAuth,
       :columns-list="columns"
     >
       <template #operator-left>
-        <div class="uno-flex-y-center">
+        <div class="uno-flex-y-center w-full">
           <el-input placeholder="请输入角色名称/角色代码"></el-input>
-          <p class="p-20">
+          <p class="p-xAxis-12">
             <el-button type="primary">
               <i-ep-search class="el-icon"></i-ep-search>
               <span>搜索</span>
