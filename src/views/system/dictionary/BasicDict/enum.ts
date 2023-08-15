@@ -3,7 +3,10 @@ import { VxeColumnProps } from 'vxe-table';
 export const columnsList: VxeColumnProps[] = [
   {
     title: '编码',
-    field: 'dictCode'
+    field: 'dictCode',
+    headerAlign: 'left',
+    align: 'left',
+    treeNode: true
   },
   {
     title: '名称',

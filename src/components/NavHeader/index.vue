@@ -12,6 +12,7 @@ import { LoginResponse } from 'login';
 
 import { DropDownItem } from 'Dashboard';
 import { getUserInfo } from '/@/utils/session';
+import { FlexSpacer } from '../common';
 
 withDefaults(
   defineProps<{
@@ -112,54 +113,59 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full dashboard-header">
-    <el-row class="w-full h-full">
-      <el-col :span="10" class="h-full">
-        <div class="h-full uno-flex-y-center">
-          <p v-show="isDashboard" class="cursor-pointer" title="主界面" @click="onBackToDashboard">
-            <SvgIcon icon-class="dashboard" class-name="w-30 h-30 cursor-pointer" />
-          </p>
-          <span class="f-s-18 p-xAxis-10">{{ priavteRoute.meta.title }}</span>
-          <slot name="default"></slot>
-        </div>
-      </el-col>
-      <el-col :span="14" class="h-full w-">
-        <div class="w-full h-full uno-flex-y-center justify-end">
-          <p>
-            (
-            <span>{{ dashboardNavData.organization }}</span>
-            <span>{{ dashboardNavData.roleName }}</span>
-            )
-          </p>
-          <p class="p-xAxis-20">
-            <span>所属科室：</span>
-            <span>{{ dashboardNavData.office }}</span>
-          </p>
-          <p class="flex items-center">
-            <span>欢迎您，</span>
-            <el-dropdown trigger="click" @command="onCommandOption">
-              <span class="user-name flex items-center">
-                {{ dashboardNavData.userName }}
-                <el-icon class="el-icon--right"><i-ep-arrow-down /></el-icon>
-              </span>
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item v-for="item in dropDownList" :key="item.roleName" :command="item.roleName">
-                    {{ item.title }}
-                  </el-dropdown-item>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
-          </p>
-        </div>
-      </el-col>
-    </el-row>
+  <div class="w-full dashboard-header h-full">
+    <p
+      v-show="isDashboard"
+      class="home uno-flex-y-center cursor-pointer w-40 flex-justify-center"
+      title="主界面"
+      @click="onBackToDashboard"
+    >
+      <SvgIcon icon-class="dashboard" class-name="w-24 h-24 cursor-pointer" />
+    </p>
+
+    <div class="h-full uno-flex-y-center">
+      <span class="f-s-18 p-xAxis-10">{{ priavteRoute.meta.title }}</span>
+      <slot name="default"></slot>
+    </div>
+
+    <FlexSpacer />
+
+    <div class="h-full uno-flex-y-center justify-end pr">
+      <p>
+        (
+        <span>{{ dashboardNavData.organization }}</span>
+        <span>{{ dashboardNavData.roleName }}</span>
+        )
+      </p>
+      <p class="p-xAxis-20">
+        <span>所属科室：</span>
+        <span>{{ dashboardNavData.office }}</span>
+      </p>
+      <p class="flex items-center">
+        <span>欢迎您，</span>
+        <el-dropdown trigger="click" @command="onCommandOption">
+          <span class="user-name flex items-center">
+            {{ dashboardNavData.userName }}
+            <el-icon class="el-icon--right"><i-ep-arrow-down /></el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item v-for="item in dropDownList" :key="item.roleName" :command="item.roleName">
+                {{ item.title }}
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </p>
+    </div>
   </div>
   <LogoutDialog v-model:logout-dialog-visiable="logoutDialogVisiable" />
 </template>
 
 <style lang="scss" scoped>
 .dashboard-header {
+  display: flex;
+  flex-direction: row;
   height: v-bind(height);
   background-color: v-bind(bgColor);
   @include font-style(Noto Sans SC, $font-size-14, $color-white);
@@ -169,6 +175,9 @@ onMounted(() => {
   }
   .primary {
     background-color: $color-primary;
+  }
+  .home :hover {
+    background-color: v-bind(bgColor);
   }
 }
 </style>
