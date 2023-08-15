@@ -1,13 +1,13 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-24 19:26:48
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-11 10:07:14
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-08-14 17:02:12
  * @Description: 权限管理
  * @FilePath: \servious-illness-admin\src\api\system\role.ts
  */
 import defHttp from '/@/utils/request';
-import { resRoleInfo } from './types/role';
+import roleType from 'roleTypeModules';
 
 import { ApiBranch, ApiController } from '/@/enums/dict';
 
@@ -30,7 +30,7 @@ export function fetchRoleTrees() {
 /**
  * 获取角色信息（扁平结构）
  */
-export function fetchRoleList<T>(data: T): Promise<resRoleInfo> {
+export function fetchRoleList<T>(data: T): Promise<roleType.resRoleInfo> {
   return defHttp.get({ url: ROLEURL.ROLE_LIST, data });
 }
 

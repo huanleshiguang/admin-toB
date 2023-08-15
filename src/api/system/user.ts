@@ -2,13 +2,13 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 15:36:33
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-11 15:53:51
+ * @LastEditTime: 2023-08-14 16:58:09
  * @FilePath: \servious-illness-admin\src\api\system\user.ts
  * @Description: 人员管理界面 相关接口
  */
 import request from '/@/utils/request';
 // import * as Users from './types/user';
-import * as userType from 'userTypeModules';
+import userType from 'userTypeModules';
 
 import { ApiBranch, ApiController } from '/@/enums/dict';
 

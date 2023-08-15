@@ -1,10 +1,10 @@
 /*
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-08-01 15:42:54
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-10 17:31:17
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-08-14 16:55:43
  * @FilePath: \servious-illness-admin\src\api\system\area.ts
- * @Description: 院区管理
+ * @Description: 院区科室接口
  */
 import request from '/@/utils/request';
 import { ApiBranch, ApiController } from '/@/enums/dict';

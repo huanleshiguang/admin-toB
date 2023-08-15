@@ -2,26 +2,7 @@ import { VxeTableEvents } from 'vxe-table';
 import areaType from 'areaTypeModules';
 export function useHospManageEvent({ ...arg }) {
   const { vxeTableLayoutRef, updateRef } = arg;
-
-  /**
-   *
-   * @param row 院区信息
-   */
-  const currentChangeEvent: VxeTableEvents.CurrentChange = (row) => {
-    console.log(`行选中事件`, row);
-  };
-
-  /**
-   *
-   * @returns total:总数 pageData:数据列表
-   */
-  async function initMethod() {
-    const result = await fetchHosptAreaInfo();
-    return {
-      total: result.length,
-      pageData: result || []
-    };
-  }
+  const { createMessage } = useMessage();
 
   /**
    * 新增
@@ -31,35 +12,53 @@ export function useHospManageEvent({ ...arg }) {
   };
 
   /**
-   *
-   * @param row 院区信息
+   * 编辑
+   * @param hospInfo 院区信息
    */
-  const editRow = (row: areaType.hospAreaInfo) => {
-    console.log(row, 'row');
-
-    updateRef.value.open(row);
+  const editRow = (hospInfo: areaType.hospAreaInfo) => {
+    updateRef.value.open(hospInfo);
   };
 
   /**
-   *
-   * @param row 院区信息
+   * 删除
+   * @param hospInfo 院区信息
    */
-  const deleteRow = (row: areaType.hospAreaInfo) => {
-    console.log(row, 'row');
-    deleteHosptAreaInfo(row.id).then((res) => {
+  const deleteRow = (hospInfo: areaType.hospAreaInfo) => {
+    deleteHosptAreaInfo(hospInfo.id).then((res) => {
       if (res) {
+        createMessage.success('删除成功');
         reFresh();
       }
     });
   };
 
   /**
-   *
-   * @param is1PageIndex 是否回退到第一页
+   * 更新Table
+   * @param isReturnPageOne 是否回退到第一页
    */
-  const reFresh = (is1PageIndex: Boolean = false) => {
-    vxeTableLayoutRef.value.refresh(is1PageIndex);
+  const reFresh = (isReturnPageOne: Boolean = false) => {
+    vxeTableLayoutRef.value.refresh(isReturnPageOne);
   };
+
+  /**
+   *
+   * @param hospInfo 院区信息
+   */
+  const currentChangeEvent: VxeTableEvents.CurrentChange = (hospInfo) => {
+    console.log(`行选中事件`, hospInfo);
+  };
+
+  /**
+   * 加载院区列表
+   * @returns total:总数 pageData:数据列表
+   */
+  async function initMethod() {
+    const result = await fetchHosptAreaInfo();
+    return {
+      total: result.length,
+      pageData: result || []
+    };
+  }
   return {
     currentChangeEvent,
     initMethod,

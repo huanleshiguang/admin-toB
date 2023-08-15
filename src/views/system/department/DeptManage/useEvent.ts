@@ -2,7 +2,7 @@
  * @Author: ZhouHao Joehall@foxmail.com
  * @Date: 2023-08-02 20:21:53
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-07 16:48:14
+ * @LastEditTime: 2023-08-14 18:03:50
  * @Descripttion:
  */
 import { VxeTableEvents } from 'vxe-table';
@@ -54,8 +54,19 @@ export function useEvent({ ...arg }) {
     console.log(`行选中事件`, row);
   };
 
+  /**
+   * 清空院区
+   */
   const handleClear = () => {
     params.value.AreaId = '';
+  };
+
+  /**
+   * 清空科室类型
+   */
+  const clearDeptType = () => {
+    params.value.DeptType = 0;
+    deptTypeName.value = '';
   };
 
   async function loadTableData({ pageIndex, pageSize }) {
@@ -100,6 +111,7 @@ export function useEvent({ ...arg }) {
     switchBeforeChange,
     reFresh,
     currentChangeEvent,
-    handleDeptType
+    handleDeptType,
+    clearDeptType
   };
 }

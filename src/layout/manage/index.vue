@@ -39,6 +39,7 @@ defineComponent({
 <style lang="scss" scoped>
 .layout-header {
   background-color: $btn-bg-primary;
+  padding: 0;
   // background-color: $bg-nav;
 }
 .page-container {

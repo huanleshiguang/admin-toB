@@ -10,14 +10,16 @@
   <div class="tree-wrapper">
     <el-tree-select
       ref="treeRef"
-      v-model="tempData"
+      v-model="VModelData"
       :data="getTreeData"
       :placeholder="placeholder"
       :multiple="multiple"
       :props="defaultProps"
+      :clearable="clearable"
       check-strictly
       node-key="id"
       @node-click="handleNodeClick"
+      @clear="handleCrear"
     >
       <template v-if="!showCheckbox" #default="{ node, data }">
         <el-icon v-if="data.children.length && node.expanded">
@@ -41,7 +43,7 @@
 <script setup lang="ts">
 import { ElTree } from 'element-plus';
 import 'element-plus/es/components/tree/style/css';
-
+const treeRef = ref<InstanceType<typeof ElTree>>();
 const props = defineProps({
   data: {
     type: Array,
@@ -49,10 +51,7 @@ const props = defineProps({
     default: [],
     required: true
   },
-  modelData: {
-    type: String || Array,
-    default: '' || []
-  },
+
   // 是否展示checkbox
   showCheckbox: {
     type: Boolean,
@@ -75,32 +74,29 @@ const props = defineProps({
   multiple: {
     type: Boolean,
     defalue: false
+  },
+  clearable: {
+    type: Boolean,
+    default: true
   }
 });
-const tempData = ref();
-defineExpose({
-  tempData
-});
-watch(
-  () => props.modelData,
-  (newVal) => {
-    tempData.value = newVal;
-  },
-  { immediate: true }
-);
+const VModelData = ref('');
+// 要显示的字段
 const defaultProps = {
   children: `${props.transmitProps.children}`,
   label: `${props.transmitProps.label}`
 };
-const treeRef = ref<InstanceType<typeof ElTree>>();
 
 const getTreeData = computed(() => props.data);
 
-const emits = defineEmits(['handleNodeClick', 'value']);
+const emits = defineEmits(['handleNodeClick', 'value', 'clear']);
 const handleNodeClick = () => {
   const id = treeRef.value?.getCurrentKey();
   emits('handleNodeClick', id);
 };
+const handleCrear = () => {
+  emits('clear');
+}
 </script>
 
 <style scoped lang="scss"></style>
