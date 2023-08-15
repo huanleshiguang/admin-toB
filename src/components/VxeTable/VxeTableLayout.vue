@@ -83,12 +83,12 @@ const emit = defineEmits(['loaded', 'load-error', 'load-finish', 'load-start']);
 const loading = ref<boolean>(false);
 const table = ref<any>(null);
 const total = ref<number>(0);
-const screenHeight = ref(window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);
+// const screenHeight = ref(window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);
 
-watch(screenHeight, (val) => {
-  table.value.recalculate(true);
-  table.value.refreshScroll();
-});
+// watch(screenHeight, (val) => {
+//   table.value.recalculate(true);
+//   table.value.refreshScroll();
+// });
 const params = reactive<{ pageIndex: number; pageSize: number }>({
   pageIndex: 1,
   pageSize: props.pageSize
@@ -192,11 +192,11 @@ onMounted(async () => {
     await nextTick();
     await refresh();
   }
-  window.onresize = () => {
-    return (() => {
-      screenHeight.value = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    })();
-  };
+  // window.onresize = () => {
+  //   return (() => {
+  //     screenHeight.value = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  //   })();
+  // };
 });
 </script>
 <template>
@@ -223,6 +223,7 @@ onMounted(async () => {
             :loading="loading"
             stripe
             :data="cloneDeep(tableData)"
+            :column-config="{ resizable: true }"
             v-bind="$attrs"
           >
             <vxe-column v-if="hasSelection" type="checkbox" width="40" align="center" fixed="left"></vxe-column>

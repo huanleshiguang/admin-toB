@@ -29,13 +29,22 @@ const props = withDefaults(
 );
 </script>
 <style lang="scss" scoped>
+$backgroundColor: #f5f5f5;
+
 .common-tabs {
   height: inherit;
+  background: $backgroundColor;
 
   &_component {
     flex-grow: 1;
   }
-
+  :deep(.el-tabs__header) {
+    background-color: white !important;
+  }
+  :deep(.is-active) {
+    background-color: $backgroundColor !important;
+    font-weight: 500 !important;
+  }
   :deep(.el-tabs__content) {
     height: calc(100% - 39px);
     display: flex;
