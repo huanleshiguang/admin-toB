@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:11:43
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-07 18:27:35
+ * @LastEditTime: 2023-08-14 17:17:35
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserEvent.ts
  * @Description:
  */
@@ -67,7 +67,7 @@ export function useUserEvent(args: argsType) {
   };
 
   /**
-   * 根据院区ID加载相应科室
+   * 下拉框 - 根据院区ID加载相应科室
    * @param AreaId 院区Id
    */
   const selectedHospArea = async (AreaId: string) => {
@@ -85,7 +85,6 @@ export function useUserEvent(args: argsType) {
   };
 
   /**
-   *
    * @param userInfo 列表当前行用户
    */
   const currentChangeEvent = (userInfo: userType.userInfo) => {
@@ -93,13 +92,20 @@ export function useUserEvent(args: argsType) {
   };
 
   /**
-   * 下拉框clear后，请求等参数置空值
+   * 院区下拉框clear后，请求等参数置空值
    */
   const handleClear = () => {
     treeSelectRef.value.tempData = '';
     params.value.AreaId = '';
     params.value.DeptId = '';
     hospAreaDepList.value = [];
+  };
+
+  /**
+   * 清楚TreeSelect的回调
+   */
+  const clearTreeSelect = () => {
+    params.value.DeptId = '';
   };
 
   /**
@@ -131,6 +137,7 @@ export function useUserEvent(args: argsType) {
     handleSearch,
     handleClear,
     loadTableData,
-    reFresh
+    reFresh,
+    clearTreeSelect
   };
 }

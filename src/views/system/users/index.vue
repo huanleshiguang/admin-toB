@@ -44,6 +44,7 @@
           v-model:data="hospAreaDepList"
           :transmit-props="treeSelectProps"
           @handleNodeClick="handleNodeClick"
+          @clear="clearTreeSelect"
         >
           <!--传递 icon -->
           <template #icon-haschild&expanded>
@@ -57,7 +58,7 @@
           </template>
         </common-tree-select>
         <span class="ml-3 text-gray-600 inline-flex items-center font-stl">人员检索：</span>
-        <el-input v-model="params.Keyword" class="w-150" placeholder="姓名/工号" :suffix-icon="Search" />
+        <el-input v-model="params.Keyword" class="w-150" clearable placeholder="姓名/工号" :suffix-icon="Search" />
         <el-button type="primary" class="ml-3" @click="handleSearch">
           <i-ep-search class="el-icon"></i-ep-search>
           <span>搜索</span>
@@ -116,6 +117,7 @@ import {
 import { useUserCommon } from './composables/useUserCommon';
 import { useModuleConfigDrawer } from './composables/useModuleConfig';
 import { useUserEvent } from './composables/useUserEvent';
+// 人员管理相关数据
 const {
   updateRef,
   vxeTableLayoutRef,
@@ -127,6 +129,7 @@ const {
   columnsUserList,
   hospAreaName
 } = useUserCommon();
+// 人员管理增删改查事件
 const {
   loadInitHsopAreaList,
   reFresh,
@@ -138,7 +141,8 @@ const {
   selectedHospArea,
   handleNodeClick,
   currentChangeEvent,
-  loadTableData
+  loadTableData,
+  clearTreeSelect
 } = useUserEvent({
   vxeTableLayoutRef,
   treeSelectRef,

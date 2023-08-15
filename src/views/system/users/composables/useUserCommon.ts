@@ -29,9 +29,7 @@ export function useUserCommon() {
     isMainDept: 'isMainDept',
     children: 'children'
   };
-  /**
-   * params: 请求参数
-   */
+  // params: 请求参数
   const params = ref({
     AreaId: '',
     DeptId: '',
@@ -72,7 +70,6 @@ export function useUserCommon() {
       field: 'userIdNo'
     }
   ];
-
   return {
     ...toRefs(
       reactive({

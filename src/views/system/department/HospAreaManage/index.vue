@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 19:57:02
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-26 17:00:06
+ * @LastEditTime: 2023-08-14 17:33:54
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HosptAreaManage.vue
  * @Description: 院区管理
 -->
@@ -33,8 +33,6 @@
             <el-popconfirm
               confirm-button-text="是"
               cancel-button-text="否"
-              :icon="InfoFilled"
-              icon-color="#626AEF"
               title="确定要删除这条信息吗？"
               @confirm="deleteRow(row)"
             >
@@ -53,7 +51,7 @@
 
 <script setup lang="ts">
 import { update } from './components';
-import { Plus, InfoFilled } from '@element-plus/icons-vue';
+import { Plus } from '@element-plus/icons-vue';
 import { useHospManageCommon } from './composiables/useHospManageCommon';
 import { useHospManageEvent } from './composiables/useHospManageEvent';
 const { vxeTableLayoutRef, updateRef, hospAreacolumnsList } = useHospManageCommon();

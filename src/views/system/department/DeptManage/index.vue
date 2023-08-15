@@ -1,8 +1,8 @@
 <!--
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-29 09:37:37
- * @LastEditors: ZhouHao Joehall@foxmail.com
- * @LastEditTime: 2023-08-05 14:38:57
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-08-14 17:55:47
  * @FilePath: \servious-illness-admin\src\views\system\department\DeptManage\index.vue
  * @Description: 
 -->
@@ -40,7 +40,7 @@
         </el-select>
         <!-- 科室类型选择 -->
         <span class="ml-3 text-gray-600 inline-flex items-center font-stl">科室类型：</span>
-        <el-select v-model="deptTypeName">
+        <el-select v-model="deptTypeName" clearable @clear="clearDeptType">
           <el-option
             v-for="item in deptTypes"
             :key="item.DeptType"
@@ -50,7 +50,7 @@
           />
         </el-select>
         <span class="ml-3 text-gray-600 inline-flex items-center font-stl">科室检索：</span>
-        <el-input v-model="params.Keyword" class="w-150" placeholder="用户名称/工号" :suffix-icon="Search" />
+        <el-input v-model="params.Keyword" class="w-150" clearable placeholder="用户名称/工号" :suffix-icon="Search" />
         <el-button type="primary" class="ml-3" :icon="Search" @click="handleSearch">搜索</el-button>
       </template>
       <template #operator-right>
@@ -72,8 +72,6 @@
         </vxe-column>
       </template>
     </vxe-table-layout>
-    <!-- 新增院区的dialog -->
-    <!-- <update ref="updateRef" @reFetchtableList="reFresh" /> -->
   </div>
 </template>
 
@@ -100,7 +98,8 @@ const {
   loadTableData,
   switchBeforeChange,
   currentChangeEvent,
-  handleDeptType
+  handleDeptType,
+  clearDeptType
 } = useEvent({
   vxeTableLayoutRef,
   hospAreaList,
@@ -121,7 +120,6 @@ onMounted(() => {
   overflow: hidden;
   height: 100%;
 }
-
 .font-stl {
   font-size: $font-size-14;
   font-weight: $font-weight-500;
