@@ -63,6 +63,8 @@ declare module 'vue' {
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
     FlexSpacer: typeof import('./src/components/common/FlexSpacer.vue')['default']
     IEpArrowDown: typeof import('~icons/ep/arrow-down')['default']
+    IEpDArrowLeft: typeof import('~icons/ep/d-arrow-left')['default']
+    IEpDArrowRight: typeof import('~icons/ep/d-arrow-right')['default']
     IEpDelete: typeof import('~icons/ep/delete')['default']
     IEpEdit: typeof import('~icons/ep/edit')['default']
     IEpPlus: typeof import('~icons/ep/plus')['default']
