@@ -1,7 +1,7 @@
 <!--
  * @Autor: QMZhao
  * @Date: 2023-07-14 15:48:54
- * @LastEditTime: 2023-08-11 15:56:44
+ * @LastEditTime: 2023-08-15 10:04:27
  * @Description: 
 -->
 <script lang="ts" setup>
@@ -59,6 +59,7 @@ const getTargetMenus = computed(() => targetMenus.value);
 
 <style scoped lang="scss">
 .qm-menu {
+  width: 130px;
   border-right-color: transparent;
   padding: 0;
   :deep(.is-active) {

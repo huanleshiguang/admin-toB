@@ -7,7 +7,7 @@
  * @FilePath: /vue-vite-elementplus-zhao/src/views/system/menu.vue
 -->
 <template>
-  <div class="three-container w-full h_100">
+  <div class="three-container w-full h_100 p-16">
     <div ref="container" class="w-full h_100">
       <!-- <el-button type="primary" @click="testClick">test</el-button> -->
       <vxe-table-layout

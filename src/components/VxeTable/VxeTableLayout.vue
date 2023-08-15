@@ -83,12 +83,12 @@ const emit = defineEmits(['loaded', 'load-error', 'load-finish', 'load-start']);
 const loading = ref<boolean>(false);
 const table = ref<any>(null);
 const total = ref<number>(0);
-const screenHeight = ref(window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);
+// const screenHeight = ref(window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);
 
-watch(screenHeight, (val) => {
-  table.value.recalculate(true);
-  table.value.refreshScroll();
-});
+// watch(screenHeight, (val) => {
+//   table.value.recalculate(true);
+//   table.value.refreshScroll();
+// });
 const params = reactive<{ pageIndex: number; pageSize: number }>({
   pageIndex: 1,
   pageSize: props.pageSize
@@ -174,7 +174,7 @@ async function refresh(resetPage?: boolean) {
 /**
  * 表单头部自定义样式
  */
-function headerCellClassName(): VxeTablePropTypes.HeaderCellClassName<Iobj> | null {
+function headerCellClassName(): VxeTablePropTypes.HeaderCellClassName<Iobj> {
   return 'col-blue';
 }
 
@@ -192,17 +192,17 @@ onMounted(async () => {
     await nextTick();
     await refresh();
   }
-  window.onresize = () => {
-    return (() => {
-      screenHeight.value = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    })();
-  };
+  // window.onresize = () => {
+  //   return (() => {
+  //     screenHeight.value = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  //   })();
+  // };
 });
 </script>
 <template>
   <div class="table-layout">
     <slot name="title" v-bind="$attrs"></slot>
-    <header v-if="showHeader" class="table-layout__header">
+    <header v-if="showHeader" class="table-layout__header p-xAxis-10">
       <div class="flex flex-items-center flex-wrap">
         <slot name="operator-left" v-bind="$attrs"></slot>
       </div>
@@ -214,7 +214,7 @@ onMounted(async () => {
       </div>
     </header>
 
-    <div class="table-layout__content">
+    <div class="table-layout__content p-10">
       <slot name="table" v-bind="$attrs">
         <div class="table-layout__main">
           <vxe-table
@@ -223,6 +223,7 @@ onMounted(async () => {
             :loading="loading"
             stripe
             :data="cloneDeep(tableData)"
+            :column-config="{ resizable: true }"
             v-bind="$attrs"
           >
             <vxe-column v-if="hasSelection" type="checkbox" width="40" align="center" fixed="left"></vxe-column>
@@ -256,6 +257,7 @@ onMounted(async () => {
           :total="total"
           :page-sizes="pageSizeArr"
           :layouts="['Total', 'PrevPage', 'JumpNumber', 'NextPage', 'Sizes', 'FullJump']"
+          class="table-layout-pager"
           @page-change="onPageChange"
         ></vxe-pager>
       </slot>
@@ -273,7 +275,7 @@ onMounted(async () => {
     height: 45px;
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   &__content {
@@ -281,6 +283,7 @@ onMounted(async () => {
     background-color: #fff;
     display: flex;
     overflow: hidden;
+    border-radius: $border-radius;
   }
 
   &__main {
@@ -294,7 +297,10 @@ onMounted(async () => {
   &__footer {
     line-height: 1.5;
     color: #666;
-    border-top: 1px #ddd solid;
+    .table-layout-pager {
+      margin-top: 15px;
+      background-color: transparent;
+    }
   }
 
   &--default {

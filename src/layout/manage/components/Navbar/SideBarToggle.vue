@@ -1,9 +1,13 @@
+<!--
+ * @Autor: QMZhao
+ * @Date: 2023-08-09 18:26:04
+ * @LastEditTime: 2023-08-15 10:34:40
+ * @Description: 
+-->
 <script lang="ts" setup>
 import { useMenuCollapse } from '/@/store/common/useCommon';
 const { setCollapse } = useMenuCollapse();
-
-// 是否折叠侧边栏
-const isCollapse = ref(false);
+const { isCollapse } = storeToRefs(useMenuCollapse());
 
 // 折叠侧边栏方法
 function onCollapaseSideBar(): void {
@@ -12,18 +16,21 @@ function onCollapaseSideBar(): void {
 }
 </script>
 <template>
-  <div :class="['h_100 ']" @click="onCollapaseSideBar">
-    <!-- <div :class="['menu-btn-icon h-full uno-flex-center menu-btn-position']"> -->
-    <div :class="['menu-btn-icon h-full menu-btn-position uno-flex-y-center']">
-      <SvgIcon :icon-class="isCollapse ? 'expasion' : 'shou'" color="333" class-name="w-20 h-20"></SvgIcon>
+  <div class="sidebar-icom w-20 h-60" @click="onCollapaseSideBar">
+    <div class="cursor-pointer uno-wh-full uno-flex-y-center transition-all-300">
+      <i-ep-dArrow-right v-show="isCollapse" color="#fff" size="40px"></i-ep-dArrow-right>
+      <i-ep-dArrow-left v-show="!isCollapse" color="#fff" size="40px"></i-ep-dArrow-left>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.menu-btn-icon {
-  padding-left: 10px;
+.sidebar-icom {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  z-index: 11;
   background-color: $color-border;
-  transition: all 0.3s ease;
 }
 </style>
