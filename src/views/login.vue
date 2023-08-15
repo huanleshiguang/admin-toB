@@ -1,13 +1,19 @@
+<!--
+ * @Autor: QMZhao
+ * @Date: 2023-07-12 19:27:22
+ * @LastEditTime: 2023-08-15 10:55:13
+ * @Description: 
+-->
 <script setup lang="ts"></script>
 
 <template>
-  <div class="w-full h_100 flex flex-items-center grid-justify-center login-container">
-    <div class="flex flex-items-center grid-justify-between login-form-content">
+  <div class="uno-wh-full uno-flex-center login-container">
+    <div class="uno-flex-y-center grid-justify-between login-form-content">
       <div class="login-image">
-        <el-image class="w-full h_100" :src="require('/@/assets/image/login/login.png')"></el-image>
+        <el-image class="uno-wh-full" :src="require('/@/assets/image/login/login.png')"></el-image>
       </div>
       <div>
-        <div class="flex flex-items-center">
+        <div class="uno-flex-y-center">
           <p class="company-logo">
             <el-image :src="require('/@/assets/image/login/logohead.jpg')"></el-image>
           </p>
