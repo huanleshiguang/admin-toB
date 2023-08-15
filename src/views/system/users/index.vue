@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-07 15:40:55
+ * @LastEditTime: 2023-08-15 18:11:56
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -43,7 +43,7 @@
           ref="treeSelectRef"
           v-model:data="hospAreaDepList"
           :transmit-props="treeSelectProps"
-          @handleNodeClick="handleNodeClick"
+          @handle-node-click="handleNodeClick"
           @clear="clearTreeSelect"
         >
           <!--传递 icon -->
@@ -91,7 +91,7 @@
       </template>
     </vxe-table-layout>
     <!-- 新增与编辑-->
-    <update ref="updateRef" @reFetchtableList="reFresh" />
+    <update ref="updateRef" @re-fetchtable-list="reFresh" />
     <!-- 角色权限配置 -->
     <ModuleConfig
       v-model:module-config-visiable="moduleConfigDrawer.visiable"

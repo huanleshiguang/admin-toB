@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-11 15:58:59
+ * @LastEditTime: 2023-08-15 17:26:53
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 床位管理新增与编辑 
 -->
@@ -15,7 +15,7 @@
           :data="hospAreaDepList"
           :model-data="userForm.deptId"
           :transmit-props="deptProps"
-          @handleNodeClick="handlePartOfDept"
+          @handle-node-click="handlePartOfDept"
         ></common-tree-select>
       </el-form-item>
       <el-form-item label="参与科室" prop="bePartOfDeptName">
@@ -26,7 +26,7 @@
           :multiple="isMultiple"
           placeholder="选择参与科室（可多选）"
           :transmit-props="deptProps"
-          @handleNodeClick="handleClickPartInDept"
+          @handle-node-click="handleClickPartInDept"
         ></common-tree-select>
       </el-form-item>
       <el-form-item label="用户姓名" prop="userName">
@@ -67,7 +67,7 @@ const deptProps = {
   children: 'children'
 };
 const hospAreaDepList = ref<areaType.resHospAreaDepTree[]>([]);
-const roleList = ref<roleType.resRoleInfo[]>([]);
+const roleList = ref<roleType.resRoleInfo>();
 const formRef = ref<any>();
 onMounted(() => {
   loadHospAreaDepTree();
