@@ -8,6 +8,12 @@ declare module 'areaTypeModules' {
     dataStatus: number;
   }
 
+  // 更新院区信息 form类型
+  interface hospAreaFormType {
+    hospAreaCode: string;
+    hospAreaName: string;
+  }
+
   // 获取科室 params
   export interface fetchDepListParams {
     AreaId?: string;

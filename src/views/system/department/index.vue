@@ -7,7 +7,7 @@
  * @FilePath: \servious-illness-admin\src\views\system\users\index.vue
 -->
 <template>
-  <div class=" w_100 h_100">
+  <div class="w_100 h_100">
     <div>
       <CommonTabList :navList="tabList" @change="change" />
     </div>
@@ -18,7 +18,7 @@
 </template>
 <script setup lang="ts">
 import DeptManagefrom from './DeptManage/index.vue';
-import HospAreaManage from './HospAreaManage/index.vue'
+import HospAreaManage from './HospAreaManage/index.vue';
 
 const tabList = [
   {
@@ -28,7 +28,7 @@ const tabList = [
   {
     label: '院区管理',
     component: HospAreaManage
-  },
+  }
 ];
 const data = reactive({
   componentName: tabList[0].component
@@ -36,7 +36,6 @@ const data = reactive({
 const change = (index: number) => {
   data.componentName = tabList[index].component;
 };
-
 </script>
 <style scoped lang="scss">
 .contentBox {
