@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-18 09:32:45
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-11 16:14:17
+ * @LastEditTime: 2023-08-16 10:58:26
  * @FilePath: \servious-illness-admin\src\components\common\CommonTree.vue
  * @Description: 公共tree-select组件
 -->
@@ -10,7 +10,7 @@
   <div class="tree-wrapper">
     <el-tree-select
       ref="treeRef"
-      v-model="VModelData"
+      v-model="deptValue"
       :data="getTreeData"
       :placeholder="placeholder"
       :multiple="multiple"
@@ -47,11 +47,9 @@ const treeRef = ref<InstanceType<typeof ElTree>>();
 const props = defineProps({
   data: {
     type: Array,
-    // eslint-disable-next-line vue/require-valid-default-prop
-    default: [],
+    default: () => [],
     required: true
   },
-
   // 是否展示checkbox
   showCheckbox: {
     type: Boolean,
@@ -78,25 +76,35 @@ const props = defineProps({
   clearable: {
     type: Boolean,
     default: true
+  },
+  modelData: {
+    type: [String, Array],
+    default: ''
   }
 });
-const VModelData = ref('');
+const emits = defineEmits(['update:modelData', 'handleNodeClick', 'value', 'clear']);
+const deptValue = computed({
+  get() {
+    return props.modelData;
+  },
+  set(value) {
+    console.log(value, 'value');
+    emits('update:modelData', value);
+  }
+});
 // 要显示的字段
 const defaultProps = {
   children: `${props.transmitProps.children}`,
   label: `${props.transmitProps.label}`
 };
-
 const getTreeData = computed(() => props.data);
-
-const emits = defineEmits(['handleNodeClick', 'value', 'clear']);
 const handleNodeClick = () => {
   const id = treeRef.value?.getCurrentKey();
   emits('handleNodeClick', id);
 };
 const handleCrear = () => {
   emits('clear');
-}
+};
 </script>
 
 <style scoped lang="scss"></style>
