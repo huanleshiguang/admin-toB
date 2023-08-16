@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-06 15:17:49
- * @LastEditTime: 2023-08-11 14:45:29
+ * @LastEditTime: 2023-08-16 16:10:46
  * @Description:
  */
 export enum EnvBasePath {
@@ -39,4 +39,11 @@ export enum MenuType {
   MENU,
   // 功能菜单
   BUTTON
+}
+
+/**
+ * 字典请求 code
+ */
+export enum DictParams {
+
 }
