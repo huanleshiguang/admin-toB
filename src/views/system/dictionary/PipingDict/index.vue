@@ -21,7 +21,7 @@ import DataRange from './components/dataRange.vue';
 </template>
 <style lang="scss" scoped>
 .pipingDict {
-  height: inherit;
+  height: 100%;
   max-height: calc(100vh - 111px);
   .dataRange {
     height: calc(52% - 10px);

@@ -10,3 +10,4 @@ export { default as CommonError } from './CommonError.vue';
 export { default as CommonLoading } from './CommonLoading.vue';
 export { default as CommonTabs } from './CommonTabs.vue';
 export { default as FlexSpacer } from './FlexSpacer.vue';
+export { default as FormulaInput } from './FormulaInput/index.vue';
