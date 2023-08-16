@@ -1,8 +1,8 @@
 /*
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 18:16:16
- * @LastEditors: ZhouHao Joehall@foxmail.com
- * @LastEditTime: 2023-08-03 17:07:06
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-08-16 10:53:16
  * @FilePath: \servious-illness-admin\src\views\system\users\components\composiables\useUpdateCommon.ts
  * @Description:
  */
@@ -35,10 +35,10 @@ export function useUpdateCommon() {
    *  同级目录下的update组件：表单 rules
    */
   const rules = reactive<FormRules>({
-    deptName: [
+    deptId: [
       {
         required: true,
-        message: '请输入所属科室!',
+        message: '请选择所属科室!',
         trigger: 'change'
       }
     ],
@@ -46,7 +46,7 @@ export function useUpdateCommon() {
       {
         required: true,
         message: '请输入姓名！',
-        trigger: 'change'
+        trigger: 'blur'
       }
     ],
     genderName: [
@@ -60,7 +60,7 @@ export function useUpdateCommon() {
       {
         required: true,
         message: '请输入用户工号！',
-        trigger: 'change'
+        trigger: 'blur'
       }
     ],
     positionLevelName: [

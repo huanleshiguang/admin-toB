@@ -2,27 +2,27 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-07 17:07:12
+ * @LastEditTime: 2023-08-16 10:21:12
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 人员管理新增与编辑
 -->
 <template>
   <DialogLayout ref="dialogLayoutRef" show-close :title="userFormtitle" @sure="sureMethod">
     <el-form ref="userFormRef" :model="userForm" :rules="rules" label-width="auto" label-position="right">
-      <el-form-item label="所属科室" prop="deptName">
+      <el-form-item label="所属科室" prop="deptId">
         <common-tree-select
           ref="belongToTreeRef"
+          v-model:model-data="userForm.deptId"
           :data="hospAreaDepList"
-          :model-data="userForm.deptId"
           :transmit-props="transmitProps"
           @handle-node-click="handlePartOfDept"
         ></common-tree-select>
       </el-form-item>
-      <el-form-item label="参与科室" prop="bePartOfDeptName">
+      <el-form-item label="参与科室" prop="deptIds">
         <common-tree-select
           ref="bePartTreeRef"
+          v-model:model-data="userForm.deptIds"
           :data="hospAreaDepList"
-          :model-data="userForm.deptIds"
           :multiple="isMultiple"
           placeholder="选择参与科室（可多选）"
           :transmit-props="transmitProps"
