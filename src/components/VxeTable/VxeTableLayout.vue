@@ -324,5 +324,15 @@ onMounted(async () => {
     color: $color-primary;
     background-color: #f6f9fb;
   }
+  :deep(.vxe-table--render-default) {
+    color: $color-2a;
+  }
+  :deep(.el-empty) {
+    padding: 16px 0;
+    .el-empty__image svg {
+      width: 90%;
+      height: 90%;
+    }
+  }
 }
 </style>

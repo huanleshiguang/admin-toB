@@ -21,7 +21,10 @@
         </div>
       </template>
       <template #operator-right>
-        <el-button @click="add">新增</el-button>
+        <el-button type="primary" @click="add">
+          <i-ep-plus class="el-icon"></i-ep-plus>
+          新增
+        </el-button>
       </template>
       <template #columns>
         <vxe-column title="字典状态" field="dataStatus" width="80" fixed="right">

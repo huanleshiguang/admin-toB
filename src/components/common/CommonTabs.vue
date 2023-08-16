@@ -29,26 +29,31 @@ const props = withDefaults(
 );
 </script>
 <style lang="scss" scoped>
-$backgroundColor: #f5f5f5;
-
 .common-tabs {
   height: inherit;
-  background: $backgroundColor;
+  background: $bg-f5;
 
   &_component {
     flex-grow: 1;
   }
   :deep(.el-tabs__header) {
-    background-color: white !important;
+    background-color: white;
+    .el-tabs__item {
+      color: $color-2a;
+      font-weight: 400;
+    }
+    .is-active {
+      background-color: $bg-f5;
+      font-weight: 500;
+      color: $color-2a;
+    }
   }
-  :deep(.is-active) {
-    background-color: $backgroundColor !important;
-    font-weight: 500 !important;
-  }
+
   :deep(.el-tabs__content) {
     height: calc(100% - 39px);
     display: flex;
     flex-direction: column;
+    padding: 16px;
 
     .el-tab-pane {
       flex-grow: 1;
