@@ -49,7 +49,7 @@ export function useHospManageEvent({ ...arg }) {
   };
 
   /**
-   * 加载院区列表
+   * 加载院区列表（无分页）
    * @returns total:总数 pageData:数据列表
    */
   async function initMethod() {

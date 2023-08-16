@@ -10,7 +10,7 @@
   <DialogLayout ref="dialogLayoutRef" show-close :title="title" :sure-method="submit" @sure="sureMethod">
     <el-form ref="hospAreaFormRef" :model="hospAreaForm" :rules="rules" label-width="auto" label-position="right">
       <el-form-item label="编码" prop="hospAreaCode" required>
-        <el-input v-model="hospAreaForm.id" type="text" placeholder="请输入院区编码" />
+        <el-input v-model="hospAreaForm.hospAreaCode" type="text" placeholder="请输入院区编码" />
       </el-form-item>
       <el-form-item label="院区名称" prop="hospAreaName" required>
         <el-input v-model="hospAreaForm.hospAreaName" placeholder="请输入院区名称" />
@@ -20,11 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import DialogLayout from '/@/components/DialogLayout/index.vue';
 import type { FormRules } from 'element-plus';
-// import type { hospAreaInfo } from '/@/api/system/types/area';
 import areaType from 'areaTypeModules';
-import { cloneDeep } from 'lodash-es';
 
 const hospAreaFormRef = ref();
 const title = ref('新增院区');
@@ -46,12 +43,10 @@ const rules = reactive<FormRules<areaType.hospAreaInfo>>({
     }
   ]
 });
-const hospAreaForm = ref<any>({
-  hospId: '',
+
+const hospAreaForm = ref<areaType.hospAreaFormType>({
   hospAreaCode: '',
-  id: '',
-  hospAreaName: '',
-  dataStatus: 0
+  hospAreaName: ''
 });
 const emits = defineEmits(['reFetchtableList']);
 const submit = async () => {
@@ -62,7 +57,21 @@ const submit = async () => {
 };
 const open = (data: areaType.hospAreaInfo) => {
   title.value = `${data ? '编辑' : '新增'}院区`;
-  hospAreaForm.value = data ? cloneDeep(data) : {};
+  // 新增
+  if (!data) {
+    hospAreaForm.value = {
+      hospAreaCode: '',
+      hospAreaName: ''
+    };
+    dialogLayoutRef.value.open();
+    return;
+  }
+  // 编辑
+  const { hospAreaCode, hospAreaName } = data;
+  hospAreaForm.value = Object.assign(hospAreaForm.value, {
+    hospAreaCode,
+    hospAreaName
+  });
   dialogLayoutRef.value.open();
 };
 const close = () => {

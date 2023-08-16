@@ -15,7 +15,7 @@
           :data="hospAreaDepList"
           :model-data="userForm.deptId"
           :transmit-props="transmitProps"
-          @handleNodeClick="handlePartOfDept"
+          @handle-node-click="handlePartOfDept"
         ></common-tree-select>
       </el-form-item>
       <el-form-item label="参与科室" prop="bePartOfDeptName">
@@ -26,7 +26,7 @@
           :multiple="isMultiple"
           placeholder="选择参与科室（可多选）"
           :transmit-props="transmitProps"
-          @handleNodeClick="handleClickPartInDept"
+          @handle-node-click="handleClickPartInDept"
         ></common-tree-select>
       </el-form-item>
       <el-form-item label="用户姓名" prop="userName">

@@ -24,7 +24,7 @@ export const fetchHosptAreaInfo = (): Promise<Area.hospAreaInfo[]> =>
   request.get({ url: AREAAPI.FETCH_HOSPT_AREA_INFO_URL });
 
 // 更新院区信息
-export const updateHosptAreaInfo = (data: Area.hospAreaInfo) =>
+export const updateHosptAreaInfo = (data: Area.hospAreaFormType) =>
   request.post({ url: AREAAPI.UPDATE_HOSPT_AREA_INFO, data });
 
 // 删除院区信息
