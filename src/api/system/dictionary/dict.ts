@@ -1,7 +1,7 @@
 import request from '/@/utils/request';
 import { ApiBranch, ApiController } from '/@/enums/dict';
 import { BaseParams, PageResult } from '/@/types/axios';
-import { DictInfo, DictValueInfo } from './types/dict';
+import { DictInfo, DictValueInfo } from 'Dictiontary';
 
 // 统一接口管理
 enum API {
@@ -22,7 +22,7 @@ export const getBaseDictList = async (params: BaseParams): Promise<PageResult> =
 export const getBaseDictListLazy = async (parentId: string): Promise<any> =>
   await request.get({ url: API.GET_BASEDICT_LIST_LAZY, data: { parentId } });
 // 新增或者更新字典
-export const updateBaseDict = async (data: DictInfo): Promise<any> =>
+export const fetchBaseDict = async (data: DictInfo): Promise<any> =>
   await request.post({ url: API.SAVE_BASEDICT, data });
 // 启用停用字典
 export const enabledBaseDict = async (data: { id: string; dataStatus: number }): Promise<any> =>
@@ -32,7 +32,7 @@ export const enabledBaseDict = async (data: { id: string; dataStatus: number }):
 export const getBaseDictValueList = async (params: BaseParams): Promise<PageResult> =>
   await request.get({ url: API.GET_BASEDICT_VALUE_LIST, data: params });
 // 新增或者更新字典值域
-export const updateBaseDictValue = async (data: DictValueInfo): Promise<any> =>
+export const fetchBaseDictValue = async (data: DictValueInfo): Promise<any> =>
   await request.post({ url: API.SAVE_BASEDICT_VALUE, data });
 // 删除字典值域
 export const deleteBaseDictValue = async (rangeId: string): Promise<any> =>

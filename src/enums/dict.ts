@@ -26,7 +26,8 @@ export enum ApiController {
   Role_MANAGE = 'RoleManage/',
   DICT_MANAGE = 'DictManage/',
   ORG_MANAGE = 'OrgManage/',
-  PRIVS_MANAGE = 'PrivsManage/'
+  PRIVS_MANAGE = 'PrivsManage/',
+  BUSINESS_CONFIG = 'BusinessConfig/'
 }
 
 /**
@@ -44,6 +45,4 @@ export enum MenuType {
 /**
  * 字典请求 code
  */
-export enum DictParams {
-
-}
+export enum DictParams {}

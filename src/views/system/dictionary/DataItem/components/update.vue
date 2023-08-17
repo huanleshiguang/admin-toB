@@ -7,7 +7,6 @@
           class="w_100"
           lazy
           clearable
-          check-strictly
           :load="loadTreeData"
           :props="{ label: 'dictName', value: 'id', children: 'children', isLeaf: 'isLeaf', disabled: isDisabled }"
           :cache-data="cacheData"

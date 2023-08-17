@@ -13,7 +13,6 @@ declare module 'vue' {
     CommonTabs: typeof import('./src/components/common/CommonTabs.vue')['default']
     CommonTree: typeof import('./src/components/common/CommonTree.vue')['default']
     CommonTreeSelect: typeof import('./src/components/common/CommonTreeSelect.vue')['default']
-    copy: typeof import('./src/components/common/FormulaInput/index copy.vue')['default']
     DialogLayout: typeof import('./src/components/DialogLayout/index.vue')['default']
     DrawerLayout: typeof import('./src/components/DrawerLayout/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
