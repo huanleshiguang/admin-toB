@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-06 15:17:49
- * @LastEditTime: 2023-08-16 16:10:46
+ * @LastEditTime: 2023-08-16 16:28:54
  * @Description:
  */
 export enum EnvBasePath {
@@ -44,6 +44,33 @@ export enum MenuType {
 /**
  * 字典请求 code
  */
-export enum DictParams {
-
-}
+export const DictParams = {
+  // 基础字典
+  BaseDict: {
+    // 班次
+    base_bc: 'base_bc',
+    // 性别
+    base_xb: 'base_xb',
+    // 客户端未知
+    base_khdwz: 'base_khdwz',
+    // 终端类型
+    base_zdlx: 'base_zdlx',
+    // 床位类型
+    base_cwlx: 'base_cwlx',
+    // 设备厂商
+    base_sbcs: 'base_sbcs',
+    // 设备类型
+    base_sblx: 'base_sblx',
+    // 护理频次
+    base_hlpc: 'base_hlpc',
+    // 单位
+    base_dw: 'base_dw',
+    // 体重
+    base_tz: 'base_tz',
+    // 颜色
+    base_ys: 'base_ys',
+    base_zwlb: 'base_zwlb'
+  },
+  // 业务字典
+  BusinessDict: {}
+};
