@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-06 15:17:49
- * @LastEditTime: 2023-08-16 16:28:54
+ * @LastEditTime: 2023-08-17 15:11:26
  * @Description:
  */
 export enum EnvBasePath {
@@ -26,7 +26,8 @@ export enum ApiController {
   Role_MANAGE = 'RoleManage/',
   DICT_MANAGE = 'DictManage/',
   ORG_MANAGE = 'OrgManage/',
-  PRIVS_MANAGE = 'PrivsManage/'
+  PRIVS_MANAGE = 'PrivsManage/',
+  BUSINESS_CONFIG = 'BusinessConfig/'
 }
 
 /**

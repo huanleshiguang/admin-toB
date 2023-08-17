@@ -1,5 +1,5 @@
 import { ComponentInternalInstance } from 'vue';
-import { DictInfo } from '/@/api/system/types/dict';
+import { DictInfo } from 'Dictiontary';
 
 export function useCommon() {
   // 当前菜单管理页面实 用于菜单状态切换 switch 绑定参数用

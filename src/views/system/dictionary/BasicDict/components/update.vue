@@ -7,6 +7,7 @@
           class="w_100"
           lazy
           clearable
+          check-strictly
           :load="loadTreeData"
           :props="{ label: 'dictName', value: 'id', children: 'children', isLeaf: 'isLeaf', disabled: isDisabled }"
           :cache-data="cacheData"
@@ -178,7 +179,7 @@ const submit = async () => {
   if (result) {
     const { id } = form;
     try {
-      const result = await updateBaseDict(form);
+      const result = await fetchBaseDict({ ...form, parentId: form.parentId ? form.parentId : '0' });
       console.log(result);
 
       createMessage.success(`${id ? '编辑' : '新增'}成功`);

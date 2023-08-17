@@ -127,6 +127,7 @@ onMounted(() => {
 </script>
 <style lang="scss" scoped>
 .basic-dict {
+  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;

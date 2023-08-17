@@ -1,19 +1,18 @@
 /*
- * @Author: QMZhao
- * @Date: 2020-12-30 09:49:48
- * @LastEditTime: 2023-07-19 18:25:31
- * @LastEditors: Please set LastEditors
+ * @Autor: QMZhao
+ * @Date: 2023-08-15 14:17:59
+ * @LastEditTime: 2023-08-16 18:42:54
  * @Description: 路由配置
- * @FilePath: \servious-illness-admin\src\router\index.ts
  */
 import type { App } from 'vue';
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
 import { routes } from './routes';
 
 export const router = createRouter({
-  history: createWebHashHistory(),
-  // history: createWebHistory(),
-  // history: createWebHistory(import.meta.env.BASE_URL),
+  history:
+    import.meta.env.VITE_ROUTER_HISTORY === 'hash'
+      ? createWebHashHistory(import.meta.env.VITE_BASE_PATH)
+      : createWebHistory(import.meta.env.VITE_BASE_PATH),
   routes,
   // 是否应该禁止尾部斜杠。默认为false
   strict: true,

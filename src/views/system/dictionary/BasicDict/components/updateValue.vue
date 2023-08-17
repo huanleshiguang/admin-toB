@@ -89,7 +89,7 @@ const submit = async () => {
   if (result) {
     const { id } = form;
     try {
-      const result = await updateBaseDictValue(form);
+      const result = await fetchBaseDictValue(form);
       console.log(result);
 
       createMessage.success(`${id ? '编辑' : '新增'}成功`);
