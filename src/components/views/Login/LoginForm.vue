@@ -1,7 +1,7 @@
 <!--
  * @Autor: QMZhao
  * @Date: 2023-07-18 10:47:12
- * @LastEditTime: 2023-08-15 14:15:23
+ * @LastEditTime: 2023-08-17 14:12:33
  * @Description: 登录表单
 -->
 <script setup lang="ts">
@@ -104,7 +104,6 @@ const onLogin = debounce(() => loadLogin(), 200);
   }
   //表单自定义label
   .form-item-label {
-    font-family: $font-source;
     font-size: 17px;
     .title {
       color: #2a2a2a;
@@ -133,18 +132,15 @@ const onLogin = debounce(() => loadLogin(), 200);
     font-size: 17px;
     color: #2a2a2a;
     padding-left: 7px;
-    font-family: $font-source;
   }
   .submit-btn {
     height: 51px;
     font-size: 20px;
-    font-family: $font-source;
   }
   .company-name {
     display: inline-block;
     padding-top: 16px;
     text-align: center;
-    font-family: $font-source;
   }
 }
 </style>

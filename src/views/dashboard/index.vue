@@ -2,7 +2,7 @@
  * @Autor: QMZhao
  * @Date: 2023-07-03 09:49:52
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-10 09:25:57
+ * @LastEditTime: 2023-08-17 14:13:18
  * @Description: 主界面
  * @FilePath: \servious-illness-admin\src\views\dashboard\index.vue
 -->
@@ -64,7 +64,6 @@ const { onJumpTo } = useDashboradEvent();
     padding: 67px 0 0 40px;
   }
   &__title {
-    font-family: Noto Sans SC;
     font-weight: bold;
     font-size: 18px;
     color: rgba(255, 255, 255, 0.4);
@@ -129,7 +128,6 @@ const { onJumpTo } = useDashboradEvent();
       height: 20px;
       line-height: 20px;
       font-size: 14px;
-      font-family: Noto Sans SC;
       color: #fff;
       display: inline-block;
       &:not(:last-child) {
