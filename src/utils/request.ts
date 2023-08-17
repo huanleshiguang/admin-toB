@@ -1,7 +1,7 @@
 /*
  * @Autor: QMZhao
  * @Date: 2023-07-14 09:57:52
- * @LastEditTime: 2023-08-10 14:45:25
+ * @LastEditTime: 2023-08-16 13:44:56
  * @Description: http 请求
  */
 import axios, { AxiosResponse, AxiosError } from 'axios';
@@ -22,6 +22,7 @@ const { createMessage } = useMessage();
 
 const service = axios.create({
   // baseURL: `${import.meta.env.VITE_BASE_API}`,
+  baseURL: ``,
   // 10s 请求延时
   timeout: 10000,
   timeoutErrorMessage: `请求超时`,

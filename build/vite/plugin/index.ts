@@ -2,7 +2,7 @@
  * @Author: QMZhao
  * @Description:
  * @Date: 2021-08-16 11:27:54
- * @LastEditTime: 2023-07-19 16:48:15
+ * @LastEditTime: 2023-08-17 14:06:31
  * @Reference:
  */
 import type { Plugin } from 'vite';
@@ -30,7 +30,7 @@ import { configCompressPlugin } from './compress';
 
 import { configSvgIconsPlugin } from './svgSprite';
 
-export function createVitePlugins(mode: string, isBuild: boolean) {
+export function createVitePlugins(env: Recordable, isBuild: boolean) {
   const vitePlugins: (Plugin | Plugin[])[] = [
     vue(),
     vueJsx(),
@@ -105,7 +105,7 @@ export function createVitePlugins(mode: string, isBuild: boolean) {
   // The following plugins only work in the production environment
   if (isBuild) {
     // rollup-plugin-gzip
-    vitePlugins.push(configCompressPlugin(isBuild && 'gzip', isBuild));
+    vitePlugins.push(configCompressPlugin(isBuild && env.VITE_BUILD_COMPRESS, isBuild));
   }
   return vitePlugins;
 }

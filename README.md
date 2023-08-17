@@ -66,7 +66,7 @@
 
 参考vue官方样例代码的结构，原因详见核心开发人员 [知乎](!https://www.zhihu.com/question/483860485/answer/2097414934) 回答
 
-![vue3 样例代码.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3bd61addc44745acbdd99fe3bd05626d~tplv-k3u1fbpfcp-watermark.image?)
+[vue3 样例代码.png](!https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3bd61addc44745acbdd99fe3bd05626d~tplv-k3u1fbpfcp-watermark.image)
 ``` vue
 <script setup lang="ts">
 // 逻辑处理

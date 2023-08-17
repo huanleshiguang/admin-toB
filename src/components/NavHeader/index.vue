@@ -168,9 +168,9 @@ onMounted(() => {
   flex-direction: row;
   height: v-bind(height);
   background-color: v-bind(bgColor);
-  @include font-style(Noto Sans SC, $font-size-14, $color-white);
+  @include font-style($font-size-14, $color-white);
   .user-name {
-    @include font-style(Noto Sans SC, $font-size-14, $color-white);
+    @include font-style($font-size-14, $color-white);
     @include cursor;
   }
   .primary {

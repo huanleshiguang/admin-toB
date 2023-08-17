@@ -1,8 +1,8 @@
 /*
  * @Autor: QMZhao
  * @Date: 2021-09-06 22:26:37
- * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-07-28 17:56:13
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-08-16 11:49:08
  * @Description:
  * @FilePath: /vue-vite-template/vite.config.ts
  */
@@ -37,7 +37,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   return {
     root,
     base,
-    plugins: createVitePlugins(mode, isBuild),
+    plugins: createVitePlugins(env, isBuild),
     resolve: {
       alias: [{ find: /\/@\//, replacement: `${pathResolve('src')}/` }]
     },
