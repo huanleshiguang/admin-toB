@@ -57,8 +57,8 @@ const props = withDefaults(
 
     .el-tab-pane {
       flex-grow: 1;
-      display: flex;
-      flex-direction: column;
+      // display: flex;
+      // flex-direction: column;
       overflow: hidden;
     }
   }
