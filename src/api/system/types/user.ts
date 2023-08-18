@@ -18,14 +18,20 @@ declare module 'userTypeModules' {
 
   // form表单字段
   export interface userForm {
+    id: string;
     deptId: string;
     deptIds: [];
     userName: string;
     userIdNo: string;
     positionLevelName: string;
+    positionLevelCode: string;
     genderName: string;
+    genderCode: string;
     userTel: string;
     userWorkNo: string;
+    certificateType: string
+    idCategoryCode: string;
+    idCategoryName: string;
     userRoleIds: [];
   }
 
@@ -36,9 +42,8 @@ declare module 'userTypeModules' {
   // 用户信息
   export interface userInfo extends userForm {
     id: string;
-    syncId: null | string;
-    deptName: string;
-    positionLevelCode: null | string;
+    syncId?: null | string;
+    deptName?: string;
     genderCode: string;
   }
 
@@ -48,5 +53,14 @@ declare module 'userTypeModules' {
     pageData: userInfo[];
     pageIndex: number;
     pageSize: number;
+  }
+
+  // 返回的字典信息
+  export interface resDictInfo {
+    rangeName: string;
+    rangeEnName: string | null;
+    rangeValue: string;
+    remark: string | null;
+    dictId: string;
   }
 }

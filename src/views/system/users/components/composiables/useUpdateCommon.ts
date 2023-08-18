@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 18:16:16
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-16 10:53:16
+ * @LastEditTime: 2023-08-18 09:24:51
  * @FilePath: \servious-illness-admin\src\views\system\users\components\composiables\useUpdateCommon.ts
  * @Description:
  */
@@ -17,6 +17,12 @@ export function useUpdateCommon() {
   const belongToTreeRef = ref();
   const bePartTreeRef = ref();
   const userFormRef = ref<FormInstance>();
+  // 字典-性别
+  const dictGenderList = ref<userType.resDictInfo[]>([]);
+  // 字典-职务类别
+  const dictPositionLevelList = ref<userType.resDictInfo[]>([]);
+  // 基础字典-证件类型
+  const dictCertificateTypeList = ref<userType.resDictInfo[]>([]);
   // dlalog标题
   const userFormtitle = ref('');
   // 作为common-tree-select组件的props:是否支持多选
@@ -30,10 +36,7 @@ export function useUpdateCommon() {
   };
   const hospAreaDepList = ref<areaType.resHospAreaDepTree[]>([]);
   const roleList = ref<roleType.roleInfo[]>([]);
-
-  /**
-   *  同级目录下的update组件：表单 rules
-   */
+  // 同级目录下的update组件：表单 rules
   const rules = reactive<FormRules>({
     deptId: [
       {
@@ -63,6 +66,13 @@ export function useUpdateCommon() {
         trigger: 'blur'
       }
     ],
+    idCategoryName: [
+      {
+        required: true,
+        message: '请选择证件类型！',
+        trigger: 'change'
+      }
+    ],
     positionLevelName: [
       {
         required: true,
@@ -83,31 +93,35 @@ export function useUpdateCommon() {
    * userForm:表单
    */
   const userForm = ref<userType.userForm>({
+    id: '',
     deptId: '',
     deptIds: [],
     userName: '',
     userIdNo: '',
     positionLevelName: '',
+    positionLevelCode: '',
     genderName: '',
+    genderCode: '',
     userTel: '',
     userWorkNo: '',
+    idCategoryCode: '',
+    idCategoryName: '',
     userRoleIds: []
   });
   return {
-    ...toRefs(
-      reactive({
-        dialogLayoutRef,
-        belongToTreeRef,
-        bePartTreeRef,
-        transmitProps,
-        hospAreaDepList,
-        roleList,
-        isMultiple,
-        userFormtitle,
-        rules,
-        userForm,
-        userFormRef
-      })
-    )
+    dialogLayoutRef,
+    belongToTreeRef,
+    bePartTreeRef,
+    transmitProps,
+    hospAreaDepList,
+    roleList,
+    isMultiple,
+    userFormtitle,
+    rules,
+    userForm,
+    userFormRef,
+    dictGenderList,
+    dictPositionLevelList,
+    dictCertificateTypeList
   };
 }

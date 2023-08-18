@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:11:43
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-14 17:17:35
+ * @LastEditTime: 2023-08-17 11:37:06
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserEvent.ts
  * @Description:
  */
@@ -11,20 +11,23 @@ import areaType from 'areaTypeModules';
 interface argsType {
   vxeTableLayoutRef: Ref<any>;
   treeSelectRef: Ref<any>;
-  updateRef: Ref<any>;
+  userFormDialogRef: Ref<any>;
   hospAreaList: Ref<areaType.hospAreaInfo[]>;
   hospAreaDepList: Ref<areaType.resDepInfo[]>;
   params: Ref<any>;
 }
 export function useUserEvent(args: argsType) {
-  const { vxeTableLayoutRef, treeSelectRef, updateRef, hospAreaList, hospAreaDepList, params } = args;
+  const { vxeTableLayoutRef, treeSelectRef, userFormDialogRef, hospAreaList, hospAreaDepList, params } = args;
   const { createMessage } = useMessage();
 
   /**
    * 新增
    */
   const addUser = () => {
-    updateRef.value.open();
+    // console.log( userFormDialogRef.value.$refs.dialogLayoutRef);
+    console.log(userFormDialogRef.value);
+    // userFormDialogRef.value.$refs.dialogLayoutRef!.open();
+    userFormDialogRef.value.open();
   };
 
   /**
@@ -32,7 +35,9 @@ export function useUserEvent(args: argsType) {
    * @param userInfo - 用户信息
    */
   const editUser = (userInfo: userType.userInfo) => {
-    updateRef.value.open(userInfo);
+    console.log(userFormDialogRef.value.close, 'userFormDialogRef.value');
+    userFormDialogRef.value.open(userInfo);
+    // userFormDialogRef.value.$refs.dialogLayoutRef!.open(userInfo);
   };
 
   /**
@@ -102,7 +107,7 @@ export function useUserEvent(args: argsType) {
   };
 
   /**
-   * 清楚TreeSelect的回调
+   * 清除TreeSelect的回调
    */
   const clearTreeSelect = () => {
     params.value.DeptId = '';
@@ -126,6 +131,19 @@ export function useUserEvent(args: argsType) {
       createMessage.error('获取人员信息失败!');
     }
   }
+
+  /**
+   * 提交表单
+   *
+   * @param requestStatus 提交结果状态
+   */
+  function onSubmitUserForm(requestStatus: boolean) {
+    // 请求成功关闭弹窗重载表格
+    if (requestStatus) {
+      userFormDialogRef.value?.close();
+      vxeTableLayoutRef.value!.refresh();
+    }
+  }
   return {
     addUser,
     editUser,
@@ -138,6 +156,7 @@ export function useUserEvent(args: argsType) {
     handleClear,
     loadTableData,
     reFresh,
-    clearTreeSelect
+    clearTreeSelect,
+    onSubmitUserForm
   };
 }

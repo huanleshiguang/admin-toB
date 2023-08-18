@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-15 18:11:56
+ * @LastEditTime: 2023-08-17 11:49:23
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -91,7 +91,7 @@
       </template>
     </vxe-table-layout>
     <!-- 新增与编辑-->
-    <update ref="updateRef" @re-fetchtable-list="reFresh" />
+    <UserForm ref="userFormDialogRef" @handle-submit-user-form="onSubmitUserForm" />
     <!-- 角色权限配置 -->
     <ModuleConfig
       v-model:module-config-visiable="moduleConfigDrawer.visiable"
@@ -101,7 +101,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { update } from './components';
+import { UserForm } from './components';
 import {
   ArrowDown,
   Search,
@@ -119,7 +119,7 @@ import { useModuleConfigDrawer } from './composables/useModuleConfig';
 import { useUserEvent } from './composables/useUserEvent';
 // 人员管理相关数据
 const {
-  updateRef,
+  userFormDialogRef,
   vxeTableLayoutRef,
   treeSelectRef,
   treeSelectProps,
@@ -132,7 +132,6 @@ const {
 // 人员管理增删改查事件
 const {
   loadInitHsopAreaList,
-  reFresh,
   handleSearch,
   addUser,
   editUser,
@@ -142,11 +141,12 @@ const {
   handleNodeClick,
   currentChangeEvent,
   loadTableData,
-  clearTreeSelect
+  clearTreeSelect,
+  onSubmitUserForm
 } = useUserEvent({
   vxeTableLayoutRef,
   treeSelectRef,
-  updateRef,
+  userFormDialogRef,
   hospAreaList,
   hospAreaDepList,
   params
