@@ -39,7 +39,7 @@
       </el-form-item>
       <el-form-item label="护理记录格式" prop="nurseRecordFormat">
         <FormulaInput
-          v-model="form['nurseRecordFormat']"
+          v-model:value="form['nurseRecordFormat']"
           class="w_100"
           :options="dataItemSortOptions"
           placeholder="请输入护理记录格式"
@@ -139,7 +139,7 @@ const dataItemRef = ref();
 const dataItemSortOptions = ref([]);
 const selectChange = () => {
   const result = opType.value.getCurrentOptions(form.operTypeCode);
-  console.log(result, '------?>>');
+  console.log(result, '------>>');
 };
 const changeDataItem = debounce(() => {
   dataItemSortOptions.value = dataItemRef.value.getCurrentOptions(form.dataItem);

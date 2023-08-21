@@ -28,18 +28,15 @@ import { getHTMLList, str2dom, dom2str, isHTML, validKeys, setFocus, getDiffInde
 import throttle from 'lodash/throttle';
 
 // 初始化value值；
-// const initDefaultInnerModol = () => ({
-//   formula: '',
-//   vars: {}
-// });
+const initDefaultInnerModol = () => ({
+  formula: '',
+  vars: {}
+});
 
 const props = defineProps({
   value: {
-    type: Object,
-    default: () => ({
-      formula: '',
-      vars: {}
-    })
+    type: String,
+    default: ''
   },
   placeholder: {
     type: String,
@@ -59,10 +56,10 @@ const props = defineProps({
   }
 });
 
-// const innerModel = ref({
-//   formula: '',
-//   vars: {}
-// });
+const innerModel = ref({
+  formula: '',
+  vars: {}
+});
 const formulaRef = ref(null);
 const selection = ref(null);
 const input = ref(null);
@@ -77,12 +74,21 @@ const displayOptions = computed(() => {
   return options.filter(({ label }) => label.includes(filter.value));
 });
 const throttleSetSelectionStyle = throttle(setSelectionStyle, 100);
-watch(showSelection, (v) => {
-  if (!v) {
-    removeEventListener();
+watch(
+  () => showSelection,
+  (v) => {
+    if (!v) {
+      removeEventListener();
+    }
   }
-});
-const emit = defineEmits(['change', 'input', 'update:value']);
+);
+watch(
+  () => props.value,
+  (val) => {
+    innerModel.value = val ? JSON.parse(val) : initDefaultInnerModol();
+  }
+);
+const emit = defineEmits(['update:value']);
 function addEventListener() {
   const { scrollWrapperClassName } = props;
   // 添加全局click监听
@@ -116,7 +122,8 @@ function onKeyup() {
   }
 }
 function initDisplay() {
-  const { vars, formula } = props.value;
+  innerModel.value = props.value ? JSON.parse(props.value) : initDefaultInnerModol();
+  const { vars, formula } = innerModel.value;
   let result = formula;
   for (let key in vars) {
     const rule = new RegExp(key, 'g');
@@ -216,15 +223,12 @@ function setValue() {
     formula,
     vars
   };
-  console.log(res, 'input');
-  emit('input', res);
-  emit('change', res);
-  emit('update:value', res);
+  console.log(res, 'res');
+  emit('update:value', JSON.stringify(res));
 }
 function validate() {
-  const { value } = props;
+  const { formula } = innerModel.value;
   errorMsg.value = '';
-  const { formula } = value || {};
   if (!formula) {
     errorMsg.value = '公式不能为空';
     return false;
