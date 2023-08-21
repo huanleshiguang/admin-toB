@@ -6,6 +6,7 @@ import CommonTabs from '/src/components/common/CommonTabs.vue';
 import BasicDict from './BasicDict/index.vue';
 import PipingDict from './PipingDict/index.vue';
 import BodyPartDict from './BodyPart/index.vue';
+import ProjectOperateDict from './ProjectOperate/index.vue';
 import DataItemDict from './DataItem/index.vue';
 
 const tabList = [
@@ -26,6 +27,11 @@ const tabList = [
   },
   {
     id: '4',
+    label: '项目操作配置',
+    component: ProjectOperateDict
+  },
+  {
+    id: '5',
     label: '数据项配置',
     component: DataItemDict
   }

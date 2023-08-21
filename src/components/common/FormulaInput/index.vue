@@ -16,7 +16,7 @@
       <el-input ref="input" v-model="filter" placeholder="输入关键字筛选"></el-input>
       <div v-if="displayOptions.length" class="options">
         <span v-for="(item, i) in displayOptions" :key="i" class="option" @click="optionClick(item)">
-          {{ item.name }}
+          {{ item.label }}
         </span>
       </div>
       <div v-else class="empty">暂无数据</div>
@@ -74,7 +74,7 @@ const showSelection = ref(false);
 const errorMsg = ref('');
 const displayOptions = computed(() => {
   const { options } = props;
-  return options.filter(({ name }) => name.includes(filter.value));
+  return options.filter(({ label }) => label.includes(filter.value));
 });
 const throttleSetSelectionStyle = throttle(setSelectionStyle, 100);
 watch(showSelection, (v) => {
@@ -175,9 +175,9 @@ function setSelectionStyle() {
     );
 }
 function optionClick(item) {
-  const { name, field } = item;
+  const { label, value } = item;
   showSelection.value = false;
-  const res = `<div contenteditable="false">${name}<span>${field}</span></div>`;
+  const res = `<div contenteditable="false">${label}<span>${value}</span></div>`;
   resetDisplay('@', res);
 }
 function resetDisplay(from, to = '') {

@@ -9,6 +9,11 @@ const allowDrop = (draggingNode: Node, dropNode: Node, type: AllowDropType) => {
 };
 
 const props = defineProps({
+  // 远程加载
+  loader: {
+    type: Function,
+    default: undefined
+  },
   // tree 数据
   options: {
     type: Array,
@@ -27,11 +32,32 @@ const props = defineProps({
 });
 const emit = defineEmits(['options:update']);
 // tree绑定数据
-const dataList = ref(props.options);
+const dataList = ref([]);
+const load = async () => {
+  const { loader, options } = props;
+  if (!loader) {
+    dataList.value = options as [];
+    return;
+  }
+  try {
+    dataList.value = await loader();
+  } catch (err) {
+    // err
+  }
+};
+onMounted(() => {
+  load();
+});
 // options更新
 watch(dataList, (val) => {
   emit('options:update', val);
 });
+watch(
+  () => props.options,
+  (val: []) => {
+    dataList.value = val;
+  }
+);
 /**
  * 下移
  * @param data 选中行

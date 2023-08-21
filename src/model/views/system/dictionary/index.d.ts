@@ -26,7 +26,22 @@ declare module 'Dictionary' {
     remark: string;
   }
   /**
-   * 基础字典值域
+   * 操作项配置值域
+   */
+  export interface ProjectOperate {
+    id?: string;
+    operName: string;
+    operTypeCode: string;
+    operTypeName: string;
+    operLimitCode: string;
+    operLimitName: string;
+    canDelete: string;
+    nurseRecordFormat: string;
+    nurseDocFormat: string;
+    dataItem: [];
+  }
+  /**
+   * 数据项配置值域
    */
   export interface DataItem {
     id?: string;
