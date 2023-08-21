@@ -10,6 +10,7 @@ declare module 'areaTypeModules' {
 
   // 更新院区信息 form类型
   interface hospAreaFormType {
+    id: string;
     hospAreaCode: string;
     hospAreaName: string;
   }

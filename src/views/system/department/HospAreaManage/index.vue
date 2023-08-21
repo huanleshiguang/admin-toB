@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-12 19:57:02
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-14 17:33:54
+ * @LastEditTime: 2023-08-21 11:15:50
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HosptAreaManage.vue
  * @Description: 院区管理
 -->
@@ -27,35 +27,38 @@
         <!-- <el-button type="primary" :icon="Delete" @click="remove">删除院区</el-button> -->
       </template>
       <template #columns>
-        <vxe-column title="操作" align="center" fixed="right">
+        <vxe-column title="操作" width="180" align="center" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" @click="editRow(row)">编辑</el-button>
-            <el-popconfirm
-              confirm-button-text="是"
-              cancel-button-text="否"
-              title="确定要删除这条信息吗？"
-              @confirm="deleteRow(row)"
-            >
-              <template #reference>
-                <el-button link type="danger">删除</el-button>
-              </template>
-            </el-popconfirm>
+            <div class="uno-flex-y-center">
+              <p>
+                <el-button type="info" text link @click="editRow(row)">
+                  <i-ep-edit class="el-icon"></i-ep-edit>
+                  <span>编辑</span>
+                </el-button>
+              </p>
+              <p>
+                <el-button type="danger" icon="delete" link text @click="deleteRow(row)">
+                  <i-ep-delete class="el-icon"></i-ep-delete>
+                  <span>删除</span>
+                </el-button>
+              </p>
+            </div>
           </template>
         </vxe-column>
       </template>
     </vxe-table-layout>
     <!-- 新增院区的dialog -->
-    <update ref="updateRef" @reFetchtableList="reFresh" />
+    <hospForm ref="updateRef" @handle-submit-hospt-form="onSubmitHosptForm" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { update } from './components';
+import { hospForm } from './components';
 import { Plus } from '@element-plus/icons-vue';
 import { useHospManageCommon } from './composiables/useHospManageCommon';
 import { useHospManageEvent } from './composiables/useHospManageEvent';
 const { vxeTableLayoutRef, updateRef, hospAreacolumnsList } = useHospManageCommon();
-const { currentChangeEvent, initMethod, add, editRow, deleteRow, reFresh } = useHospManageEvent({
+const { currentChangeEvent, initMethod, add, editRow, deleteRow, onSubmitHosptForm } = useHospManageEvent({
   vxeTableLayoutRef,
   updateRef,
   hospAreacolumnsList

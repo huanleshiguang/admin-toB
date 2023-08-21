@@ -2,13 +2,13 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:15:02
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-17 11:42:48
+ * @LastEditTime: 2023-08-21 14:53:56
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserCommon.ts
  * @Description:
  */
 
 import areaType from 'areaTypeModules';
-
+import userType from 'userTypeModules';
 export function useUserCommon() {
   // update组件实例
   const userFormDialogRef = ref<any>(null);
@@ -30,7 +30,7 @@ export function useUserCommon() {
     children: 'children'
   };
   // params: 请求参数
-  const params = ref({
+  const params = ref<userType.fetchUserList>({
     AreaId: '',
     DeptId: '',
     Keyword: ''

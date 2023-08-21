@@ -33,7 +33,7 @@
         <el-input v-model="userForm.userName" placeholder="请输入用户姓名" />
       </el-form-item>
       <el-form-item label="用户性别" prop="genderName">
-        <el-select v-model="userForm.genderName" placeholder="请选择用户性别" >
+        <el-select v-model="userForm.genderName" placeholder="请选择用户性别">
           <el-option
             v-for="item in dictGenderList"
             :key="item.rangeValue"
@@ -125,12 +125,13 @@ const {
   userForm,
   dictGenderList,
   dictPositionLevelList,
-  dictCertificateTypeList,
+  dictCertificateTypeList
 });
 const userFormEmits = defineEmits<{
   (event: 'handleSubmitUserForm', status: boolean): void;
 }>();
 onMounted(() => {
+  // 加载院区科室组合Tree
   loadHospAreaDepTree();
   loadRoleList();
   // 获取字典信息-性别
