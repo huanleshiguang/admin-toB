@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:15:02
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-11 16:23:04
+ * @LastEditTime: 2023-08-17 11:42:48
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserCommon.ts
  * @Description:
  */
@@ -11,7 +11,7 @@ import areaType from 'areaTypeModules';
 
 export function useUserCommon() {
   // update组件实例
-  const updateRef = ref(null);
+  const userFormDialogRef = ref<any>(null);
   // vxe-table组件实例
   const vxeTableLayoutRef = ref();
   // common-tree-select组件实例
@@ -71,18 +71,14 @@ export function useUserCommon() {
     }
   ];
   return {
-    ...toRefs(
-      reactive({
-        updateRef,
-        vxeTableLayoutRef,
-        treeSelectRef,
-        treeSelectProps,
-        params,
-        hospAreaList,
-        hospAreaDepList,
-        columnsUserList,
-        hospAreaName
-      })
-    )
+    userFormDialogRef,
+    vxeTableLayoutRef,
+    treeSelectRef,
+    treeSelectProps,
+    params,
+    hospAreaList,
+    hospAreaDepList,
+    columnsUserList,
+    hospAreaName
   };
 }

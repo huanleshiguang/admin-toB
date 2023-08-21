@@ -30,7 +30,7 @@ export function fetchRoleTrees() {
 /**
  * 获取角色信息（扁平结构）
  */
-export function fetchRoleList<T>(data: T): Promise<roleType.resRoleInfo> {
+export function fetchRoleList(data = {} as Iobj): Promise<roleType.resRoleInfo> {
   return defHttp.get({ url: ROLEURL.ROLE_LIST, data });
 }
 

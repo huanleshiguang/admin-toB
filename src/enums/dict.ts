@@ -52,6 +52,8 @@ export const DictParams = {
     base_bc: 'base_bc',
     // 性别
     base_xb: 'base_xb',
+    // 证件类型
+    base_zjlx: 'base_zjlx',
     // 客户端未知
     base_khdwz: 'base_khdwz',
     // 终端类型
