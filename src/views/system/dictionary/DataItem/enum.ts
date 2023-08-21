@@ -2,11 +2,15 @@ import { VxeColumnProps } from 'vxe-table';
 
 export const columnsList: VxeColumnProps[] = [
   {
+    title: '数据项编码',
+    field: 'dictCode'
+  },
+  {
     title: '数据项名称',
     field: 'dictCode'
   },
   {
-    title: '录入框类型',
+    title: '控件类型',
     field: 'dictName'
   },
   {

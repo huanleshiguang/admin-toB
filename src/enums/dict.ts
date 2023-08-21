@@ -73,5 +73,10 @@ export const DictParams = {
     base_zwlb: 'base_zwlb'
   },
   // 业务字典
-  BusinessDict: {}
+  BusinessDict: {
+    // 出入量类型
+    bus_crllx: 'bus_crllx',
+    // 控件类型
+    bus_kjlx: 'bus_kjlx'
+  }
 };

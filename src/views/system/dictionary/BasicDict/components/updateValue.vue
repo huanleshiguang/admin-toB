@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import type { FormRules } from 'element-plus';
-import { DictValueInfo } from '/@/api/system/types/dict';
+import { DictValueInfo } from 'Dictionary';
 import { cloneDeep } from 'lodash-es';
 const { createMessage } = useMessage();
 

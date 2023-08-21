@@ -41,6 +41,7 @@ declare module 'vue' {
     ElImage: typeof import('element-plus/es')['ElImage']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
+    ElLink: typeof import('element-plus/es')['ElLink']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
@@ -80,6 +81,7 @@ declare module 'vue' {
     SimpleCard: typeof import('./src/components/common/SimpleCard.vue')['default']
     SimpleLoading: typeof import('./src/components/common/SimpleLoading.vue')['default']
     SimpleSelect: typeof import('./src/components/common/SimpleSelect.vue')['default']
+    SortDragTree: typeof import('./src/components/common/SortDragTree.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
     VxeTableLayout: typeof import('./src/components/VxeTable/VxeTableLayout.vue')['default']
   }

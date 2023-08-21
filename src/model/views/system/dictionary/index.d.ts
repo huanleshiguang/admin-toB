@@ -1,7 +1,7 @@
 /**
  * 字典管理
  */
-declare module 'Dictiontary' {
+declare module 'Dictionary' {
   /**
    * 基础字典
    */

@@ -1,4 +1,4 @@
-import { DataItem } from 'Dictiontary';
+import { DataItem } from 'Dictionary';
 
 export function useCommon() {
   // 搜索字段
