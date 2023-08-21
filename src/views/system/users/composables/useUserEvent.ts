@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:11:43
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-17 11:37:06
+ * @LastEditTime: 2023-08-18 17:17:44
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserEvent.ts
  * @Description:
  */
@@ -18,15 +18,12 @@ interface argsType {
 }
 export function useUserEvent(args: argsType) {
   const { vxeTableLayoutRef, treeSelectRef, userFormDialogRef, hospAreaList, hospAreaDepList, params } = args;
-  const { createMessage } = useMessage();
+  const { createMessage, createConfirm } = useMessage();
 
   /**
    * 新增
    */
   const addUser = () => {
-    // console.log( userFormDialogRef.value.$refs.dialogLayoutRef);
-    console.log(userFormDialogRef.value);
-    // userFormDialogRef.value.$refs.dialogLayoutRef!.open();
     userFormDialogRef.value.open();
   };
 
@@ -35,9 +32,7 @@ export function useUserEvent(args: argsType) {
    * @param userInfo - 用户信息
    */
   const editUser = (userInfo: userType.userInfo) => {
-    console.log(userFormDialogRef.value.close, 'userFormDialogRef.value');
     userFormDialogRef.value.open(userInfo);
-    // userFormDialogRef.value.$refs.dialogLayoutRef!.open(userInfo);
   };
 
   /**
@@ -45,9 +40,24 @@ export function useUserEvent(args: argsType) {
    * @param userInfo - 用户信息
    */
   const deleteUser = async (userInfo: userType.userInfo) => {
-    (await deleteUserInfo(userInfo.id)) ? reFresh() : createMessage.error('删除用户失败');
+    const { userName = '此用户', id } = userInfo;
+    createConfirm(`是否删除'${userName}'?`, 'warning').then(() => loadDeleteUserInfo(id));
   };
 
+  /**
+   * 删除用户请求
+   * @param id 用户ID
+   */
+  const loadDeleteUserInfo = async (id: string) => {
+    try {
+      await deleteUserInfo(id);
+      createMessage.success('删除成功!');
+      reFresh();
+    } catch (error) {
+      createMessage.error('删除失败!');
+      console.error(error);
+    }
+  };
   /**
    * 搜索
    */

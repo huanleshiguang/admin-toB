@@ -52,13 +52,13 @@ export function useUpdateEvent(args: argsType) {
    * userForm赋值
    * @param userInfo 用户信息
    */
-  const open = (userInfo: userType.userInfo) => {
+  const open = (userInfo?: userType.userInfo) => {
     userFormtitle.value = `${userInfo ? '编辑' : '新增'}用户`;
     // 新增
     if (!userInfo) {
       userForm.value = cloneDeep(userFormCopy);
-      userForm.value.idCategoryCode = dictCertificateTypeList.value[0].rangeValue;
-      userForm.value.idCategoryName = dictCertificateTypeList.value[0].rangeName;
+      userForm.value.idCategoryCode = dictCertificateTypeList.value[0]?.rangeValue;
+      userForm.value.idCategoryName = dictCertificateTypeList.value[0]?.rangeName;
       dialogLayoutRef.value!.open();
       return;
     }

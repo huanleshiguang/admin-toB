@@ -2,7 +2,7 @@ import { VxeTableEvents } from 'vxe-table';
 import areaType from 'areaTypeModules';
 export function useHospManageEvent({ ...arg }) {
   const { vxeTableLayoutRef, updateRef } = arg;
-  const { createMessage } = useMessage();
+  const { createMessage, createConfirm } = useMessage();
 
   /**
    * 新增
@@ -24,19 +24,23 @@ export function useHospManageEvent({ ...arg }) {
    * @param hospInfo 院区信息
    */
   const deleteRow = (hospInfo: areaType.hospAreaInfo) => {
-    deleteHosptAreaInfo(hospInfo.id).then((res) => {
-      if (res) {
-        createMessage.success('删除成功');
-        reFresh();
-      }
-    });
+    const { id, hospAreaName } = hospInfo
+    createConfirm(`是否删除'${hospAreaName}'`, 'warning').then(() => loadDeleteHosptAreaInfo(id));
   };
-
+  const loadDeleteHosptAreaInfo = async (id: string) => {
+    try {
+      await deleteHosptAreaInfo(id);
+      createMessage.success('删除成功');
+      reFresh();
+    } catch (error) {
+      createMessage.error('删除失败');
+    }
+  };
   /**
    * 更新Table
    * @param isReturnPageOne 是否回退到第一页
    */
-  const reFresh = (isReturnPageOne: Boolean = false) => {
+  function reFresh(isReturnPageOne: Boolean = false) {
     vxeTableLayoutRef.value.refresh(isReturnPageOne);
   };
 
@@ -59,12 +63,26 @@ export function useHospManageEvent({ ...arg }) {
       pageData: result || []
     };
   }
+  /**
+   * 更新院区信息的回调
+   * @param isSuccess 是否更新成功
+   */
+  const onSubmitHosptForm = (isSuccess: Boolean) => {
+    if (isSuccess) {
+      updateRef.value.close();
+      createMessage.success('更新成功');
+      reFresh();
+    } else {
+      createMessage.error('更新失败');
+    }
+  };
   return {
     currentChangeEvent,
     initMethod,
     add,
     editRow,
     deleteRow,
-    reFresh
+    reFresh,
+    onSubmitHosptForm
   };
 }

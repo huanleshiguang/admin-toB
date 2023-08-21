@@ -29,7 +29,6 @@ declare module 'userTypeModules' {
     genderCode: string;
     userTel: string;
     userWorkNo: string;
-    certificateType: string
     idCategoryCode: string;
     idCategoryName: string;
     userRoleIds: [];

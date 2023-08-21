@@ -125,7 +125,7 @@ const {
   userForm,
   dictGenderList,
   dictPositionLevelList,
-  dictCertificateTypeList,
+  dictCertificateTypeList
 });
 const userFormEmits = defineEmits<{
   (event: 'handleSubmitUserForm', status: boolean): void;

@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-17 11:49:23
+ * @LastEditTime: 2023-08-18 17:23:15
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -71,21 +71,27 @@
         </div>
       </template>
       <template #columns>
-        <vxe-column title="操作" align="center" width="250" fixed="right">
+        <vxe-column title="操作" align="center" width="260" fixed="right">
           <template #default="{ row }">
-            <el-button type="primary" :icon="Edit" size="small" @click="editUser(row)">编辑</el-button>
-            <el-popconfirm
-              confirm-button-text="是"
-              cancel-button-text="否"
-              :icon="InfoFilled"
-              title="确定要删除这条信息吗？"
-              @confirm="deleteUser(row)"
-            >
-              <template #reference>
-                <el-button type="danger" :icon="Delete" size="small">删除</el-button>
-              </template>
-            </el-popconfirm>
-            <el-button text type="primary" size="small" @click="onConfigAuth(row)">分配权限</el-button>
+            <div class="uno-flex-y-center">
+              <p>
+                <el-button text type="info" @click="editUser(row)">
+                  <i-ep-edit class="el-icon"></i-ep-edit>
+                  <span>编辑</span>
+                </el-button>
+              </p>
+              <p>
+                <el-button text type="danger" @click="deleteUser(row)">
+                  <i-ep-delete class="el-icon"></i-ep-delete>
+                  <span>删除</span>
+                </el-button>
+              </p>
+              <p>
+                <el-button text @click="onConfigAuth(row)">
+                  <span>分配权限</span>
+                </el-button>
+              </p>
+            </div>
           </template>
         </vxe-column>
       </template>
@@ -102,18 +108,7 @@
 </template>
 <script lang="ts" setup>
 import { UserForm } from './components';
-import {
-  ArrowDown,
-  Search,
-  Document,
-  Folder,
-  FolderOpened,
-  InfoFilled,
-  Edit,
-  Delete,
-  Plus,
-  Refresh
-} from '@element-plus/icons-vue';
+import { ArrowDown, Search, Document, Folder, FolderOpened, Plus, Refresh } from '@element-plus/icons-vue';
 import { useUserCommon } from './composables/useUserCommon';
 import { useModuleConfigDrawer } from './composables/useModuleConfig';
 import { useUserEvent } from './composables/useUserEvent';

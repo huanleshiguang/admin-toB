@@ -1,1 +1,1 @@
-export { default as update } from './update.vue'
+export { default as hospForm } from './hospForm.vue';

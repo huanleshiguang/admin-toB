@@ -2,12 +2,12 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-11 16:15:04
+ * @LastEditTime: 2023-08-21 11:04:27
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 
 -->
 <template>
-  <DialogLayout ref="dialogLayoutRef" show-close :title="title" :sure-method="submit" @sure="sureMethod">
+  <DialogLayout ref="hospFormRef" show-close :title="title" :sure-method="submitValidate">
     <el-form ref="hospAreaFormRef" :model="hospAreaForm" :rules="rules" label-width="auto" label-position="right">
       <el-form-item label="编码" prop="hospAreaCode" required>
         <el-input v-model="hospAreaForm.hospAreaCode" type="text" placeholder="请输入院区编码" />
@@ -25,7 +25,7 @@ import areaType from 'areaTypeModules';
 
 const hospAreaFormRef = ref();
 const title = ref('新增院区');
-const dialogLayoutRef = ref<any>();
+const hospFormRef = ref<any>();
 const rules = reactive<FormRules<areaType.hospAreaInfo>>({
   id: [
     {
@@ -43,52 +43,65 @@ const rules = reactive<FormRules<areaType.hospAreaInfo>>({
     }
   ]
 });
-
 const hospAreaForm = ref<areaType.hospAreaFormType>({
+  id: '',
   hospAreaCode: '',
   hospAreaName: ''
 });
-const emits = defineEmits(['reFetchtableList']);
-const submit = async () => {
+
+const hospFormEmits = defineEmits<{
+  (event: 'handleSubmitHosptForm', status: boolean): void;
+}>();
+
+/**
+ * 验证表单
+ */
+const submitValidate = async () => {
   const result = await hospAreaFormRef.value.validate();
   if (result) {
-    // dosomething
+    sureMethod();
   }
 };
-const open = (data: areaType.hospAreaInfo) => {
-  title.value = `${data ? '编辑' : '新增'}院区`;
+
+/**
+ * 点击新增/编辑的回调函数
+ * @param hospInfo 院区信息
+ */
+const open = (hospInfo: areaType.hospAreaInfo) => {
+  title.value = `${hospInfo ? '编辑' : '新增'}院区`;
   // 新增
-  if (!data) {
+  if (!hospInfo) {
     hospAreaForm.value = {
+      id: '',
       hospAreaCode: '',
       hospAreaName: ''
     };
-    dialogLayoutRef.value.open();
+    hospFormRef.value.open();
     return;
   }
   // 编辑
-  const { hospAreaCode, hospAreaName } = data;
+  const { id, hospAreaCode, hospAreaName } = hospInfo;
   hospAreaForm.value = Object.assign(hospAreaForm.value, {
+    id,
     hospAreaCode,
     hospAreaName
   });
-  dialogLayoutRef.value.open();
+  hospFormRef.value.open();
 };
 const close = () => {
-  dialogLayoutRef.value.close();
+  hospFormRef.value.close();
 };
-const sureMethod = () => {
-  updateHosptAreaInfo(hospAreaForm.value)
-    .then((res) => {
-      if (res) {
-        dialogLayoutRef.value.close();
-        // 重新获取tableList
-        emits('reFetchtableList');
-      }
-    })
-    .catch((error) => {
-      throw error;
-    });
+
+/**
+ * 表单验证成功，发送更新院区请求
+ */
+const sureMethod = async () => {
+  try {
+    await updateHosptAreaInfo(hospAreaForm.value);
+    hospFormEmits('handleSubmitHosptForm', true);
+  } catch (error) {
+    hospFormEmits('handleSubmitHosptForm', false);
+  }
 };
 defineExpose({
   open,
