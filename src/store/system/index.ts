@@ -7,40 +7,39 @@
  * @Description: 系统配置模块 公共数据
  */
 
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 // 引入接口
-import { fetchHosptAreaInfo } from "/@/api/system/user";
-import { hospAreaInfo } from "/@/api/system/types/user";
-
+import { fetchHosptAreaInfo } from '../../api/system/user/user';
+import { hospAreaInfo } from '/@/api/system/types/user';
 
 interface systemConfig {
-  hospAreaInfoList:hospAreaInfo[]
+  hospAreaInfoList: hospAreaInfo[];
 }
 
 //创建系统配置小仓库
-let useSysConfigStore = defineStore('SysConfig', {
+const useSysConfigStore = defineStore('SysConfig', {
   //小仓库 存数据的地方
-  state: ():systemConfig => {
+  state: (): systemConfig => {
     return {
       hospAreaInfoList: []
-    }
+    };
   },
   actions: {
     // 获取院区信息列表
     async getHosptAreaInfo() {
       try {
         const result = await fetchHosptAreaInfo();
-        console.log(result,'result1');
+        console.log(result, 'result1');
         this.hospAreaInfoList = result;
       } catch (error) {
-        throw(error)
+        throw error;
       }
     }
   },
   getters: {
     hospAreaInfoList: (state) => state.hospAreaInfoList
   }
-})
+});
 
 // 对外暴露小仓库
 export default useSysConfigStore;
