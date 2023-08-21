@@ -1,7 +1,7 @@
 import request from '/@/utils/request';
 import { ApiBranch, ApiController } from '/@/enums/dict';
 import { BaseParams, PageResult } from '/@/types/axios';
-import { DataItem } from 'Dictiontary';
+import { DataItem } from 'Dictionary';
 
 // 统一接口管理
 enum API {

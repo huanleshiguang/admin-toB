@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { DictInfo } from '/@/api/system/types/dict';
+import { DictInfo } from 'Dictionary';
 import type { FormRules } from 'element-plus';
 import { cloneDeep } from 'lodash-es';
 const { createMessage } = useMessage();
