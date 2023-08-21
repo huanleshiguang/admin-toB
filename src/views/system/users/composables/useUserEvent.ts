@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:11:43
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-18 17:17:44
+ * @LastEditTime: 2023-08-21 15:03:13
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserEvent.ts
  * @Description:
  */
@@ -14,7 +14,7 @@ interface argsType {
   userFormDialogRef: Ref<any>;
   hospAreaList: Ref<areaType.hospAreaInfo[]>;
   hospAreaDepList: Ref<areaType.resDepInfo[]>;
-  params: Ref<any>;
+  params: Ref<userType.fetchUserList>;
 }
 export function useUserEvent(args: argsType) {
   const { vxeTableLayoutRef, treeSelectRef, userFormDialogRef, hospAreaList, hospAreaDepList, params } = args;

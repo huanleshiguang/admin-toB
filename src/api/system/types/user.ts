@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-08-07 09:34:14
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-07 09:43:55
+ * @LastEditTime: 2023-08-21 15:05:21
  * @FilePath: \servious-illness-admin\src\api\system\types\user.ts
  * @Description:
  */
@@ -11,7 +11,7 @@ declare module 'userTypeModules' {
   export interface fetchUserList {
     AreaId: string;
     DeptId: string;
-    Keyword?: string;
+    Keyword: string;
     PageIndex?: number;
     PageSize?: number;
   }

@@ -37,6 +37,5 @@ const change = (index: number) => {
 <style scoped lang="scss">
 .contentBox {
   height: calc(100% - 70px);
-  // background: #fff;
 }
 </style>

@@ -27,6 +27,11 @@ export function useHospManageEvent({ ...arg }) {
     const { id, hospAreaName } = hospInfo
     createConfirm(`是否删除'${hospAreaName}'`, 'warning').then(() => loadDeleteHosptAreaInfo(id));
   };
+
+  /**
+   * 删除院区
+   * @param id 院区ID
+   */
   const loadDeleteHosptAreaInfo = async (id: string) => {
     try {
       await deleteHosptAreaInfo(id);
@@ -36,13 +41,14 @@ export function useHospManageEvent({ ...arg }) {
       createMessage.error('删除失败');
     }
   };
+
   /**
    * 更新Table
    * @param isReturnPageOne 是否回退到第一页
    */
   function reFresh(isReturnPageOne: Boolean = false) {
     vxeTableLayoutRef.value.refresh(isReturnPageOne);
-  };
+  }
 
   /**
    *
@@ -63,6 +69,7 @@ export function useHospManageEvent({ ...arg }) {
       pageData: result || []
     };
   }
+
   /**
    * 更新院区信息的回调
    * @param isSuccess 是否更新成功
