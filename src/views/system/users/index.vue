@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-21 15:06:33
+ * @LastEditTime: 2023-08-23 17:06:40
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -74,16 +74,16 @@
         <vxe-column title="操作" align="center" width="260" fixed="right">
           <template #default="{ row }">
             <div class="uno-flex-y-center">
-              <p>
+              <p v-auth="userBtnAuth?.userEdit.value">
                 <el-button text type="info" @click="editUser(row)">
                   <i-ep-edit class="el-icon"></i-ep-edit>
-                  <span>编辑</span>
+                  <span>{{ userBtnAuth?.userEdit.label }}</span>
                 </el-button>
               </p>
-              <p>
+              <p v-auth="userBtnAuth?.userDelete.value">
                 <el-button text type="danger" @click="deleteUser(row)">
                   <i-ep-delete class="el-icon"></i-ep-delete>
-                  <span>删除</span>
+                  <span>{{ userBtnAuth?.userDelete.label }}</span>
                 </el-button>
               </p>
               <p>
@@ -122,7 +122,8 @@ const {
   hospAreaList,
   hospAreaDepList,
   columnsUserList,
-  hospAreaName
+  hospAreaName,
+  userBtnAuth
 } = useUserCommon();
 // 人员管理增删改查事件
 const {
