@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-23 17:06:40
+ * @LastEditTime: 2023-08-24 16:58:24
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -66,7 +66,9 @@
       </template>
       <template #operator-right>
         <div>
-          <el-button type="primary" :icon="Plus" @click="addUser">新增</el-button>
+          <el-button v-auth="userBtnAuth?.userAdd.value" type="primary" :icon="Plus" @click="addUser">
+            {{ userBtnAuth?.userAdd.label }}
+          </el-button>
           <el-button type="primary" class="ml-3" :icon="Refresh" @click="handleSearch">同步</el-button>
         </div>
       </template>
@@ -102,7 +104,7 @@
     <ModuleConfig
       v-model:module-config-visiable="moduleConfigDrawer.visiable"
       :card-title="moduleConfigDrawer.cardTitle"
-      title="人员配置"
+      title="人员配置1"
     />
   </div>
 </template>
