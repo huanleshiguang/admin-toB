@@ -2,12 +2,13 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-24 17:57:49
+ * @LastEditTime: 2023-08-24 17:59:39
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
 <template>
   <div class="common-layout p-16">
+    <div>123</div>
     <vxe-table-layout
       ref="vxeTableLayoutRef"
       class="h_100"
