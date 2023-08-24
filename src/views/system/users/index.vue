@@ -2,7 +2,7 @@
   * @Author: ZhouHao joehall@foxmail.com
   * @Date: 2023-07-12 09:09:22
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-24 16:58:24
+ * @LastEditTime: 2023-08-24 17:57:49
   * @FilePath: \servious-illness-admin\src\views\system\personnel.vue
   * @Description: 人员管理模块
  -->
@@ -104,7 +104,7 @@
     <ModuleConfig
       v-model:module-config-visiable="moduleConfigDrawer.visiable"
       :card-title="moduleConfigDrawer.cardTitle"
-      title="人员配置"
+      title="人员配置3"
     />
   </div>
 </template>
