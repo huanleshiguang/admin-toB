@@ -104,7 +104,7 @@
     <ModuleConfig
       v-model:module-config-visiable="moduleConfigDrawer.visiable"
       :card-title="moduleConfigDrawer.cardTitle"
-      title="人员配置1"
+      title="人员配置"
     />
   </div>
 </template>
