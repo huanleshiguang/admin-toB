@@ -4,19 +4,19 @@
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="操作名称" prop="operName" required>
-            <el-input v-model="form['operName']" :disabled="!!form.id" placeholder="请输入编码" />
+            <el-input v-model="form['operName']" :disabled="!!form.id" placeholder="请输入操作名称" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="操作类型" prop="operTypeCode" required>
-            <el-select v-model="form['operTypeCode']" placeholder="请输入名称" @change="selectChange">
+            <el-select v-model="form['operTypeCode']" placeholder="请选择操作类型" @change="selectChange">
               <FormOptions ref="opType" :options="options" />
             </el-select>
           </el-form-item>
         </el-col>
       </el-row>
       <el-form-item label="操作限制" prop="operLimitCode">
-        <el-radio-group v-model="form['operLimitCode']" placeholder="请输入英文名称">
+        <el-radio-group v-model="form['operLimitCode']">
           <FormOptions type="radio" :options="options1" />
         </el-radio-group>
       </el-form-item>
@@ -45,12 +45,12 @@
           placeholder="请输入护理记录格式"
         />
       </el-form-item>
-      <el-form-item label="护理记录格式" prop="nurseDocFormat">
+      <el-form-item label="护理文书格式" prop="nurseDocFormat">
         <FormulaInput
           v-model="form['nurseDocFormat']"
           class="w_100"
           :options="dataItemSortOptions"
-          placeholder="请输入护理记录格式"
+          placeholder="请输入护理文书格式"
         />
       </el-form-item>
     </el-form>

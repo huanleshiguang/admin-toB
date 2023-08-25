@@ -1,7 +1,6 @@
-import { DictCategory } from 'Dictionary';
+import { DataItem } from 'Dictionary';
 
 export function useCommon() {
-  const treeRef = ref(null);
   // 搜索字段
   const dictName = ref<string>('');
 
@@ -12,7 +11,7 @@ export function useCommon() {
   const updateRef = ref(null);
 
   // 选中行
-  const currentRow = ref<DictCategory>();
+  const currentRow = ref<DataItem>();
 
   /**
    * 初始化方法
@@ -20,8 +19,14 @@ export function useCommon() {
    * @returns
    */
   async function initMethod() {
-    const data = await fetchDictCategoryItemList(currentRow.value!.id as string);
-    return data;
+    const { pageData } = await getDataItemList();
+    return pageData;
   }
-  return { treeRef, dictName, vxeTableLayout, updateRef, currentRow, initMethod };
+  return {
+    dictName,
+    vxeTableLayout,
+    updateRef,
+    currentRow,
+    initMethod
+  };
 }

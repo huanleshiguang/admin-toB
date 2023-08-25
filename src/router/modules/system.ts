@@ -53,6 +53,12 @@ const systemRouter: RouteRecordRaw = {
       meta: { title: '字典维护', icon: 'dashboard', affix: true, requireAuth: true }
     },
     {
+      path: 'serviceConfig',
+      component: () => import('/@/views/system/serviceConfig/index.vue'),
+      name: 'ServiceConfig',
+      meta: { title: '业务配置', icon: 'dashboard', affix: true, requireAuth: true }
+    },
+    {
       path: 'department',
       component: () => import('/@/views/system/department/index.vue'),
       name: 'Department',

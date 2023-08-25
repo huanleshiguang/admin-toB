@@ -10,7 +10,7 @@
       :columns-list="columnsList"
     >
       <template #operator-left>
-        <TableTitle title="项目操作配置" />
+        <TableTitle title="数据项配置" />
       </template>
       <template #operator-right>
         <el-button type="primary" @click="add">
@@ -37,8 +37,8 @@ import Update from './components/update.vue';
 import TableTitle from '../common/title.vue';
 import { columnsList } from './enum';
 import { Edit } from '@element-plus/icons-vue';
-import { useCommon } from './composables/useProjectOpCommon';
-import { useEvent } from './composables/useProjectOpEvents';
+import { useCommon } from './composables/useDataItemCommon';
+import { useEvent } from './composables/useDataItemEvents';
 const { vxeTableLayout, updateRef, currentRow, initMethod } = useCommon();
 
 const { add, editRow, refresh } = useEvent({
@@ -66,4 +66,3 @@ const { add, editRow, refresh } = useEvent({
   z-index: 2999 !important;
 }
 </style>
-./composables/useProjectOpCommon./composables/useProjectOpEvents
