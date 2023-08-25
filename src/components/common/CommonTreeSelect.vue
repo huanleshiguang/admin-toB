@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-18 09:32:45
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-16 10:58:26
+ * @LastEditTime: 2023-08-21 17:30:52
  * @FilePath: \servious-illness-admin\src\components\common\CommonTree.vue
  * @Description: 公共tree-select组件
 -->
@@ -69,10 +69,12 @@ const props = defineProps({
     type: String,
     default: '请选择'
   },
+  // 是否开启多选
   multiple: {
     type: Boolean,
     defalue: false
   },
+  // 是否可清除
   clearable: {
     type: Boolean,
     default: true

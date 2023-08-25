@@ -2,13 +2,14 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 17:15:02
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-21 14:53:56
+ * @LastEditTime: 2023-08-23 17:23:56
  * @FilePath: \servious-illness-admin\src\views\system\users\composables\useUserCommon.ts
  * @Description:
  */
 
 import areaType from 'areaTypeModules';
 import userType from 'userTypeModules';
+import { ButtonAuth } from 'ICUCommon';
 export function useUserCommon() {
   // update组件实例
   const userFormDialogRef = ref<any>(null);
@@ -70,6 +71,22 @@ export function useUserCommon() {
       field: 'userIdNo'
     }
   ];
+
+  // 功能按钮
+  const userBtnAuth = ref<ButtonAuth | null>({
+    userAdd: {
+      label: '新增',
+      value: 'bqicu_sys_userAdd'
+    },
+    userEdit: {
+      label: '修改',
+      value: 'bqicu_sys_userEdit'
+    },
+    userDelete: {
+      label: '删除',
+      value: 'bqicu_sys_userDelete'
+    }
+  });
   return {
     userFormDialogRef,
     vxeTableLayoutRef,
@@ -79,6 +96,7 @@ export function useUserCommon() {
     hospAreaList,
     hospAreaDepList,
     columnsUserList,
-    hospAreaName
+    hospAreaName,
+    userBtnAuth
   };
 }

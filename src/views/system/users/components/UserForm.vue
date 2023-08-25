@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-13 18:37:58
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-17 19:00:49
+ * @LastEditTime: 2023-08-23 15:17:48
  * @FilePath: \servious-illness-admin\src\views\system\users\components\HospAreaManage\update.vue
  * @Description: 人员管理新增与编辑
 -->
@@ -10,24 +10,24 @@
   <DialogLayout ref="dialogLayoutRef" show-close :title="userFormtitle" @sure="sureMethod">
     <el-form ref="userFormRef" :model="userForm" :rules="rules" label-width="auto" label-position="right">
       <el-form-item label="所属科室" prop="deptId">
-        <common-tree-select
+        <CommonTreeSelect
           ref="belongToTreeRef"
           v-model:model-data="userForm.deptId"
           :data="hospAreaDepList"
           :transmit-props="transmitProps"
           @handle-node-click="handlePartOfDept"
-        ></common-tree-select>
+        ></CommonTreeSelect>
       </el-form-item>
       <el-form-item label="参与科室" prop="deptIds">
-        <common-tree-select
+        <CommonTreeSelect
           ref="bePartTreeRef"
           v-model:model-data="userForm.deptIds"
           :data="hospAreaDepList"
-          :multiple="isMultiple"
+          :multiple="true"
           placeholder="选择参与科室（可多选）"
           :transmit-props="transmitProps"
           @handle-node-click="handleClickPartInDept"
-        ></common-tree-select>
+        ></CommonTreeSelect>
       </el-form-item>
       <el-form-item label="用户姓名" prop="userName">
         <el-input v-model="userForm.userName" placeholder="请输入用户姓名" />
@@ -86,6 +86,7 @@
 <script setup lang="ts">
 import { useUpdateCommon } from './composiables/useUpdateCommon';
 import { useUpdateEvent } from './composiables/useUpdateEvent';
+import CommonTreeSelect from '/@/components/common/CommonTreeSelect.vue';
 const { createMessage } = useMessage();
 const {
   rules,
@@ -97,7 +98,6 @@ const {
   hospAreaDepList,
   roleList,
   transmitProps,
-  isMultiple,
   userFormRef,
   dictGenderList,
   dictPositionLevelList,

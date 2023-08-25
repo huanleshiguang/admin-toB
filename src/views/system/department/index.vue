@@ -1,8 +1,8 @@
 <!--
  * @Autor: ZhouHao joehall@foxmail.com
  * @Date: 2023-02-17 22:45:44
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-08-14 11:39:28
+ * @LastEditors: ZhouHao joehall@foxmail.com
+ * @LastEditTime: 2023-08-23 11:36:42
  * @Description: 
  * @FilePath: \servious-illness-admin\src\views\system\users\index.vue
 -->
@@ -12,8 +12,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import DeptManagefrom from './DeptManage/index.vue';
-import HospAreaManage from './HospAreaManage/index.vue';
+import DeptManagefrom from './components/DeptManage/index.vue';
+import HospAreaManage from './components/HospAreaManage/index.vue';
 
 const tabList = [
   {

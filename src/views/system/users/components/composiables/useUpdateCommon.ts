@@ -2,7 +2,7 @@
  * @Author: ZhouHao joehall@foxmail.com
  * @Date: 2023-07-31 18:16:16
  * @LastEditors: ZhouHao joehall@foxmail.com
- * @LastEditTime: 2023-08-18 09:24:51
+ * @LastEditTime: 2023-08-21 17:37:52
  * @FilePath: \servious-illness-admin\src\views\system\users\components\composiables\useUpdateCommon.ts
  * @Description:
  */
@@ -25,8 +25,6 @@ export function useUpdateCommon() {
   const dictCertificateTypeList = ref<userType.resDictInfo[]>([]);
   // dlalog标题
   const userFormtitle = ref('');
-  // 作为common-tree-select组件的props:是否支持多选
-  const isMultiple = ref(true);
   // 定义需要传给公共组件<common-tree-select />的字段（用于tree展示）
   const transmitProps = {
     id: 'id',
@@ -115,7 +113,6 @@ export function useUpdateCommon() {
     transmitProps,
     hospAreaDepList,
     roleList,
-    isMultiple,
     userFormtitle,
     rules,
     userForm,
