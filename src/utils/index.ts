@@ -451,3 +451,82 @@ export function sortBy(key: string, reverse = true) {
     return reverse ? targetFirst - targetSecond : targetSecond - targetFirst;
   };
 }
+
+//定义一个排序函数
+function compare(pro = 'id', order = 'asc') {
+  return function (obj1, obj2) {
+    let val1 = obj1[pro];
+    let val2 = obj2[pro];
+    if (order === 'desc') {
+      val1 = obj2[pro];
+      val2 = obj1[pro];
+    }
+    if (val2 < val1) {
+      //正序
+      return 1;
+    } else if (val2 > val1) {
+      return -1;
+    } else {
+      return 0;
+    }
+  };
+}
+
+/**
+ * 将list装换成tree
+ * @param {Object} myId  数据主键id
+ * @param {Object} pId     数据关联的父级id
+ * @param {Object} list list集合
+ */
+export const listToTree = (list, myId = 'id', pId = 'parentId', pro = 'sortNo', order = 'asc') => {
+  if (!isArray(list)) {
+    return;
+  }
+  function exists(list, parentId) {
+    for (let i = 0; i < list.length; i++) {
+      if (list[i][myId] === parentId) return true;
+    }
+    return false;
+  }
+
+  const sort = compare(pro, order);
+  let nodes: any[] = [];
+  // get the top level nodes
+  for (let i = 0; i < list.length; i++) {
+    const row = list[i];
+    if (!exists(list, row[pId])) {
+      nodes.push(row);
+    }
+  }
+
+  nodes = nodes.sort(sort);
+
+  let toDo: any[] = [];
+  for (let i = 0; i < nodes.length; i++) {
+    toDo.push(nodes[i]);
+  }
+  toDo = toDo.sort(sort);
+  while (toDo.length) {
+    const node: { children: any[] } = toDo.shift(); // the parent node
+    // get the children nodes
+    for (let i = 0; i < list.length; i++) {
+      const row = list[i];
+      if (row[pId] === node[myId]) {
+        //let child = {id:row.id,text:row.name};
+        if (node.children) {
+          node.children.push(row);
+        } else {
+          node.children = [row];
+        }
+
+        toDo.push(row);
+      }
+
+      if (i === list.length - 1 && isArray(node.children)) {
+        node.children = node.children.sort(sort);
+      }
+    }
+  }
+
+  return nodes;
+};

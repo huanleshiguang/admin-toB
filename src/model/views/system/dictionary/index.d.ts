@@ -5,24 +5,27 @@ declare module 'Dictionary' {
   /**
    * 基础字典
    */
-  export interface DictInfo {
+  export interface DictCategory {
     id?: string;
     parentId: string;
-    dictCode: string;
-    dictName: string;
-    dictEnName: string;
-    dictEnAbbr: string;
+    categoryCode: string;
+    categoryInternalCode?: string;
+    categoryName: string;
+    categoryEnName: string;
+    categoryEnAbbr: string;
     remark: string;
   }
   /**
    * 基础字典值域
    */
-  export interface DictValueInfo {
+  export interface BaseDictItem {
     id?: string;
-    dictId: string;
-    rangeName: string;
-    rangeEnName: string;
-    rangeValue: string;
+    parentId?: string;
+    itemName: string;
+    itemEnName: string;
+    itemValue: string;
+    sortNo?: number;
+    itemVersion: string;
     remark: string;
   }
   /**

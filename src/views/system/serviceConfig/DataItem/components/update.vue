@@ -1,41 +1,27 @@
 <template>
   <DialogLayout ref="dialogLayout" show-close :title="title" :sure-method="submit">
     <el-form ref="formRef" :model="form" :rules="rules" label-width="auto" label-position="right">
-      <el-form-item label="上级分类" prop="parentId">
-        <el-tree-select
-          v-model="form['parentId']"
-          class="w_100"
-          lazy
-          clearable
-          check-strictly
-          :load="loadTreeData"
-          :props="{ label: 'categoryName', value: 'id', children: 'children', isLeaf: 'isLeaf', disabled: isDisabled }"
-          :cache-data="cacheData"
-          placeholder="请选择上级分类"
-          :render-after-expand="false"
-        />
-      </el-form-item>
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item label="分类编码" prop="categoryCode" required>
-            <el-input v-model="form['categoryCode']" :disabled="!!form.id" placeholder="请输入编码" />
+          <el-form-item label="编码" prop="dataItemCode" required>
+            <el-input v-model="form['dataItemCode']" :disabled="!!form.id" placeholder="请输入编码" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="名称" prop="categoryName" required>
-            <el-input v-model="form['categoryName']" placeholder="请输入名称" />
+          <el-form-item label="名称" prop="dataItemName" required>
+            <el-input v-model="form['dataItemName']" placeholder="请输入名称" />
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item label="英文名称" prop="categoryEnName">
-            <el-input v-model="form['categoryEnName']" placeholder="请输入英文名称" />
+          <el-form-item label="数据类型" prop="dictEnName">
+            <el-input v-model="form['dictEnName']" placeholder="请输入英文名称" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="缩略名" prop="categoryEnAbbr">
-            <el-input v-model="form['categoryEnAbbr']" placeholder="请输入缩略名" />
+          <el-form-item label="控件类型" prop="dictEnAbbr">
+            <el-input v-model="form['dictEnAbbr']" placeholder="请输入缩略名" />
           </el-form-item>
         </el-col>
       </el-row>
@@ -47,49 +33,72 @@
 </template>
 
 <script setup lang="ts">
-import { DictCategory } from 'Dictionary';
+import { DataItem } from 'Dictionary';
 import type { FormRules } from 'element-plus';
 import { cloneDeep } from 'lodash-es';
 const { createMessage } = useMessage();
-const title = ref<string>('新增数据字典');
+const title = ref<string>('新增数据项配置');
 const dialogLayout = ref<any>();
 /**
  * tree缓存数据
  */
-const cacheData = ref<DictCategory[]>([]);
-const rules = reactive<FormRules<DictCategory>>({
-  categoryCode: [
+const cacheData = ref<DataItem[]>([]);
+const rules = reactive<FormRules<DataItem>>({
+  dataItemCode: [
     {
       required: true,
-      message: '请输入分类编码',
+      message: '请输入编码',
       trigger: 'change'
-    },
-    { pattern: /^[a-zA-Z][a-zA-Z0-9]{0,31}$/, message: '只能以字母开头，可以包含数字，不能超过32位！' }
+    }
   ],
-  categoryName: [
+  dataItemName: [
     {
       required: true,
       message: '请输入名称',
       trigger: 'change'
     }
   ]
+  // dictEnName: [
+  //   {
+  //     required: true,
+  //     message: '请输入英文名',
+  //     trigger: 'change'
+  //   }
+  // ],
+  // dictEnAbbr: [
+  //   {
+  //     required: true,
+  //     message: '请输入缩略名',
+  //     trigger: 'change'
+  //   }
+  // ],
+  // remark: [
+  //   {
+  //     required: true,
+  //     message: '请输入描述',
+  //     trigger: 'change'
+  //   }
+  //]
 });
 const formRef = ref<any>();
-let form = reactive<DictCategory>({
-  parentId: '',
-  categoryCode: '',
-  categoryName: '',
-  categoryEnName: '',
-  categoryEnAbbr: '',
-  remark: ''
+let form = reactive<DataItem>({
+  id: '',
+  dataItemName: '',
+  dataItemCode: '',
+  dataItemTypeCode: '',
+  dataItemTypeName: '',
+  outInTypeCode: '',
+  outInTypeName: '',
+  useValueCode: '',
+  useValueName: ''
 });
 /**
  * 打开方法
  * @param data 表格行数据
  * @param parentData 父级数据
  */
-const open = (data: DictCategory, parentData: DictCategory) => {
-  title.value = `${data?.id ? '编辑' : '新增'}基础字典`;
+const open = (data: DictInfo, parentData: DictInfo) => {
+  title.value = `${data?.id ? '编辑' : '新增'}数据项配置`;
   if (data) {
     form = Object.assign(form, cloneDeep(data));
     if (form.parentId === '0') {
@@ -99,12 +108,12 @@ const open = (data: DictCategory, parentData: DictCategory) => {
     }
     // form = data;
   } else {
-    form = reactive<DictCategory>({
+    form = reactive<DictInfo>({
       parentId: '',
-      categoryCode: '',
-      categoryName: '',
-      categoryEnName: '',
-      categoryEnAbbr: '',
+      dictCode: '',
+      dictName: '',
+      dictEnName: '',
+      dictEnAbbr: '',
       remark: ''
     });
   }
@@ -133,11 +142,11 @@ const close = () => {
 const loadTreeData = async (node, resolve) => {
   // 第一级
   if (node.level === 0) {
-    const result = await fetchDictCategoryListLazy('0');
+    const result = await fetchDictCategoryLazy('0');
     resolve(result);
   } else {
     // 其他级
-    const result = await fetchDictCategoryListLazy(node.data.id);
+    const result = await fetchDictCategoryLazy(node.data.id);
     resolve(result);
   }
 };

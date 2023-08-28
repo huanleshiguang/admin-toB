@@ -1,13 +1,14 @@
+import { Tree } from 'element-plus/es/components/tree-v2/src/types';
 import { cloneDeep } from 'lodash-es';
 export function useEvent({ ...args }) {
   const { createConfirm, createMessage } = useMessage();
-  const { updateRef, vxeTableLayout } = args;
+  const { updateRef, vxeTableLayout, currentRow, treeRef } = args;
 
   /**
    * 新增字典
    */
   const add = (): void => {
-    updateRef.value!.open();
+    updateRef.value!.open({ parent: currentRow.value });
   };
 
   /**
@@ -47,10 +48,43 @@ export function useEvent({ ...args }) {
     vxeTableLayout.value!.refresh();
   };
 
+  const handleNodeClick = (data: Tree) => {
+    console.log(data);
+
+    currentRow.value = data;
+    refresh();
+  };
+
+  /**
+   * 懒加载tree
+   * @param node 当前节点
+   * @param resolve 返回方法
+   */
+  const loadTreeData = async (node, resolve) => {
+    // 第一级
+    if (node.level === 0) {
+      const result = await fetchDictCategoryListLazy('0');
+      // 执行默认选中第一条
+      nextTick(() => {
+        if (result.length > 0) {
+          treeRef.value && treeRef.value?.setCurrentKey(result[0]);
+          currentRow.value = result[0];
+          refresh();
+        }
+      });
+      resolve(result);
+    } else {
+      // 其他级
+      const result = await fetchDictCategoryListLazy(node.data.id);
+      resolve(result);
+    }
+  };
   return {
     add,
     editRow,
     enableRow,
-    refresh
+    refresh,
+    handleNodeClick,
+    loadTreeData
   };
 }
